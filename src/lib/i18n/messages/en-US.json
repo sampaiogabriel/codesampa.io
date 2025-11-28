@@ -15,8 +15,8 @@
       "Hero": {
         "badge": "v3.0 System Architecture",
         "title_prefix": "Build Scalable",
-        "title_suffix": "Systems.",
-        "subtitle": "Transform abstract code into concrete products. Scroll to compile the interface.",
+        "title_suffix": "Systems",
+        "subtitle": "Transform abstract code into concrete products. Scroll to compile the interface",
         "scroll_indicator": "Scroll to Compile",
         "view_desktop": "Desktop",
         "view_mobile": "Mobile"

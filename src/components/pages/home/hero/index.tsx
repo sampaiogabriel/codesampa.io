@@ -135,7 +135,6 @@ export function HeroSection() {
 
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden perspective-1000">
         
-        {/* === BACKGROUND CORRIGIDO === */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         <div className="absolute left-1/2 top-[-10%] h-[50vw] w-[50vw] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
         <div className="absolute bottom-[-20%] left-1/2 h-[40vw] w-[40vw] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[100px]" />
@@ -146,7 +145,6 @@ export function HeroSection() {
         ))}
 
         {/* Layer 2: Hero Text */}
-        {/* [AJUSTE] Adicionei -mt-20 md:-mt-32 para subir o bloco de texto */}
         <motion.div
           style={{
             opacity: textOpacity,
@@ -165,7 +163,7 @@ export function HeroSection() {
               {t('title_suffix')}
             </span>
           </h1>
-          <p className="mx-auto max-w-xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             {t('subtitle')}
           </p>
         </motion.div>
@@ -377,7 +375,7 @@ export function HeroSection() {
         {/* Scroll Indicator */}
         <motion.div
           style={{ opacity: textOpacity }}
-          className="absolute bottom-24 flex flex-col items-center gap-2 text-slate-500 md:bottom-10"
+          className="absolute bottom-24 flex flex-col items-center gap-2 text-slate-400 md:bottom-10"
         >
           <span className="text-[10px] uppercase tracking-widest">
             {t('scroll_indicator')}
