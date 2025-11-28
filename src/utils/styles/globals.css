@@ -181,7 +181,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans); /* Garante Geist como padrão no corpo */
+    font-family: var(--font-sans);
   }
 
   h1,
@@ -191,5 +191,24 @@
   h5,
   h6 {
     font-family: var(--font-display);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full border-2 border-background hover:bg-muted-foreground/40 transition-colors;
+  }
+
+  /* Firefox (Opcional, pois o suporte a scrollbar-color é diferente) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-foreground) transparent;
   }
 }
