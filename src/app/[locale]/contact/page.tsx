@@ -1,7 +1,3 @@
-export default function ContactPage() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Hello world
-    </div>
-  );
+export default async function Page() {
+  return <div className="container mx-auto px-4">Contact</div>;
 }
