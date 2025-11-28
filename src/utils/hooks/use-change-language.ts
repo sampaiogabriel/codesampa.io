@@ -3,8 +3,9 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
+import { EN_US, PT_BR } from '../constants/languages';
 
-type LanguageCode = 'en-US' | 'pt-BR';
+type LanguageCode = typeof EN_US | typeof PT_BR;
 
 export function useChangeLanguage() {
   const router = useRouter();
@@ -16,8 +17,10 @@ export function useChangeLanguage() {
     if (locale === newLocale) return;
 
     startTransition(() => {
-      const cleanPath = pathname.replace(/^\/(en-US`|pt-BR)/, '');
-      router.replace(`/${newLocale}${cleanPath}`);
+      const cleanPath = pathname.replace(new RegExp(`^/(${locale})`), '') || '/';
+      const pathWithSlash = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+      
+      router.replace(`/${newLocale}${pathWithSlash === '/' ? '' : pathWithSlash}`);
     });
   };
 
