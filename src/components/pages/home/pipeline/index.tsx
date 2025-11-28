@@ -78,7 +78,7 @@ export function EngineeringPipeline() {
       <div className="absolute bottom-[-10%] left-1/2 h-[300px] w-full max-w-[800px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[80px]" />
 
       {/* Container Sticky apenas no Desktop */}
-      <div className="flex h-full w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
+      <div className="container mx-auto flex h-full w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
         
         {/* Cabeçalho da Seção */}
         <header className="px-6 py-12 md:absolute md:left-20 md:top-12 md:z-20 md:p-0">

@@ -141,7 +141,7 @@ export function HeroSection() {
         {/* === BACKGROUND GRADIENT (Radius Style) === */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         <div className="absolute top-[-10%] left-1/2 h-[500px] w-full max-w-[1000px] -translate-x-1/2 rounded-[100%] bg-primary/20 blur-[100px] md:h-[700px] md:blur-[130px]" />
-        <div className="absolute bottom-[-10%] left-1/2 h-[300px] w-full max-w-[800px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[80px]" />
+        <div className="absolute bottom-[-10%] blur-[80px]" />
 
         {/* Layer 1: Symbols */}
         {codeSymbols.map((item) => (
@@ -165,6 +165,7 @@ export function HeroSection() {
               </div>
             </AnimatedBadge>
           </div>
+
           
           <h1 className="font-display mb-8 text-6xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl">
             {t('title_prefix')} <br />
