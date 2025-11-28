@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
 
-type LanguageCode = 'en' | 'pt-BR';
+type LanguageCode = 'en-US' | 'pt-BR';
 
 export function useChangeLanguage() {
   const router = useRouter();
@@ -16,7 +16,7 @@ export function useChangeLanguage() {
     if (locale === newLocale) return;
 
     startTransition(() => {
-      const cleanPath = pathname.replace(/^\/(en|pt-BR)/, '');
+      const cleanPath = pathname.replace(/^\/(en-US`|pt-BR)/, '');
       router.replace(`/${newLocale}${cleanPath}`);
     });
   };
