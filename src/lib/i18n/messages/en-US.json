@@ -8,6 +8,30 @@
       },
       "language_selector": "Change language",
       "open_menu": "Open menu"
+    },
+    "Footer": {
+      "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
+      "rights": "All rights reserved.",
+      "made_with": "Made with Next.js & passion.",
+      "columns": {
+        "product": "Product",
+        "company": "Company",
+        "resources": "Resources"
+      },
+      "links": {
+        "features": "Features",
+        "integration": "Integrations",
+        "pricing": "Pricing",
+        "changelog": "Changelog",
+        "about": "About",
+        "careers": "Careers",
+        "blog": "Blog",
+        "contact": "Contact",
+        "community": "Community",
+        "help": "Help Center",
+        "terms": "Terms",
+        "privacy": "Privacy"
+      }
     }
   },
   "Pages": {
@@ -54,6 +78,45 @@
             "description": "Global infrastructure on the Edge, serverless auto-scaling, and instant rollback capabilities."
           }
         }
+      },
+      "SelectedWork": {
+        "badge": "Portfolio",
+        "title": "Featured <br/> Projects.",
+        "subtitle": "A selection of projects demonstrating technical capability, scalable design systems, and complex problem-solving.",
+        "cta_case_study": "View Case Study",
+        "cta_repo": "GitHub Repository",
+        "projects": {
+          "kingfix": {
+            "title": "KingFix",
+            "category": "Mobile Application",
+            "description": "Complete platform for auto repair shop management. Real-time control of work orders, inventory, and scheduling via mobile App.",
+            "stats": "+30% Operational Efficiency"
+          },
+          "devrex": {
+            "title": "DevRex",
+            "category": "Micro-SaaS Platform",
+            "description": "Ecosystem for developers to find international remote jobs. LinkedIn automation system and AI-powered profile analysis.",
+            "stats": "500+ Indexed Jobs"
+          },
+          "codesampa": {
+            "title": "CodeSampa.io",
+            "category": "Branding & Web",
+            "description": "Content and software engineering services hub. Proprietary design system with advanced animations and optimized performance.",
+            "stats": "100/100 Lighthouse Score"
+          }
+        }
+      },
+      "LampSection": {
+        "title": "From Idea to Launch <br/> Faster Than Ever",
+        "subtitle": "We accelerate your product development with the most modern technologies in the market.",
+        "cta": "Get Started"
+      },
+      "Newsletter": {
+        "title": "Ready to scale?",
+        "description": "Join our exclusive list and get insights on software architecture, design systems, and technology.",
+        "placeholder": "yourname@company.com",
+        "button": "Subscribe",
+        "disclaimer": "No spam. Unsubscribe anytime."
       }
     },
     "Contact": {},

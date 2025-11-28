@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
-
 import '../../utils/styles/globals.css';
 import { Toaster } from 'sonner';
 
+import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/theme-provider';
 
@@ -18,7 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
-// [2] Configuração da Space Grotesk
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space',
   subsets: ['latin'],
@@ -44,7 +43,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
       >
         <NextIntlClientProvider>
           <ThemeProvider
@@ -54,7 +53,10 @@ export default async function RootLayout({
           >
             <Header/>
             <Toaster />
-            {children}
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer /> {/* [NOVO] */}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
