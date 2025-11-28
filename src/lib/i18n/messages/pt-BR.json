@@ -12,7 +12,7 @@
     "Footer": {
       "description": "Engenharia de software de ponta para produtos digitais que exigem performance, escalabilidade e design impecável.",
       "rights": "Todos os direitos reservados.",
-      "made_with": "Feito com Next.js & paixão.",
+      "made_with": "Por Gabriel Sampaio",
       "columns": {
         "product": "Produto",
         "company": "Empresa",
@@ -36,7 +36,6 @@
   },
   "Pages": {
     "Home": {
-      "hello_world": "Olá mundo!",
       "Hero": {
         "badge": "v3.0 Arquitetura de Sistema",
         "title_prefix": "Construa Sistemas",
@@ -81,7 +80,7 @@
       },
       "SelectedWork": {
         "badge": "Portfolio",
-        "title": "Projetos em <br/> Destaque.",
+        "title": "Projetos em  Destaque.",
         "subtitle": "Uma seleção de projetos que demonstram capacidade técnica, design system escalável e resolução de problemas complexos.",
         "cta_case_study": "Ver Case Study",
         "cta_repo": "Repositório GitHub",
@@ -107,7 +106,7 @@
         }
       },
       "LampSection": {
-        "title": "Da Ideia ao Lançamento <br/> Mais Rápido que Nunca",
+        "title": "Da Ideia ao Lançamento mais Rápido que Nunca",
         "subtitle": "Aceleramos o desenvolvimento do seu produto com as tecnologias mais modernas do mercado.",
         "cta": "Começar Agora"
       },

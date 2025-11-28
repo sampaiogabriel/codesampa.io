@@ -12,7 +12,7 @@
     "Footer": {
       "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
       "rights": "All rights reserved.",
-      "made_with": "Made with Next.js & passion.",
+      "made_with": "By Gabriel Sampaio",
       "columns": {
         "product": "Product",
         "company": "Company",
@@ -36,7 +36,6 @@
   },
   "Pages": {
     "Home": {
-      "hello_world": "Hello world!",
       "Hero": {
         "badge": "v3.0 System Architecture",
         "title_prefix": "Build Scalable",
@@ -81,7 +80,7 @@
       },
       "SelectedWork": {
         "badge": "Portfolio",
-        "title": "Featured <br/> Projects.",
+        "title": "Featured Projects.",
         "subtitle": "A selection of projects demonstrating technical capability, scalable design systems, and complex problem-solving.",
         "cta_case_study": "View Case Study",
         "cta_repo": "GitHub Repository",
@@ -107,7 +106,7 @@
         }
       },
       "LampSection": {
-        "title": "From Idea to Launch <br/> Faster Than Ever",
+        "title": "From Idea to Launch faster Than Ever",
         "subtitle": "We accelerate your product development with the most modern technologies in the market.",
         "cta": "Get Started"
       },

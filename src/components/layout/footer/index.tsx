@@ -59,7 +59,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} CodeSampa. {t('rights')}</p>
+          <p>© {currentYear} codesampa.io {t('rights')}</p>
           <div className="flex items-center gap-8">
             <p>{t('made_with')}</p>
           </div>
