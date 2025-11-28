@@ -1,4 +1,4 @@
-import { EN_US, PT_BR } from '@/src/utils/constants/languages';
+import { EN_US, PT_BR } from '@/utils/constants/languages';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({

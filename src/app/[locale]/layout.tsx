@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
 
 import '../../utils/styles/globals.css';
-import { ThemeProvider } from '@/src/components/theme-provider';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

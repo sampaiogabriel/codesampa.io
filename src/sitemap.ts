@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { routing } from '@/src/lib/i18n/routing';
+import { routing } from '@/lib/i18n/routing';
 
 // URL base do seu site
 const host = 'https://codesampa.io';
