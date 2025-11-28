@@ -16,29 +16,29 @@ export async function Header() {
   const t = await getTranslations('Components.Header');
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 inset-x-0 z-50 h-14 w-full border-b border-border bg-background/40 backdrop-blur-lg">
+      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between px-4">
         {/* Esquerda: Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-display text-xl font-bold tracking-tight text-foreground hover:opacity-90 transition-opacity">
+            {/* Se tiver um ícone SVG, pode colocar aqui. Por enquanto, texto estilizado */}
+            <span className="font-display text-lg font-medium tracking-tight text-foreground hover:opacity-90 transition-opacity">
               CodeSampa
             </span>
           </Link>
         </div>
 
-        {/* Centro: Navegação Desktop */}
-        <div className="hidden md:flex md:flex-1 md:justify-center">
+        {/* Centro: Navegação Desktop (Posicionamento Absoluto para Centralização Perfeita) */}
+        <nav className="hidden md:absolute md:left-1/2 md:top-1/2 md:block md:-translate-x-1/2 md:-translate-y-1/2">
           <NavLinks />
-        </div>
+        </nav>
 
-        {/* Direita: Ações (GitHub + Lang + Mobile Menu) */}
+        {/* Direita: Ações */}
         <div className="flex items-center gap-2">
-          {/* GitHub Button (Desktop & Mobile) */}
           <Button
             variant="ghost"
             size="icon"
-            className="text-muted-foreground hover:text-foreground hidden sm:flex"
+            className="text-muted-foreground hover:text-foreground hidden sm:flex h-9 w-9"
             asChild
           >
             <a
@@ -47,7 +47,7 @@ export async function Header() {
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-4 w-4" />
             </a>
           </Button>
 
@@ -60,10 +60,10 @@ export async function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="-mr-2 text-muted-foreground hover:text-foreground"
+                  className="-mr-2 text-muted-foreground hover:text-foreground h-9 w-9"
                   aria-label={t('open_menu')}
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
@@ -74,7 +74,6 @@ export async function Header() {
                 </SheetHeader>
                 <NavLinks orientation="vertical" />
                 
-                {/* Mobile Extra Links */}
                 <div className="mt-8 border-t pt-6">
                    <Button
                     variant="outline"
