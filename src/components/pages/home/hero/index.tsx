@@ -8,7 +8,7 @@ import {
 } from 'framer-motion';
 import { Terminal, Signal, Wifi, BatteryMedium } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { cn } from '@/utils/functions/tw-merge';
 
@@ -102,6 +102,10 @@ export function HeroSection() {
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
 
   // Animations
+  // [AJUSTE] Controla a opacidade da Toolbar para sumir ao sair da Hero (após 90% do scroll)
+  const toolbarOpacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+  const toolbarPointerEvents = useTransform(scrollYProgress, (v) => v > 0.9 ? 'none' : 'auto');
+
   const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.5]);
   const textBlur = useTransform(scrollYProgress, [0, 0.3], [0, 20]);
@@ -114,20 +118,27 @@ export function HeroSection() {
       ref={containerRef}
       className="relative h-[400vh] overflow-x-clip bg-background text-foreground selection:bg-primary/30"
     >
-      {/* Toolbar Flutuante */}
-      <ViewToggle
-        currentMode={viewMode}
-        setMode={setViewMode}
-        labels={{
-          desktop: t('view_desktop'),
-          mobile: t('view_mobile')
-        }}
-      />
+      {/* Toolbar Flutuante (Controlada pelo Scroll da Seção) */}
+      <motion.div 
+        style={{ opacity: toolbarOpacity, pointerEvents: toolbarPointerEvents }}
+        className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2"
+      >
+        <ViewToggle
+          currentMode={viewMode}
+          setMode={setViewMode}
+          labels={{
+            desktop: t('view_desktop'),
+            mobile: t('view_mobile')
+          }}
+        />
+      </motion.div>
 
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden perspective-1000">
-        {/* Background Grid & Glow */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        <div className="absolute left-[-10%] top-[-10%] h-[60vw] w-[60vw] rounded-full bg-primary/10 blur-[120px]" />
+        
+        {/* === BACKGROUND CORRIGIDO === */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        <div className="absolute left-1/2 top-[-10%] h-[50vw] w-[50vw] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute bottom-[-20%] left-1/2 h-[40vw] w-[40vw] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[100px]" />
 
         {/* Layer 1: Symbols */}
         {codeSymbols.map((item) => (
@@ -135,13 +146,14 @@ export function HeroSection() {
         ))}
 
         {/* Layer 2: Hero Text */}
+        {/* [AJUSTE] Adicionei -mt-20 md:-mt-32 para subir o bloco de texto */}
         <motion.div
           style={{
             opacity: textOpacity,
             scale: textScale,
             filter: useTransform(textBlur, (v) => `blur(${v}px)`)
           }}
-          className="absolute z-10 w-full max-w-5xl px-4 text-center"
+          className="absolute z-10 -mt-20 w-full max-w-5xl px-4 text-center md:-mt-32"
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-primary shadow-[0_0_20px_-5px_rgba(0,71,255,0.3)] backdrop-blur-sm">
             <Terminal size={12} />
@@ -149,7 +161,7 @@ export function HeroSection() {
           </div>
           <h1 className="font-display mb-8 text-6xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl">
             {t('title_prefix')} <br />
-            <span className="bg-linear-to-r from-primary via-blue-500 to-violet-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-blue-500 to-violet-600 bg-clip-text text-transparent">
               {t('title_suffix')}
             </span>
           </h1>

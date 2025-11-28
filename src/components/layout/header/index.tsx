@@ -1,5 +1,7 @@
-import { getTranslations } from 'next-intl/server';
 import { Github, Menu } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
@@ -7,10 +9,11 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet';
-import { NavLinks } from './nav-links';
 import { Link } from '@/lib/i18n/navigation';
-import { Button } from '@/components/ui/button';
+
 import { LanguageSwitcher } from './language-switcher';
+import { NavLinks } from './nav-links';
+
 
 export async function Header() {
   const t = await getTranslations('Components.Header');

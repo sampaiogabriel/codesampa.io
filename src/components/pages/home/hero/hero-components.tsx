@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion, useTransform, MotionValue } from 'framer-motion';
 import {
   Activity,
@@ -17,6 +16,8 @@ import {
   Home,
   Menu
 } from 'lucide-react';
+import React from 'react';
+
 import { cn } from '@/utils/functions/tw-merge';
 
 // --- View Toggle ---
