@@ -16,34 +16,64 @@ import {
   Home,
   Menu
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React from 'react';
+import { toast } from 'sonner'; // Importar toast
 
 import { cn } from '@/utils/functions/tw-merge';
+import useIsMobile from '@/utils/hooks/use-mobile';
 
-// --- View Toggle ---
+// --- View Toggle (Controlador Desktop/Mobile) ---
 export const ViewToggle = ({
   currentMode,
   setMode,
-  labels
+  labels,
 }: {
   currentMode: string;
   setMode: (m: 'desktop' | 'mobile') => void;
   labels: { desktop: string; mobile: string };
 }) => {
+  const isDeviceMobile = useIsMobile();
+  const t = useTranslations('Pages.Home.Hero');
+
+  const handleDesktopClick = () => {
+    if (isDeviceMobile) {
+      const audio = new Audio('/assets/sounds/toasty.mp3');
+      audio.volume = 0.5; 
+      audio.play().catch((e) => console.error("Audio play failed", e));
+
+      toast.custom((id) => (
+        <div className="relative flex items-center gap-4 p-4 rounded-lg shadow-2xl border-2 border-primary-500 animate-in slide-in-from-bottom-full duration-300">
+          <Image src='/assets/images/toasty.png' width="60" height="60" alt="Toasty!!!" />
+          <div className="flex flex-col">
+            <span className="font-bold text-lg uppercase italic tracking-widest">TOASTY!</span>
+            <span className="text-xs opacity-90">{t('toast_warning')}</span>
+          </div>
+          <button onClick={() => toast.dismiss(id)} className="absolute top-2 right-2 opacity-50 hover:opacity-100">✕</button>
+        </div>
+      ), {
+        position: 'bottom-right',
+        duration: 3000,
+      });
+      
+      return;
+    }
+    setMode('desktop');
+  };
+
   return (
-    <motion.div
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 1 }}
-      className="bg-background/80 fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/10 p-1.5 shadow-2xl shadow-primary/10 ring-1 ring-white/5 backdrop-blur-xl"
+    <div
+      className="bg-background/80 flex items-center gap-1 rounded-full border border-white/10 p-1.5 shadow-2xl shadow-primary/10 ring-1 ring-white/5 backdrop-blur-xl"
     >
       <button
-        onClick={() => setMode('desktop')}
+        onClick={handleDesktopClick}
         className={cn(
           'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
           currentMode === 'desktop'
             ? 'text-foreground'
-            : 'text-muted-foreground hover:text-foreground'
+            : 'text-muted-foreground hover:text-foreground',
+          isDeviceMobile && 'opacity-50 cursor-not-allowed'
         )}
       >
         {currentMode === 'desktop' && (
@@ -78,11 +108,10 @@ export const ViewToggle = ({
         <Smartphone size={14} className="relative z-10" />
         <span className="relative z-10">{labels.mobile}</span>
       </button>
-    </motion.div>
+    </div>
   );
 };
 
-// --- Desktop Sidebar ---
 export const DesktopSidebar = () => (
   <div className="bg-card/80 relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-xl border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
     <div className="relative z-10">
@@ -131,9 +160,8 @@ export const DesktopSidebar = () => (
   </div>
 );
 
-// --- Mobile Bottom Nav ---
 export const MobileBottomNav = () => (
-  <div className="bg-card/90 flex h-full w-full items-center justify-around border-t border-white/10 px-2 pb-1 backdrop-blur-xl">
+  <div className="bg-card/90 flex h-full w-full items-center justify-around rounded-2xl border border-white/10 px-2 pb-1 backdrop-blur-xl">
     {[Home, BarChart3, Box, Users, Menu].map((Icon, i) => (
       <div
         key={i}
@@ -147,7 +175,6 @@ export const MobileBottomNav = () => (
   </div>
 );
 
-// --- Responsive Header ---
 export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   <div
     className={cn(
@@ -179,7 +206,6 @@ export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   </div>
 );
 
-// --- Metric Card ---
 export const DarkMetricCard = ({
   title,
   value,
@@ -221,7 +247,6 @@ export const DarkMetricCard = ({
   </div>
 );
 
-// --- Chart ---
 export const DarkChart = () => (
   <div className="bg-card/60 relative flex h-full w-full flex-col rounded-xl border border-white/5 p-4 backdrop-blur-md md:p-6">
     <div className="z-10 mb-4 flex items-center justify-between md:mb-6">
@@ -252,7 +277,6 @@ export const DarkChart = () => (
   </div>
 );
 
-// --- Floating Symbols ---
 export const FloatingSymbol = ({
   item,
   scrollY
@@ -281,7 +305,6 @@ export const FloatingSymbol = ({
   );
 };
 
-// --- Assembling Item (Wrapper for Animation) ---
 export const AssemblingItem = ({
   children,
   progress,

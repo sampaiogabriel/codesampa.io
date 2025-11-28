@@ -12,14 +12,16 @@
   },
   "Pages": {
     "Home": {
+      "hello_world": "Olá mundo!",
       "Hero": {
-        "badge": "v3.0 System Architecture",
+        "badge": "v3.0 Arquitetura de Sistema",
         "title_prefix": "Construa Sistemas",
         "title_suffix": "Escaláveis.",
-        "subtitle": "Transforme código abstrato em produtos concretos. Role para compilar a interface",
+        "subtitle": "Transforme código abstrato em produtos concretos. Role para compilar a interface.",
         "scroll_indicator": "Role para Compilar",
         "view_desktop": "Desktop",
-        "view_mobile": "Mobile"
+        "view_mobile": "Mobile",
+        "toast_warning": "Por favor, tente pelo computador para ver o modo Desktop."
       },
       "Stats": {
         "revenue": "Receita",
