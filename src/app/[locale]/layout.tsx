@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
 
 import '../../utils/styles/globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Header } from '@/components/layout/header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -49,6 +50,7 @@ export default async function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
+            <Header/>
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>

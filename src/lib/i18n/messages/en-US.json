@@ -1,3 +1,20 @@
 {
-  "hello-world": "Hello world!"
+  "Components": {
+    "Header": {
+      "nav": {
+        "home": "Home",
+        "blog": "Blog",
+        "contact": "Contact"
+      },
+      "language_selector": "Change language",
+      "open_menu": "Open menu"
+    }
+  },
+  "Pages": {
+    "Home": {
+      "hello_world": "Hello world!"
+    },
+    "Contact": {},
+    "Blog": {}
+  }
 }
