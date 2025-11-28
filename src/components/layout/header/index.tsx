@@ -19,19 +19,17 @@ export async function Header() {
   const t = await getTranslations('Components.Header');
 
   return (
-    <header className="sticky top-0 inset-x-0 z-50 h-14 w-full border-b border-border bg-background/40 backdrop-blur-lg">
+    <header className="sticky top-0 inset-x-0 z-50 h-14 w-full border-b border-border bg-background/30 backdrop-blur-lg">
       <div className="container mx-auto flex h-full max-w-7xl items-center justify-between px-4">
         {/* Esquerda: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            {/* Se tiver um ícone SVG, pode colocar aqui. Por enquanto, texto estilizado */}
             <span className="font-display text-lg font-medium tracking-tight text-foreground hover:opacity-90 transition-opacity">
               CodeSampa
             </span>
           </Link>
         </div>
 
-        {/* Centro: Navegação Desktop (Posicionamento Absoluto para Centralização Perfeita) */}
         <nav className="hidden md:absolute md:left-1/2 md:top-1/2 md:block md:-translate-x-1/2 md:-translate-y-1/2">
           <NavLinks />
         </nav>

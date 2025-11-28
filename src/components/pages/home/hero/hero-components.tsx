@@ -89,7 +89,7 @@ export const ViewToggle = ({
         <span className="relative z-10">{labels.desktop}</span>
       </button>
 
-      <div className="mx-1 h-4 w-[1px] bg-white/10" />
+      <div className="mx-1 h-4 w-px bg-white/10" />
 
       <button
         onClick={() => setMode('mobile')}
@@ -214,6 +214,7 @@ export const DarkMetricCard = ({
   trend,
   color,
   isMobile
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: any) => (
   <div
     className={cn(

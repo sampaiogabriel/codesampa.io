@@ -1,9 +1,10 @@
 'use client';
 
 
+import { useTranslations } from 'next-intl';
+
 import { Link, usePathname } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
-import { useTranslations } from 'next-intl';
 
 type NavLinkProps = {
   className?: string;
@@ -42,7 +43,7 @@ export function NavLinks({
             href={link.href}
             onClick={onLinkClick}
             className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
+              'text-sm font-semibold transition-colors hover:text-primary',
               isActive
                 ? 'text-foreground font-semibold'
                 : 'text-muted-foreground',
