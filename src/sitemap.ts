@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+
 import { routing } from '@/lib/i18n/routing';
 
 // URL base do seu site

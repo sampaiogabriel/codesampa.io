@@ -27,6 +27,33 @@
         "revenue": "Receita",
         "users": "Usuários",
         "churn": "Churn"
+      },
+      "Pipeline": {
+        "badge": "Metodologia",
+        "title": "O Pipeline de Engenharia.",
+        "scroll_hint": "Role para explorar o processo",
+        "steps": {
+          "01": {
+            "title": "Arquitetura",
+            "subtitle": "System Design",
+            "description": "Blueprint detalhado de microsserviços e esquemas de banco de dados antes de escrever uma linha de código."
+          },
+          "02": {
+            "title": "Desenvolvimento",
+            "subtitle": "Clean Code",
+            "description": "Implementação estritamente tipada com TypeScript, seguindo princípios SOLID e Design Patterns."
+          },
+          "03": {
+            "title": "Quality Assurance",
+            "subtitle": "Testes Automatizados",
+            "description": "Testes unitários, de integração e E2E garantindo zero regressões em ambientes de produção."
+          },
+          "04": {
+            "title": "Deploy & Scale",
+            "subtitle": "Esteira CI/CD",
+            "description": "Infraestrutura global na Edge, auto-scaling serverless e capacidades de rollback instantâneo."
+          }
+        }
       }
     },
     "Contact": {},

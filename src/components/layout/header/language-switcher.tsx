@@ -1,12 +1,12 @@
 'use client';
 
+import { Globe } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { LANGUAGES } from '@/utils/constants/languages';
 import { useChangeLanguage } from '@/utils/hooks/use-change-language';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 export function LanguageSwitcher() {
   const t = useTranslations('Components.Header');

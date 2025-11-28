@@ -27,6 +27,33 @@
         "revenue": "Revenue",
         "users": "Users",
         "churn": "Churn"
+      },
+      "Pipeline": {
+        "badge": "Methodology",
+        "title": "The Engineering Pipeline.",
+        "scroll_hint": "Scroll to explore process",
+        "steps": {
+          "01": {
+            "title": "Architecture",
+            "subtitle": "System Design",
+            "description": "Detailed blueprint of microservices and database schemas before writing a single line of code."
+          },
+          "02": {
+            "title": "Development",
+            "subtitle": "Clean Code",
+            "description": "Strictly typed implementation with TypeScript, adhering to SOLID principles and Design Patterns."
+          },
+          "03": {
+            "title": "Quality Assurance",
+            "subtitle": "Automated Tests",
+            "description": "Unit, Integration, and E2E tests ensuring zero regressions in production environments."
+          },
+          "04": {
+            "title": "Deploy & Scale",
+            "subtitle": "CI/CD Pipeline",
+            "description": "Global infrastructure on the Edge, serverless auto-scaling, and instant rollback capabilities."
+          }
+        }
       }
     },
     "Contact": {},

@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTransition } from 'react';
+
 import { EN_US, PT_BR } from '../constants/languages';
 
 type LanguageCode = typeof EN_US | typeof PT_BR;
