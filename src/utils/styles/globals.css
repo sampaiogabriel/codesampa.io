@@ -36,9 +36,10 @@
   --sidebar-accent-foreground: oklch(0.4859 0.2339 262.5015);
   --sidebar-border: oklch(0.9276 0.0058 264.5313);
   --sidebar-ring: oklch(0.4859 0.2339 262.5015);
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: var(--font-geist-sans), 'Inter', sans-serif;
+  --font-mono: var(--font-geist-mono), 'Fira Code', monospace;
+  --font-display: var(--font-space), var(--font-geist-sans), sans-serif;
   --font-serif: 'Merriweather', serif;
-  --font-mono: 'Fira Code', monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -177,7 +178,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans); /* Garante Geist como padrão no corpo */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
   }
 }
