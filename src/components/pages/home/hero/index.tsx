@@ -102,13 +102,15 @@ export function HeroSection() {
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
 
   // Animations
-  // [AJUSTE] Controla a opacidade da Toolbar para sumir ao sair da Hero (após 90% do scroll)
-  const toolbarOpacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
-  const toolbarPointerEvents = useTransform(scrollYProgress, (v) => v > 0.9 ? 'none' : 'auto');
+  const toolbarOpacity = useTransform(scrollYProgress, [0, 0.3, 0.35, 0.9, 1], [0, 0, 1, 1, 0]);
+  const toolbarPointerEvents = useTransform(scrollYProgress, (v) => 
+    (v > 0.3 && v < 0.95) ? 'auto' : 'none'
+  );
 
   const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.5]);
   const textBlur = useTransform(scrollYProgress, [0, 0.3], [0, 20]);
+  
   const browserOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   const browserScale = useTransform(scrollYProgress, [0.2, 0.5], [1.5, 1]);
   const assemblyProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, 1]);
@@ -118,7 +120,7 @@ export function HeroSection() {
       ref={containerRef}
       className="relative h-[400vh] overflow-x-clip bg-background text-foreground selection:bg-primary/30"
     >
-      {/* Toolbar Flutuante (Controlada pelo Scroll da Seção) */}
+      {/* Toolbar Flutuante */}
       <motion.div 
         style={{ opacity: toolbarOpacity, pointerEvents: toolbarPointerEvents }}
         className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2"
@@ -135,9 +137,10 @@ export function HeroSection() {
 
       <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden perspective-1000">
         
+        {/* === BACKGROUND GRADIENT (Radius Style) === */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        <div className="absolute left-1/2 top-[-10%] h-[50vw] w-[50vw] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute bottom-[-20%] left-1/2 h-[40vw] w-[40vw] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[100px]" />
+        <div className="absolute top-[-10%] left-1/2 h-[500px] w-full max-w-[1000px] -translate-x-1/2 rounded-[100%] bg-primary/20 blur-[100px] md:h-[700px] md:blur-[130px]" />
+        <div className="absolute bottom-[-10%] left-1/2 h-[300px] w-full max-w-[800px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[80px]" />
 
         {/* Layer 1: Symbols */}
         {codeSymbols.map((item) => (
@@ -151,7 +154,7 @@ export function HeroSection() {
             scale: textScale,
             filter: useTransform(textBlur, (v) => `blur(${v}px)`)
           }}
-          className="absolute z-10 -mt-20 w-full max-w-5xl px-4 text-center md:-mt-32"
+          className="absolute z-10 -mt-24 w-full max-w-5xl px-4 text-center md:-mt-48"
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-primary shadow-[0_0_20px_-5px_rgba(0,71,255,0.3)] backdrop-blur-sm">
             <Terminal size={12} />
@@ -159,7 +162,7 @@ export function HeroSection() {
           </div>
           <h1 className="font-display mb-8 text-6xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl">
             {t('title_prefix')} <br />
-            <span className="bg-gradient-to-r from-primary via-blue-500 to-violet-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-blue-500 to-violet-600 bg-clip-text text-transparent">
               {t('title_suffix')}
             </span>
           </h1>
@@ -168,7 +171,7 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        {/* Layer 3: THE SHAPESHIFTER (Sistema que monta) */}
+        {/* Layer 3: THE SHAPESHIFTER */}
         <motion.div
           style={{ opacity: browserOpacity, scale: browserScale }}
           layout
@@ -176,8 +179,8 @@ export function HeroSection() {
           className={cn(
             'relative z-20 flex flex-col overflow-hidden bg-[#0A0A0A] shadow-2xl shadow-primary/20 transition-all',
             viewMode === 'desktop'
-              ? 'aspect-[16/10] w-[95vw] max-w-6xl rounded-xl border border-white/10'
-              : 'aspect-[9/19] w-[350px] rounded-[3rem] border-[8px] border-[#1a1a1a]'
+              ? 'aspect-16/10 w-[95vw] max-w-6xl rounded-xl border border-white/10'
+              : 'aspect-9/19 border-8 border-[#1a1a1a] rounded-[2.5rem] sm:rounded-[3rem] max-w-[420px] w-auto h-[80vh] max-h-[850px]'
           )}
         >
           {/* === CHROME / NOTCH LOGIC === */}
@@ -205,12 +208,14 @@ export function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute top-0 z-30 flex h-14 w-full items-start justify-between px-6 pt-4"
+                // Adicionado top-2 e aumentado padding lateral para afastar das bordas curvas
+                className="absolute top-2 z-30 flex h-14 w-full items-center justify-between px-8"
               >
                 <span className="text-[10px] font-medium text-white">9:41</span>
-                <div className="absolute left-1/2 top-3 flex h-7 w-24 -translate-x-1/2 items-center justify-center gap-2 rounded-full bg-black">
+                {/* Notch maior (w-32, h-8) para telas maiores e linha interna ajustada */}
+                <div className="absolute left-1/2 top-1/2 flex h-8 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-full bg-black">
                   <div className="h-1.5 w-1.5 rounded-full bg-[#1a1a1a]" />
-                  <div className="h-2 w-12 rounded-full bg-white/5" />
+                  <div className="h-2 w-16 rounded-full bg-white/5" />
                 </div>
                 <div className="flex gap-1.5 text-white">
                   <Signal size={12} />
@@ -225,7 +230,8 @@ export function HeroSection() {
           <div
             className={cn(
               'flex-1 overflow-hidden bg-background relative transition-all',
-              viewMode === 'mobile' ? 'p-3 pt-12' : 'p-6'
+              // Aumentado pt-20 para garantir que o conteúdo comece abaixo do notch maior/mais baixo
+              viewMode === 'mobile' ? 'p-4 pt-20' : 'p-6'
             )}
           >
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>

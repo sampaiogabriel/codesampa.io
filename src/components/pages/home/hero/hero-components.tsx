@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React from 'react';
-import { toast } from 'sonner'; // Importar toast
+import React, { useCallback } from 'react'; // [AJUSTE] Importei useCallback
+import { toast } from 'sonner';
 
 import { cn } from '@/utils/functions/tw-merge';
 import useIsMobile from '@/utils/hooks/use-mobile';
@@ -37,7 +37,9 @@ export const ViewToggle = ({
   const isDeviceMobile = useIsMobile();
   const t = useTranslations('Pages.Home.Hero');
 
-  const handleDesktopClick = () => {
+  // [AJUSTE] Envolvi em useCallback com array de dependências
+  const handleDesktopClick = useCallback(() => {
+    // Lógica para bloquear visualização desktop no mobile
     if (isDeviceMobile) {
       const audio = new Audio('/assets/sounds/toasty.mp3');
       audio.volume = 0.5; 
@@ -60,7 +62,7 @@ export const ViewToggle = ({
       return;
     }
     setMode('desktop');
-  };
+  }, [isDeviceMobile, setMode, t]);
 
   return (
     <div
@@ -113,7 +115,7 @@ export const ViewToggle = ({
 };
 
 export const DesktopSidebar = () => (
-  <div className="bg-card/80 relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-xl border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
+  <div className="bg-card/80 relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-lg border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
     <div className="relative z-10">
       <div className="group mb-8 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-2 transition-colors hover:border-white/5 hover:bg-white/5">
         <div className="flex items-center gap-3">
@@ -179,7 +181,7 @@ export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   <div
     className={cn(
       'bg-card/80 flex h-full w-full items-center justify-between border-b border-white/5 px-4 backdrop-blur-xl md:px-6',
-      isMobile ? 'rounded-t-3xl pt-2' : 'rounded-tr-xl'
+      isMobile ? 'rounded-t-3xl pt-2' : 'rounded-tr-lg'
     )}
   >
     <div className="flex flex-col">
@@ -216,7 +218,7 @@ export const DarkMetricCard = ({
   <div
     className={cn(
       'bg-card/60 group relative flex h-full w-full flex-col justify-between overflow-hidden border border-white/5 backdrop-blur-md',
-      isMobile ? 'rounded-xl p-4' : 'rounded-xl p-5'
+      isMobile ? 'rounded-xl p-4' : 'rounded-lg p-5'
     )}
   >
     <div className="z-10 flex items-start justify-between">
@@ -248,7 +250,7 @@ export const DarkMetricCard = ({
 );
 
 export const DarkChart = () => (
-  <div className="bg-card/60 relative flex h-full w-full flex-col rounded-xl border border-white/5 p-4 backdrop-blur-md md:p-6">
+  <div className="bg-card/60 relative flex h-full w-full flex-col rounded-lg border border-white/5 p-4 backdrop-blur-md md:p-6">
     <div className="z-10 mb-4 flex items-center justify-between md:mb-6">
       <h3 className="text-sm font-bold text-white">Revenue</h3>
       <div className="flex gap-1 md:gap-2">
