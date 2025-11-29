@@ -131,7 +131,9 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[400vh] overflow-x-clip bg-background text-foreground selection:bg-primary/30"
+      // [CORREÇÃO UX MOBILE] Reduzi a altura para 200vh no mobile (antes era fixo 400vh)
+      // Isso faz o scroll ser mais curto e responsivo no celular.
+      className="relative h-[200vh] md:h-[400vh] overflow-x-clip bg-background text-foreground selection:bg-primary/30"
     >
       {/* Toolbar Flutuante */}
       <motion.div 
@@ -148,7 +150,9 @@ export function HeroSection() {
         />
       </motion.div>
 
-      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden perspective-1000">
+      {/* [CORREÇÃO MOBILE] Usando h-[100dvh] ao invés de h-screen para evitar 
+          saltos quando a barra de endereço do navegador mobile recolhe/expande */}
+      <div className="sticky top-0 flex h-[100dvh] w-full flex-col items-center justify-center overflow-hidden perspective-1000">
         
         {/* === BACKGROUND GRADIENT (Radius Style) === */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
