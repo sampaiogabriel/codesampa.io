@@ -13,7 +13,7 @@ interface ControlsProps {
   isVisible: boolean;
 }
 
-export function Controls({
+export function ShapeShifterControls({
   currentMode,
   setMode,
   onReplay,

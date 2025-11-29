@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import useIsMobile from '@/utils/hooks/use-mobile';
 
-import { Controls } from './controls';
+import { ShapeShifterControls } from './controls';
 import { DesktopMock } from './desktop-mock';
 import { MobileMock } from './mobile-mock';
 
@@ -13,34 +13,24 @@ export function ShapeShifterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   
-  // Estados da Máquina de Animação
   const [hasPlayed, setHasPlayed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   
-  // Força mobile view se for dispositivo móvel
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
     } else {
-      // Se não for mobile e ainda não tocou, default para desktop
       if (!hasPlayed) setViewMode('desktop'); 
     }
   }, [isMobile, hasPlayed]);
 
-    const triggerCinematicSequence = () => {
+  const triggerCinematicSequence = () => {
     setIsPlaying(true);
-    
-    // 1. Scroll suave até o centro da seção para garantir foco
     containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    // 2. Trava o scroll do usuário
     document.body.style.overflow = 'hidden';
 
-    // 3. Tempo da animação (soma dos delays + duração dos mocks)
-    // DesktopMock/MobileMock demoram ~2.5s para montar tudo
     setTimeout(() => {
-      // Destrava tudo
       document.body.style.overflow = '';
       setIsPlaying(false);
       setHasPlayed(true);
@@ -54,13 +44,12 @@ export function ShapeShifterSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        // Gatilho: Se entrou na tela E ainda não tocou a animação
         if (entry.isIntersecting && !hasPlayed && !isPlaying) {
           triggerCinematicSequence();
         }
       },
       {
-        threshold: 0.3, // Dispara quando 30% do elemento estiver visível (aprox 15px+ scroll visual)
+        threshold: 0.3,
       }
     );
 
@@ -69,22 +58,19 @@ export function ShapeShifterSection() {
    
   }, [hasPlayed, isPlaying]);
 
-
-
   const handleReplay = () => {
     setHasPlayed(false);
     setIsPlaying(false);
-    // Pequeno timeout para resetar o estado visual antes de re-triggerar
     setTimeout(() => triggerCinematicSequence(), 100);
   };
 
   return (
     <section
       ref={containerRef}
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#050505] border-t border-white/5"
+      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
     >
-      {/* Controles (Só aparecem se não estiver tocando a animação inicial ou se já tiver tocado) */}
-      <Controls
+      {/* Controles no Bottom */}
+      <ShapeShifterControls
         currentMode={viewMode}
         setMode={setViewMode}
         onReplay={handleReplay}
@@ -92,8 +78,8 @@ export function ShapeShifterSection() {
         isVisible={!isPlaying && hasPlayed}
       />
 
-      {/* Área de Visualização */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center p-4">
+      {/* Área de Visualização com Padding Bottom para evitar colisão */}
+      <div className="relative z-10 flex h-full w-full items-center justify-center p-4 pb-24 md:pb-0">
         <AnimatePresence mode="wait">
           {viewMode === 'desktop' ? (
             <DesktopMock key="desktop" startAnimation={isPlaying || hasPlayed} />
