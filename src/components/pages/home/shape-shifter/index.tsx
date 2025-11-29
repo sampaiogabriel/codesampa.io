@@ -17,11 +17,18 @@ export function ShapeShifterSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   
+  // Efeito para ajustar o modo de visualização inicial e responsivo
   useEffect(() => {
+    // Se for mobile, força o modo mobile sempre
     if (isMobile) {
       setViewMode('mobile');
     } else {
-      if (!hasPlayed) setViewMode('desktop'); 
+      // Se for desktop e a animação ainda não tocou (ou foi resetada),
+      // garante que comece no modo desktop
+      if (!hasPlayed) {
+        setViewMode('desktop');
+      }
+      // Se já tocou, mantemos o modo que o usuário escolheu, não forçamos nada
     }
   }, [isMobile, hasPlayed]);
 
@@ -59,8 +66,17 @@ export function ShapeShifterSection() {
   }, [hasPlayed, isPlaying]);
 
   const handleReplay = () => {
+    // Ao clicar em replay:
+    // 1. Resetamos o estado de "já tocou"
     setHasPlayed(false);
-    setIsPlaying(false);
+    // 2. Iniciamos o estado de "tocando"
+    setIsPlaying(false); // Será setado para true dentro do triggerCinematicSequence
+    
+    // IMPORTANTE: Não forçamos a mudança de viewMode aqui.
+    // O useEffect lá em cima cuidará disso:
+    // - Se for mobile -> mantém 'mobile'
+    // - Se for desktop -> muda para 'desktop' (comportamento padrão desejado no desktop)
+    
     setTimeout(() => triggerCinematicSequence(), 100);
   };
 
