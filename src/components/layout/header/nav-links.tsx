@@ -1,6 +1,6 @@
 'use client';
 
-
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 import { Link, usePathname } from '@/lib/i18n/navigation';
@@ -29,8 +29,8 @@ export function NavLinks({
   return (
     <nav
       className={cn(
-        'flex gap-6',
-        orientation === 'vertical' ? 'flex-col items-start gap-4' : 'items-center',
+        'flex',
+        orientation === 'vertical' ? 'flex-col gap-2' : 'items-center gap-6',
         className
       )}
     >
@@ -43,13 +43,27 @@ export function NavLinks({
             href={link.href}
             onClick={onLinkClick}
             className={cn(
-              'text-sm font-semibold transition-colors hover:text-primary',
-              isActive
-                ? 'text-foreground font-semibold'
-                : 'text-muted-foreground',
-              orientation === 'vertical' && 'text-lg py-2'
+              'group relative flex items-center transition-colors',
+              // Estilos Desktop (Horizontal)
+              orientation === 'horizontal' && [
+                'text-sm font-semibold hover:text-primary',
+                isActive ? 'text-foreground ' : 'text-muted-foreground'
+              ],
+              // Estilos Mobile (Vertical) - Mais impactante
+              orientation === 'vertical' && [
+                'py-4 text-3xl font-display font-bold tracking-tight hover:text-primary transition-all duration-300',
+                isActive ? 'text-foreground pl-4' : 'text-muted-foreground/60 hover:pl-2'
+              ]
             )}
           >
+            {/* Indicador Mobile para Item Ativo */}
+            {orientation === 'vertical' && isActive && (
+              <motion.span
+                layoutId="mobile-nav-indicator"
+                className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]"
+              />
+            )}
+            
             {link.label}
           </Link>
         );
