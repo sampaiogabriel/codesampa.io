@@ -7,7 +7,8 @@ import { useTranslations } from 'next-intl';
 import { AnimatedBadge } from '@/components/ui/animated-badge';
 
 import {
-  FloatingSymbol} from './components';
+  FloatingSymbol
+} from './components';
 
 const codeSymbols = [
   { id: 1, char: '{ }', depth: 1, top: '20%', left: '10%', size: 'text-4xl', color: 'text-primary/30' },
@@ -23,21 +24,25 @@ export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
 
   return (
-      <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground">
+      <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
         
         {/* Background Gradients & Textura */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         
-        {/* Luz de Fundo Centralizada Atrás do Texto (Ajustada para top-[45%] para centralização ótica) */}
-        <div className="absolute left-1/2 top-[45%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[120px] md:h-[500px] md:w-[500px]" />
+        {/* Luz de Fundo Centralizada Atrás do Texto */}
+        <div className="absolute left-1/2 top-[45%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[120px] md:h-[500px] md:w-[500px]" />
         
-        {/* Símbolos Flutuantes (Looping) */}
-        {codeSymbols.map((item) => (
-          <FloatingSymbol key={item.id} item={item} />
-        ))}
+        {/* Símbolos Flutuantes (Looping) - CORREÇÃO */}
+        {/* Adicionado 'pointer-events-none' e garantido que o container ocupe a tela mas limite a largura do conteúdo */}
+        <div className="absolute inset-0 w-full h-full flex justify-center pointer-events-none">
+            <div className="relative w-full h-full max-w-[1800px]">
+                {codeSymbols.map((item) => (
+                    <FloatingSymbol key={item.id} item={item} />
+                ))}
+            </div>
+        </div>
 
         {/* Conteúdo Principal (Texto) - Centralizado */}
-        {/* Adicionado -mt-12 md:-mt-20 para compensar visualmente e elevar o centro ótico */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl px-4 -mt-12 md:-mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -67,7 +72,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Posicionado na parte inferior absoluta */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -77,9 +82,9 @@ export function HeroSection() {
           <span className="text-[10px] uppercase tracking-widest font-mono opacity-80">
             {t('scroll_indicator')}
           </span>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center gap-1 animate-bounce">
             <Mouse className="h-6 w-6 opacity-80" />
-            <ChevronDown className="animate-bounce h-4 w-4 opacity-60" />
+            <ChevronDown className="h-4 w-4 opacity-60" />
           </div>
         </motion.div>
       </section>

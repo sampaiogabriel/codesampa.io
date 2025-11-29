@@ -1,9 +1,9 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Signal, Wifi, BatteryMedium } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { cn } from '@/utils/functions/tw-merge';
 import useIsMobile from '@/utils/hooks/use-mobile';
@@ -16,39 +16,90 @@ import {
   DarkChart,
   MobileBottomNav,
   AssemblingItem
-} from '../hero/components';
+} from './components';
 
 export function ShapeShifterSection() {
   const t = useTranslations('Pages.Home.Hero');
   const tStats = useTranslations('Pages.Home.Stats');
+  
+  const sectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+  const isInView = useInView(sectionRef, { amount: 0.2, once: true }); // Detecta entrada na viewport
 
-  // Força o modo mobile se estiver em um dispositivo móvel
+  // Estados
+  const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState<'idle' | 'assembling' | 'complete'>('idle');
+
+  // Força mobile se for dispositivo móvel real e bloqueia troca
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
     }
   }, [isMobile]);
 
+  // Lógica de Scroll Jack e Trigger da Animação
+  useEffect(() => {
+    if (isInView && !hasTriggered) {
+      // 1. Marca como triggado para não repetir
+      setHasTriggered(true);
+      setAnimationPhase('assembling');
+
+      // 2. Trava scroll e rola até a seção (Snap)
+      const scrollToSection = () => {
+        if (sectionRef.current) {
+          // Trava scroll
+          document.body.style.overflow = 'hidden';
+          
+          // Scroll suave até o elemento
+          sectionRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+
+          // 3. Destrava após a animação (aprox 2.5s considerando stagger e duration)
+          setTimeout(() => {
+            document.body.style.overflow = '';
+            setAnimationPhase('complete');
+          }, 2500); 
+        }
+      };
+
+      // Pequeno delay para garantir que o 'isInView' estabilizou
+      const timer = setTimeout(scrollToSection, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, hasTriggered]);
+
   return (
-      <section className="relative flex min-h-dvh w-full flex-col items-center justify-center bg-[#050505] py-24 overflow-hidden border-t border-white/5">
+      <section 
+        ref={sectionRef}
+        className="relative flex min-h-dvh w-full flex-col items-center justify-center bg-[#050505] py-24 overflow-hidden border-t border-white/5"
+      >
         
-        {/* Toolbar de Controle (Apenas visualização) */}
-        <div className="absolute top-10 z-30">
+        {/* Toolbar de Controle (Aparece só no fim da animação) */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ 
+            opacity: animationPhase === 'complete' ? 1 : 0, 
+            y: animationPhase === 'complete' ? 0 : -20 
+          }}
+          transition={{ duration: 0.5 }}
+          className="absolute top-10 z-30"
+        >
            <ViewToggle
             currentMode={viewMode}
             setMode={setViewMode}
             labels={{ desktop: t('view_desktop'), mobile: t('view_mobile') }}
+            disabled={isMobile} // Desabilita troca se for mobile real
           />
-        </div>
+        </motion.div>
 
         {/* Container da Interface (Browser/Phone) */}
         <motion.div
           layout
-          initial={{ opacity: 0, y: 100, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.2, margin: "0px 0px -100px 0px" }} // Trigger ajustado para iniciar suavemente
+          initial={{ opacity: 0, y: 100, scale: 0.9 }}
+          animate={hasTriggered ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className={cn(
             'relative z-20 flex flex-col overflow-hidden bg-[#0A0A0A] shadow-2xl shadow-primary/10 transition-all duration-700 ring-1 ring-white/10',
@@ -108,11 +159,10 @@ export function ShapeShifterSection() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
             {/* Grid Layout Principal */}
-            {/* Usamos motion.div com staggerChildren para orquestrar a entrada */}
+            {/* Controla a animação dos filhos via variants propagadas (animate={hasTriggered ? "visible" : "hidden"}) */}
             <motion.div
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate={hasTriggered ? "visible" : "hidden"}
               className={cn(
                 'relative z-10 grid h-full w-full gap-4 transition-all duration-500',
                 viewMode === 'desktop'
