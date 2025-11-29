@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useTransform, MotionValue } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowUpRight,
@@ -17,14 +17,12 @@ import {
   Menu
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import React, { useCallback } from 'react';
-import { toast } from 'sonner';
+import React from 'react';
 
 import { cn } from '@/utils/functions/tw-merge';
 import useIsMobile from '@/utils/hooks/use-mobile';
 
-// --- View Toggle (Controlador Desktop/Mobile) ---
+// --- View Toggle (Simplificado - Sem Easter Egg) ---
 export const ViewToggle = ({
   currentMode,
   setMode,
@@ -34,47 +32,15 @@ export const ViewToggle = ({
   setMode: (m: 'desktop' | 'mobile') => void;
   labels: { desktop: string; mobile: string };
 }) => {
-  const isDeviceMobile = useIsMobile();
-  const t = useTranslations('Pages.Home.Hero');
-
-  const handleDesktopClick = useCallback(() => {
-    // Lógica para bloquear visualização desktop no mobile
-    if (isDeviceMobile) {
-      const audio = new Audio('/assets/sounds/toasty.mp3');
-      audio.volume = 0.5; 
-      audio.play().catch((e) => console.error("Audio play failed", e));
-
-      toast.custom((id) => (
-        <div className="relative flex items-center gap-4 p-4 rounded-lg shadow-2xl border-2 border-primary-500 animate-in slide-in-from-bottom-full duration-300">
-          <Image src='/assets/images/toasty.png' width="60" height="60" alt="Toasty!!!" />
-          <div className="flex flex-col">
-            <span className="font-bold text-lg uppercase italic tracking-widest">TOASTY!</span>
-            <span className="text-xs opacity-90">{t('toast_warning')}</span>
-          </div>
-          <button onClick={() => toast.dismiss(id)} className="absolute top-2 right-2 opacity-50 hover:opacity-100">✕</button>
-        </div>
-      ), {
-        position: 'bottom-right',
-        duration: 3000,
-      });
-      
-      return;
-    }
-    setMode('desktop');
-  }, [isDeviceMobile, setMode, t]);
-
   return (
-    <div
-      className="bg-background/80 flex items-center gap-1 rounded-full border border-white/10 p-1.5 shadow-2xl shadow-primary/10 ring-1 ring-white/5 backdrop-blur-xl"
-    >
+    <div className="bg-background/80 flex items-center gap-1 rounded-full border border-white/10 p-1.5 shadow-2xl shadow-primary/10 ring-1 ring-white/5 backdrop-blur-xl">
       <button
-        onClick={handleDesktopClick}
+        onClick={() => setMode('desktop')}
         className={cn(
           'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
           currentMode === 'desktop'
             ? 'text-foreground'
-            : 'text-muted-foreground hover:text-foreground',
-          isDeviceMobile && 'opacity-50 cursor-not-allowed'
+            : 'text-muted-foreground hover:text-foreground'
         )}
       >
         {currentMode === 'desktop' && (
@@ -113,6 +79,7 @@ export const ViewToggle = ({
   );
 };
 
+// --- Sidebar Desktop ---
 export const DesktopSidebar = () => (
   <div className="bg-card/80 relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-lg border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
     <div className="relative z-10">
@@ -161,6 +128,7 @@ export const DesktopSidebar = () => (
   </div>
 );
 
+// --- Mobile Navigation ---
 export const MobileBottomNav = () => (
   <div className="bg-card/90 flex h-full w-full items-center justify-around rounded-2xl border border-white/10 px-2 pb-1 backdrop-blur-xl">
     {[Home, BarChart3, Box, Users, Menu].map((Icon, i) => (
@@ -176,6 +144,7 @@ export const MobileBottomNav = () => (
   </div>
 );
 
+// --- Header Responsivo ---
 export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   <div
     className={cn(
@@ -207,6 +176,7 @@ export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   </div>
 );
 
+// --- Metric Cards ---
 export const DarkMetricCard = ({
   title,
   value,
@@ -249,6 +219,7 @@ export const DarkMetricCard = ({
   </div>
 );
 
+// --- Chart Component ---
 export const DarkChart = () => (
   <div className="bg-card/60 relative flex h-full w-full flex-col rounded-lg border border-white/5 p-4 backdrop-blur-md md:p-6">
     <div className="z-10 mb-4 flex items-center justify-between md:mb-6">
@@ -279,28 +250,19 @@ export const DarkChart = () => (
   </div>
 );
 
-export const FloatingSymbol = ({
-  item,
-  scrollY
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  item: any;
-  scrollY: MotionValue<number>;
-}) => {
-  const isMobile = useIsMobile();
-  const y = useTransform(scrollY, [0, 1], [0, -200 * item.depth]);
-  const opacity = useTransform(scrollY, [0, 0.3], [1, 0]);
-  
+// --- Floating Symbol (Independent Animation) ---
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const FloatingSymbol = ({ item }: { item: any }) => {
   return (
     <motion.div
-      style={{ top: item.top, left: item.left, y: isMobile ? 0 : y, opacity }}
-      className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none`}
-      animate={isMobile ? {} : {
-        y: [0, -10 * item.depth, 0],
-        rotate: [0, 5 * item.depth, -5 * item.depth, 0]
+      style={{ top: item.top, left: item.left }}
+      className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none opacity-20`}
+      animate={{
+        y: [0, -20, 0],
+        rotate: [0, 5, -5, 0],
       }}
       transition={{
-        duration: 4 / item.depth,
+        duration: 4 + item.depth, // Variação baseada na profundidade para não ficarem sincronizados
         repeat: Infinity,
         ease: 'easeInOut'
       }}
@@ -310,36 +272,47 @@ export const FloatingSymbol = ({
   );
 };
 
+// --- Assembling Item (Viewport Triggered) ---
 export const AssemblingItem = ({
   children,
-  progress,
-  offset
+  offset,
+  delay = 0
 }: {
   children: React.ReactNode;
-  progress: MotionValue<number>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   offset: any;
+  delay?: number;
 }) => {
   const isMobile = useIsMobile();
 
-  // Otimização Mobile: Removemos rotação, escala e movimento X. Mantemos apenas Y e Opacidade.
-  const x = useTransform(progress, [0, 1], [isMobile ? 0 : offset.x, 0]);
-  const y = useTransform(progress, [0, 1], [offset.y, 0]);
-  const rotate = useTransform(progress, [0, 1], [isMobile ? 0 : offset.r, 0]);
-  const scale = useTransform(progress, [0, 1], [isMobile ? 1 : offset.s, 1]);
-  const opacity = useTransform(progress, [0, 0.2, 1], [0, 1, 1]);
+  // Definição das Variantes para animação de entrada
+  const variants: Variants = {
+    hidden: { 
+      // Se mobile, apenas um leve slide up e fade. Se desktop, usa o offset completo (explosão)
+      x: isMobile ? 0 : offset.x, 
+      y: isMobile ? 20 : offset.y, 
+      rotate: isMobile ? 0 : offset.r, 
+      scale: isMobile ? 0.95 : offset.s, 
+      opacity: 0 
+    },
+    visible: { 
+      x: 0, 
+      y: 0, 
+      rotate: 0, 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+        delay: delay * 0.1 // Stagger effect
+      }
+    }
+  };
 
   return (
     <motion.div
-      style={{ 
-        x, 
-        y, 
-        rotate, 
-        scale, 
-        opacity,
-        // Will-change ajuda o navegador a preparar a renderização para performance
-        willChange: 'transform, opacity' 
-      }}
+      variants={variants}
       className="relative z-20 h-full w-full"
     >
       {children}
