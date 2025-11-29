@@ -1,11 +1,8 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowUpRight,
-  Monitor,
-  Smartphone,
   LayoutGrid,
   Users,
   Box,
@@ -14,87 +11,11 @@ import {
   ChevronDown,
   Search,
   Home,
-  Menu,
-  Lock
-} from 'lucide-react';
-import React from 'react';
+  Menu} from 'lucide-react';
 
 import { cn } from '@/utils/functions/tw-merge';
-import useIsMobile from '@/utils/hooks/use-mobile';
 
-// --- View Toggle Atualizado ---
-export const ViewToggle = ({
-  currentMode,
-  setMode,
-  labels,
-  disabled = false // Nova prop para desativar a troca
-}: {
-  currentMode: string;
-  setMode: (m: 'desktop' | 'mobile') => void;
-  labels: { desktop: string; mobile: string };
-  disabled?: boolean;
-}) => {
-  return (
-    <div className="bg-background/80 flex items-center gap-1 rounded-full border border-white/10 p-1.5 shadow-2xl shadow-primary/10 ring-1 ring-white/5 backdrop-blur-xl relative">
-      {/* Tooltip/Lock overlay para quando estiver desabilitado */}
-      {disabled && (
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-slate-800 px-2 py-1 text-[10px] text-slate-300 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
-          Locked on Mobile
-        </div>
-      )}
 
-      <button
-        onClick={() => !disabled && setMode('desktop')}
-        disabled={disabled}
-        className={cn(
-          'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-          currentMode === 'desktop'
-            ? 'text-foreground'
-            : 'text-muted-foreground hover:text-foreground',
-          disabled && 'opacity-50 cursor-not-allowed hover:text-muted-foreground'
-        )}
-      >
-        {currentMode === 'desktop' && (
-          <motion.div
-            layoutId="active-pill"
-            className="absolute inset-0 rounded-full border border-white/5 bg-white/10"
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-          />
-        )}
-        <Monitor size={14} className="relative z-10" />
-        <span className="relative z-10">{labels.desktop}</span>
-      </button>
-
-      <div className="mx-1 h-4 w-px bg-white/10" />
-
-      <button
-        onClick={() => setMode('mobile')}
-        className={cn(
-          'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-          currentMode === 'mobile'
-            ? 'text-foreground'
-            : 'text-muted-foreground hover:text-foreground'
-        )}
-      >
-        {currentMode === 'mobile' && (
-          <motion.div
-            layoutId="active-pill"
-            className="absolute inset-0 rounded-full border border-white/5 bg-white/10"
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-          />
-        )}
-        <Smartphone size={14} className="relative z-10" />
-        <span className="relative z-10">{labels.mobile}</span>
-      </button>
-      
-      {disabled && (
-        <div className="absolute right-[-8px] top-[-8px] rounded-full bg-slate-700 p-1 border border-black text-slate-400">
-            <Lock size={8} />
-        </div>
-      )}
-    </div>
-  );
-};
 
 // --- Sidebar Desktop ---
 export const DesktopSidebar = () => (
@@ -267,51 +188,3 @@ export const DarkChart = () => (
   </div>
 );
 
-// --- Assembling Item (Atualizado) ---
-export const AssemblingItem = ({
-  children,
-  offset,
-  delay = 0
-}: {
-  children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  offset: any;
-  delay?: number;
-}) => {
-  const isMobile = useIsMobile();
-
-  // Variantes controladas pelo pai agora
-  const variants: Variants = {
-    hidden: { 
-      x: isMobile ? 0 : offset.x, 
-      y: isMobile ? 20 : offset.y, 
-      rotate: isMobile ? 0 : offset.r, 
-      scale: isMobile ? 0.95 : offset.s, 
-      opacity: 0 
-    },
-    visible: { 
-      x: 0, 
-      y: 0, 
-      rotate: 0, 
-      scale: 1, 
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20,
-        // Removemos o delay fixo daqui para usar staggerChildren no pai ou controlar externamente se necessário,
-        // mas manteremos como fallback caso não haja stagger
-        delay: delay * 0.1 
-      }
-    }
-  };
-
-  return (
-    <motion.div
-      variants={variants}
-      className="relative z-20 h-full w-full"
-    >
-      {children}
-    </motion.div>
-  );
-};
