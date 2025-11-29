@@ -12,25 +12,22 @@
     "Footer": {
       "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
       "rights": "All rights reserved.",
-      "made_with": "By Gabriel Sampaio",
+      "made_with": "Engineered by Gabriel Sampaio",
       "columns": {
-        "product": "Product",
-        "company": "Company",
-        "resources": "Resources"
+        "explore": "Explore",
+        "social": "Connect",
+        "blog": "Latest from Blog"
       },
       "links": {
-        "features": "Features",
-        "integration": "Integrations",
-        "pricing": "Pricing",
-        "changelog": "Changelog",
+        "home": "Home",
         "about": "About",
-        "careers": "Careers",
+        "projects": "Projects",
         "blog": "Blog",
-        "contact": "Contact",
-        "community": "Community",
-        "help": "Help Center",
-        "terms": "Terms",
-        "privacy": "Privacy"
+        "contact": "Contact"
+      },
+      "newsletter": {
+        "title": "Stay Updated",
+        "placeholder": "Enter your email"
       }
     }
   },
