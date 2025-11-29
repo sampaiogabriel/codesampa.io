@@ -10,14 +10,15 @@ import {
   FloatingSymbol
 } from './components';
 
+// Ajustei os tamanhos (size) para serem responsivos: menores no mobile, maiores no desktop (md:...)
 const codeSymbols = [
-  { id: 1, char: '{ }', depth: 1, top: '20%', left: '10%', size: 'text-4xl', color: 'text-primary/30' },
-  { id: 2, char: '</>', depth: 2, top: '15%', left: '80%', size: 'text-6xl', color: 'text-blue-500/20' },
-  { id: 3, char: 'npm', depth: 0.5, top: '60%', left: '5%', size: 'text-xl', color: 'text-slate-700' },
-  { id: 4, char: '&&', depth: 1.5, top: '70%', left: '85%', size: 'text-5xl', color: 'text-blue-500/20' },
-  { id: 5, char: 'div', depth: 0.8, top: '40%', left: '90%', size: 'text-2xl', color: 'text-slate-600' },
-  { id: 6, char: '=>', depth: 1.2, top: '30%', left: '5%', size: 'text-3xl', color: 'text-fuchsia-500/30' },
-  { id: 7, char: ';', depth: 0.3, top: '80%', left: '40%', size: 'text-6xl', color: 'text-slate-800' }
+  { id: 1, char: '{ }', depth: 1, top: '20%', left: '10%', size: 'text-2xl md:text-4xl', color: 'text-primary/30' },
+  { id: 2, char: '</>', depth: 2, top: '15%', left: '80%', size: 'text-3xl md:text-6xl', color: 'text-blue-500/20' },
+  { id: 3, char: 'npm', depth: 0.5, top: '60%', left: '5%', size: 'text-xs md:text-xl', color: 'text-slate-700' },
+  { id: 4, char: '&&', depth: 1.5, top: '70%', left: '85%', size: 'text-2xl md:text-5xl', color: 'text-blue-500/20' },
+  { id: 5, char: 'div', depth: 0.8, top: '40%', left: '90%', size: 'text-sm md:text-2xl', color: 'text-slate-600' },
+  { id: 6, char: '=>', depth: 1.2, top: '30%', left: '5%', size: 'text-lg md:text-3xl', color: 'text-fuchsia-500/30' },
+  { id: 7, char: ';', depth: 0.3, top: '80%', left: '40%', size: 'text-3xl md:text-6xl', color: 'text-slate-800' }
 ];
 
 export function HeroSection() {
@@ -32,7 +33,7 @@ export function HeroSection() {
         {/* Luz de Fundo Centralizada Atrás do Texto */}
         <div className="absolute left-1/2 top-[45%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[120px] md:h-[500px] md:w-[500px]" />
         
-        {/* Símbolos Flutuantes (Looping) - CORREÇÃO */}
+        {/* Símbolos Flutuantes (Looping) */}
         {/* Adicionado 'pointer-events-none' e garantido que o container ocupe a tela mas limite a largura do conteúdo */}
         <div className="absolute inset-0 w-full h-full flex justify-center pointer-events-none">
             <div className="relative w-full h-full max-w-[1800px]">
