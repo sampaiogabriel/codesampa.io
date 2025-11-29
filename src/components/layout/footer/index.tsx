@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Github, Twitter, Linkedin, Instagram, Cpu } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -8,20 +8,20 @@ import { Link } from '@/lib/i18n/navigation';
 // Mocks de dados do Blog para o Footer
 const blogPosts = [
   {
-    title: "Understanding Server Actions in Next.js 15",
-    slug: "server-actions-nextjs-15"
+    title: 'Understanding Server Actions in Next.js 15',
+    slug: 'server-actions-nextjs-15'
   },
   {
-    title: "Why Tailwind v4 is a Game Changer",
-    slug: "tailwind-v4-features"
+    title: 'Why Tailwind v4 is a Game Changer',
+    slug: 'tailwind-v4-features'
   },
   {
-    title: "Building Scalable Micro-SaaS",
-    slug: "scalable-micro-saas"
+    title: 'Building Scalable Micro-SaaS',
+    slug: 'scalable-micro-saas'
   },
   {
-    title: "The Future of React Server Components",
-    slug: "future-rsc"
+    title: 'The Future of React Server Components',
+    slug: 'future-rsc'
   }
 ];
 
@@ -31,13 +31,11 @@ export function Footer() {
 
   return (
     <footer className="relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
-      {/* Background Grid & Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_15px_rgba(var(--color-primary),0.5)]" />
-      
-      <div className="container mx-auto px-6 pt-20 pb-12 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
-          
+
+      <div className="container mx-auto px-6 pt-12 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
           {/* Brand Column (4 colunas - Esquerda) */}
           <div className="md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group w-fit">
@@ -48,14 +46,16 @@ export function Footer() {
                 CodeSampa
               </span>
             </Link>
-            
+
             <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
               {t('description')}
             </p>
 
             <div className="flex gap-3 pt-2">
-              <SocialLink href="https://github.com/sampaiogabriel" icon={<Github size={18} />} />
-              <SocialLink href="#" icon={<Twitter size={18} />} />
+              <SocialLink
+                href="https://github.com/sampaiogabriel"
+                icon={<Github size={18} />}
+              />
               <SocialLink href="#" icon={<Linkedin size={18} />} />
               <SocialLink href="#" icon={<Instagram size={18} />} />
             </div>
@@ -85,25 +85,25 @@ export function Footer() {
               <FooterLink href="/">{t('links.home')}</FooterLink>
               <FooterLink href="/blog">{t('links.blog')}</FooterLink>
               <FooterLink href="/projects">{t('links.projects')}</FooterLink>
-              <FooterLink href="/about">{t('links.about')}</FooterLink>
               <FooterLink href="/contact">{t('links.contact')}</FooterLink>
             </ul>
           </div>
-
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="h-14 border-t border-white/5 flex flex-col md:flex-row items-center justify-around md:justify-between">
           <p className="text-xs text-muted-foreground font-mono order-2 md:order-1">
             © {currentYear} CodeSampa.io — {t('rights')}
           </p>
-          
+
           <div className="flex items-center gap-2 order-1 md:order-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
             </span>
-            <span className="text-xs font-mono text-emerald-500 font-medium">All Systems Operational</span>
+            <span className="text-xs font-mono text-emerald-500 font-medium">
+              All Systems Operational
+            </span>
           </div>
         </div>
       </div>
@@ -111,10 +111,16 @@ export function Footer() {
   );
 }
 
-const FooterLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+const FooterLink = ({
+  href,
+  children
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
   <li>
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors w-fit"
     >
       <span className="h-px w-0 bg-primary group-hover:w-3 transition-all duration-300" />
@@ -123,10 +129,16 @@ const FooterLink = ({ href, children }: { href: string, children: React.ReactNod
   </li>
 );
 
-const SocialLink = ({ href, icon }: { href: string, icon: React.ReactNode }) => (
-  <a 
-    href={href} 
-    target="_blank" 
+const SocialLink = ({
+  href,
+  icon
+}: {
+  href: string;
+  icon: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    target="_blank"
     rel="noopener noreferrer"
     className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/2 text-muted-foreground hover:scale-110 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-all duration-300"
   >
