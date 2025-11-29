@@ -10,25 +10,7 @@
       "open_menu": "Open menu"
     },
     "Footer": {
-      "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
-      "rights": "All rights reserved.",
-      "made_with": "Engineered by Gabriel Sampaio",
-      "columns": {
-        "explore": "Explore",
-        "social": "Connect",
-        "blog": "Latest from Blog"
-      },
-      "links": {
-        "home": "Home",
-        "about": "About",
-        "projects": "Projects",
-        "blog": "Blog",
-        "contact": "Contact"
-      },
-      "newsletter": {
-        "title": "Stay Updated",
-        "placeholder": "Enter your email"
-      }
+      "rights": "All rights reserved."
     }
   },
   "Pages": {
@@ -114,6 +96,27 @@
         "placeholder": "yourname@company.com",
         "button": "Subscribe",
         "disclaimer": "No spam. Unsubscribe anytime."
+      },
+      "Links": {
+        "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
+        "rights": "All rights reserved.",
+        "made_with": "Engineered by Gabriel Sampaio",
+        "columns": {
+          "explore": "Explore",
+          "social": "Connect",
+          "blog": "Latest from Blog"
+        },
+        "links": {
+          "home": "Home",
+          "about": "About",
+          "projects": "Projects",
+          "blog": "Blog",
+          "contact": "Contact"
+        },
+        "newsletter": {
+          "title": "Stay Updated",
+          "placeholder": "Enter your email"
+        }
       }
     },
     "Contact": {},

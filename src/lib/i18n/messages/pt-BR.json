@@ -10,25 +10,7 @@
       "open_menu": "Abrir menu"
     },
     "Footer": {
-      "description": "Engenharia de software de ponta para produtos digitais que exigem performance, escalabilidade e design impecável.",
-      "rights": "Todos os direitos reservados.",
-      "made_with": "Desenvolvido por Gabriel Sampaio",
-      "columns": {
-        "explore": "Explorar",
-        "social": "Conectar",
-        "blog": "Últimos do Blog"
-      },
-      "links": {
-        "home": "Início",
-        "about": "Sobre",
-        "projects": "Projetos",
-        "blog": "Blog",
-        "contact": "Contato"
-      },
-      "newsletter": {
-        "title": "Fique Atualizado",
-        "placeholder": "Digite seu e-mail"
-      }
+      "rights": "Todos os direitos reservados."
     }
   },
   "Pages": {
@@ -114,6 +96,27 @@
         "placeholder": "seunome@empresa.com",
         "button": "Inscrever-se",
         "disclaimer": "Sem spam. Cancele a qualquer momento."
+      },
+      "Links": {
+        "description": "Engenharia de software de ponta para produtos digitais que exigem performance, escalabilidade e design impecável.",
+        "rights": "Todos os direitos reservados.",
+        "made_with": "Desenvolvido por Gabriel Sampaio",
+        "columns": {
+          "explore": "Explorar",
+          "social": "Conectar",
+          "blog": "Últimos do Blog"
+        },
+        "links": {
+          "home": "Início",
+          "about": "Sobre",
+          "projects": "Projetos",
+          "blog": "Blog",
+          "contact": "Contato"
+        },
+        "newsletter": {
+          "title": "Fique Atualizado",
+          "placeholder": "Digite seu e-mail"
+        }
       }
     },
     "Contact": {},
