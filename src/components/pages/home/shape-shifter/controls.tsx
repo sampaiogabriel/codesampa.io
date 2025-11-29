@@ -26,8 +26,8 @@ export function ShapeShifterControls({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      // Ajustado: Mudado de 'top-8' para 'bottom-12' para ficar na parte inferior
-      className="absolute bottom-12 z-50 flex items-center gap-2"
+      // Ajustado: Removido 'absolute bottom-12' e adicionado 'relative mt-4' (16px)
+      className="relative z-50 flex items-center gap-2 mt-4"
     >
       {/* Toggle Container */}
       <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/80 p-1.5 shadow-2xl backdrop-blur-xl ring-1 ring-white/5">

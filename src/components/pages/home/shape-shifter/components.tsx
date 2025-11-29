@@ -68,15 +68,15 @@ export const DesktopSidebar = () => (
 
 // --- Mobile Navigation ---
 export const MobileBottomNav = () => (
-  <div className="bg-card/90 flex h-full w-full items-center justify-around rounded-2xl border border-white/10 px-2 pb-1 backdrop-blur-xl">
+  <div className="bg-card/90 flex h-full w-full items-center justify-around rounded-xl border border-white/10 px-2 backdrop-blur-xl">
     {[Home, BarChart3, Box, Users, Menu].map((Icon, i) => (
       <div
         key={i}
-        className={`rounded-full p-3 ${
-          i === 0 ? 'text-primary' : 'text-slate-500'
+        className={`rounded-full p-3 transition-colors ${
+          i === 0 ? 'text-primary bg-white/5' : 'text-slate-500 hover:text-slate-300'
         }`}
       >
-        <Icon size={24} />
+        <Icon size={20} />
       </div>
     ))}
   </div>
@@ -86,8 +86,9 @@ export const MobileBottomNav = () => (
 export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
   <div
     className={cn(
-      'bg-card/80 flex h-full w-full items-center justify-between border-b border-white/5 px-4 backdrop-blur-xl md:px-6',
-      isMobile ? 'rounded-t-3xl pt-2' : 'rounded-tr-lg'
+      'bg-card/80 flex h-full w-full items-center justify-between px-4 backdrop-blur-xl md:px-6 border-white/5',
+      // No mobile: borda completa e rounded-xl. No desktop: borda apenas embaixo e canto arredondado
+      isMobile ? 'rounded-xl border' : 'rounded-tr-lg border-b'
     )}
   >
     <div className="flex flex-col">
@@ -107,7 +108,7 @@ export const ResponsiveHeader = ({ isMobile }: { isMobile: boolean }) => (
           <span className="text-xs">Search...</span>
         </div>
       )}
-      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-gradient-to-tr from-slate-700 to-slate-800 text-xs font-bold text-white">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-gradient-to-tr from-slate-700 to-slate-800 text-xs font-bold text-white shadow-inner">
         GS
       </div>
     </div>
@@ -159,7 +160,7 @@ export const DarkMetricCard = ({
 
 // --- Chart Component ---
 export const DarkChart = () => (
-  <div className="bg-card/60 relative flex h-full w-full flex-col rounded-lg border border-white/5 p-4 backdrop-blur-md md:p-6">
+  <div className="bg-card/60 relative flex h-full w-full flex-col rounded-xl border border-white/5 p-4 backdrop-blur-md md:p-6">
     <div className="z-10 mb-4 flex items-center justify-between md:mb-6">
       <h3 className="text-sm font-bold text-white">Revenue</h3>
       <div className="flex gap-1 md:gap-2">
@@ -187,4 +188,3 @@ export const DarkChart = () => (
     </div>
   </div>
 );
-

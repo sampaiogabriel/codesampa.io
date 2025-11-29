@@ -76,7 +76,7 @@ export function MobileMock({ startAnimation }: MobileMockProps) {
           className="relative z-10 flex h-full flex-col gap-3 p-4 pt-14"
         >
           {/* Header Compacto */}
-          <MotionItem className="shrink-0">
+          <MotionItem className="shrink-0 h-14">
             <ResponsiveHeader isMobile={true} />
           </MotionItem>
 
@@ -109,7 +109,7 @@ export function MobileMock({ startAnimation }: MobileMockProps) {
           </MotionItem>
 
           {/* Bottom Nav Fixo */}
-          <MotionItem className="shrink-0 mt-auto pt-2">
+          <MotionItem className="shrink-0 mt-auto pt-2 h-16">
             <MobileBottomNav />
           </MotionItem>
         </motion.div>

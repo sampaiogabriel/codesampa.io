@@ -69,17 +69,7 @@ export function ShapeShifterSection() {
       ref={containerRef}
       className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
     >
-      {/* Controles no Bottom */}
-      <ShapeShifterControls
-        currentMode={viewMode}
-        setMode={setViewMode}
-        onReplay={handleReplay}
-        isMobileDevice={!!isMobile}
-        isVisible={!isPlaying && hasPlayed}
-      />
-
-      {/* Área de Visualização com Padding Bottom para evitar colisão */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center p-4 pb-24 md:pb-0">
+      <div className="relative z-10 flex w-full items-center justify-center p-4">
         <AnimatePresence mode="wait">
           {viewMode === 'desktop' ? (
             <DesktopMock key="desktop" startAnimation={isPlaying || hasPlayed} />
@@ -89,10 +79,14 @@ export function ShapeShifterSection() {
         </AnimatePresence>
       </div>
 
-      {/* Background Decorativo */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-primary/5 blur-[150px] rounded-full" />
-      </div>
+      {/* Controles posicionados abaixo dos componentes no fluxo normal */}
+      <ShapeShifterControls
+        currentMode={viewMode}
+        setMode={setViewMode}
+        onReplay={handleReplay}
+        isMobileDevice={!!isMobile}
+        isVisible={!isPlaying && hasPlayed}
+      />
     </section>
   );
 }
