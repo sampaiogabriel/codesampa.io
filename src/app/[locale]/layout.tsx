@@ -41,8 +41,9 @@ export default async function RootLayout({
   const { locale } = await params;
 
   return (
-    <html lang={locale} suppressHydrationWarning className='scroll-smooth'>
+    <html lang={locale} suppressHydrationWarning className="scroll-smooth">
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
       >
         <NextIntlClientProvider>
@@ -51,11 +52,9 @@ export default async function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            <Header/>
+            <Header />
             <Toaster />
-            <main className="grow">
-              {children}
-            </main>
+            <main className="grow">{children}</main>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
