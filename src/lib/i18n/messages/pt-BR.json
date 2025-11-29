@@ -103,7 +103,8 @@
         }
       },
       "LampSection": {
-        "title": "Pare de Procurar. Comece a Construir.",
+        "title_1": "Pare de Procurar.",
+        "title_2": "Comece a Construir.",
         "subtitle": "Você tem a visão. Eu tenho a arquitetura, o código e o compromisso para fazê-la escalar.",
         "cta": "Vamos Construir o Futuro"
       },

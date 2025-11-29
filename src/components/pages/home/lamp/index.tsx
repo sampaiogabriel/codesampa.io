@@ -24,19 +24,17 @@ export function LampSection() {
           }}
           className="relative flex flex-col items-center justify-center w-full px-4 text-center z-50 max-w-4xl mx-auto"
         >
-          {/* Título Chamativo com Gradiente */}
+          {/* Título Separado com Gradiente na segunda linha */}
           <h2 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-7xl leading-tight">
-            {t.rich('title', {
-              b: (chunks) => (
-                <span className="bg-linear-to-b from-primary to-blue-500 bg-clip-text text-transparent">
-                  {chunks}
-                </span>
-              )
-            })}
+            {t('title_1')}
+            <br />
+            <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent">
+              {t('title_2')}
+            </span>
           </h2>
 
-          {/* Subtítulo Persuasivo */}
-          <p className="mt-6 text-base text-slate-300 md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+          {/* Subtítulo Ajustado (Mesmo estilo da Hero: text-muted-foreground + tamanhos) */}
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground md:text-xl leading-relaxed font-light">
             {t('subtitle')}
           </p>
 
@@ -54,7 +52,7 @@ export function LampSection() {
             </Button>
           </div>
 
-          {/* Elemento Decorativo Extra (Opcional) */}
+          {/* Elemento Decorativo Extra */}
           <div className="mt-8 flex items-center gap-2 text-xs font-mono text-slate-500 uppercase tracking-widest opacity-60">
             <Sparkles className="w-3 h-3 text-primary" />
             <span>High Performance Engineering</span>

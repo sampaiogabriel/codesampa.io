@@ -103,7 +103,8 @@
         }
       },
       "LampSection": {
-        "title": "Stop Searching. Start Building.",
+        "title_1": "Stop Searching.",
+        "title_2": "Start Building.",
         "subtitle": "You have the vision. I have the architecture, the code, and the commitment to make it scale.",
         "cta": "Let's Build the Future"
       },
