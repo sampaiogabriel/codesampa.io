@@ -8,7 +8,7 @@ export const FloatingSymbol = ({ item }: { item: any }) => {
   return (
     <motion.div
       style={{ top: item.top, left: item.left }}
-      className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none opacity-20`}
+      className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none`}
       animate={{
         y: [0, -20, 0],
         rotate: [0, 5, -5, 0],
