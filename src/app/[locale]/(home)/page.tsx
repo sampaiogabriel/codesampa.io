@@ -1,6 +1,5 @@
 import { HeroSection } from '@/components/pages/home/hero';
 import { LampSection } from '@/components/pages/home/lamp';
-import { Newsletter } from '@/components/pages/home/newsletter';
 import { EngineeringPipeline } from '@/components/pages/home/pipeline';
 import { SelectedWork } from '@/components/pages/home/portfolio';
 import { ShapeShifterSection } from '@/components/pages/home/shape-shifter';
@@ -13,7 +12,6 @@ export default async function Home() {
     <EngineeringPipeline />
     <SelectedWork />
     <LampSection />
-    <Newsletter />
     </div>
     );
 }

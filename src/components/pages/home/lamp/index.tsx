@@ -6,42 +6,27 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { LampContainer } from "@/components/ui/lamp";
+import { Link } from "@/lib/i18n/navigation";
 export function LampSection() {
   const t = useTranslations('Pages.Home.LampSection');
 
   return (
     <section>
       <LampContainer>
-        <motion.h1
-          initial={{ opacity: 0.5, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="bg-linear-to-br from-blue-300 to-blue-500 py-4 bg-clip-text text-center text-4xl font-semibold tracking-tight text-transparent md:text-6xl"
-        >
-          {t('title')}
-        </motion.h1>
-        
-        <motion.div
-           initial={{ opacity: 0, y: 50 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{
-             delay: 0.5,
-             duration: 0.8,
-             ease: "easeInOut",
-           }}
-           className="mt-4 flex flex-col items-center gap-4"
-        >
-          <p className="text-muted-foreground text-center max-w-lg mx-auto">
-            {t('subtitle')}
-          </p>
-          <Button size="lg" className="mt-4">
-            {t('cta')} <ArrowRight className="h-4 w-4" />
-          </Button>
-        </motion.div>
+<div className="flex flex-col items-center justify-center relative w-full text-center">
+                            <h2 className="text-4xl lg:text-5xl xl:text-6xl lg:leading-snug! font-semibold mt-8">
+                                From Idea to Launch <br /> Faster Than Ever
+                            </h2>
+                            <p className="text-muted-foreground mt-6 max-w-md mx-auto">
+                                Build stunning websites with Astra&apos;s intuitive drag-and-drop builder and powerful AI assistant
+                            </p>
+                            <Button  className="mt-6" asChild>
+                                <Link href="/sign-in">
+                                    Get started for free
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </Link>
+                            </Button>
+                        </div>
       </LampContainer>
     </section>
   );

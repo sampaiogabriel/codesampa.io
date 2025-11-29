@@ -7,7 +7,6 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
 import importHelpers from 'eslint-plugin-import-helpers';
 
 export default defineConfig([
-  // Configurações base do Next.js (Core Web Vitals)
   ...nextVitals,
 
   // Ignora pastas e arquivos gerados
