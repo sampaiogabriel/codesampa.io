@@ -41,7 +41,7 @@ export default async function RootLayout({
   const { locale } = await params;
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className='scroll-smooth'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
       >
@@ -53,10 +53,10 @@ export default async function RootLayout({
           >
             <Header/>
             <Toaster />
-            <main className="flex-grow">
+            <main className="grow">
               {children}
             </main>
-            <Footer /> {/* [NOVO] */}
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
