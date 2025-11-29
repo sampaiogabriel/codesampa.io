@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useCallback } from 'react'; // [AJUSTE] Importei useCallback
+import React, { useCallback } from 'react';
 import { toast } from 'sonner';
 
 import { cn } from '@/utils/functions/tw-merge';
@@ -37,7 +37,6 @@ export const ViewToggle = ({
   const isDeviceMobile = useIsMobile();
   const t = useTranslations('Pages.Home.Hero');
 
-  // [AJUSTE] Envolvi em useCallback com array de dependências
   const handleDesktopClick = useCallback(() => {
     // Lógica para bloquear visualização desktop no mobile
     if (isDeviceMobile) {
@@ -284,16 +283,19 @@ export const FloatingSymbol = ({
   item,
   scrollY
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   scrollY: MotionValue<number>;
 }) => {
+  const isMobile = useIsMobile();
   const y = useTransform(scrollY, [0, 1], [0, -200 * item.depth]);
   const opacity = useTransform(scrollY, [0, 0.3], [1, 0]);
+  
   return (
     <motion.div
-      style={{ top: item.top, left: item.left, y, opacity }}
+      style={{ top: item.top, left: item.left, y: isMobile ? 0 : y, opacity }}
       className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none`}
-      animate={{
+      animate={isMobile ? {} : {
         y: [0, -10 * item.depth, 0],
         rotate: [0, 5 * item.depth, -5 * item.depth, 0]
       }}
@@ -315,17 +317,29 @@ export const AssemblingItem = ({
 }: {
   children: React.ReactNode;
   progress: MotionValue<number>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   offset: any;
 }) => {
-  const x = useTransform(progress, [0, 1], [offset.x, 0]);
+  const isMobile = useIsMobile();
+
+  // Otimização Mobile: Removemos rotação, escala e movimento X. Mantemos apenas Y e Opacidade.
+  const x = useTransform(progress, [0, 1], [isMobile ? 0 : offset.x, 0]);
   const y = useTransform(progress, [0, 1], [offset.y, 0]);
-  const rotate = useTransform(progress, [0, 1], [offset.r, 0]);
-  const scale = useTransform(progress, [0, 1], [offset.s, 1]);
+  const rotate = useTransform(progress, [0, 1], [isMobile ? 0 : offset.r, 0]);
+  const scale = useTransform(progress, [0, 1], [isMobile ? 1 : offset.s, 1]);
   const opacity = useTransform(progress, [0, 0.2, 1], [0, 1, 1]);
 
   return (
     <motion.div
-      style={{ x, y, rotate, scale, opacity }}
+      style={{ 
+        x, 
+        y, 
+        rotate, 
+        scale, 
+        opacity,
+        // Will-change ajuda o navegador a preparar a renderização para performance
+        willChange: 'transform, opacity' 
+      }}
       className="relative z-20 h-full w-full"
     >
       {children}

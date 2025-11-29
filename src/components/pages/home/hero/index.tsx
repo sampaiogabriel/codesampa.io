@@ -8,10 +8,11 @@ import {
 } from 'framer-motion';
 import { Terminal, Signal, Wifi, BatteryMedium } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import { AnimatedBadge } from '@/components/ui/animated-badge';
 import { cn } from '@/utils/functions/tw-merge';
+import useIsMobile from '@/utils/hooks/use-mobile';
 
 import {
   ViewToggle,
@@ -93,6 +94,7 @@ const codeSymbols = [
 export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
   const tStats = useTranslations('Pages.Home.Stats');
+  const isMobile = useIsMobile();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -101,6 +103,13 @@ export function HeroSection() {
   });
 
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+
+  // [CORREÇÃO] Effect para forçar o modo mobile se a resolução for detectada como mobile
+  useEffect(() => {
+    if (isMobile) {
+      setViewMode('mobile');
+    }
+  }, [isMobile]);
 
   // Animations
   const toolbarOpacity = useTransform(scrollYProgress, [0, 0.3, 0.35, 0.9, 1], [0, 0, 1, 1, 0]);
@@ -111,6 +120,9 @@ export function HeroSection() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.5]);
   const textBlur = useTransform(scrollYProgress, [0, 0.3], [0, 20]);
+  
+  // Hook chamado incondicionalmente no topo (Correto)
+  const textBlurFilter = useTransform(textBlur, (v) => `blur(${v}px)`);
   
   const browserOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   const browserScale = useTransform(scrollYProgress, [0.2, 0.5], [1.5, 1]);
@@ -153,7 +165,8 @@ export function HeroSection() {
           style={{
             opacity: textOpacity,
             scale: textScale,
-            filter: useTransform(textBlur, (v) => `blur(${v}px)`)
+            // Aplicamos o filtro condicionalmente via style, o hook já foi calculado acima
+            filter: isMobile ? 'none' : textBlurFilter
           }}
           className="absolute z-10 -mt-24 w-full max-w-5xl px-4 text-center md:-mt-48"
         >
