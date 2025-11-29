@@ -1,4 +1,4 @@
-import { Github, Menu, ArrowRight } from 'lucide-react';
+import { Github, Menu, ArrowRight, Cpu } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
 import { Button } from '@/components/ui/button';
@@ -24,9 +24,9 @@ export async function Header() {
         {/* Esquerda: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-              <span className="font-mono text-xs font-bold">{`{}`}</span>
-            </div>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
+                <Cpu size={20} />
+              </div>
             <span className="font-display text-lg font-bold tracking-tight text-foreground">
               CodeSampa
             </span>

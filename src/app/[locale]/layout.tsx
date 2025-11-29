@@ -6,7 +6,7 @@ import { Toaster } from 'sonner';
 
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/providers/theme';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

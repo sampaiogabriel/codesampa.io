@@ -32,7 +32,7 @@ export function Footer() {
   return (
     <footer className="relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
       {/* Background Grid & Glow */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_15px_rgba(var(--color-primary),0.5)]" />
       
       <div className="container mx-auto px-6 pt-20 pb-12 relative z-10 max-w-7xl">
@@ -61,8 +61,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Blog Column (4 colunas - Centro - Apenas Tablet+) */}
-          {/* Ordem visual no meio, mas logicamente depois da marca */}
           <div className="md:col-span-4 hidden md:flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
             <h4 className="font-display font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
@@ -130,7 +128,7 @@ const SocialLink = ({ href, icon }: { href: string, icon: React.ReactNode }) => 
     href={href} 
     target="_blank" 
     rel="noopener noreferrer"
-    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-muted-foreground hover:scale-110 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-all duration-300"
+    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/2 text-muted-foreground hover:scale-110 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-all duration-300"
   >
     {icon}
   </a>
