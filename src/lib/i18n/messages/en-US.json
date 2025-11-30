@@ -119,7 +119,12 @@
         }
       }
     },
-    "Contact": {},
+    "Contact": {
+      "role": "Fullstack Javascript Developer",
+      "cta": "Schedule a call",
+      "emailCopied": "Email copied to clipboard!",
+      "copyEmail": "Copy email"
+    },
     "Blog": {}
   }
 }

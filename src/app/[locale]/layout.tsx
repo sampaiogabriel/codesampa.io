@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
-import '../../utils/styles/globals.css';
 import { Toaster } from 'sonner';
 
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme';
+
+import '../../utils/styles/globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

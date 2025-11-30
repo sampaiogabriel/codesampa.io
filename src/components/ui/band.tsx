@@ -99,6 +99,18 @@ export default function Band({ maxSpeed = 50, minSpeed = 10 }) {
         y: vec.y - dragged.y,
         z: vec.z - dragged.z
       });
+    } else {
+      if (card.current) {
+        card.current.wakeUp();
+        card.current.applyImpulse(
+          {
+            x: Math.sin(state.clock.getElapsedTime() * 0.5) * 0.005,
+            y: 0,
+            z: 0
+          },
+          true
+        );
+      }
     }
 
     if (fixed.current) {
@@ -133,7 +145,9 @@ export default function Band({ maxSpeed = 50, minSpeed = 10 }) {
     }
   });
 
+  // eslint-disable-next-line react-hooks/immutability
   curve.curveType = 'chordal';
+  // eslint-disable-next-line react-hooks/immutability
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
   return (
