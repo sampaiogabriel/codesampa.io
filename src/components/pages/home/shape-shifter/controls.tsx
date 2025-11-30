@@ -29,14 +29,15 @@ export function ShapeShifterControls({
     >
       {/* Toggle Container */}
       <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/80 p-1.5 shadow-2xl backdrop-blur-xl ring-1 ring-white/5">
-        
         {/* Botão Desktop */}
         <button
           onClick={() => !isMobileDevice && setMode('desktop')}
           disabled={isMobileDevice}
           className={cn(
             'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-            currentMode === 'desktop' ? 'text-white' : 'text-slate-500 hover:text-slate-300',
+            currentMode === 'desktop'
+              ? 'text-white'
+              : 'text-slate-500 hover:text-slate-300',
             isMobileDevice && 'opacity-30 cursor-not-allowed'
           )}
         >
@@ -49,7 +50,12 @@ export function ShapeShifterControls({
           )}
           <Monitor size={14} className="relative z-10" />
           <span className="relative z-10 hidden sm:inline">Desktop</span>
-          {isMobileDevice && <Lock size={10} className="absolute -right-1 -top-1 text-slate-500" />}
+          {isMobileDevice && (
+            <Lock
+              size={10}
+              className="absolute -right-1 -top-1 text-slate-500"
+            />
+          )}
         </button>
 
         {/* Separator */}
@@ -60,7 +66,9 @@ export function ShapeShifterControls({
           onClick={() => setMode('mobile')}
           className={cn(
             'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-            currentMode === 'mobile' ? 'text-white' : 'text-slate-500 hover:text-slate-300'
+            currentMode === 'mobile'
+              ? 'text-white'
+              : 'text-slate-500 hover:text-slate-300'
           )}
         >
           {currentMode === 'mobile' && (

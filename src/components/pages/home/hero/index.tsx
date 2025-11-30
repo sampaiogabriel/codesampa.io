@@ -5,75 +5,9 @@ import { Terminal, ChevronDown, Mouse } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { AnimatedBadge } from '@/components/ui/animated-badge';
+import { codeSymbols } from '@/utils/constants/code_symbols';
 
 import { FloatingSymbol } from './components';
-
-// Ajustei os tamanhos (size) para serem responsivos: menores no mobile, maiores no desktop (md:...)
-const codeSymbols = [
-  {
-    id: 1,
-    char: '{ }',
-    depth: 1,
-    top: '20%',
-    left: '10%',
-    size: 'text-2xl md:text-4xl',
-    color: 'text-primary/30'
-  },
-  {
-    id: 2,
-    char: '</>',
-    depth: 2,
-    top: '15%',
-    left: '80%',
-    size: 'text-3xl md:text-6xl',
-    color: 'text-blue-500/20'
-  },
-  {
-    id: 3,
-    char: 'npm',
-    depth: 0.5,
-    top: '60%',
-    left: '5%',
-    size: 'text-xs md:text-xl',
-    color: 'text-slate-700'
-  },
-  {
-    id: 4,
-    char: '&&',
-    depth: 1.5,
-    top: '70%',
-    left: '85%',
-    size: 'text-2xl md:text-5xl',
-    color: 'text-blue-500/20'
-  },
-  {
-    id: 5,
-    char: 'div',
-    depth: 0.8,
-    top: '40%',
-    left: '90%',
-    size: 'text-sm md:text-2xl',
-    color: 'text-slate-600'
-  },
-  {
-    id: 6,
-    char: '=>',
-    depth: 1.2,
-    top: '30%',
-    left: '5%',
-    size: 'text-lg md:text-3xl',
-    color: 'text-fuchsia-500/30'
-  },
-  {
-    id: 7,
-    char: ';',
-    depth: 0.3,
-    top: '80%',
-    left: '40%',
-    size: 'text-3xl md:text-6xl',
-    color: 'text-slate-800'
-  }
-];
 
 export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
@@ -81,17 +15,16 @@ export function HeroSection() {
   return (
     <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
       {/* Background Gradients & Textura */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
       {/* Luz de Fundo Centralizada Atrás do Texto */}
       <div className="absolute left-1/2 top-[45%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[120px] md:h-[500px] md:w-[500px]" />
 
       {/* Símbolos Flutuantes (Looping) */}
-      {/* Adicionado 'pointer-events-none' e garantido que o container ocupe a tela mas limite a largura do conteúdo */}
       <div className="absolute inset-0 w-full h-full flex justify-center pointer-events-none">
         <div className="relative w-full h-full max-w-[1800px]">
-          {codeSymbols.map((item) => (
-            <FloatingSymbol key={item.id} item={item} />
+          {codeSymbols.map((item, index) => (
+            <FloatingSymbol key={item.id} item={item} index={index} />
           ))}
         </div>
       </div>
@@ -120,7 +53,7 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="max-w-xl text-lg text-muted-foreground">
             {t('subtitle')}
           </p>
         </motion.div>

@@ -11,11 +11,10 @@ import {
   ChevronDown,
   Search,
   Home,
-  Menu} from 'lucide-react';
+  Menu
+} from 'lucide-react';
 
 import { cn } from '@/utils/functions/tw-merge';
-
-
 
 // --- Sidebar Desktop ---
 export const DesktopSidebar = () => (
@@ -73,7 +72,9 @@ export const MobileBottomNav = () => (
       <div
         key={i}
         className={`rounded-full p-3 transition-colors ${
-          i === 0 ? 'text-primary bg-white/5' : 'text-slate-500 hover:text-slate-300'
+          i === 0
+            ? 'text-primary bg-white/5'
+            : 'text-slate-500 hover:text-slate-300'
         }`}
       >
         <Icon size={20} />
@@ -122,8 +123,8 @@ export const DarkMetricCard = ({
   trend,
   color,
   isMobile
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-}: any) => (
+}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any) => (
   <div
     className={cn(
       'bg-card/60 group relative flex h-full w-full flex-col justify-between overflow-hidden border border-white/5 backdrop-blur-md',
