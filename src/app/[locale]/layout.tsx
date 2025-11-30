@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   description: 'Personal Site & Blog'
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover'
+};
+
 type Params = Promise<{ locale: string }>;
 
 export default async function RootLayout({
