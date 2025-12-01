@@ -48,7 +48,7 @@ export function NavLinks({
               // Estilos Desktop (Horizontal)
               orientation === 'horizontal' && [
                 'text-sm font-semibold hover:text-primary',
-                isActive ? 'text-foreground ' : 'text-muted-foreground'
+                isActive ? 'text-foreground' : 'text-muted-foreground'
               ],
               // Estilos Mobile (Vertical) - Mais impactante
               orientation === 'vertical' && [

@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 
+import { EncryptedText } from '@/components/ui/encrypted-text';
+
 export function Footer() {
   const t = useTranslations('Components.Layout.Footer');
   const currentYear = new Date().getFullYear();
@@ -13,7 +15,9 @@ export function Footer() {
 
       <div className="container mx-auto w-full px-6 h-14 border-t border-white/5 flex flex-col md:flex-row items-center justify-around md:justify-between">
         <p className="text-xs text-muted-foreground font-mono order-2 md:order-1">
-          © {currentYear} codesampa.io — {t('rights')}
+          <EncryptedText
+            text={`© ${currentYear} codesampa.io — ${t('rights')}`}
+          />
         </p>
 
         <div className="flex items-center gap-2 order-1 md:order-2">
