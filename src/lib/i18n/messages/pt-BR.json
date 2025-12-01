@@ -80,40 +80,44 @@
           }
         }
       },
+      "Manifesto": {
+        "badge": "A Visão",
+        "text": "Software não é apenas código. É sobre *resolver* problemas reais. Eu construo *sistemas* resilientes e interfaces que *inspiram*, unindo engenharia de precisão com design *estratégico* para escalar o seu negócio."
+      },
       "Pipeline": {
-        "badge": "Competências Full-Cycle",
-        "title": "The Tech Stack.",
-        "scroll_hint": "Role para ver as tecnologias",
+        "badge": "O Processo",
+        "title": "Fluxo de Engenharia Full-Cycle.",
+        "scroll_hint": "Role para explorar o pipeline",
         "steps": {
           "01": {
             "title": "UI/UX Design",
-            "subtitle": "Prototipação & User Flow",
-            "description": "Tradução de requisitos em interfaces intuitivas. Criação de wireframes, protótipos de alta fidelidade e design systems no Figma."
+            "subtitle": "Prototipagem & Design System",
+            "description": "Criação de interfaces intuitivas e Design Systems escaláveis no Figma antes de qualquer linha de código."
           },
           "02": {
             "title": "Frontend",
-            "subtitle": "Ecossistema React",
-            "description": "Criação de interfaces modernas, performáticas e responsivas utilizando a potência do React, Next.js e Tailwind CSS."
+            "subtitle": "Ecossistema React & Next.js",
+            "description": "Desenvolvimento de interfaces reativas de alta performance, focadas em SEO e interatividade fluida."
           },
           "03": {
             "title": "Backend",
-            "subtitle": "Node.js & APIs",
-            "description": "Desenvolvimento de APIs RESTful robustas e escaláveis, utilizando Node.js e Express.js para lógica de servidor eficiente."
+            "subtitle": "Node.js & Arquitetura Limpa",
+            "description": "APIs RESTful e GraphQL robustas, construídas para escala, segurança e manipulação eficiente de dados."
           },
           "04": {
             "title": "IA & Automação",
-            "subtitle": "Integração de Modelos",
-            "description": "Utilização de LLMs para acelerar o desenvolvimento, gerar código, automatizar tarefas repetitivas e enriquecer funcionalidades do produto."
+            "subtitle": "Integração de LLMs",
+            "description": "Implementação de inteligência artificial generativa para criar funcionalidades preditivas e automatizar processos."
           },
           "05": {
             "title": "Quality Assurance",
             "subtitle": "Testes Automatizados",
-            "description": "Garantia de qualidade e estabilidade do código com cobertura de testes utilizando Cypress e React Testing Library."
+            "description": "Garantia de estabilidade com testes E2E (Cypress) e unitários, assegurando zero regressão em produção."
           },
           "06": {
             "title": "DevOps",
-            "subtitle": "Infra & CI/CD",
-            "description": "Automatização de deploys e gerenciamento de infraestrutura em nuvem utilizando pipelines CI/CD e serviços AWS."
+            "subtitle": "Infraestrutura & CI/CD",
+            "description": "Pipeline de deploy automatizado e orquestração de infraestrutura em nuvem (AWS) escalável."
           }
         }
       },

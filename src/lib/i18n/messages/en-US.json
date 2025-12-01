@@ -80,30 +80,44 @@
           }
         }
       },
+      "Manifesto": {
+        "badge": "The Vision",
+        "text": "Software is not just code. It is about *solving* real problems. I build resilient *systems* and interfaces that *inspire*, bridging precision engineering with *strategic* design to scale your business."
+      },
       "Pipeline": {
-        "badge": "Core Skills",
-        "title": "The Tech Stack.",
-        "scroll_hint": "Scroll to view technologies",
+        "badge": "The Process",
+        "title": "Full-Cycle Engineering Flow.",
+        "scroll_hint": "Scroll to explore the pipeline",
         "steps": {
           "01": {
-            "title": "Frontend",
-            "subtitle": "React Ecosystem",
-            "description": "Building modern, high-performance, and responsive interfaces leveraging the power of React, Next.js, and Tailwind CSS."
+            "title": "UI/UX Design",
+            "subtitle": "Prototyping & Design System",
+            "description": "Creating intuitive interfaces and scalable Design Systems in Figma before writing a single line of code."
           },
           "02": {
-            "title": "Backend",
-            "subtitle": "Node.js & APIs",
-            "description": "Developing robust and scalable RESTful APIs, using Node.js and Express.js for efficient server-side logic."
+            "title": "Frontend",
+            "subtitle": "React & Next.js Ecosystem",
+            "description": "Developing high-performance reactive interfaces, focused on SEO and fluid interactivity."
           },
           "03": {
-            "title": "Quality Assurance",
-            "subtitle": "Automated Testing",
-            "description": "Ensuring code quality and stability with comprehensive test coverage using Cypress and React Testing Library."
+            "title": "Backend",
+            "subtitle": "Node.js & Clean Architecture",
+            "description": "Robust RESTful and GraphQL APIs, built for scale, security, and efficient data handling."
           },
           "04": {
+            "title": "AI & Automation",
+            "subtitle": "LLM Integration",
+            "description": "Implementing generative artificial intelligence to create predictive features and automate processes."
+          },
+          "05": {
+            "title": "Quality Assurance",
+            "subtitle": "Automated Testing",
+            "description": "Ensuring stability with E2E (Cypress) and unit tests, guaranteeing zero regression in production."
+          },
+          "06": {
             "title": "DevOps",
-            "subtitle": "Infra & CI/CD",
-            "description": "Automating deployments and managing cloud infrastructure using CI/CD pipelines and AWS services."
+            "subtitle": "Infrastructure & CI/CD",
+            "description": "Automated deployment pipeline and scalable cloud infrastructure orchestration (AWS)."
           }
         }
       },

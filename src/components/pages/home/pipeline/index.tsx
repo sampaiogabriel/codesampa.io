@@ -36,7 +36,7 @@ export function EngineeringPipeline() {
   });
 
   // Ajuste do X: Começa em 0% (alinhado) e vai até -85% (suficiente para ver o último card)
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-200%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['2%', '-150%']);
 
   const steps = [
     {

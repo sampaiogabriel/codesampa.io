@@ -43,7 +43,7 @@ export function ServicesSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header da Seção */}
-        <div className="mb-16 md:text-center max-w-3xl mx-auto">
+        <div className="mb-16 text-center max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
