@@ -26,7 +26,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'CodeSampa.io',
+  title: 'codesampa.io',
   description: 'Personal Site & Blog'
 };
 

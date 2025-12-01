@@ -22,12 +22,12 @@ export const DesktopSidebar = () => (
     <div className="relative z-10">
       <div className="group mb-8 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-2 transition-colors hover:border-white/5 hover:bg-white/5">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-600 to-primary text-xs font-bold text-white shadow-[0_0_15px_rgba(0,71,255,0.5)]">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-tr from-blue-600 to-primary text-xs font-bold text-white shadow-[0_0_15px_rgba(0,71,255,0.5)]">
             CS
           </div>
           <div>
             <div className="text-sm font-semibold leading-none text-white">
-              CodeSampa
+              codesampa.io
             </div>
             <div className="text-[10px] text-slate-500 mt-1">Pro Workspace</div>
           </div>

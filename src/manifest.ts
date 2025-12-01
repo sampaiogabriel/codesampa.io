@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'CodeSampa',
-    short_name: 'CodeSampa',
+    name: 'codesampa',
+    short_name: 'codesampa',
     description: 'Soluções Fullstack & Design por Gabriel Sampaio.',
     start_url: '/',
     display: 'standalone',

@@ -28,7 +28,7 @@ export async function Header() {
               <Cpu size={20} />
             </div>
             <span className="font-display text-lg font-bold tracking-tight text-foreground">
-              CodeSampa
+              codesampa.io
             </span>
           </Link>
         </div>
@@ -83,7 +83,7 @@ export async function Header() {
 
                 <SheetHeader className="text-left p-6 border-b border-white/5">
                   <SheetTitle className="font-display font-bold text-2xl tracking-tight flex items-center gap-2 text-white">
-                    CodeSampa
+                    codesampa.io
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_var(--color-primary)]" />
                   </SheetTitle>
                   <SheetDescription className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
@@ -123,7 +123,7 @@ export async function Header() {
 
                   <div className="mt-8 flex justify-between items-center text-[10px] text-muted-foreground/50 font-mono">
                     <span>v3.0.0</span>
-                    <span>© {new Date().getFullYear()} CodeSampa</span>
+                    <span>© {new Date().getFullYear()} codesampa</span>
                   </div>
                 </div>
               </SheetContent>

@@ -41,7 +41,7 @@ export function Links() {
                 <Cpu size={20} />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight text-white">
-                CodeSampa
+                codesampa.io
               </span>
             </Link>
 
