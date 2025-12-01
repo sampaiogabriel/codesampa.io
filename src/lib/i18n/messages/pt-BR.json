@@ -17,10 +17,12 @@
     "Pages": {
       "Contact": {
         "CardContact": {
-          "role": "Desenvolvedor Fullstack Javascript",
+          "role": "Desenvolvedor Fullstack - React | Next | Node",
           "cta": "Agendar uma call",
           "emailCopied": "Email copiado!",
-          "copyEmail": "Copiar email"
+          "copyEmail": "Copiar email",
+          "whatsappLabel": "Vamos conversar no WhatsApp",
+          "downloadCvLabel": "Baixar meu Currículo"
         }
       }
     }
