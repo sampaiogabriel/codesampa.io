@@ -29,7 +29,7 @@ export function Links() {
   const t = useTranslations('Pages.Home.Links');
 
   return (
-    <section className="relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
+    <section className="container mx-auto relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_15px_rgba(var(--color-primary),0.5)]" />
 
