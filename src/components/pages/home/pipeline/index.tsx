@@ -1,12 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-  Cpu,
-  TerminalSquare,
-  GitPullRequest,
-  Rocket
-} from 'lucide-react';
+import { Cpu, TerminalSquare, GitPullRequest, Rocket } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useRef } from 'react';
 
@@ -79,7 +74,6 @@ export function EngineeringPipeline() {
 
       {/* Container Sticky apenas no Desktop */}
       <div className="container mx-auto flex h-full w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
-        
         {/* Cabeçalho da Seção */}
         <header className="px-6 py-12 md:absolute md:left-20 md:top-12 md:z-20 md:p-0">
           <div className="mb-2 flex items-center gap-2">
@@ -91,7 +85,7 @@ export function EngineeringPipeline() {
               {t('badge')}
             </span>
           </div>
-          <h2 className="font-display text-3xl font-black text-foreground md:text-5xl">
+          <h2 className="font-space text-3xl font-black text-foreground md:text-5xl">
             {t.rich('title', {
               br: () => <br />
             })}
@@ -100,8 +94,14 @@ export function EngineeringPipeline() {
 
         {/* Linha do Tempo (Apenas Desktop - Decorativo) */}
         <div className="hidden md:block">
-          <div className="absolute left-0 top-1/2 h-[1px] w-full -translate-y-1/2 bg-border" aria-hidden="true" />
-          <div className="absolute left-0 top-1/2 h-[1px] w-24 -translate-y-1/2 bg-gradient-to-r from-transparent to-cyan-500" aria-hidden="true" />
+          <div
+            className="absolute left-0 top-1/2 h-[1px] w-full -translate-y-1/2 bg-border"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute left-0 top-1/2 h-[1px] w-24 -translate-y-1/2 bg-gradient-to-r from-transparent to-cyan-500"
+            aria-hidden="true"
+          />
         </div>
 
         {/* Lista de Steps */}
@@ -121,17 +121,18 @@ export function EngineeringPipeline() {
                 // [CORREÇÃO ULTRAWIDE]: Adicionado md:flex-none para impedir que o flexbox tente "espremer" ou esticar os cards em telas muito largas.
                 <li key={step.id} className="group relative md:flex-none">
                   <article className="relative flex h-auto w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl transition-colors hover:border-primary/20 md:h-[450px] md:w-[450px]">
-                    
                     {/* Header do Card (Estilo Terminal) */}
                     <header className="flex h-10 items-center justify-between border-b border-border bg-muted/30 px-4">
                       <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
                         <span aria-label={`Step ${step.id}`}>{step.id}</span>
                         <span className="text-border">/</span>
-                        <span className="uppercase tracking-wider">{subtitle}</span>
+                        <span className="uppercase tracking-wider">
+                          {subtitle}
+                        </span>
                       </div>
                       <div
                         className={cn(
-                          "h-2 w-2 rounded-full border bg-opacity-20",
+                          'h-2 w-2 rounded-full border bg-opacity-20',
                           step.color
                         )}
                       />
@@ -155,7 +156,7 @@ export function EngineeringPipeline() {
                   </article>
 
                   {/* Conector Visual (Bolinha na linha) - Apenas Desktop */}
-                  <div 
+                  <div
                     className="absolute -left-6 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rounded-full border-2 border-border bg-background transition-colors group-hover:border-cyan-400 md:block"
                     aria-hidden="true"
                   >

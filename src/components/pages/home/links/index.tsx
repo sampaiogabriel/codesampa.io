@@ -40,7 +40,7 @@ export function Links() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
                 <Cpu size={20} />
               </div>
-              <span className="font-display text-2xl font-bold tracking-tight text-white">
+              <span className="font-space text-2xl font-bold tracking-tight text-white">
                 codesampa.io
               </span>
             </Link>
@@ -63,7 +63,7 @@ export function Links() {
           </div>
 
           <div className="md:col-span-4 hidden md:flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
-            <h4 className="font-display font-semibold text-white flex items-center gap-2">
+            <h4 className="font-space font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
               {t('columns.blog')}
             </h4>
@@ -77,7 +77,7 @@ export function Links() {
           </div>
 
           <div className="md:col-span-4 flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
-            <h4 className="font-display font-semibold text-white flex items-center gap-2">
+            <h4 className="font-space font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               {t('columns.explore')}
             </h4>

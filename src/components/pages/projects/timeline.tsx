@@ -28,7 +28,7 @@ export function TimelinePortfolio() {
                 {t('badge')}
               </span>
             </div>
-            <h2 className="font-display text-4xl font-black text-foreground md:text-6xl">
+            <h2 className="font-space text-4xl font-black text-foreground md:text-6xl">
               {t('title')}
             </h2>
           </div>

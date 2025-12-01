@@ -52,7 +52,7 @@ export function NavLinks({
               ],
               // Estilos Mobile (Vertical) - Mais impactante
               orientation === 'vertical' && [
-                'py-4 text-3xl font-display font-bold tracking-tight hover:text-primary transition-all duration-300',
+                'py-4 text-3xl font-space font-bold tracking-tight hover:text-primary transition-all duration-300',
                 isActive
                   ? 'text-foreground pl-4'
                   : 'text-muted-foreground/60 hover:pl-2'

@@ -27,7 +27,7 @@ export async function Header() {
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
               <Cpu size={20} />
             </div>
-            <span className="font-display text-lg font-bold tracking-tight text-foreground">
+            <span className="font-space text-lg font-bold tracking-tight text-foreground">
               codesampa.io
             </span>
           </Link>
@@ -82,7 +82,7 @@ export async function Header() {
                 <div className="absolute bottom-[-10%] left-[-10%] -z-10 h-[300px] w-[300px] rounded-full bg-blue-600/20 blur-[100px] pointer-events-none opacity-50" />
 
                 <SheetHeader className="text-left p-6 border-b border-white/5">
-                  <SheetTitle className="font-display font-bold text-2xl tracking-tight flex items-center gap-2 text-white">
+                  <SheetTitle className="font-space font-bold text-2xl tracking-tight flex items-center gap-2 text-white">
                     codesampa.io
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_var(--color-primary)]" />
                   </SheetTitle>

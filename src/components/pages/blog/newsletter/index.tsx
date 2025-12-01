@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -15,14 +15,14 @@ export function Newsletter() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-space font-bold text-foreground mb-6 tracking-tight">
             {t('title')}
           </h2>
           <p className="text-muted-foreground text-lg mb-10 max-w-xl">
             {t('description')}
           </p>
 
-          <form 
+          <form
             className="flex flex-col sm:flex-row w-full max-w-md gap-3"
             onSubmit={(e) => e.preventDefault()}
           >

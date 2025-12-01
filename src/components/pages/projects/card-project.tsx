@@ -74,7 +74,7 @@ const CardProject = ({
             </span>
           </div>
 
-          <h3 className="mb-4 font-display text-3xl font-black leading-tight text-white md:text-5xl">
+          <h3 className="mb-4 font-space text-3xl font-black leading-tight text-white md:text-5xl">
             {t(`projects.${project.key}.title`)}
           </h3>
 

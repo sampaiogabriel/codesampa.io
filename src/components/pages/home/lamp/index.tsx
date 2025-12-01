@@ -25,7 +25,7 @@ export function LampSection() {
           className="relative flex flex-col items-center justify-center w-full px-4 text-center z-50 max-w-4xl mx-auto"
         >
           {/* Título Separado com Gradiente na segunda linha */}
-          <h2 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-7xl leading-tight">
+          <h2 className="font-space text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-7xl leading-tight">
             {t('title_1')}
             <br />
             <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent">

@@ -36,10 +36,9 @@
   --sidebar-accent-foreground: oklch(0.4859 0.2339 262.5015);
   --sidebar-border: oklch(0.9276 0.0058 264.5313);
   --sidebar-ring: oklch(0.4859 0.2339 262.5015);
-  --font-sans: var(--font-geist-sans), 'Inter', sans-serif;
-  --font-mono: var(--font-geist-mono), 'Fira Code', monospace;
-  --font-display: var(--font-space), var(--font-geist-sans), sans-serif;
-  --font-serif: 'Merriweather', serif;
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-space: var(--font-space), var(--font-geist-sans), sans-serif;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -97,9 +96,6 @@
   --sidebar-accent-foreground: oklch(0.9276 0.0058 264.5313);
   --sidebar-border: oklch(0.2781 0.0296 256.848);
   --sidebar-ring: oklch(0.4859 0.2339 262.5015);
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Merriweather', serif;
-  --font-mono: 'Fira Code', monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -155,12 +151,6 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
-    Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --font-space: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -183,7 +173,6 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: var(--font-sans);
   }
 
   h1,

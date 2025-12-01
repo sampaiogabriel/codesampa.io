@@ -46,7 +46,7 @@ export function HeroSection() {
             </AnimatedBadge>
           </div>
 
-          <h1 className="font-display mb-6 text-5xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl leading-[1.1]">
+          <h1 className="font-space mb-6 text-5xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl leading-[1.1]">
             {t('title_prefix')} <br />
             <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent">
               {t('title_suffix')}
