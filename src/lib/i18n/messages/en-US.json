@@ -18,7 +18,7 @@
     "Pages": {
       "Contact": {
         "CardContact": {
-          "role": "Fullstack Developer - React | Next | Node",
+          "role": "Fullstack Developer - React | Next | Node | UI/UX",
           "cta": "Schedule a call",
           "emailCopied": "Email copied to clipboard!",
           "copyEmail": "Copy email",
@@ -44,6 +44,41 @@
         "revenue": "Revenue",
         "users": "Users",
         "churn": "Churn"
+      },
+      "Services": {
+        "badge": "What I Deliver",
+        "title": "Complete Digital Solutions.",
+        "subtitle": "From idea to global scale, I build products that generate real value.",
+        "cta_card": "Learn More",
+        "cards": {
+          "systems": {
+            "title": "Web & Mobile Systems",
+            "description": "Development of complex applications, dashboards, and SaaS platforms. Focus on scalable architecture and fluid user experience.",
+            "feature1": "React Native & Next.js (Web/App)",
+            "feature2": "Admin Panels & Dashboards",
+            "feature3": "Multi-tenant SaaS Platforms",
+            "feature4": "API & Payment Integration",
+            "feature5": "Micro-frontend Architecture"
+          },
+          "landing": {
+            "title": "High-Converting Pages",
+            "description": "Pages designed to sell. Extreme SEO optimization, instant loading, and design focused on converting visitors into customers.",
+            "feature1": "Max Performance (100 Lighthouse)",
+            "feature2": "Technical & Semantic SEO",
+            "feature3": "Conversion Focused Design (CRO)",
+            "feature4": "Animations & Motion Design",
+            "feature5": "A/B Testing & CRM Integration"
+          },
+          "ai": {
+            "title": "AI Integration",
+            "description": "Empower your business with artificial intelligence. Chatbots, automated data analysis, and predictive functionalities.",
+            "feature1": "Chatbots & Smart Assistants",
+            "feature2": "OpenAI / LLMs Integration",
+            "feature3": "Customer Service Automation",
+            "feature4": "AI Data Analysis",
+            "feature5": "RAG & Model Fine-tuning"
+          }
+        }
       },
       "Pipeline": {
         "badge": "Core Skills",

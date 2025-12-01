@@ -4,29 +4,22 @@ import { motion } from 'framer-motion';
 import {
   Server,
   Bug,
-  Rocket,
-  CheckCircle2,
   Database,
   Cloud,
   Layout,
   BrainCircuit,
-  Sparkles,
   Zap,
   MousePointer2,
   Palette,
   Code2,
   Bot,
   ShieldCheck,
-  Box,
-  Cpu,
-  RefreshCw,
   Check,
   GitCommitHorizontal,
   Github,
   Globe,
   Workflow
 } from 'lucide-react';
-import React from 'react';
 
 export const UiUxVisual = () => {
   return (

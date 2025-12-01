@@ -18,7 +18,7 @@
     "Pages": {
       "Contact": {
         "CardContact": {
-          "role": "Desenvolvedor Fullstack - React | Next | Node",
+          "role": "Desenvolvedor Fullstack - React | Next | Node | UI/UX",
           "cta": "Agendar uma call",
           "emailCopied": "Email copiado!",
           "copyEmail": "Copiar email",
@@ -44,6 +44,41 @@
         "revenue": "Receita",
         "users": "Usuários",
         "churn": "Churn"
+      },
+      "Services": {
+        "badge": "O Que Eu Entrego",
+        "title": "Soluções Digitais Completas.",
+        "subtitle": "Da ideia à escala global, construo produtos que geram valor real.",
+        "cta_card": "Saiba Mais",
+        "cards": {
+          "systems": {
+            "title": "Sistemas Web & Mobile",
+            "description": "Desenvolvimento de aplicações complexas, dashboards e plataformas SaaS. Foco em arquitetura escalável e experiência do usuário fluida.",
+            "feature1": "React Native & Next.js (Web/App)",
+            "feature2": "Painéis Administrativos & Dashboards",
+            "feature3": "Plataformas SaaS Multi-tenant",
+            "feature4": "Integração de APIs & Pagamentos",
+            "feature5": "Arquitetura Micro-frontend"
+          },
+          "landing": {
+            "title": "Landing Pages de Venda",
+            "description": "Páginas projetadas para vender. Otimização extrema de SEO, carregamento instantâneo e design focado em converter visitantes em clientes.",
+            "feature1": "Alta Performance (100 Lighthouse)",
+            "feature2": "SEO Técnico & Semântico",
+            "feature3": "Design Focado em Conversão (CRO)",
+            "feature4": "Animações & Motion Design",
+            "feature5": "Testes A/B & Integração CRM"
+          },
+          "ai": {
+            "title": "Integração de IA",
+            "description": "Potencialize seu negócio com inteligência artificial. Chatbots, análise de dados automatizada e funcionalidades preditivas.",
+            "feature1": "Chatbots & Assistentes Inteligentes",
+            "feature2": "Integração OpenAI / LLMs",
+            "feature3": "Automação de Atendimento",
+            "feature4": "Análise de Dados com IA",
+            "feature5": "RAG & Fine-tuning de Modelos"
+          }
+        }
       },
       "Pipeline": {
         "badge": "Competências Full-Cycle",

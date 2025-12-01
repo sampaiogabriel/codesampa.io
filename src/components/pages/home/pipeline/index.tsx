@@ -22,7 +22,7 @@ import {
   AiVisual,
   QaVisual,
   DevOpsVisual
-} from './visuals';
+} from './pipeline-visuals';
 
 export function EngineeringPipeline() {
   const t = useTranslations('Pages.Home.Pipeline');
@@ -35,48 +35,48 @@ export function EngineeringPipeline() {
     offset: ['start start', 'end end']
   });
 
-  // Transformação horizontal (Ajustado para 6 cards)
-  const x = useTransform(scrollYProgress, [0, 1], ['2%', '-115%']);
+  // Ajuste do X: Começa em 0% (alinhado) e vai até -85% (suficiente para ver o último card)
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-200%']);
 
   const steps = [
     {
       id: '01',
-      key: '01', // UI/UX
+      key: '01',
       visual: <UiUxVisual />,
       icon: <PenTool size={18} />,
-      color: 'border-blue-500' // Design blue
+      color: 'border-purple-500'
     },
     {
       id: '02',
-      key: '02', // Frontend
+      key: '02',
       visual: <FrontendVisual />,
       icon: <AppWindow size={18} />,
       color: 'border-blue-500'
     },
     {
       id: '03',
-      key: '03', // Backend
+      key: '03',
       visual: <BackendVisual />,
       icon: <Server size={18} />,
       color: 'border-green-500'
     },
     {
       id: '04',
-      key: '04', // IA & Automação
+      key: '04',
       visual: <AiVisual />,
       icon: <BrainCircuit size={18} />,
-      color: 'border-cyan-500' // AI Cyan
+      color: 'border-cyan-500'
     },
     {
       id: '05',
-      key: '05', // QA
+      key: '05',
       visual: <QaVisual />,
       icon: <ShieldCheck size={18} />,
       color: 'border-emerald-500'
     },
     {
       id: '06',
-      key: '06', // DevOps
+      key: '06',
       visual: <DevOpsVisual />,
       icon: <Infinity size={18} />,
       color: 'border-indigo-500'
@@ -86,46 +86,62 @@ export function EngineeringPipeline() {
   return (
     <section
       ref={targetRef}
-      className="relative bg-background md:h-[400vh] overflow-x-clip"
+      className="relative bg-background md:h-[500vh] overflow-x-clip"
       aria-label={t('title')}
     >
-      {/* Container Sticky apenas no Desktop */}
-      <div className="container mx-auto flex w-full flex-col justify-start md:sticky md:top-5 md:h-screen md:justify-center md:overflow-hidden">
-        {/* Cabeçalho da Seção */}
-        <header className="px-6 py-6 md:absolute md:left-20 md:top-12 md:z-20 md:p-0">
-          <div className="mb-2 flex items-center gap-2">
+      {/* Container Sticky */}
+      <div className="container mx-auto flex w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
+        {/* Cabeçalho Centralizado */}
+        <div className="mb-8 md:mb-16 md:text-center max-w-4xl mx-auto px-6 pt-12 md:pt-0 relative z-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 mb-4"
+          >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
             </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary">
               {t('badge')}
             </span>
-          </div>
-          <h2 className="font-space text-3xl font-black text-foreground md:text-5xl">
-            {t.rich('title', {
-              br: () => <br />
-            })}
-          </h2>
-        </header>
+          </motion.div>
 
-        {/* Linha do Tempo (Apenas Desktop - Decorativo) */}
-        <div className="block">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-space text-3xl font-black text-foreground md:text-5xl"
+          >
+            {t.rich('title', {
+              br: () => <br className="md:hidden" />
+            })}
+          </motion.h2>
+        </div>
+
+        {/* Linha Decorativa (Opcional - ajustada para não cortar o título) */}
+        <div className="hidden md:block">
           <div
-            className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-border"
+            className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-border/40"
             aria-hidden="true"
           />
           <div
-            className="absolute left-0 top-1/2 h-px w-24 -translate-y-1/2 bg-linear-to-r from-transparent to-blue-500"
+            className="absolute left-0 top-1/2 h-px w-24 -translate-y-1/2 bg-linear-to-r from-transparent to-primary"
             aria-hidden="true"
           />
         </div>
 
-        {/* === ÁREA DE SCROLL DOS CARDS === */}
-        <div className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory px-6 pb-12 md:px-0 md:pb-0 md:overflow-visible">
+        {/* === ÁREA DE SCROLL === */}
+        {/* Mobile: overflow-x-auto e snap. Desktop: overflow-visible. 
+            IMPORTANTE: Removido padding do wrapper para o scroll ir até a borda. */}
+        <div className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory pb-12 md:pb-0 md:overflow-visible no-scrollbar">
           <motion.ol
             style={!isMobile ? { x } : {}}
-            className="flex flex-row gap-12 md:gap-16 md:pl-20 md:pr-20 items-stretch"
+            // padding (px-6) aplicado AQUI na lista para garantir espaçamento inicial e final no scroll
+            // gap-12 restaurado para mobile
+            className="flex flex-row gap-12 px-6 md:gap-16 md:px-0 md:pl-0 md:pr-0 items-stretch"
           >
             {steps.map((step) => {
               const title = t(`steps.${step.key}.title`);
@@ -135,6 +151,7 @@ export function EngineeringPipeline() {
               return (
                 <li
                   key={step.id}
+                  // Mobile: snap-center para focar. Desktop: flex-none.
                   className="group relative shrink-0 snap-center w-[85vw] max-w-[350px] flex flex-col md:w-auto md:max-w-none md:flex-none"
                 >
                   <article className="relative flex-1 flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl transition-colors hover:border-primary/20 md:h-[450px] md:w-[450px] md:flex-none">
@@ -154,13 +171,10 @@ export function EngineeringPipeline() {
                       />
                     </header>
 
-                    {/* Área Visual */}
-                    {/* Mantemos flex-1 aqui também para o visual crescer se necessário, alinhando os rodapés */}
                     <div className="relative h-[200px] flex-1 overflow-hidden bg-black/20 md:h-auto">
                       {step.visual}
                     </div>
 
-                    {/* Footer com Conteúdo */}
                     <div className="border-t border-border bg-card p-6 md:h-36">
                       <h3 className="mb-2 flex items-center gap-2 text-xl font-bold text-card-foreground">
                         <span className="text-primary">{step.icon}</span>
@@ -172,7 +186,7 @@ export function EngineeringPipeline() {
                     </div>
                   </article>
 
-                  {/* Conector Visual (Bolinha na linha) - Desktop */}
+                  {/* Conector Visual (Desktop) */}
                   <div
                     className={cn(
                       'absolute -left-8 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rounded-full border-2 border-border bg-background transition-colors md:block',
@@ -193,7 +207,7 @@ export function EngineeringPipeline() {
           </motion.ol>
         </div>
 
-        {/* Footer info (Apenas Desktop) */}
+        {/* Footer info (Desktop) */}
         <div className="absolute bottom-8 right-8 hidden text-right md:block">
           <p className="font-mono text-xs text-muted-foreground/60">
             {t('scroll_hint')}
