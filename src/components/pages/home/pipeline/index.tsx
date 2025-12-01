@@ -1,7 +1,14 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Cpu, TerminalSquare, GitPullRequest, Rocket } from 'lucide-react';
+import {
+  PenTool,
+  AppWindow,
+  Server,
+  BrainCircuit,
+  ShieldCheck,
+  Infinity
+} from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useRef } from 'react';
 
@@ -9,53 +16,69 @@ import { cn } from '@/utils/functions/tw-merge';
 import useIsMobile from '@/utils/hooks/use-mobile';
 
 import {
-  ArchitectureVisual,
-  DevelopmentVisual,
-  TestingVisual,
-  DeployVisual
-} from './pipeline-visuals';
+  UiUxVisual,
+  FrontendVisual,
+  BackendVisual,
+  AiVisual,
+  QaVisual,
+  DevOpsVisual
+} from './visuals';
 
 export function EngineeringPipeline() {
   const t = useTranslations('Pages.Home.Pipeline');
   const targetRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // Scroll Progress apenas se não for mobile para performance
+  // Scroll Progress
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ['start start', 'end end']
   });
 
-  // Transformação horizontal apenas desktop
-  const x = useTransform(scrollYProgress, [0, 1], ['2%', '-75%']);
+  // Transformação horizontal (Ajustado para 6 cards)
+  const x = useTransform(scrollYProgress, [0, 1], ['2%', '-115%']);
 
   const steps = [
     {
       id: '01',
-      key: '01',
-      visual: <ArchitectureVisual />,
-      icon: <Cpu size={18} />,
-      color: 'border-cyan-500'
+      key: '01', // UI/UX
+      visual: <UiUxVisual />,
+      icon: <PenTool size={18} />,
+      color: 'border-blue-500' // Design blue
     },
     {
       id: '02',
-      key: '02',
-      visual: <DevelopmentVisual />,
-      icon: <TerminalSquare size={18} />,
+      key: '02', // Frontend
+      visual: <FrontendVisual />,
+      icon: <AppWindow size={18} />,
       color: 'border-blue-500'
     },
     {
       id: '03',
-      key: '03',
-      visual: <TestingVisual />,
-      icon: <GitPullRequest size={18} />,
-      color: 'border-emerald-500'
+      key: '03', // Backend
+      visual: <BackendVisual />,
+      icon: <Server size={18} />,
+      color: 'border-green-500'
     },
     {
       id: '04',
-      key: '04',
-      visual: <DeployVisual />,
-      icon: <Rocket size={18} />,
+      key: '04', // IA & Automação
+      visual: <AiVisual />,
+      icon: <BrainCircuit size={18} />,
+      color: 'border-cyan-500' // AI Cyan
+    },
+    {
+      id: '05',
+      key: '05', // QA
+      visual: <QaVisual />,
+      icon: <ShieldCheck size={18} />,
+      color: 'border-emerald-500'
+    },
+    {
+      id: '06',
+      key: '06', // DevOps
+      visual: <DevOpsVisual />,
+      icon: <Infinity size={18} />,
       color: 'border-indigo-500'
     }
   ];
@@ -63,25 +86,19 @@ export function EngineeringPipeline() {
   return (
     <section
       ref={targetRef}
-      // Mobile: h-auto (conteúdo define altura). Desktop: 300vh (para scroll horizontal)
-      className="relative bg-background md:h-[300vh] overflow-x-clip"
+      className="relative bg-background md:h-[400vh] overflow-x-clip"
       aria-label={t('title')}
     >
-      {/* === BACKGROUND IDENTICO AO HERO === */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-      <div className="absolute top-[-10%] left-1/2 h-[500px] w-full max-w-[1000px] -translate-x-1/2 rounded-[100%] bg-primary/20 blur-[100px] md:h-[700px] md:blur-[130px]" />
-      <div className="absolute bottom-[-10%] left-1/2 h-[300px] w-full max-w-[800px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[80px]" />
-
       {/* Container Sticky apenas no Desktop */}
-      <div className="container mx-auto flex h-full w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
+      <div className="container mx-auto flex w-full flex-col justify-start md:sticky md:top-5 md:h-screen md:justify-center md:overflow-hidden">
         {/* Cabeçalho da Seção */}
-        <header className="px-6 py-12 md:absolute md:left-20 md:top-12 md:z-20 md:p-0">
+        <header className="px-6 py-6 md:absolute md:left-20 md:top-12 md:z-20 md:p-0">
           <div className="mb-2 flex items-center gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
             </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-cyan-500">
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
               {t('badge')}
             </span>
           </div>
@@ -93,35 +110,34 @@ export function EngineeringPipeline() {
         </header>
 
         {/* Linha do Tempo (Apenas Desktop - Decorativo) */}
-        <div className="hidden md:block">
+        <div className="block">
           <div
-            className="absolute left-0 top-1/2 h-[1px] w-full -translate-y-1/2 bg-border"
+            className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-border"
             aria-hidden="true"
           />
           <div
-            className="absolute left-0 top-1/2 h-[1px] w-24 -translate-y-1/2 bg-gradient-to-r from-transparent to-cyan-500"
+            className="absolute left-0 top-1/2 h-px w-24 -translate-y-1/2 bg-linear-to-r from-transparent to-blue-500"
             aria-hidden="true"
           />
         </div>
 
-        {/* Lista de Steps */}
-        {/* Mobile: Grid vertical simples. Desktop: Motion horizontal */}
-        <div className="px-6 pb-20 md:px-0 md:pb-0 relative z-10">
+        {/* === ÁREA DE SCROLL DOS CARDS === */}
+        <div className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory px-6 pb-12 md:px-0 md:pb-0 md:overflow-visible">
           <motion.ol
             style={!isMobile ? { x } : {}}
-            className="flex flex-col gap-8 md:flex-row md:gap-12 md:pl-20 md:pr-20"
+            className="flex flex-row gap-12 md:gap-16 md:pl-20 md:pr-20 items-stretch"
           >
             {steps.map((step) => {
-              // Pegando traduções dinamicamente baseada no ID
               const title = t(`steps.${step.key}.title`);
               const subtitle = t(`steps.${step.key}.subtitle`);
               const desc = t(`steps.${step.key}.description`);
 
               return (
-                // [CORREÇÃO ULTRAWIDE]: Adicionado md:flex-none para impedir que o flexbox tente "espremer" ou esticar os cards em telas muito largas.
-                <li key={step.id} className="group relative md:flex-none">
-                  <article className="relative flex h-auto w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl transition-colors hover:border-primary/20 md:h-[450px] md:w-[450px]">
-                    {/* Header do Card (Estilo Terminal) */}
+                <li
+                  key={step.id}
+                  className="group relative shrink-0 snap-center w-[85vw] max-w-[350px] flex flex-col md:w-auto md:max-w-none md:flex-none"
+                >
+                  <article className="relative flex-1 flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl transition-colors hover:border-primary/20 md:h-[450px] md:w-[450px] md:flex-none">
                     <header className="flex h-10 items-center justify-between border-b border-border bg-muted/30 px-4">
                       <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
                         <span aria-label={`Step ${step.id}`}>{step.id}</span>
@@ -139,6 +155,7 @@ export function EngineeringPipeline() {
                     </header>
 
                     {/* Área Visual */}
+                    {/* Mantemos flex-1 aqui também para o visual crescer se necessário, alinhando os rodapés */}
                     <div className="relative h-[200px] flex-1 overflow-hidden bg-black/20 md:h-auto">
                       {step.visual}
                     </div>
@@ -155,12 +172,20 @@ export function EngineeringPipeline() {
                     </div>
                   </article>
 
-                  {/* Conector Visual (Bolinha na linha) - Apenas Desktop */}
+                  {/* Conector Visual (Bolinha na linha) - Desktop */}
                   <div
-                    className="absolute -left-6 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rounded-full border-2 border-border bg-background transition-colors group-hover:border-cyan-400 md:block"
+                    className={cn(
+                      'absolute -left-8 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rounded-full border-2 border-border bg-background transition-colors md:block',
+                      `group-hover:${step.color.replace('border', 'border')}`
+                    )}
                     aria-hidden="true"
                   >
-                    <div className="h-full w-full rounded-full bg-cyan-400 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div
+                      className={cn(
+                        'h-full w-full rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100',
+                        step.color.replace('border-', 'bg-')
+                      )}
+                    />
                   </div>
                 </li>
               );

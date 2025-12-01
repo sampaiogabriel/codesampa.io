@@ -33,7 +33,7 @@
       "Hero": {
         "badge": "v3.0 System Architecture",
         "title_prefix": "Build Scalable",
-        "title_suffix": "Systems.",
+        "title_suffix": "Systems",
         "subtitle": "Transform abstract code into concrete products. Scroll to compile the interface.",
         "scroll_indicator": "Scroll to Compile",
         "view_desktop": "Desktop",
@@ -46,35 +46,35 @@
         "churn": "Churn"
       },
       "Pipeline": {
-        "badge": "Methodology",
-        "title": "The Engineering Pipeline.",
-        "scroll_hint": "Scroll to explore process",
+        "badge": "Core Skills",
+        "title": "The Tech Stack.",
+        "scroll_hint": "Scroll to view technologies",
         "steps": {
           "01": {
-            "title": "Architecture",
-            "subtitle": "System Design",
-            "description": "Detailed blueprint of microservices and database schemas before writing a single line of code."
+            "title": "Frontend",
+            "subtitle": "React Ecosystem",
+            "description": "Building modern, high-performance, and responsive interfaces leveraging the power of React, Next.js, and Tailwind CSS."
           },
           "02": {
-            "title": "Development",
-            "subtitle": "Clean Code",
-            "description": "Strictly typed implementation with TypeScript, adhering to SOLID principles and Design Patterns."
+            "title": "Backend",
+            "subtitle": "Node.js & APIs",
+            "description": "Developing robust and scalable RESTful APIs, using Node.js and Express.js for efficient server-side logic."
           },
           "03": {
             "title": "Quality Assurance",
-            "subtitle": "Automated Tests",
-            "description": "Unit, Integration, and E2E tests ensuring zero regressions in production environments."
+            "subtitle": "Automated Testing",
+            "description": "Ensuring code quality and stability with comprehensive test coverage using Cypress and React Testing Library."
           },
           "04": {
-            "title": "Deploy & Scale",
-            "subtitle": "CI/CD Pipeline",
-            "description": "Global infrastructure on the Edge, serverless auto-scaling, and instant rollback capabilities."
+            "title": "DevOps",
+            "subtitle": "Infra & CI/CD",
+            "description": "Automating deployments and managing cloud infrastructure using CI/CD pipelines and AWS services."
           }
         }
       },
       "LampSection": {
-        "title_1": "Stop Searching.",
-        "title_2": "Start Building.",
+        "title_1": "Stop Searching",
+        "title_2": "Start Building",
         "subtitle": "You have the vision. I have the architecture, the code, and the commitment to make it scale.",
         "cta": "Let's Build the Future"
       },

@@ -33,7 +33,7 @@
       "Hero": {
         "badge": "v3.0 Arquitetura de Sistema",
         "title_prefix": "Construa Sistemas",
-        "title_suffix": "Escaláveis.",
+        "title_suffix": "Escaláveis",
         "subtitle": "Transforme código abstrato em produtos concretos. Role para compilar a interface.",
         "scroll_indicator": "Role para Compilar",
         "view_desktop": "Desktop",
@@ -46,35 +46,45 @@
         "churn": "Churn"
       },
       "Pipeline": {
-        "badge": "Metodologia",
-        "title": "O Pipeline de Engenharia.",
-        "scroll_hint": "Role para explorar o processo",
+        "badge": "Competências Full-Cycle",
+        "title": "The Tech Stack.",
+        "scroll_hint": "Role para ver as tecnologias",
         "steps": {
           "01": {
-            "title": "Arquitetura",
-            "subtitle": "System Design",
-            "description": "Blueprint detalhado de microsserviços e esquemas de banco de dados antes de escrever uma linha de código."
+            "title": "UI/UX Design",
+            "subtitle": "Prototipação & User Flow",
+            "description": "Tradução de requisitos em interfaces intuitivas. Criação de wireframes, protótipos de alta fidelidade e design systems no Figma."
           },
           "02": {
-            "title": "Desenvolvimento",
-            "subtitle": "Clean Code",
-            "description": "Implementação estritamente tipada com TypeScript, seguindo princípios SOLID e Design Patterns."
+            "title": "Frontend",
+            "subtitle": "Ecossistema React",
+            "description": "Criação de interfaces modernas, performáticas e responsivas utilizando a potência do React, Next.js e Tailwind CSS."
           },
           "03": {
-            "title": "Quality Assurance",
-            "subtitle": "Testes Automatizados",
-            "description": "Testes unitários, de integração e E2E garantindo zero regressões em ambientes de produção."
+            "title": "Backend",
+            "subtitle": "Node.js & APIs",
+            "description": "Desenvolvimento de APIs RESTful robustas e escaláveis, utilizando Node.js e Express.js para lógica de servidor eficiente."
           },
           "04": {
-            "title": "Deploy & Scale",
-            "subtitle": "Esteira CI/CD",
-            "description": "Infraestrutura global na Edge, auto-scaling serverless e capacidades de rollback instantâneo."
+            "title": "IA & Automação",
+            "subtitle": "Integração de Modelos",
+            "description": "Utilização de LLMs para acelerar o desenvolvimento, gerar código, automatizar tarefas repetitivas e enriquecer funcionalidades do produto."
+          },
+          "05": {
+            "title": "Quality Assurance",
+            "subtitle": "Testes Automatizados",
+            "description": "Garantia de qualidade e estabilidade do código com cobertura de testes utilizando Cypress e React Testing Library."
+          },
+          "06": {
+            "title": "DevOps",
+            "subtitle": "Infra & CI/CD",
+            "description": "Automatização de deploys e gerenciamento de infraestrutura em nuvem utilizando pipelines CI/CD e serviços AWS."
           }
         }
       },
       "LampSection": {
-        "title_1": "Pare de Procurar.",
-        "title_2": "Comece a Construir.",
+        "title_1": "Pare de Procurar",
+        "title_2": "Comece a Construir",
         "subtitle": "Você tem a visão. Eu tenho a arquitetura, o código e o compromisso para fazê-la escalar.",
         "cta": "Vamos Construir o Futuro"
       },
