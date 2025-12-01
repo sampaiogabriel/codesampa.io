@@ -75,7 +75,10 @@ export function ShapeShifterSection() {
       className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
     >
       <div className="relative z-10 flex w-full items-center justify-center p-4">
-        <AnimatePresence mode="wait">
+        <AnimatePresence
+          mode="wait"
+          onExitComplete={() => window.scrollTo(0, 0)}
+        >
           {viewMode === 'desktop' ? (
             <DesktopMock
               key="desktop"

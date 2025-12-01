@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/refs */
 'use client';
+
 import { motion, useInView } from 'motion/react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -8,21 +9,10 @@ import { cn } from '@/utils/functions/tw-merge';
 type EncryptedTextProps = {
   text: string;
   className?: string;
-  /**
-   * Time in milliseconds between revealing each subsequent real character.
-   * Lower is faster. Defaults to 50ms per character.
-   */
   revealDelayMs?: number;
-  /** Optional custom character set to use for the gibberish effect. */
   charset?: string;
-  /**
-   * Time in milliseconds between gibberish flips for unrevealed characters.
-   * Lower is more jittery. Defaults to 50ms.
-   */
   flipDelayMs?: number;
-  /** CSS class for styling the encrypted/scrambled characters */
   encryptedClassName?: string;
-  /** CSS class for styling the revealed characters */
   revealedClassName?: string;
 };
 
@@ -63,6 +53,9 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   const animationFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const lastFlipTimeRef = useRef<number>(0);
+
+  // Note: Using Math.random() here causes the server/client mismatch.
+  // suppressHydrationWarning on the span below fixes the crash.
   const scrambleCharsRef = useRef<string[]>(
     text ? generateGibberishPreservingSpaces(text, charset).split('') : []
   );
@@ -70,7 +63,6 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   useEffect(() => {
     if (!isInView) return;
 
-    // Reset state for a fresh animation whenever dependencies change
     const initial = text
       ? generateGibberishPreservingSpaces(text, charset)
       : '';
@@ -97,7 +89,6 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
         return;
       }
 
-      // Re-randomize unrevealed scramble characters on an interval
       const timeSinceLastFlip = now - lastFlipTimeRef.current;
       if (timeSinceLastFlip >= Math.max(0, flipDelayMs)) {
         for (let index = 0; index < totalLength; index += 1) {
@@ -147,6 +138,7 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
           <span
             key={index}
             className={cn(isRevealed ? revealedClassName : encryptedClassName)}
+            suppressHydrationWarning // <--- ADDED THIS LINE
           >
             {displayChar}
           </span>
