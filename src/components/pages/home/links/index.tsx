@@ -35,7 +35,6 @@ export function Links() {
 
       <div className="container mx-auto px-6 pt-12 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
-          {/* Brand Column (4 colunas - Esquerda) */}
           <div className="md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group w-fit">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
@@ -55,7 +54,10 @@ export function Links() {
                 href="https://github.com/sampaiogabriel"
                 icon={<Github size={18} />}
               />
-              <SocialLink href="#" icon={<Linkedin size={18} />} />
+              <SocialLink
+                href="https://www.linkedin.com/in/gabrielsampaiolimadearaujo/"
+                icon={<Linkedin size={18} />}
+              />
               <SocialLink href="#" icon={<Instagram size={18} />} />
             </div>
           </div>
@@ -74,7 +76,6 @@ export function Links() {
             </ul>
           </div>
 
-          {/* Navigation Column (4 colunas - Direita) */}
           <div className="md:col-span-4 flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
             <h4 className="font-display font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />

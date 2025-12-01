@@ -4,6 +4,7 @@
       "Header": {
         "nav": {
           "home": "Início",
+          "projects": "Projetos",
           "blog": "Blog",
           "contact": "Contato"
         },

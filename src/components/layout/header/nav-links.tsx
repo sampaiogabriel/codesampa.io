@@ -22,6 +22,7 @@ export function NavLinks({
 
   const links = [
     { href: '/', label: t('home') },
+    { href: '/projects', label: t('projects') },
     { href: '/blog', label: t('blog') },
     { href: '/contact', label: t('contact') }
   ];
