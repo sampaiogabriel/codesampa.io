@@ -26,7 +26,7 @@ const CardProject = ({
   project: (typeof LIST_PROJECTS)[0];
   index: number;
 }) => {
-  const t = useTranslations('Pages.Home.SelectedWork');
+  const t = useTranslations('Pages.Projects');
   const cardRef = useRef<HTMLDivElement>(null);
 
   const isReducedMotion =
@@ -78,7 +78,7 @@ const CardProject = ({
             {t(`projects.${project.key}.title`)}
           </h3>
 
-          <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
+          <p className="max-w-md text-sm md:text-lg leading-relaxed text-muted-foreground">
             {t(`projects.${project.key}.description`)}
           </p>
         </div>
@@ -141,13 +141,26 @@ const CardProject = ({
           'h-[300px] md:h-[400px] lg:h-[500px]'
         )}
       >
-        {/* Overlay de Brilho no Hover */}
+        {/*
+          ADICIONADO: Camada de Highlight/Glow no Background.
+          Usa a cor do projeto, aplica um blur pesado e baixa opacidade para criar uma luz ambiente.
+        */}
+        <div
+          className={cn(
+            'absolute inset-0 z-0 bg-linear-to-br opacity-25 blur-3xl filter saturate-150 transition-all duration-500 group-hover:opacity-40 group-hover:saturate-200',
+            project.color
+          )}
+          aria-hidden="true"
+        />
+
+        {/* Overlay de Brilho no Hover (Existente) */}
         <div className="absolute inset-0 z-20 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
 
         {/* A IMAGEM QUE SE MOVE (Mockup) */}
         <motion.div
           style={{ y: finalY, scale: 1.1 }}
-          className="absolute inset-0 h-[120%] w-full bg-slate-900"
+          // Z-10 para ficar acima do novo highlight
+          className="absolute inset-0 z-10 h-[120%] w-full"
         >
           {/* Fundo Gradiente Abstrato (Placeholder da imagem) */}
           <div
