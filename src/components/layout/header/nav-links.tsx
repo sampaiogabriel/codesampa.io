@@ -17,7 +17,7 @@ export function NavLinks({
   orientation = 'horizontal',
   onLinkClick
 }: NavLinkProps) {
-  const t = useTranslations('Components.Header.nav');
+  const t = useTranslations('Components.Layout.Header.nav');
   const pathname = usePathname();
 
   const links = [
@@ -52,7 +52,9 @@ export function NavLinks({
               // Estilos Mobile (Vertical) - Mais impactante
               orientation === 'vertical' && [
                 'py-4 text-3xl font-display font-bold tracking-tight hover:text-primary transition-all duration-300',
-                isActive ? 'text-foreground pl-4' : 'text-muted-foreground/60 hover:pl-2'
+                isActive
+                  ? 'text-foreground pl-4'
+                  : 'text-muted-foreground/60 hover:pl-2'
               ]
             )}
           >
@@ -63,7 +65,7 @@ export function NavLinks({
                 className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]"
               />
             )}
-            
+
             {link.label}
           </Link>
         );

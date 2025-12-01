@@ -16,7 +16,7 @@ import { LanguageSwitcher } from './language-switcher';
 import { NavLinks } from './nav-links';
 
 export async function Header() {
-  const t = await getTranslations('Components.Header');
+  const t = await getTranslations('Components.Layout.Header');
 
   return (
     <header className="sticky top-0 inset-x-0 z-50 h-14 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-backdrop-filter:bg-background/60">

@@ -1,16 +1,28 @@
 {
   "Components": {
-    "Header": {
-      "nav": {
-        "home": "Home",
-        "blog": "Blog",
-        "contact": "Contact"
+    "Layout": {
+      "Header": {
+        "nav": {
+          "home": "Home",
+          "blog": "Blog",
+          "contact": "Contact"
+        },
+        "language_selector": "Change language",
+        "open_menu": "Open menu"
       },
-      "language_selector": "Change language",
-      "open_menu": "Open menu"
+      "Footer": {
+        "rights": "All rights reserved."
+      }
     },
-    "Footer": {
-      "rights": "All rights reserved."
+    "Pages": {
+      "Contact": {
+        "CardContact": {
+          "role": "Fullstack Javascript Developer",
+          "cta": "Schedule a call",
+          "emailCopied": "Email copied to clipboard!",
+          "copyEmail": "Copy email"
+        }
+      }
     }
   },
   "Pages": {
@@ -119,12 +131,7 @@
         }
       }
     },
-    "Contact": {
-      "role": "Fullstack Javascript Developer",
-      "cta": "Schedule a call",
-      "emailCopied": "Email copied to clipboard!",
-      "copyEmail": "Copy email"
-    },
+    "Contact": {},
     "Blog": {}
   }
 }

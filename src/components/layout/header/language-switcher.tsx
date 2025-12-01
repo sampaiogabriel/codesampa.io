@@ -4,12 +4,17 @@ import { Globe } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { LANGUAGES } from '@/utils/constants/languages';
 import { useChangeLanguage } from '@/utils/hooks/use-change-language';
 
 export function LanguageSwitcher() {
-  const t = useTranslations('Components.Header');
+  const t = useTranslations('Components.Layout.Header');
   const { changeLanguage, isPending } = useChangeLanguage();
 
   return (

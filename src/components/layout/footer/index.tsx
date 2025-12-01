@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 export function Footer() {
-  const t = useTranslations('Components.Footer');
+  const t = useTranslations('Components.Layout.Footer');
   const currentYear = new Date().getFullYear();
 
   return (
