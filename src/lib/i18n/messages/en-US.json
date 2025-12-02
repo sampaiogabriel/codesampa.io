@@ -258,6 +258,10 @@
         }
       }
     },
+    "NotFound": {
+      "description": "It looks like you got lost in hyperspace. The page you are looking for was moved, deleted, or never existed.",
+      "cta": "Return to Base"
+    },
     "Blog": {}
   }
 }

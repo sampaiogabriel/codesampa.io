@@ -261,6 +261,10 @@
         }
       }
     },
+    "NotFound": {
+      "description": "Parece que você se perdeu no hiperespaço. A página que você procura foi movida, deletada ou nunca existiu.",
+      "cta": "Voltar para a Base"
+    },
     "Blog": {}
   }
 }
