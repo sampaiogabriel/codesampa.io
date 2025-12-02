@@ -54,7 +54,7 @@
           "systems": {
             "title": "Web & Mobile Systems",
             "description": "Development of complex applications, dashboards, and SaaS platforms. Focus on scalable architecture and fluid user experience.",
-            "feature1": "React Native & Next.js (Web/App)",
+            "feature1": "React, Next.js, React Native (Web/App)",
             "feature2": "Admin Panels & Dashboards",
             "feature3": "Multi-tenant SaaS Platforms",
             "feature4": "API & Payment Integration",
