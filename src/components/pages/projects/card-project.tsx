@@ -6,17 +6,16 @@ import {
   motion
 } from 'framer-motion';
 import {
-  Smartphone,
-  Layers,
-  Monitor,
   ArrowUpRight,
   Github,
-  ExternalLink
+  MessageSquarePlus,
+  CheckCircle2
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { useRef } from 'react';
 
-import { LIST_PROJECTS } from '@/utils/constants/projects';
+import { LIST_PROJECTS, TECH_ICONS } from '@/utils/constants/projects';
 import { cn } from '@/utils/functions/tw-merge';
 
 const CardProject = ({
@@ -46,19 +45,21 @@ const CardProject = ({
 
   return (
     <motion.article
+      layout
       ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="group relative mb-20 grid w-full grid-cols-1 gap-8 last:mb-0 lg:min-h-[500px] lg:grid-cols-2 lg:items-center lg:gap-12"
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.6 }}
+      className="group relative mb-20 grid w-full grid-cols-1 gap-8 last:mb-0 lg:min-h-[500px] lg:grid-cols-2 lg:items-center lg:gap-16"
     >
       <div
         className={cn(
-          'flex flex-col gap-6 z-10',
+          'flex flex-col gap-8 z-10',
           index % 2 === 1 ? 'lg:order-2' : ''
         )}
       >
-        {/* Cabeçalho do Card */}
+        {/* Cabeçalho */}
         <div>
           <div className="mb-4 flex items-center gap-3">
             <div
@@ -69,8 +70,8 @@ const CardProject = ({
             >
               {project.icon}
             </div>
-            <span className="font-mono text-sm font-bold uppercase tracking-widest text-blue-500">
-              0{index + 1} — {t(`projects.${project.key}.category`)}
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              {t(`projects.${project.key}.category`) || 'Case Study'}
             </span>
           </div>
 
@@ -78,91 +79,103 @@ const CardProject = ({
             {t(`projects.${project.key}.title`)}
           </h3>
 
-          <p className="max-w-md text-sm md:text-lg leading-relaxed text-muted-foreground">
+          <p className="text-base leading-relaxed text-muted-foreground">
             {t(`projects.${project.key}.description`)}
           </p>
         </div>
 
-        {/* Stat Highlight */}
-        <div className="border-l-2 border-primary/50 pl-4">
-          <p className="font-bold text-foreground">
-            {t(`projects.${project.key}.stats`)}
-          </p>
+        {/* [NOVO] Grid de Métricas de Impacto */}
+        <div className="grid grid-cols-3 gap-4 border-y border-white/5 py-6">
+          {project.metrics?.map((metricId, i) => (
+            <div key={i} className="flex flex-col gap-1">
+              <span className="text-2xl font-bold text-foreground">
+                {/* Ex: +30% */}
+                {t(`projects.${project.key}.metrics_data.${i}.value`)}
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                {/* Ex: Conversão */}
+                {t(`projects.${project.key}.metrics_data.${i}.label`)}
+              </span>
+            </div>
+          )) || (
+            // Fallback se não tiver métricas definidas ainda
+            <div className="col-span-3 text-sm text-muted-foreground italic">
+              Impacto: {t(`projects.${project.key}.stats`)}
+            </div>
+          )}
         </div>
 
-        {/* Tags */}
-        <ul
-          className="flex flex-wrap gap-2"
-          aria-label="Tecnologias utilizadas"
-        >
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full border border-white/5 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 transition-colors hover:border-white/10 hover:bg-white/10"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        {/* [NOVO] Stack Tecnológica Visual (Ícones) */}
+        <div className="flex flex-wrap items-center gap-4">
+          {project.tags.map((tag) => {
+            const Icon = TECH_ICONS[tag] || CheckCircle2; // Fallback icon
+            return (
+              <div
+                key={tag}
+                className="group/icon relative flex items-center justify-center p-2 rounded-md bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-help"
+              >
+                <Icon size={18} className="text-slate-300" />
+                {/* Tooltip simples */}
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-[10px] text-white rounded opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  {tag}
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
         {/* Botões de Ação */}
-        <div className="mt-2 flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 pt-2">
           <a
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-            aria-label={`${t('cta_case_study')} - ${t(
-              `projects.${project.key}.title`
-            )}`}
+            className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
           >
             {t('cta_case_study')} <ArrowUpRight size={16} />
           </a>
+
           <a
             href={project.repo}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-            aria-label={`${t('cta_repo')} - ${t(
-              `projects.${project.key}.title`
-            )}`}
+            className="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 hover:text-primary"
+            aria-label="GitHub Repo"
           >
             <Github size={20} />
           </a>
+
+          {/* [NOVO] CTA Secundário "Quero Assim" */}
+          <Link
+            href="/contact"
+            className="ml-auto flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+          >
+            <MessageSquarePlus size={16} />
+            {t('cta_want_similar') || 'I want this'}
+          </Link>
         </div>
       </div>
 
-      {/* --- COLUNA DA IMAGEM (PARALLAX VISUAL) --- */}
+      {/* --- COLUNA DA IMAGEM (Mantida com melhorias) --- */}
       <div
         className={cn(
           'relative w-full overflow-hidden rounded-2xl border border-white/10 bg-card shadow-2xl transition-all hover:border-white/20',
           index % 2 === 1 ? 'lg:order-1' : '',
-          // Altura automática no mobile, fixa no desktop
-          'h-[300px] md:h-[400px] lg:h-[500px]'
+          'h-[350px] md:h-[450px] lg:h-[600px]' // Mais alto para impor respeito
         )}
       >
-        {/*
-          ADICIONADO: Camada de Highlight/Glow no Background.
-          Usa a cor do projeto, aplica um blur pesado e baixa opacidade para criar uma luz ambiente.
-        */}
         <div
           className={cn(
-            'absolute inset-0 z-0 bg-linear-to-br opacity-25 blur-3xl filter saturate-150 transition-all duration-500 group-hover:opacity-40 group-hover:saturate-200',
+            'absolute inset-0 z-0 bg-linear-to-br opacity-25 blur-3xl filter saturate-150 transition-all duration-500 group-hover:opacity-40',
             project.color
           )}
-          aria-hidden="true"
         />
+        <div className="absolute inset-0 z-20 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60" />
 
-        {/* Overlay de Brilho no Hover (Existente) */}
-        <div className="absolute inset-0 z-20 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40" />
-
-        {/* A IMAGEM QUE SE MOVE (Mockup) */}
         <motion.div
-          style={{ y: finalY, scale: 1.1 }}
-          // Z-10 para ficar acima do novo highlight
+          style={{ y: finalY, scale: 1.05 }}
           className="absolute inset-0 z-10 h-[120%] w-full"
         >
-          {/* Fundo Gradiente Abstrato (Placeholder da imagem) */}
           <div
             className={cn(
               'h-full w-full bg-linear-to-br opacity-20',
@@ -170,32 +183,15 @@ const CardProject = ({
             )}
           />
 
-          {/* Mockup Abstrato (UI Fake) - Centralizado */}
-          <div className="absolute bottom-[-10%] left-[10%] right-[10%] top-[15%] rounded-t-xl border border-white/10 bg-[#0B0C10] p-4 shadow-2xl opacity-90 transition-transform duration-500 group-hover:-translate-y-2">
-            <div className="relative h-full w-full overflow-hidden rounded bg-slate-900/50">
-              {/* Header Fake */}
-              <div className="flex h-8 items-center gap-2 border-b border-white/5 px-4">
-                <div className="h-2 w-2 rounded-full bg-red-500/20" />
-                <div className="h-2 w-2 rounded-full bg-yellow-500/20" />
-                <div className="h-2 w-2 rounded-full bg-green-500/20" />
-              </div>
-              {/* Body Fake */}
-              <div className="grid grid-cols-2 gap-4 p-4">
-                <div className="h-24 rounded-lg bg-white/5" />
-                <div className="h-24 rounded-lg bg-white/5" />
-                <div className="col-span-2 h-16 rounded-lg bg-white/5" />
-                <div className="col-span-2 h-32 rounded-lg bg-white/5 animate-pulse opacity-50" />
-              </div>
+          {/* Aqui você eventualmente substituirá por um <video> ou <Image> real */}
+          <div className="absolute bottom-[-5%] left-[10%] right-[10%] top-[10%] rounded-t-xl border border-white/10 bg-[#0B0C10] p-4 shadow-2xl transition-transform duration-500 group-hover:-translate-y-4">
+            <div className="relative h-full w-full overflow-hidden rounded bg-slate-900/80 flex items-center justify-center">
+              <span className="text-white/20 font-mono text-sm">
+                Project Preview
+              </span>
             </div>
           </div>
         </motion.div>
-
-        {/* Botão Flutuante no Centro (Decorativo/Ação extra) */}
-        <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-            <ExternalLink className="text-white" />
-          </div>
-        </div>
       </div>
     </motion.article>
   );

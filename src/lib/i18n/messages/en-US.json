@@ -196,24 +196,37 @@
       "subtitle": "A selection of projects demonstrating technical capability, scalable design systems, and complex problem-solving.",
       "cta_case_study": "View Case Study",
       "cta_repo": "GitHub Repository",
+      "cta_want_similar": "I want this",
       "projects": {
         "kingfix": {
           "title": "KingFix",
           "category": "Mobile Application",
           "description": "Complete platform for auto repair shop management. Real-time control of work orders, inventory, and scheduling via mobile App.",
-          "stats": "+30% Operational Efficiency"
+          "metrics_data": [
+            { "value": "+30%", "label": "Efficiency" },
+            { "value": "Mobile", "label": "Platform" },
+            { "value": "Real-time", "label": "Sync" }
+          ]
         },
         "devrex": {
           "title": "DevRex",
           "category": "Micro-SaaS Platform",
           "description": "Ecosystem for developers to find international remote jobs. LinkedIn automation system and AI-powered profile analysis.",
-          "stats": "500+ Indexed Jobs"
+          "metrics_data": [
+            { "value": "500+", "label": "Jobs" },
+            { "value": "AI", "label": "Powered" },
+            { "value": "Global", "label": "Reach" }
+          ]
         },
         "codesampa": {
           "title": "codesampa.io",
           "category": "Branding & Web",
           "description": "Content and software engineering services hub. Proprietary design system with advanced animations and optimized performance.",
-          "stats": "100/100 Lighthouse Score"
+          "metrics_data": [
+            { "value": "100", "label": "Lighthouse" },
+            { "value": "v3.0", "label": "System" },
+            { "value": "0.1s", "label": "Load Time" }
+          ]
         }
       }
     },
