@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 import { LIST_PROJECTS } from '@/utils/constants/projects';
@@ -11,34 +12,56 @@ export function TimelinePortfolio() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-background p-4"
+      className="relative w-full overflow-hidden bg-background py-20 px-4 md:py-32"
       aria-label={t('title')}
     >
-      <div className="pointer-events-none absolute right-0 top-1/2 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[100px] md:h-[500px] md:w-[500px] md:blur-[120px]" />
+      {/* Background Glow Centralizado para dar destaque ao título */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[100px] md:blur-[130px]" />
 
-      <div className="container mx-auto">
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-border/50 mb-8 md:mb-24 md:flex-row md:items-end">
-          <div className="flex-1 md:mb-4">
-            <div className="mb-4 flex items-center gap-2 text-blue-500">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
-              </span>
-              <span className="text-xs font-bold uppercase tracking-widest">
-                {t('badge')}
-              </span>
-            </div>
-            <h2 className="font-space text-4xl font-black text-foreground md:text-6xl">
-              {t('title')}
-            </h2>
-          </div>
+      <div className="container mx-auto relative z-10">
+        {/* === HEADER CENTRALIZADO E CRIATIVO === */}
+        <div className="mb-20 flex flex-col items-center justify-center text-center">
+          {/* Badge Animado */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500"></span>
+            </span>
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
+              {t('badge')}
+            </span>
+          </motion.div>
 
-          <p className="mb-8 max-w-sm text-sm text-muted-foreground md:text-base">
+          {/* Título */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mb-6 max-w-4xl font-space text-4xl font-black text-foreground md:text-6xl leading-tight"
+          >
+            {t('title')}
+          </motion.h2>
+
+          {/* Subtítulo */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="max-w-xl text-muted-foreground text-lg leading-relaxed"
+          >
             {t('subtitle')}
-          </p>
+          </motion.p>
         </div>
 
-        <div className="flex flex-col">
+        {/* Lista de Projetos */}
+        <div className="flex flex-col gap-12 md:gap-24">
           {LIST_PROJECTS.map((project, index) => (
             <CardProject key={project.key} project={project} index={index} />
           ))}
