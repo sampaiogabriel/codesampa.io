@@ -20,11 +20,13 @@ export function ShapeShifterSection() {
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [replayKey, setReplayKey] = useState(0);
 
+  // Estados da Feature (Slider)
   const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
   const [isInteractionPaused, setIsInteractionPaused] = useState(false);
 
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Define modo inicial
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
@@ -35,6 +37,7 @@ export function ShapeShifterSection() {
     }
   }, [isMobile, hasPlayed, replayKey]);
 
+  // Lógica de Auto-Play (Features Slider)
   useEffect(() => {
     if (!hasPlayed || isPlaying || isInteractionPaused) return;
 
@@ -48,7 +51,7 @@ export function ShapeShifterSection() {
           const nextIndex = (features.indexOf(current) + 1) % features.length;
           return features[nextIndex];
         });
-      }, 2500);
+      }, 4000);
     };
 
     startAutoPlay();
@@ -63,21 +66,14 @@ export function ShapeShifterSection() {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
   };
 
-  const triggerCinematicSequence = (scroll: boolean = true) => {
+  const triggerCinematicSequence = () => {
     setIsPlaying(true);
     setActiveFeature('analytics');
-
-    if (scroll) {
-      containerRef.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }
 
     setTimeout(() => {
       setIsPlaying(false);
       setHasPlayed(true);
-    }, 2000);
+    }, 500);
   };
 
   useEffect(() => {
@@ -93,7 +89,7 @@ export function ShapeShifterSection() {
           !isPlaying &&
           replayKey === 0
         ) {
-          triggerCinematicSequence(true);
+          triggerCinematicSequence();
         }
       },
       { threshold: 0.3 }
@@ -109,7 +105,7 @@ export function ShapeShifterSection() {
     setIsPlaying(false);
 
     setTimeout(() => {
-      triggerCinematicSequence(false);
+      triggerCinematicSequence();
     }, 50);
   };
 
