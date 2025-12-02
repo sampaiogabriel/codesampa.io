@@ -1,5 +1,9 @@
+'use client';
+
 import { Github, Menu, ArrowRight, Cpu } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+// Importação do useState adicionada
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -8,15 +12,17 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetDescription // Adicionado para acessibilidade e semântica
+  SheetDescription
 } from '@/components/ui/sheet';
 import { Link } from '@/lib/i18n/navigation';
 
 import { LanguageSwitcher } from './language-switcher';
 import { NavLinks } from './nav-links';
 
-export async function Header() {
-  const t = await getTranslations('Components.Layout.Header');
+export function Header() {
+  const t = useTranslations('Components.Layout.Header');
+  // 1. Estado para controlar o menu
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 inset-x-0 z-50 h-14 w-full border-b border-border/40 bg-background/60 backdrop-blur-xl supports-backdrop-filter:bg-background/60">
@@ -60,7 +66,8 @@ export async function Header() {
 
           {/* Mobile Menu Trigger */}
           <div className="md:hidden">
-            <Sheet>
+            {/* 2. Controlando o estado do Sheet */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -72,12 +79,10 @@ export async function Header() {
                 </Button>
               </SheetTrigger>
 
-              {/* Estilização do Sheet Content - Glassmorphism Dark */}
               <SheetContent
                 side="right"
                 className="w-full sm:w-[400px] border-l border-white/10 bg-black/80 backdrop-blur-2xl p-0 flex flex-col shadow-2xl"
               >
-                {/* Background Glow Effects */}
                 <div className="absolute top-[-10%] right-[-10%] -z-10 h-[300px] w-[300px] rounded-full bg-primary/20 blur-[100px] pointer-events-none opacity-50" />
                 <div className="absolute bottom-[-10%] left-[-10%] -z-10 h-[300px] w-[300px] rounded-full bg-blue-600/20 blur-[100px] pointer-events-none opacity-50" />
 
@@ -93,7 +98,11 @@ export async function Header() {
 
                 {/* Área de Navegação Principal */}
                 <div className="flex-1 flex flex-col justify-center px-8">
-                  <NavLinks orientation="vertical" />
+                  {/* 3. Passando a função para fechar o menu ao clicar */}
+                  <NavLinks
+                    orientation="vertical"
+                    onLinkClick={() => setIsOpen(false)}
+                  />
                 </div>
 
                 {/* Rodapé do Menu */}

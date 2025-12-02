@@ -31,7 +31,7 @@ export function NavLinks({
     <nav
       className={cn(
         'flex',
-        orientation === 'vertical' ? 'flex-col gap-2' : 'items-center gap-6',
+        orientation === 'vertical' ? 'flex-col gap-2' : 'items-center gap-1',
         className
       )}
     >
@@ -42,15 +42,18 @@ export function NavLinks({
           <Link
             key={link.href}
             href={link.href}
+            // AQUI: Executa a função de fechar o menu quando clicado
             onClick={onLinkClick}
             className={cn(
               'group relative flex items-center transition-colors',
               // Estilos Desktop (Horizontal)
               orientation === 'horizontal' && [
-                'text-sm font-semibold hover:text-primary',
-                isActive ? 'text-foreground' : 'text-muted-foreground'
+                'px-4 py-2 text-sm font-medium rounded-full',
+                isActive
+                  ? 'text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
               ],
-              // Estilos Mobile (Vertical) - Mais impactante
+              // Estilos Mobile (Vertical)
               orientation === 'vertical' && [
                 'py-4 text-3xl font-space font-bold tracking-tight hover:text-primary transition-all duration-300',
                 isActive
@@ -59,6 +62,19 @@ export function NavLinks({
               ]
             )}
           >
+            {/* Efeito Spotlight (Desktop) */}
+            {orientation === 'horizontal' && isActive && (
+              <motion.span
+                layoutId="desktop-nav-spotlight"
+                className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                transition={{
+                  type: 'spring',
+                  bounce: 0.2,
+                  duration: 0.6
+                }}
+              />
+            )}
+
             {/* Indicador Mobile para Item Ativo */}
             {orientation === 'vertical' && isActive && (
               <motion.span
@@ -67,7 +83,7 @@ export function NavLinks({
               />
             )}
 
-            {link.label}
+            <span className="relative z-10">{link.label}</span>
           </Link>
         );
       })}
