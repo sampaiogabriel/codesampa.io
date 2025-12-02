@@ -158,7 +158,7 @@
     },
     "Projects": {
       "badge": "Portfolio",
-      "title": "Projetos em  Destaque.",
+      "title": "Projetos em <highlight>Destaque.</highlight>",
       "subtitle": "Uma seleção de projetos que demonstram capacidade técnica, design system escalável e resolução de problemas complexos.",
       "cta_case_study": "Ver Case Study",
       "cta_repo": "Repositório GitHub",

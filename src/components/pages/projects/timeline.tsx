@@ -11,14 +11,11 @@ export function TimelinePortfolio() {
   const t = useTranslations('Pages.Projects');
 
   return (
-    <section
-      className="relative w-full overflow-hidden bg-background py-20 px-4 md:py-32"
-      aria-label={t('title')}
-    >
+    <section className="container mx-auto relative w-full overflow-hidden bg-background px-4 pt-16">
       {/* Background Glow Centralizado para dar destaque ao título */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[100px] md:blur-[130px]" />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container relative z-10">
         {/* === HEADER CENTRALIZADO E CRIATIVO === */}
         <div className="mb-20 flex flex-col items-center justify-center text-center">
           {/* Badge Animado */}
@@ -45,7 +42,15 @@ export function TimelinePortfolio() {
             transition={{ delay: 0.1 }}
             className="mb-6 max-w-4xl font-space text-4xl font-black text-foreground md:text-6xl leading-tight"
           >
-            {t('title')}
+            {t.rich('title', {
+              // Aqui usamos a versão visual com gradiente
+              highlight: (chunks) => (
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
+                  {chunks}
+                </span>
+              ),
+              br: () => <br />
+            })}
           </motion.h2>
 
           {/* Subtítulo */}
