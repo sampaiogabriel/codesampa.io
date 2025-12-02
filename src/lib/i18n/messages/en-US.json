@@ -183,7 +183,32 @@
         }
       }
     },
-    "Contact": {},
+    "Contact": {
+      "Hub": {
+        "badge": "Open for Opportunities",
+        "title_prefix": "Let's build the",
+        "title_highlight": "Impossible.",
+        "subtitle": "Have a project in mind or just want to chat about tech? My channel is open.",
+        "email": {
+          "label": "Email",
+          "action": "Copy Address",
+          "toast_success": "Email copied to clipboard!"
+        },
+        "whatsapp": {
+          "label": "WhatsApp",
+          "sub": "Fast response"
+        },
+        "resume": {
+          "label": "Resume",
+          "sub": "PDF • 2.4 MB"
+        },
+        "schedule": {
+          "badge": "Schedule",
+          "title": "Book a Call",
+          "desc": "Let's talk about your project in a 30 min meeting."
+        }
+      }
+    },
     "Blog": {}
   }
 }

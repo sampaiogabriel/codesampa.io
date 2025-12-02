@@ -183,7 +183,32 @@
         }
       }
     },
-    "Contact": {},
+    "Contact": {
+      "Hub": {
+        "badge": "Disponível para Projetos",
+        "title_prefix": "Vamos construir o",
+        "title_highlight": "Impossível.",
+        "subtitle": "Tem um projeto em mente ou quer apenas trocar uma ideia sobre tech? Meu canal está aberto.",
+        "email": {
+          "label": "Email",
+          "action": "Copiar Endereço",
+          "toast_success": "Email copiado para a área de transferência!"
+        },
+        "whatsapp": {
+          "label": "WhatsApp",
+          "sub": "Resposta rápida"
+        },
+        "resume": {
+          "label": "Currículo",
+          "sub": "PDF • 2.4 MB"
+        },
+        "schedule": {
+          "badge": "Agenda",
+          "title": "Agendar uma Call",
+          "desc": "Vamos conversar sobre seu projeto em uma reunião de 30 min."
+        }
+      }
+    },
     "Blog": {}
   }
 }
