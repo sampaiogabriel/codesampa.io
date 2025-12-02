@@ -134,6 +134,14 @@
         "button": "Inscrever-se",
         "disclaimer": "Sem spam. Cancele a qualquer momento."
       },
+      "ReadyToBuild": {
+        "badge": "Pronto para Começar?",
+        "title": "Tire sua ideia do papel e <highlight>construa o futuro.</highlight>",
+        "subtitle": "Não espere pelo momento perfeito. A tecnologia avança rápido, e seu projeto também deveria.",
+        "cta": "Iniciar Projeto",
+        "note": "Ou envie um email direto para",
+        "email": "gabrielsampaiolima@hotmail.com"
+      },
       "Links": {
         "description": "Engenharia de software de ponta para produtos digitais que exigem performance, escalabilidade e design impecável.",
         "rights": "Todos os direitos reservados.",
@@ -154,6 +162,32 @@
           "title": "Fique Atualizado",
           "placeholder": "Digite seu e-mail"
         }
+      },
+      "Terminal": {
+        "title": "Inicializar Uplink",
+        "logs": {
+          "email_desc": "Iniciando protocolo SMTP... Copiando endereço para área de transferência.",
+          "email_copied": "Endereço copiado com sucesso.",
+          "whatsapp_desc": "Estabelecendo canal criptografado via API do WhatsApp...",
+          "calendar_desc": "Sincronizando disponibilidade. Acessando módulo Calendly...",
+          "resume_desc": "Requisitando arquivo binário no servidor... Iniciando download."
+        }
+      },
+      "OrbitalContact": {
+        "title": "Tudo gira em torno do <highlight>seu objetivo.</highlight>",
+        "description": "Engenharia de precisão, design estratégico e performance. Tudo alinhado para lançar seu projeto.",
+        "cta": "Vamos Conversar",
+        "cta_sub": "Iniciar Protocolo"
+      },
+      "Shards": {
+        "title": "Canais de Comunicação",
+        "subtitle": "Escolha a frequência para iniciar a transmissão.",
+        "email_copied": "Email copiado!",
+        "copy_action": "Copiar Endereço",
+        "open_action": "Iniciar Chat",
+        "schedule_action": "Agendar Reunião",
+        "whatsapp_sub": "Resposta direta e rápida.",
+        "calendar_sub": "Sincronize agendas para um call."
       }
     },
     "Projects": {

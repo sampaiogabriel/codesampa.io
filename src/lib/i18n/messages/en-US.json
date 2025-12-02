@@ -134,6 +134,14 @@
         "button": "Subscribe",
         "disclaimer": "No spam. Unsubscribe anytime."
       },
+      "ReadyToBuild": {
+        "badge": "Ready to Start?",
+        "title": "Take your idea off the ground and <highlight>build the future.</highlight>",
+        "subtitle": "Don't wait for the perfect moment. Technology moves fast, and your project should too.",
+        "cta": "Start Project",
+        "note": "Or send a direct email to",
+        "email": "gabrielsampaiolima@hotmail.com"
+      },
       "Links": {
         "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
         "rights": "All rights reserved.",
@@ -154,6 +162,32 @@
           "title": "Stay Updated",
           "placeholder": "Enter your email"
         }
+      },
+      "Terminal": {
+        "title": "Initialize Uplink",
+        "logs": {
+          "email_desc": "Initiating SMTP protocol... Copying address to clipboard buffer.",
+          "email_copied": "Address copied successfully.",
+          "whatsapp_desc": "Establishing encrypted channel via WhatsApp API...",
+          "calendar_desc": "Synchronizing availability. Accessing Calendly module...",
+          "resume_desc": "Requesting binary file from server... Starting download."
+        }
+      },
+      "OrbitalContact": {
+        "title": "Everything revolves around <highlight>your goal.</highlight>",
+        "description": "Precision engineering, strategic design, and performance. All aligned to launch your project.",
+        "cta": "Let's Talk",
+        "cta_sub": "Initiate Protocol"
+      },
+      "Shards": {
+        "title": "Communication Channels",
+        "subtitle": "Choose a frequency to start transmission.",
+        "email_copied": "Email copied!",
+        "copy_action": "Copy Address",
+        "open_action": "Start Chat",
+        "schedule_action": "Book Meeting",
+        "whatsapp_sub": "Direct and fast response.",
+        "calendar_sub": "Sync schedules for a call."
       }
     },
     "Projects": {
