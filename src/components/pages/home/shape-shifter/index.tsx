@@ -20,14 +20,11 @@ export function ShapeShifterSection() {
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [replayKey, setReplayKey] = useState(0);
 
-  // Estados da Feature (Slider)
   const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
-  // [NOVO] Estado para pausar o autoplay quando o usuário estiver lendo o código
   const [isInteractionPaused, setIsInteractionPaused] = useState(false);
 
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Define modo inicial
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
@@ -38,9 +35,7 @@ export function ShapeShifterSection() {
     }
   }, [isMobile, hasPlayed, replayKey]);
 
-  // Lógica de Auto-Play (Features Slider)
   useEffect(() => {
-    // Adicionado !isInteractionPaused na verificação
     if (!hasPlayed || isPlaying || isInteractionPaused) return;
 
     const features: FeatureType[] = ['analytics', 'crm', 'chat'];
@@ -53,7 +48,7 @@ export function ShapeShifterSection() {
           const nextIndex = (features.indexOf(current) + 1) % features.length;
           return features[nextIndex];
         });
-      }, 4000);
+      }, 3000);
     };
 
     startAutoPlay();
@@ -61,7 +56,7 @@ export function ShapeShifterSection() {
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
-  }, [hasPlayed, isPlaying, isInteractionPaused]); // Dependência atualizada
+  }, [hasPlayed, isPlaying, isInteractionPaused]);
 
   const handleManualFeatureChange = (feature: FeatureType) => {
     setActiveFeature(feature);
@@ -131,7 +126,6 @@ export function ShapeShifterSection() {
               startAnimation={isPlaying || hasPlayed}
               activeFeature={activeFeature}
               setFeature={handleManualFeatureChange}
-              // [NOVO] Passamos a função para pausar o autoplay
               setIsInteractionPaused={setIsInteractionPaused}
             />
           ) : (
