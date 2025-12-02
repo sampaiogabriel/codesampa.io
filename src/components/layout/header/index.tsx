@@ -132,7 +132,7 @@ export function Header() {
 
                   <div className="mt-8 flex justify-between items-center text-[10px] text-muted-foreground/50 font-mono">
                     <span>v3.0.0</span>
-                    <span>© {new Date().getFullYear()} codesampa</span>
+                    <span>© {new Date().getFullYear()} codesampa.io</span>
                   </div>
                 </div>
               </SheetContent>
