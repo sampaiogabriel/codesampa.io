@@ -35,7 +35,6 @@ export function EngineeringPipeline() {
     offset: ['start start', 'end end']
   });
 
-  // Ajuste do X: Começa em 0% (alinhado) e vai até -85% (suficiente para ver o último card)
   const x = useTransform(scrollYProgress, [0, 1], ['2%', '-150%']);
 
   const steps = [
@@ -92,7 +91,7 @@ export function EngineeringPipeline() {
       {/* Container Sticky */}
       <div className="container mx-auto flex w-full flex-col justify-start md:sticky md:top-0 md:h-screen md:justify-center md:overflow-hidden">
         {/* Cabeçalho Centralizado */}
-        <div className="mb-8 md:mb-16 md:text-center max-w-4xl mx-auto px-6 pt-12 md:pt-0 relative z-20">
+        <div className="mb-8 md:mb-16 text-center max-w-4xl mx-auto px-6 pt-12 md:pt-0 relative z-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,26 +121,16 @@ export function EngineeringPipeline() {
         </div>
 
         {/* Linha Decorativa (Opcional - ajustada para não cortar o título) */}
-        <div className="hidden md:block">
-          <div
-            className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-border/40"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute left-0 top-1/2 h-px w-24 -translate-y-1/2 bg-linear-to-r from-transparent to-primary"
-            aria-hidden="true"
-          />
+        <div className="md:block">
+          <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-border/40" />
+          <div className="absolute left-0 top-1/2 h-px w-24 -translate-y-1/2 bg-linear-to-r from-transparent to-primary" />
         </div>
 
         {/* === ÁREA DE SCROLL === */}
-        {/* Mobile: overflow-x-auto e snap. Desktop: overflow-visible. 
-            IMPORTANTE: Removido padding do wrapper para o scroll ir até a borda. */}
-        <div className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory pb-12 md:pb-0 md:overflow-visible no-scrollbar">
+        <div className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory pb-12 md:pb-0 md:overflow-visible">
           <motion.ol
             style={!isMobile ? { x } : {}}
-            // padding (px-6) aplicado AQUI na lista para garantir espaçamento inicial e final no scroll
-            // gap-12 restaurado para mobile
-            className="flex flex-row gap-12 px-6 md:gap-16 md:px-0 md:pl-0 md:pr-0 items-stretch"
+            className="flex flex-row gap-6 px-6 md:gap-16 md:px-0 md:pl-0 md:pr-0 items-stretch"
           >
             {steps.map((step) => {
               const title = t(`steps.${step.key}.title`);
@@ -151,8 +140,8 @@ export function EngineeringPipeline() {
               return (
                 <li
                   key={step.id}
-                  // Mobile: snap-center para focar. Desktop: flex-none.
-                  className="group relative shrink-0 snap-center w-[85vw] max-w-[350px] flex flex-col md:w-auto md:max-w-none md:flex-none"
+                  // ATUALIZADO: w-[80vw] (mobile) para permitir ver o próximo card
+                  className="group relative shrink-0 snap-center w-[80vw] max-w-[350px] flex flex-col md:w-auto md:max-w-none md:flex-none"
                 >
                   <article className="relative flex-1 flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl transition-colors hover:border-primary/20 md:h-[450px] md:w-[450px] md:flex-none">
                     <header className="flex h-10 items-center justify-between border-b border-border bg-muted/30 px-4">
