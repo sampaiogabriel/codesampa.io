@@ -52,12 +52,14 @@ export function ContactHub() {
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px] pointer-events-none" />
 
       <div className="container pt-16 px-4 md:px-6 relative z-10 max-w-5xl">
-        {/* Header Compacto */}
-        <div className="mb-8 md:mb-12 text-center space-y-4">
+        {/* Header Compacto com Animações */}
+        <div className="mb-8 md:mb-12 text-center flex flex-col items-center justify-center">
+          {/* Badge Animado */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1"
+            whileInView={{ opacity: 1, scale: 1 }} // Alterado para whileInView para consistência
+            viewport={{ once: true }}
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
@@ -68,15 +70,30 @@ export function ContactHub() {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-6xl font-black font-space tracking-tight">
+          {/* Título Animado (Igual ao Projects) */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl font-black font-space tracking-tight mb-4"
+          >
             {t('title_prefix')} <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
               {t('title_highlight')}
             </span>
-          </h1>
-          <p className="text-muted-foreground max-w-lg mx-auto text-lg">
+          </motion.h1>
+
+          {/* Subtítulo Animado */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-muted-foreground max-w-lg mx-auto text-lg"
+          >
             {t('subtitle')}
-          </p>
+          </motion.p>
         </div>
 
         {/* BENTO GRID */}
@@ -86,7 +103,8 @@ export function ContactHub() {
             custom={0}
             variants={cardVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible" // Atualizado para whileInView para garantir a animação ao rolar
+            viewport={{ once: true }}
             onClick={handleCopyEmail}
             className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 text-left transition-all hover:border-white/20 hover:bg-white/10"
           >
@@ -102,13 +120,16 @@ export function ContactHub() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/20 text-blue-400">
                 <Mail size={24} />
               </div>
-              <h3 className="text-xl font-bold text-foreground">
+              <h3 className="text-2xl font-bold text-foreground">
                 {t('email.label')}
               </h3>
             </div>
 
             <div>
-              <p className="text-lg md:text-xl font-mono text-foreground/80 break-all">
+              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">
+                {t('email.action')}
+              </p>
+              <p className="text-lg md:text-2xl font-mono text-foreground/80 break-all">
                 {SOCIALS.email}
               </p>
             </div>
@@ -124,7 +145,8 @@ export function ContactHub() {
             custom={1}
             variants={cardVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-emerald-950/10 p-6 md:p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-950/20"
           >
             <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
@@ -152,7 +174,8 @@ export function ContactHub() {
             custom={2}
             variants={cardVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-purple-950/10 p-6 md:p-8 transition-all hover:border-purple-500/30 hover:bg-purple-950/20"
           >
             <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
@@ -181,7 +204,8 @@ export function ContactHub() {
             custom={3}
             variants={cardVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true }}
             className="group relative col-span-1 md:col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
           >
             <div className="flex flex-col gap-2 relative z-10">
