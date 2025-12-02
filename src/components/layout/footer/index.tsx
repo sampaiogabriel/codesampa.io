@@ -3,10 +3,13 @@
 import { useTranslations } from 'next-intl';
 
 import { EncryptedText } from '@/components/ui/encrypted-text';
+import { usePathname } from '@/lib/i18n/navigation';
 
 export function Footer() {
   const t = useTranslations('Components.Layout.Footer');
   const currentYear = new Date().getFullYear();
+
+  const pathname = usePathname();
 
   return (
     <footer className="relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
@@ -16,6 +19,7 @@ export function Footer() {
       <div className="container mx-auto w-full px-6 h-14 border-t border-white/5 flex flex-col md:flex-row items-center justify-around md:justify-between">
         <p className="text-xs text-muted-foreground font-mono order-2 md:order-1">
           <EncryptedText
+            key={pathname}
             text={`© ${currentYear} codesampa.io — ${t('rights')}`}
           />
         </p>

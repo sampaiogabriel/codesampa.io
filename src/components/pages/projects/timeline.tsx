@@ -70,7 +70,12 @@ export function TimelinePortfolio() {
         </div>
 
         {/* --- [NOVO] FILTROS DE CATEGORIA --- */}
-        <div className="mb-16 flex flex-wrap justify-center gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 flex flex-wrap justify-center gap-2"
+        >
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
@@ -92,7 +97,7 @@ export function TimelinePortfolio() {
               <span className="relative z-10">{cat.label}</span>
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Lista de Projetos com AnimatePresence para transição suave */}
         <div className="flex flex-col gap-12 md:gap-24">

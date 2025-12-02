@@ -103,7 +103,7 @@ export function ContactHub() {
             custom={0}
             variants={cardVariants}
             initial="hidden"
-            whileInView="visible" // Atualizado para whileInView para garantir a animação ao rolar
+            whileInView="visible" 
             viewport={{ once: true }}
             onClick={handleCopyEmail}
             className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 text-left transition-all hover:border-white/20 hover:bg-white/10"
