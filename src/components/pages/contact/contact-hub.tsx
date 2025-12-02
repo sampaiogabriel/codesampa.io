@@ -48,13 +48,8 @@ export function ContactHub() {
 
   return (
     <section className="relative flex h-full flex-1 flex-col items-center justify-center overflow-hidden py-8 md:py-0">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none"></div>
-      <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px] pointer-events-none" />
-
       <div className="container pt-16 px-4 md:px-6 relative z-10 max-w-5xl">
-        {/* Header Compacto com Animações */}
         <div className="mb-8 md:mb-12 text-center flex flex-col items-center justify-center">
-          {/* Badge Animado */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }} // Alterado para whileInView para consistência
@@ -103,7 +98,7 @@ export function ContactHub() {
             custom={0}
             variants={cardVariants}
             initial="hidden"
-            whileInView="visible" 
+            whileInView="visible"
             viewport={{ once: true }}
             onClick={handleCopyEmail}
             className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 text-left transition-all hover:border-white/20 hover:bg-white/10"
@@ -126,10 +121,7 @@ export function ContactHub() {
             </div>
 
             <div>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">
-                {t('email.action')}
-              </p>
-              <p className="text-lg md:text-2xl font-mono text-foreground/80 break-all">
+              <p className="text-lg md:text-xl font-mono text-foreground/80 break-all">
                 {SOCIALS.email}
               </p>
             </div>
