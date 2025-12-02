@@ -1,55 +1,34 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Signal, Wifi, BatteryMedium } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
-import { DarkChart, DarkMetricCard, MobileBottomNav, ResponsiveHeader } from './components';
+import {
+  AnalyticsView,
+  CRMView,
+  ChatView,
+  MobileBottomNav,
+  ResponsiveHeader,
+  FeatureType
+} from './components';
 
 interface MobileMockProps {
   startAnimation: boolean;
+  activeFeature: FeatureType;
+  setFeature: (f: FeatureType) => void;
 }
 
-const MotionItem = ({ children, className }: { children: React.ReactNode, className?: string }) => {
+export function MobileMock({
+  startAnimation,
+  activeFeature,
+  setFeature
+}: MobileMockProps) {
   return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { y: 20, opacity: 0, scale: 0.95 },
-        visible: { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1,
-          transition: { type: "spring", stiffness: 100, damping: 20 }
-        }
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-export function MobileMock({ startAnimation }: MobileMockProps) {
-  const tStats = useTranslations('Pages.Home.Stats');
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  return (
-    // Reduzi a altura para h-[75vh] e o max-height para 800px para evitar colisão com o controle inferior
     <motion.div
       className="relative flex aspect-9/19 h-[75vh] max-h-[800px] w-full max-w-[380px] flex-col overflow-hidden rounded-[3rem] border-8 border-[#1a1a1a] bg-[#0A0A0A] shadow-2xl ring-1 ring-white/10"
       initial={{ opacity: 0, y: 50 }}
       animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       {/* Notch & Status Bar */}
       <div className="absolute top-0 z-30 flex h-12 w-full items-end justify-between px-6 pb-2">
@@ -64,55 +43,45 @@ export function MobileMock({ startAnimation }: MobileMockProps) {
         </div>
       </div>
 
-      {/* Conteúdo Interno Mobile - Mudei para Flexbox para melhor distribuição */}
+      {/* Conteúdo Interno Mobile */}
       <div className="flex flex-1 flex-col overflow-hidden bg-background relative w-full">
         {/* Grid de Fundo */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[24px_24px]" />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={startAnimation ? "visible" : "hidden"}
-          className="relative z-10 flex h-full flex-col gap-3 p-4 pt-14"
-        >
-          {/* Header Compacto */}
-          <MotionItem className="shrink-0 h-14">
-            <ResponsiveHeader isMobile={true} />
-          </MotionItem>
-
-          {/* Cards de Métricas lado a lado (Grid de 2 colunas para economizar espaço vertical) */}
-          <div className="grid grid-cols-2 gap-3 shrink-0">
-            <MotionItem className="h-28">
-              <DarkMetricCard
-                title={tStats('revenue')}
-                value="$42K"
-                trend="+12%"
-                color="text-primary"
-                isMobile={true}
-              />
-            </MotionItem>
-            
-            <MotionItem className="h-28">
-              <DarkMetricCard
-                title={tStats('users')}
-                value="8.5K"
-                trend="+24%"
-                color="text-violet-400"
-                isMobile={true}
-              />
-            </MotionItem>
+        <div className="relative z-10 flex h-full flex-col gap-3 p-4 pt-14">
+          {/* Header */}
+          <div className="shrink-0 h-14">
+            <ResponsiveHeader isMobile={true} activeTab={activeFeature} />
           </div>
 
-          {/* Chart Expandível - Ocupa o resto do espaço */}
-          <MotionItem className="flex-1 min-h-[180px]">
-            <DarkChart />
-          </MotionItem>
+          {/* Dynamic Content */}
+          <div className="flex-1 min-h-0 relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFeature}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="h-full w-full"
+              >
+                {activeFeature === 'analytics' && (
+                  <AnalyticsView isMobile={true} />
+                )}
+                {activeFeature === 'crm' && <CRMView isMobile={true} />}
+                {activeFeature === 'chat' && <ChatView isMobile={true} />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          {/* Bottom Nav Fixo */}
-          <MotionItem className="shrink-0 mt-auto pt-2 h-16">
-            <MobileBottomNav />
-          </MotionItem>
-        </motion.div>
+          {/* Bottom Nav */}
+          <div className="shrink-0 mt-auto pt-2 h-16">
+            <MobileBottomNav
+              activeTab={activeFeature}
+              onTabChange={setFeature}
+            />
+          </div>
+        </div>
 
         {/* Home Indicator */}
         <div className="absolute bottom-1.5 left-1/2 z-30 h-1 w-32 -translate-x-1/2 rounded-full bg-white/20" />

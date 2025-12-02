@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import useIsMobile from '@/utils/hooks/use-mobile';
 
+import { FeatureType } from './components';
 import { ShapeShifterControls } from './controls';
 import { DesktopMock } from './desktop-mock';
 import { MobileMock } from './mobile-mock';
@@ -13,36 +14,79 @@ export function ShapeShifterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
+  // Estados de Controle
   const [hasPlayed, setHasPlayed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+
+  // Chave de Replay
+  const [replayKey, setReplayKey] = useState(0);
+
+  // Estados da Feature (Slider)
+  const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
     } else {
-      if (!hasPlayed) {
+      if (!hasPlayed && replayKey === 0) {
         setViewMode('desktop');
       }
     }
-  }, [isMobile, hasPlayed]);
+  }, [isMobile, hasPlayed, replayKey]);
 
-  const triggerCinematicSequence = () => {
+  // Lógica de Auto-Play (Features Slider)
+  useEffect(() => {
+    if (!hasPlayed || isPlaying) return;
+
+    const features: FeatureType[] = ['analytics', 'crm', 'chat'];
+
+    const startAutoPlay = () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+
+      autoPlayRef.current = setInterval(() => {
+        setActiveFeature((current) => {
+          const nextIndex = (features.indexOf(current) + 1) % features.length;
+          return features[nextIndex];
+        });
+      }, 3000);
+    };
+
+    startAutoPlay();
+
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [hasPlayed, isPlaying]);
+
+  const handleManualFeatureChange = (feature: FeatureType) => {
+    setActiveFeature(feature);
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+  };
+
+  // Modifique a assinatura da função para aceitar um parâmetro
+  const triggerCinematicSequence = (scroll: boolean = true) => {
     setIsPlaying(true);
+    setActiveFeature('analytics');
 
-    containerRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-    document.body.style.overflow = 'hidden';
+    // Condicional: Só faz o scroll se o parâmetro for true
+    if (scroll) {
+      containerRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+
+    // Removido o travamento de body overflow que você pediu para tirar antes
 
     setTimeout(() => {
-      document.body.style.overflow = '';
       setIsPlaying(false);
       setHasPlayed(true);
     }, 2800);
   };
 
+  // Observer
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
@@ -50,47 +94,58 @@ export function ShapeShifterSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        if (entry.isIntersecting && !hasPlayed && !isPlaying) {
-          triggerCinematicSequence();
+        // Adicionei replayKey === 0 para garantir que é o load inicial
+        if (
+          entry.isIntersecting &&
+          !hasPlayed &&
+          !isPlaying &&
+          replayKey === 0
+        ) {
+          triggerCinematicSequence(true); // <--- Scroll ativado aqui
         }
       },
-      {
-        threshold: 0.3
-      }
+      { threshold: 0.3 }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [hasPlayed, isPlaying]);
+  }, [hasPlayed, isPlaying, replayKey]);
 
   const handleReplay = () => {
+    setReplayKey((prev) => prev + 1);
     setHasPlayed(false);
     setIsPlaying(false);
-    setTimeout(() => triggerCinematicSequence(), 100);
+
+    setTimeout(() => {
+      triggerCinematicSequence(false);
+    }, 50);
   };
 
   return (
     <section
       ref={containerRef}
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
+      className="relative flex h-screen mx-auto w-full flex-col items-center justify-center overflow-hidden"
     >
       <div className="relative z-10 flex w-full items-center justify-center p-4">
-        <AnimatePresence
-          mode="wait"
-          onExitComplete={() => window.scrollTo(0, 0)}
-        >
+        <AnimatePresence mode="wait">
           {viewMode === 'desktop' ? (
             <DesktopMock
-              key="desktop"
+              key={`desktop-${replayKey}`}
               startAnimation={isPlaying || hasPlayed}
+              activeFeature={activeFeature}
+              setFeature={handleManualFeatureChange}
             />
           ) : (
-            <MobileMock key="mobile" startAnimation={isPlaying || hasPlayed} />
+            <MobileMock
+              key={`mobile-${replayKey}`}
+              startAnimation={isPlaying || hasPlayed}
+              activeFeature={activeFeature}
+              setFeature={handleManualFeatureChange}
+            />
           )}
         </AnimatePresence>
       </div>
 
-      {/* Controles posicionados abaixo dos componentes no fluxo normal */}
       <ShapeShifterControls
         currentMode={viewMode}
         setMode={setViewMode}
