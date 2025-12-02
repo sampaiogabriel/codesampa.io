@@ -18,14 +18,16 @@ export function ShapeShifterSection() {
   const [hasPlayed, setHasPlayed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
-
-  // Chave de Replay
   const [replayKey, setReplayKey] = useState(0);
 
   // Estados da Feature (Slider)
   const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
+  // [NOVO] Estado para pausar o autoplay quando o usuário estiver lendo o código
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Define modo inicial
   useEffect(() => {
     if (isMobile) {
       setViewMode('mobile');
@@ -38,7 +40,8 @@ export function ShapeShifterSection() {
 
   // Lógica de Auto-Play (Features Slider)
   useEffect(() => {
-    if (!hasPlayed || isPlaying) return;
+    // Adicionado !isInteractionPaused na verificação
+    if (!hasPlayed || isPlaying || isInteractionPaused) return;
 
     const features: FeatureType[] = ['analytics', 'crm', 'chat'];
 
@@ -50,7 +53,7 @@ export function ShapeShifterSection() {
           const nextIndex = (features.indexOf(current) + 1) % features.length;
           return features[nextIndex];
         });
-      }, 3000);
+      }, 4000);
     };
 
     startAutoPlay();
@@ -58,19 +61,17 @@ export function ShapeShifterSection() {
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
-  }, [hasPlayed, isPlaying]);
+  }, [hasPlayed, isPlaying, isInteractionPaused]); // Dependência atualizada
 
   const handleManualFeatureChange = (feature: FeatureType) => {
     setActiveFeature(feature);
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
   };
 
-  // Modifique a assinatura da função para aceitar um parâmetro
   const triggerCinematicSequence = (scroll: boolean = true) => {
     setIsPlaying(true);
     setActiveFeature('analytics');
 
-    // Condicional: Só faz o scroll se o parâmetro for true
     if (scroll) {
       containerRef.current?.scrollIntoView({
         behavior: 'smooth',
@@ -78,15 +79,12 @@ export function ShapeShifterSection() {
       });
     }
 
-    // Removido o travamento de body overflow que você pediu para tirar antes
-
     setTimeout(() => {
       setIsPlaying(false);
       setHasPlayed(true);
     }, 2800);
   };
 
-  // Observer
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
@@ -94,14 +92,13 @@ export function ShapeShifterSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        // Adicionei replayKey === 0 para garantir que é o load inicial
         if (
           entry.isIntersecting &&
           !hasPlayed &&
           !isPlaying &&
           replayKey === 0
         ) {
-          triggerCinematicSequence(true); // <--- Scroll ativado aqui
+          triggerCinematicSequence(true);
         }
       },
       { threshold: 0.3 }
@@ -124,7 +121,7 @@ export function ShapeShifterSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex h-screen mx-auto w-full flex-col items-center justify-center overflow-hidden"
+      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
     >
       <div className="relative z-10 flex w-full items-center justify-center p-4">
         <AnimatePresence mode="wait">
@@ -134,6 +131,8 @@ export function ShapeShifterSection() {
               startAnimation={isPlaying || hasPlayed}
               activeFeature={activeFeature}
               setFeature={handleManualFeatureChange}
+              // [NOVO] Passamos a função para pausar o autoplay
+              setIsInteractionPaused={setIsInteractionPaused}
             />
           ) : (
             <MobileMock
