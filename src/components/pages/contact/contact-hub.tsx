@@ -102,16 +102,13 @@ export function ContactHub() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/20 text-blue-400">
                 <Mail size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-foreground">
+              <h3 className="text-xl font-bold text-foreground">
                 {t('email.label')}
               </h3>
             </div>
 
             <div>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">
-                {t('email.action')}
-              </p>
-              <p className="text-lg md:text-2xl font-mono text-foreground/80 break-all">
+              <p className="text-lg md:text-xl font-mono text-foreground/80 break-all">
                 {SOCIALS.email}
               </p>
             </div>
