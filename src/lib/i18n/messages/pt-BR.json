@@ -31,7 +31,7 @@
   "Pages": {
     "Home": {
       "Hero": {
-        "badge": "v3.0 Arquitetura de Sistema",
+        "badge": "v1.0 Arquitetura de Sistema",
         "title_prefix": "Construa Sistemas",
         "title_suffix": "Escaláveis",
         "subtitle": "Transforme código abstrato em produtos concretos. Role para compilar a interface.",
@@ -229,7 +229,7 @@
           "stats": "100/100 Lighthouse Score",
           "metrics_data": [
             { "value": "100", "label": "Lighthouse" },
-            { "value": "v3.0", "label": "Design System" },
+            { "value": "v1.0", "label": "Design System" },
             { "value": "0.1s", "label": "Load Time" }
           ]
         }

@@ -31,7 +31,7 @@
   "Pages": {
     "Home": {
       "Hero": {
-        "badge": "v3.0 System Architecture",
+        "badge": "v1.0 System Architecture",
         "title_prefix": "Build Scalable",
         "title_suffix": "Systems",
         "subtitle": "Transform abstract code into concrete products. Scroll to compile the interface.",
@@ -226,7 +226,7 @@
           "description": "Content and software engineering services hub. Proprietary design system with advanced animations and optimized performance.",
           "metrics_data": [
             { "value": "100", "label": "Lighthouse" },
-            { "value": "v3.0", "label": "System" },
+            { "value": "v1.0", "label": "System" },
             { "value": "0.1s", "label": "Load Time" }
           ]
         }
