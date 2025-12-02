@@ -48,7 +48,7 @@ export function ShapeShifterSection() {
           const nextIndex = (features.indexOf(current) + 1) % features.length;
           return features[nextIndex];
         });
-      }, 3000);
+      }, 2500);
     };
 
     startAutoPlay();
@@ -77,7 +77,7 @@ export function ShapeShifterSection() {
     setTimeout(() => {
       setIsPlaying(false);
       setHasPlayed(true);
-    }, 2800);
+    }, 2000);
   };
 
   useEffect(() => {
