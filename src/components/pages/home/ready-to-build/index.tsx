@@ -4,9 +4,23 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export function ReadyToBuildSection() {
   const t = useTranslations('Pages.Home.ReadyToBuild');
+  const [particles, setParticles] = useState<
+    Array<{ left: string; duration: number; delay: number }>
+  >([]);
+
+  // Gera as partículas apenas no cliente para evitar Hydration Mismatch
+  useEffect(() => {
+    const generatedParticles = [...Array(5)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      duration: Math.random() * 5 + 5,
+      delay: Math.random() * 5
+    }));
+    setParticles(generatedParticles);
+  }, []);
 
   return (
     <section className="relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden border-t border-white/5 bg-background py-24">
@@ -19,20 +33,20 @@ export function ReadyToBuildSection() {
 
       {/* Particles/Stars (Opcional - pontos flutuantes) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
-        {[...Array(5)].map((_, i) => (
+        {particles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute bg-primary/40 rounded-full h-1 w-1"
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: [0, 1, 0], y: -100 }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: p.delay,
               ease: 'linear'
             }}
             style={{
-              left: `${Math.random() * 100}%`,
+              left: p.left,
               top: '80%'
             }}
           />

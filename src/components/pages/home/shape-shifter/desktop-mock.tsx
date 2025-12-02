@@ -15,7 +15,7 @@ import {
   FeatureType
 } from './components';
 
-// --- SNIPPETS DE CÓDIGO (Mantidos iguais) ---
+// --- SNIPPETS DE CÓDIGO ---
 const CODE_SNIPPETS: Record<FeatureType, string> = {
   analytics: `// src/components/analytics/revenue-chart.tsx
 import { useQuery } from '@tanstack/react-query';
@@ -113,7 +113,6 @@ interface DesktopMockProps {
   startAnimation: boolean;
   activeFeature: FeatureType;
   setFeature: (f: FeatureType) => void;
-  // [NOVO] Prop para controlar o pause do autoplay
   setIsInteractionPaused: (paused: boolean) => void;
 }
 
@@ -126,7 +125,6 @@ export function DesktopMock({
   const [isXRay, setIsXRay] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // [UX] Pausa o autoplay do slider sempre que o usuário estiver no modo X-Ray (lendo código)
   useEffect(() => {
     setIsInteractionPaused(isXRay);
   }, [isXRay, setIsInteractionPaused]);
@@ -135,6 +133,48 @@ export function DesktopMock({
     navigator.clipboard.writeText(CODE_SNIPPETS[activeFeature]);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Função auxiliar para escapar HTML e aplicar cores
+  const processCodeLine = (line: string) => {
+    // 1. Escapar caracteres HTML para que o navegador renderize o texto, não tags
+    let safeLine = line
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // 2. Aplicar Syntax Highlighting (Na ordem correta para evitar conflitos)
+
+    // Comentários (Cinza)
+    safeLine = safeLine.replace(
+      /(\/\/.*$)/g,
+      '<span class="text-slate-500 italic">$1</span>'
+    );
+
+    // Se a linha for um comentário inteiro, retorna logo para não colorir keywords dentro do comentário
+    if (safeLine.startsWith('<span class="text-slate-500')) {
+      return safeLine;
+    }
+
+    // Keywords (Roxo)
+    safeLine = safeLine.replace(
+      /\b(import|export|from|return|if|const|function|async|await)\b/g,
+      '<span class="text-purple-400">$1</span>'
+    );
+
+    // Strings (Verde)
+    safeLine = safeLine.replace(
+      /('.*?')/g,
+      '<span class="text-green-400">$1</span>'
+    );
+
+    // Tags JSX (Azul) - Procura por &lt;...&gt; pois já escapamos
+    safeLine = safeLine.replace(
+      /(&lt;\/?[a-zA-Z0-9]+.*?&gt;)/g,
+      '<span class="text-blue-400">$1</span>'
+    );
+
+    return safeLine || ' ';
   };
 
   return (
@@ -148,7 +188,6 @@ export function DesktopMock({
       }
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Container Rotativo */}
       <motion.div
         className="relative h-full w-full transform-style-3d transition-all duration-700"
         animate={{ rotateY: isXRay ? 180 : 0 }}
@@ -226,7 +265,6 @@ export function DesktopMock({
           <div className="flex h-12 shrink-0 items-center justify-between border-b border-white/5 bg-[#252526] px-4">
             <div className="flex items-center gap-2">
               <FileCode size={14} className="text-blue-400" />
-              {/* Animação suave para o nome do arquivo */}
               <AnimatePresence mode="wait">
                 <motion.span
                   key={activeFeature}
@@ -270,7 +308,6 @@ export function DesktopMock({
           <div className="flex-1 overflow-auto p-6 font-mono text-xs md:text-sm leading-relaxed text-slate-300">
             <pre>
               <code>
-                {/* [VISUAL] Adicionado AnimatePresence para suavizar a troca de código */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeFeature}
@@ -284,37 +321,12 @@ export function DesktopMock({
                         <span className="table-cell select-none text-slate-600 pr-4 text-right w-8">
                           {i + 1}
                         </span>
-                        <span className="table-cell">
-                          {line
-                            .replace(
-                              /import|export|from|return|if|const|function/g,
-                              (m) => `<span class="text-purple-400">${m}</span>`
-                            )
-                            .replace(
-                              /'.*?'/g,
-                              (m) => `<span class="text-green-400">${m}</span>`
-                            )
-                            .replace(
-                              /\/\/.*$/g,
-                              (m) =>
-                                `<span class="text-slate-500 italic">${m}</span>`
-                            )
-                            .replace(
-                              /<.*?>/g,
-                              (m) => `<span class="text-blue-400">${m}</span>`
-                            )
-                            .split(/((?:<span.*?>.*?<\/span>)|(?:<.*?>))/g)
-                            .map((part, index) =>
-                              part.startsWith('<span') ? (
-                                <span
-                                  key={index}
-                                  dangerouslySetInnerHTML={{ __html: part }}
-                                />
-                              ) : (
-                                part
-                              )
-                            )}
-                        </span>
+                        <span
+                          className="table-cell"
+                          dangerouslySetInnerHTML={{
+                            __html: processCodeLine(line)
+                          }}
+                        />
                       </div>
                     ))}
                   </motion.div>
