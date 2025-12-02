@@ -35,6 +35,8 @@
         "title_prefix": "Build Scalable",
         "title_suffix": "Systems",
         "subtitle": "Transform abstract code into concrete products. Scroll to compile the interface.",
+        "cta_primary": "Start Project",
+        "cta_secondary": "View Portfolio",
         "scroll_indicator": "Scroll to Compile",
         "view_desktop": "Desktop",
         "view_mobile": "Mobile",
