@@ -27,6 +27,7 @@ export function TimelinePortfolio() {
       <div className="container relative z-10">
         {/* --- Título Padronizado --- */}
         <PageTitle
+          badgeColor="purple"
           badge={t('badge')}
           title={t.rich('title', {
             highlight: (chunks) => (

@@ -1,13 +1,39 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion'; // <--- Importe Variants
+import { motion, Variants } from 'framer-motion';
 import React from 'react';
 
-import { AnimatedBadge } from '@/components/ui/animated-badge';
 import { cn } from '@/utils/functions/tw-merge';
+
+// Mapeamento de cores para garantir que o Tailwind gere as classes corretas
+const badgeStyles = {
+  blue: {
+    container: 'border-blue-500/20 bg-blue-500/5 text-blue-500',
+    ping: 'bg-blue-400',
+    dot: 'bg-blue-500'
+  },
+  emerald: {
+    container: 'border-emerald-500/20 bg-emerald-500/5 text-emerald-500',
+    ping: 'bg-emerald-400',
+    dot: 'bg-emerald-500'
+  },
+  purple: {
+    container: 'border-purple-500/20 bg-purple-500/5 text-purple-500',
+    ping: 'bg-purple-400',
+    dot: 'bg-purple-500'
+  },
+  primary: {
+    container: 'border-primary/20 bg-primary/5 text-primary',
+    ping: 'bg-primary/80',
+    dot: 'bg-primary'
+  }
+};
+
+type BadgeColor = keyof typeof badgeStyles;
 
 interface PageTitleProps {
   badge?: string;
+  badgeColor?: BadgeColor;
   title: React.ReactNode;
   subtitle?: string;
   className?: string;
@@ -16,6 +42,7 @@ interface PageTitleProps {
 
 export function PageTitle({
   badge,
+  badgeColor = 'blue',
   title,
   subtitle,
   className,
@@ -45,11 +72,13 @@ export function PageTitle({
     }
   };
 
+  const currentStyle = badgeStyles[badgeColor] || badgeStyles.blue;
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ margin: '-100px' }}
+      viewport={{ once: true }}
       variants={containerVariants}
       className={cn(
         'flex flex-col mb-12 md:mb-16',
@@ -62,13 +91,26 @@ export function PageTitle({
       {badge && (
         <motion.div
           variants={itemVariants}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5"
+          className={cn(
+            'mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5',
+            currentStyle.container
+          )}
         >
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500"></span>
+            <span
+              className={cn(
+                'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75',
+                currentStyle.ping
+              )}
+            />
+            <span
+              className={cn(
+                'relative inline-flex h-2.5 w-2.5 rounded-full',
+                currentStyle.dot
+              )}
+            />
           </span>
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
+          <span className="text-xs font-bold uppercase tracking-widest">
             {badge}
           </span>
         </motion.div>

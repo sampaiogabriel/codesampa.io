@@ -27,7 +27,7 @@ export function Newsletter() {
             onSubmit={(e) => e.preventDefault()}
           >
             <div className="relative flex-1 group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-purple-600/50 rounded-lg blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
+              <div className="absolute -inset-0.5 bg-linear-to-r from-primary/50 to-purple-600/50 rounded-lg blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
               <input
                 type="email"
                 placeholder={t('placeholder')}

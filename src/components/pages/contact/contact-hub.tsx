@@ -54,6 +54,7 @@ export function ContactHub() {
         {/* --- Título Padronizado --- */}
         <PageTitle
           badge={t('badge')}
+          badgeColor="emerald"
           title={
             <>
               {t('title_prefix')} <br className="hidden md:block" />

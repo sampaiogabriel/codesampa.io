@@ -49,6 +49,7 @@ export function BlogList({ initialPosts }: BlogListProps) {
     <div className="container mx-auto px-4 py-16">
       <PageTitle
         badge="Engineering Log"
+        badgeColor="blue"
         title={
           <>
             Technical <span className="text-primary">Insights.</span>
