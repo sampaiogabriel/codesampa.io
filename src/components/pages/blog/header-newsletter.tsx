@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 
-export function BlogHeaderNewsletter() {
+export function HeaderNewsletter() {
   const t = useTranslations('Components.Pages.Blog.HeaderNewsletter');
 
   const [email, setEmail] = useState('');

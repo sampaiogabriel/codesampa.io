@@ -19,7 +19,7 @@ import { ReadMore } from '@/components/pages/blog/read-more';
 import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 import { CodeBlock } from '@/components/ui/code-block';
 import { Comments } from '@/components/pages/blog/comments';
-import { BlogHeaderNewsletter } from '@/components/pages/blog/blog-header-newsletter';
+import { HeaderNewsletter } from '@/components/pages/blog/header-newsletter';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {

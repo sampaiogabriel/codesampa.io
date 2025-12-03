@@ -53,6 +53,18 @@
           "title": "Insights Semanais",
           "subtitle": "Engenharia, Arquitetura & Design",
           "placeholder": "seu@email.com"
+        },
+        "List": {
+          "categories": {
+            "all": "Todos",
+            "tech": "Tecnologia",
+            "design": "Design",
+            "career": "Carreira"
+          },
+          "search_placeholder": "Search articles...",
+          "empty_state": "No articles found matching your criteria.",
+          "clear_filters": "Clear filters",
+          "read_article": "Read Article"
         }
       }
     }
@@ -302,12 +314,6 @@
       "read_more": "Ler Artigo",
       "no_posts": "Nenhum sinal encontrado.",
       "no_posts_sub": "Inicializando base de conhecimento para este setor...",
-      "categories": {
-        "all": "Todos",
-        "tech": "Tecnologia",
-        "design": "Design",
-        "career": "Carreira"
-      },
       "Post": {
         "back": "Voltar",
         "reading_time": "{minutes} min de leitura",

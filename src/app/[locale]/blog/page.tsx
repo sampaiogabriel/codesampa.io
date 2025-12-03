@@ -2,7 +2,7 @@ import { posts } from '.velite';
 
 import { getLocale, getTranslations } from 'next-intl/server';
 
-import { BlogList } from '@/components/pages/blog/blog-list';
+import { List } from '@/components/pages/blog/list';
 import { PageTitle } from '@/components/ui/page-title';
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default async function BlogPage() {
         subtitle={t('subtitle')}
       />
 
-      <BlogList posts={initialPosts} />
+      <List posts={initialPosts} />
     </main>
   );
 }

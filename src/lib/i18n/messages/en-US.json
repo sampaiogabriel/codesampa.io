@@ -53,6 +53,18 @@
           "title": "Weekly Insights",
           "subtitle": "Engineering, Architecture & Design",
           "placeholder": "your@email.com"
+        },
+        "List": {
+          "categories": {
+            "all": "All",
+            "tech": "Tech",
+            "design": "Design",
+            "career": "Career"
+          },
+          "search_placeholder": "Buscar artigos...",
+          "empty_state": "Nenhum artigo encontrado para os filtros selecionados.",
+          "clear_filters": "Limpar filtros",
+          "read_article": "Ler Artigo"
         }
       }
     }
@@ -299,12 +311,6 @@
       "read_more": "Read Article",
       "no_posts": "No signals found.",
       "no_posts_sub": "Initializing knowledge base for this sector...",
-      "categories": {
-        "all": "All",
-        "tech": "Tech",
-        "design": "Design",
-        "career": "Career"
-      },
       "Post": {
         "back": "Back",
         "reading_time": "{minutes} min read",
