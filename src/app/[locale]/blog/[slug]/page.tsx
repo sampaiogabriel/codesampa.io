@@ -88,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     // Aumentei o max-w para acomodar o sidebar sem espremer o texto
-    <article className="container mx-auto px-4 py-24 max-w-6xl relative overflow-visible">
+    <article className="container mx-auto px-4 pt-8 pb-16 relative overflow-visible">
       {/* Background Effect Sutil específico do post */}
       <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
 
@@ -127,6 +127,7 @@ export default async function PostPage({ params }: PostPageProps) {
               {t('reading_time', { minutes: readingTime })}
             </span>
           </div>
+          <ShareButton title={post.title} text={post.description || ''} />
         </div>
 
         <h1 className="font-space text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tight mb-8 leading-[1.1]">
@@ -149,7 +150,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </header>
 
       {/* Separator */}
-      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent mb-16 opacity-50 max-w-4xl mx-auto" />
+      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
       {/* Grid de Layout: Conteúdo + Sidebar */}
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_250px] gap-12 relative">
@@ -189,18 +190,8 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       {/* Newsletter Section */}
-      <div className="mt-20 md:mt-24 max-w-4xl mx-auto">
+      <div className="mt-8 max-w-4xl mx-auto">
         <Newsletter />
-      </div>
-
-      {/* Footer do Post */}
-      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 mx-auto">
-        <div className="flex items-center gap-2 text-muted-foreground text-sm font-mono">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          {t('end')}
-        </div>
-
-        <ShareButton title={post.title} text={post.description || ''} />
       </div>
     </article>
   );
