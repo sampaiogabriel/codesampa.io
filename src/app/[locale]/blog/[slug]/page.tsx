@@ -13,15 +13,14 @@ import { ShareButton } from '@/components/pages/blog/share-button';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
+import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 
-// --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   // @ts-ignore - O runtime é injetado para interpretar o código compilado
   return fn({ ...runtime }).default;
 };
 
-// --- Tipagem dos Params ---
 interface PostPageProps {
   params: Promise<{
     slug: string;
@@ -29,7 +28,6 @@ interface PostPageProps {
   }>;
 }
 
-// --- Metadados Dinâmicos (SEO) ---
 export async function generateMetadata({
   params
 }: PostPageProps): Promise<Metadata> {
@@ -55,7 +53,6 @@ export async function generateMetadata({
   };
 }
 
-// --- Geração Estática (SSG) ---
 export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slugAsParams,
@@ -63,24 +60,12 @@ export async function generateStaticParams() {
   }));
 }
 
-// --- Helper para estimar tempo de leitura (Fallback) ---
-function estimateReadingTime(content: string) {
-  const wordsPerMinute = 200;
-  const textLength = content.length;
-  const estimatedWords = textLength / 10;
-  const minutes = Math.ceil(estimatedWords / wordsPerMinute);
-  return minutes || 1;
-}
-
-// --- Componente da Página ---
 export default async function PostPage({ params }: PostPageProps) {
   const { slug, locale } = await params;
   const t = await getTranslations('Pages.Blog.Post');
 
-  // Configuração de localidade para datas
   const dateLocale = locale === 'pt-BR' ? ptBR : enUS;
 
-  // Encontra o post correspondente
   const post = posts.find(
     (p) => p.slugAsParams === slug && p.locale === locale
   );
@@ -94,8 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const MDXContent = useMDXComponent(post.content);
 
   return (
-    <article className="container mx-auto px-4 py-24 max-w-4xl relative overflow-hidden">
-      {/* Background Effect Sutil específico do post */}
+    <article className="container mx-auto px-4 pt-8 pb-8 max-w-4xl relative overflow-hidden">
       <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
 
       {/* Header do Artigo */}
@@ -185,12 +169,10 @@ export default async function PostPage({ params }: PostPageProps) {
         <MDXContent />
       </div>
 
-      {/* Newsletter Section - Inserida após o conteúdo */}
-      <div className="mt-20 md:mt-24">
+      <div className="mt-16">
         <Newsletter />
       </div>
 
-      {/* Footer do Post */}
       <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2 text-muted-foreground text-sm font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
