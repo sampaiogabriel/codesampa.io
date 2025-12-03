@@ -10,17 +10,19 @@ import * as runtime from 'react/jsx-runtime';
 
 import { Newsletter } from '@/components/pages/blog/newsletter';
 import { ShareButton } from '@/components/pages/blog/share-button';
+import { TableOfContents } from '@/components/pages/blog/table-of-contents'; // <--- Import novo
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
-import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 
+// --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   // @ts-ignore - O runtime é injetado para interpretar o código compilado
   return fn({ ...runtime }).default;
 };
 
+// ... (Mantenha interfaces, generateMetadata e generateStaticParams iguais) ...
 interface PostPageProps {
   params: Promise<{
     slug: string;
@@ -36,9 +38,7 @@ export async function generateMetadata({
     (p) => p.slugAsParams === slug && p.locale === locale
   );
 
-  if (!post) {
-    return {};
-  }
+  if (!post) return {};
 
   return {
     title: `${post.title} | codesampa.io`,
@@ -60,10 +60,18 @@ export async function generateStaticParams() {
   }));
 }
 
+function estimateReadingTime(content: string) {
+  const wordsPerMinute = 200;
+  const textLength = content.length;
+  const estimatedWords = textLength / 10;
+  const minutes = Math.ceil(estimatedWords / wordsPerMinute);
+  return minutes || 1;
+}
+
+// --- Componente da Página ---
 export default async function PostPage({ params }: PostPageProps) {
   const { slug, locale } = await params;
   const t = await getTranslations('Pages.Blog.Post');
-
   const dateLocale = locale === 'pt-BR' ? ptBR : enUS;
 
   const post = posts.find(
@@ -79,11 +87,13 @@ export default async function PostPage({ params }: PostPageProps) {
   const MDXContent = useMDXComponent(post.content);
 
   return (
-    <article className="container mx-auto px-4 pt-8 pb-8 max-w-4xl relative overflow-hidden">
+    // Aumentei o max-w para acomodar o sidebar sem espremer o texto
+    <article className="container mx-auto px-4 py-24 max-w-6xl relative overflow-visible">
+      {/* Background Effect Sutil específico do post */}
       <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
 
-      {/* Header do Artigo */}
-      <header className="mb-16 relative z-10">
+      {/* Header Centralizado */}
+      <header className="mb-16 relative z-10 mx-auto">
         <div className="mb-8">
           <Button
             variant="ghost"
@@ -138,42 +148,53 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </header>
 
-      {/* Separator com gradiente */}
-      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent mb-16 opacity-50" />
+      {/* Separator */}
+      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent mb-16 opacity-50 max-w-4xl mx-auto" />
 
-      {/* Conteúdo MDX Customizado */}
-      <div
-        className={cn(
-          'prose prose-invert prose-lg max-w-none relative z-10',
-          // Headings
-          '[&_h1]:text-3xl [&_h1]:font-bold [&_h1]:font-space [&_h1]:mt-12 [&_h1]:mb-6 [&_h1]:text-foreground',
-          '[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:font-space [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-foreground [&_h2]:flex [&_h2]:items-center [&_h2]:gap-2',
-          '[&_h3]:text-xl [&_h3]:font-bold [&_h3]:font-space [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-foreground/90',
-          // Text
-          '[&_p]:text-muted-foreground [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg',
-          '[&_strong]:text-foreground [&_strong]:font-semibold',
-          '[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-primary/30 [&_a]:transition-colors hover:[&_a]:decoration-primary',
-          // Lists
-          '[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-muted-foreground',
-          '[&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-muted-foreground',
-          '[&_li]:mb-2 [&_li::marker]:text-primary/50',
-          // Blockquotes
-          '[&_blockquote]:border-l-4 [&_blockquote]:border-primary/50 [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-foreground/80 [&_blockquote]:bg-white/5 [&_blockquote]:py-4 [&_blockquote]:pr-4 [&_blockquote]:rounded-r-lg [&_blockquote]:my-8',
-          // Inline Code
-          '[&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-sm [&_code]:font-mono [&_code]:text-primary/90 [&_code]:border [&_code]:border-white/5',
-          // Code Blocks (Rehype Pretty Code)
-          '[&_pre]:bg-[#0d1117] [&_pre]:border [&_pre]:border-white/10 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-8 [&_pre]:shadow-2xl',
-          '[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:text-inherit [&_pre_code]:border-none'
-        )}
-      >
-        <MDXContent />
+      {/* Grid de Layout: Conteúdo + Sidebar */}
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_250px] gap-12 relative">
+        {/* Coluna Principal: Conteúdo */}
+        <div
+          className={cn(
+            'prose prose-invert prose-lg max-w-none min-w-0 relative z-10',
+            // ... (Seus estilos prose existentes mantidos aqui) ...
+            // Headings
+            '[&_h1]:text-3xl [&_h1]:font-bold [&_h1]:font-space [&_h1]:mt-12 [&_h1]:mb-6 [&_h1]:text-foreground',
+            '[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:font-space [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-foreground [&_h2]:flex [&_h2]:items-center [&_h2]:gap-2',
+            '[&_h3]:text-xl [&_h3]:font-bold [&_h3]:font-space [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-foreground/90',
+            // Text
+            '[&_p]:text-muted-foreground [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg',
+            '[&_strong]:text-foreground [&_strong]:font-semibold',
+            '[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-primary/30 [&_a]:transition-colors hover:[&_a]:decoration-primary',
+            // Lists
+            '[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-muted-foreground',
+            '[&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-muted-foreground',
+            '[&_li]:mb-2 [&_li::marker]:text-primary/50',
+            // Blockquotes
+            '[&_blockquote]:border-l-4 [&_blockquote]:border-primary/50 [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-foreground/80 [&_blockquote]:bg-white/5 [&_blockquote]:py-4 [&_blockquote]:pr-4 [&_blockquote]:rounded-r-lg [&_blockquote]:my-8',
+            // Inline Code
+            '[&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-sm [&_code]:font-mono [&_code]:text-primary/90 [&_code]:border [&_code]:border-white/5',
+            // Code Blocks (Rehype Pretty Code)
+            '[&_pre]:bg-[#0d1117] [&_pre]:border [&_pre]:border-white/10 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-8 [&_pre]:shadow-2xl',
+            '[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:text-inherit [&_pre_code]:border-none'
+          )}
+        >
+          <MDXContent />
+        </div>
+
+        {/* Coluna Lateral: Table of Contents (Apenas Desktop XL) */}
+        <aside className="hidden xl:block relative">
+          <TableOfContents />
+        </aside>
       </div>
 
-      <div className="mt-16">
+      {/* Newsletter Section */}
+      <div className="mt-20 md:mt-24 max-w-4xl mx-auto">
         <Newsletter />
       </div>
 
-      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+      {/* Footer do Post */}
+      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-4xl mx-auto">
         <div className="flex items-center gap-2 text-muted-foreground text-sm font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           {t('end')}
