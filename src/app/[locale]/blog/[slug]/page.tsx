@@ -20,6 +20,7 @@ import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 import { CodeBlock } from '@/components/ui/code-block';
 import { Comments } from '@/components/pages/blog/comments';
 import { HeaderNewsletter } from '@/components/pages/blog/header-newsletter';
+import { AuthorProfile } from '@/components/pages/blog/author-profile';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -187,7 +188,8 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         {/* Coluna Lateral: Table of Contents (Apenas Desktop XL) */}
-        <aside className="hidden xl:block relative">
+        <aside className="hidden xl:flex relative flex-col gap-4">
+          <AuthorProfile />
           <TableOfContents />
         </aside>
       </div>
