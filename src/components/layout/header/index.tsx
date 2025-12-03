@@ -86,14 +86,18 @@ export function Header() {
                 <div className="absolute top-[-10%] right-[-10%] -z-10 h-[300px] w-[300px] rounded-full bg-primary/20 blur-[100px] pointer-events-none opacity-50" />
                 <div className="absolute bottom-[-10%] left-[-10%] -z-10 h-[300px] w-[300px] rounded-full bg-blue-600/20 blur-[100px] pointer-events-none opacity-50" />
 
-                <SheetHeader className="text-left p-6 border-b border-white/5">
-                  <SheetTitle className="font-space font-bold text-2xl tracking-tight flex items-center gap-2 text-white">
-                    codesampa.io
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_var(--color-primary)]" />
-                  </SheetTitle>
-                  <SheetDescription className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                    System Navigation
-                  </SheetDescription>
+                <SheetHeader className="text-center border-b border-white/5">
+                  <div className="flex flex-row gap-2 items-center justify-center">
+                    <Logo width={48} />
+                    <div className="flex flex-col gap-0">
+                      <SheetTitle className="font-space font-bold text-2xl tracking-tight flex items-center gap-2 text-white">
+                        codesampa.io
+                      </SheetTitle>
+                      <SheetDescription className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
+                        System Navigation
+                      </SheetDescription>
+                    </div>
+                  </div>
                 </SheetHeader>
 
                 {/* Área de Navegação Principal */}
