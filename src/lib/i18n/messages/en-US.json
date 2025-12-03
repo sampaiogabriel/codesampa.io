@@ -5,7 +5,7 @@
     "description": "Fullstack Solutions & Design by Gabriel Sampaio."
   },
   "Metadata": {
-    "title": "codesampa.io | Gabriel Sampaio",
+    "title": "codesampa.io",
     "description": "High-end software engineering, design systems, and fullstack development."
   },
   "Components": {
@@ -48,6 +48,11 @@
         },
         "TableOfContents": {
           "inThisArticle": "In This Article"
+        },
+        "HeaderNewsletter": {
+          "title": "Weekly Insights",
+          "subtitle": "Engineering, Architecture & Design",
+          "placeholder": "your@email.com"
         }
       }
     }

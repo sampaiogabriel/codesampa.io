@@ -9,6 +9,8 @@ import { useState } from 'react';
 
 import { FilterBar } from '@/components/ui/filter-bar';
 
+import { BlogHeaderNewsletter } from './blog-header-newsletter';
+
 const BLOG_CATEGORIES = [
   { id: 'all', label: 'All' },
   { id: 'Next.js', label: 'Next.js' },
@@ -44,6 +46,8 @@ export function BlogList({ posts }: { posts: Post[] }) {
         onSearch={setSearchQuery}
         placeholder="Search articles..."
       />
+
+      <BlogHeaderNewsletter />
 
       <div className="grid gap-8 min-h-[400px]">
         <AnimatePresence mode="popLayout">
