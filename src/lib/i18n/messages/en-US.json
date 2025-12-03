@@ -295,5 +295,10 @@
         "share": "Share"
       }
     }
+  },
+  "Manifest": {
+    "name": "Gabriel Sampaio | codesampa.io",
+    "short_name": "codesampa.io",
+    "description": "Fullstack Solutions & Design by Gabriel Sampaio."
   }
 }
