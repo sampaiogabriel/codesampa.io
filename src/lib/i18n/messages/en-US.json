@@ -32,6 +32,10 @@
           "share_copied": "Copied!",
           "share_success": "Link copied to clipboard!",
           "share_error": "Could not share link."
+        },
+        "ReadMore": {
+          "title": "Continue Reading",
+          "view_all": "View all articles"
         }
       }
     }

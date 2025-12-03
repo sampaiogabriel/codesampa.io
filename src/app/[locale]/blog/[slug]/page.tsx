@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
 import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
+import { ReadMore } from '@/components/pages/blog/read-more';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -142,7 +143,6 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </header>
 
-      {/* Separator */}
       <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
       {/* Grid de Layout: Conteúdo + Sidebar */}
@@ -181,6 +181,16 @@ export default async function PostPage({ params }: PostPageProps) {
           <TableOfContents />
         </aside>
       </div>
+
+      <div className="mx-auto">
+        <ReadMore
+          currentSlug={post.slugAsParams}
+          currentTags={post.tags}
+          locale={locale}
+        />
+      </div>
+
+      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
       {/* Newsletter Section */}
       <div className="mt-8 max-w-4xl mx-auto">
