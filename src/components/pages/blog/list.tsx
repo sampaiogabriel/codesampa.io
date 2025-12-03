@@ -2,10 +2,11 @@
 
 import { Post } from '.velite';
 
+import { format } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { useTranslations, useFormatter } from 'next-intl'; // Importe useFormatter
+import { useTranslations, useFormatter } from 'next-intl';
 import { useState } from 'react';
 
 import { FilterBar } from '@/components/ui/filter-bar';
@@ -14,12 +15,11 @@ import { HeaderNewsletter } from './header-newsletter';
 
 export function List({ posts }: { posts: Post[] }) {
   const t = useTranslations('Components.Pages.Blog.List');
-  const format = useFormatter();
+  const formatTime = useFormatter();
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Categorias dinâmicas traduzidas
   const blogCategories = [
     { id: 'all', label: t('categories.all') },
     { id: 'Next.js', label: 'Next.js' },
@@ -49,12 +49,12 @@ export function List({ posts }: { posts: Post[] }) {
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
         onSearch={setSearchQuery}
-        placeholder={t('List.search_placeholder')}
+        placeholder={t('search_placeholder')}
       />
 
       <HeaderNewsletter />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:gap-8 min-h-[400px]">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:gap-8 min-h-[200px]">
         <AnimatePresence mode="popLayout">
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post) => (
@@ -72,7 +72,7 @@ export function List({ posts }: { posts: Post[] }) {
                     <div className="flex items-center gap-2">
                       <Calendar size={14} className="text-primary" />
                       <time dateTime={post.date}>
-                        {format.dateTime(new Date(post.date), {
+                        {formatTime.dateTime(new Date(post.date), {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
@@ -93,7 +93,8 @@ export function List({ posts }: { posts: Post[] }) {
                   </div>
 
                   <div className="space-y-3">
-                    <h2 className="text-2xl md:text-3xl font-bold font-space text-foreground group-hover:text-primary transition-colors">
+                    {/* ADICIONADO: line-clamp-2 e overflow-hidden para o Título */}
+                    <h2 className="text-2xl md:text-3xl font-bold font-space text-foreground group-hover:text-primary transition-colors line-clamp-2 overflow-hidden text-ellipsis">
                       <Link
                         href={`/blog/${post.slugAsParams}`}
                         className="before:absolute before:inset-0 focus:outline-none"
@@ -102,7 +103,8 @@ export function List({ posts }: { posts: Post[] }) {
                       </Link>
                     </h2>
 
-                    <p className="text-muted-foreground leading-relaxed line-clamp-3 text-sm md:text-base">
+                    {/* ADICIONADO: line-clamp-3 e overflow-hidden para a Descrição */}
+                    <p className="text-muted-foreground leading-relaxed line-clamp-3 overflow-hidden text-ellipsis text-sm md:text-base">
                       {post.description}
                     </p>
                   </div>
@@ -121,7 +123,7 @@ export function List({ posts }: { posts: Post[] }) {
                   </div>
 
                   <span className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-primary transition-colors ml-auto">
-                    {t('List.read_article')} {/* Tradução aqui */}
+                    {t('read_article')}
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-1"
@@ -136,7 +138,7 @@ export function List({ posts }: { posts: Post[] }) {
               animate={{ opacity: 1 }}
               className="text-center py-20 col-span-full text-muted-foreground border border-dashed border-white/10 rounded-2xl bg-white/5"
             >
-              <p>{t('List.empty_state')}</p> {/* Tradução aqui */}
+              <p>{t('empty_state')}</p>
               <button
                 onClick={() => {
                   setSearchQuery('');
@@ -144,7 +146,7 @@ export function List({ posts }: { posts: Post[] }) {
                 }}
                 className="mt-2 text-primary hover:underline text-sm font-medium cursor-pointer"
               >
-                {t('List.clear_filters')} {/* Tradução aqui */}
+                {t('clear_filters')}
               </button>
             </motion.div>
           )}
