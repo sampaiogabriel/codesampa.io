@@ -36,7 +36,9 @@ export function NavLinks({
       )}
     >
       {links.map((link) => {
-        const isActive = pathname === link.href;
+        // Lógica de Ativo Corrigida
+        const isActive =
+          link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
 
         return (
           <Link
