@@ -194,7 +194,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       {/* Footer do Post */}
-      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-4xl mx-auto">
+      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 mx-auto">
         <div className="flex items-center gap-2 text-muted-foreground text-sm font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           {t('end')}
