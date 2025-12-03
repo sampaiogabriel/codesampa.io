@@ -25,6 +25,14 @@
           "whatsappLabel": "Vamos conversar no WhatsApp",
           "downloadCvLabel": "Baixar meu currículo"
         }
+      },
+      "Blog": {
+        "ShareButton": {
+          "share": "Compartilhar",
+          "share_copied": "Copiado!",
+          "share_success": "Link copiado para a área de transferência!",
+          "share_error": "Não foi possível compartilhar."
+        }
       }
     }
   },
@@ -280,7 +288,7 @@
         "career": "Carreira"
       },
       "Post": {
-        "back": "Voltar para Intel",
+        "back": "Voltar",
         "reading_time": "{minutes} min de leitura",
         "end": "Fim da transmissão.",
         "share": "Compartilhar"

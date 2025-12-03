@@ -11,6 +11,7 @@ import * as runtime from 'react/jsx-runtime';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
+import { ShareButton } from '@/components/pages/blog/share-button';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -193,14 +194,7 @@ export default async function PostPage({ params }: PostPageProps) {
           {t('end')}
         </div>
 
-        <Button
-          variant="outline"
-          size="sm"
-          className="gap-2 rounded-full border-white/10 hover:bg-white/5 hover:border-primary/30 transition-all"
-        >
-          <Share2 size={14} />
-          {t('share')}
-        </Button>
+        <ShareButton title={post.title} text={post.description || ''} />
       </div>
     </article>
   );

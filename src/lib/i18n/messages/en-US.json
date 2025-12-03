@@ -25,6 +25,14 @@
           "whatsappLabel": "Let's chat on WhatsApp",
           "downloadCvLabel": "Download my resume"
         }
+      },
+      "Blog": {
+        "ShareButton": {
+          "share": "Share",
+          "share_copied": "Copied!",
+          "share_success": "Link copied to clipboard!",
+          "share_error": "Could not share link."
+        }
       }
     }
   },
@@ -278,7 +286,7 @@
       },
       "Blog": {
         "Post": {
-          "back": "Back to Intel",
+          "back": "Back",
           "reading_time": "{minutes} min read",
           "end": "End of transmission.",
           "share": "Share"
