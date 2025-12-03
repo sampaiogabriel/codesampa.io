@@ -77,8 +77,9 @@ export function PageTitle({
   return (
     <motion.div
       initial="hidden"
+      animate="visible"
       whileInView="visible"
-      viewport={{ once: true }}
+      // viewport={{ once: true }}
       variants={containerVariants}
       className={cn(
         'flex flex-col mb-12 md:mb-16',

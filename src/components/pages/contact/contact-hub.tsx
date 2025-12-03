@@ -53,7 +53,7 @@ export function ContactHub() {
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         onClick={handleCopyEmail}
         className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 text-left transition-all hover:border-white/20 hover:bg-white/10"
       >
@@ -91,7 +91,7 @@ export function ContactHub() {
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-emerald-950/10 p-6 md:p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-950/20"
       >
         <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
@@ -116,7 +116,7 @@ export function ContactHub() {
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-purple-950/10 p-6 md:p-8 transition-all hover:border-purple-500/30 hover:bg-purple-950/20"
       >
         <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
@@ -141,8 +141,8 @@ export function ContactHub() {
         custom={3}
         variants={cardVariants}
         initial="hidden"
+        animate="visible"
         whileInView="visible"
-        viewport={{ once: true }}
         className="group relative col-span-1 md:col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
       >
         <div className="flex flex-col gap-2 relative z-10">
