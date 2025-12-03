@@ -1,162 +1,119 @@
 'use client';
 
+import { Post } from '.velite';
+
 import { format } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Calendar, Search } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { PageTitle } from '@/components/ui/page-title';
-import { cn } from '@/utils/functions/tw-merge';
+import { FilterBar } from '@/components/ui/filter-bar';
 
-// Definição do tipo para os posts que vêm do Velite
-interface Post {
-  slug: string;
-  slugAsParams: string;
-  title: string;
-  description?: string;
-  date: string;
-  tags: string[];
-  published: boolean;
-  locale: string;
-}
+const BLOG_CATEGORIES = [
+  { id: 'all', label: 'All' },
+  { id: 'Next.js', label: 'Next.js' },
+  { id: 'Architecture', label: 'Architecture' },
+  { id: 'React', label: 'React' },
+  { id: 'Career', label: 'Career' }
+];
 
-interface BlogListProps {
-  initialPosts: Post[];
-}
-
-export function BlogList({ initialPosts }: BlogListProps) {
-  const t = useTranslations('Pages.Blog');
+export function BlogList({ posts }: { posts: Post[] }) {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Categorias (Hardcoded por agora, mas podem vir dinamicamente)
-  const categories = [
-    { id: 'all', label: t('categories.all') },
-    { id: 'Tech', label: t('categories.tech') },
-    { id: 'Design', label: t('categories.design') },
-    { id: 'Career', label: t('categories.career') }
-  ];
+  const filteredPosts = posts.filter((post) => {
+    const matchesCategory =
+      activeCategory === 'all' || post.tags.includes(activeCategory);
 
-  const filteredPosts = initialPosts.filter((post) => {
-    if (activeCategory === 'all') return true;
-    return post.tags.some(
-      (tag) => tag.toLowerCase() === activeCategory.toLowerCase()
-    );
+    const searchLower = searchQuery.toLowerCase();
+    const matchesSearch =
+      searchQuery === '' ||
+      post.title.toLowerCase().includes(searchLower) ||
+      (post.description &&
+        post.description.toLowerCase().includes(searchLower));
+
+    return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <PageTitle
-        badge="Engineering Log"
-        badgeColor="blue"
-        title={
-          <>
-            Technical <span className="text-primary">Insights.</span>
-          </>
-        }
-        subtitle="Deep dives into software architecture, design systems, and the future of web development."
+    <div>
+      <FilterBar
+        categories={BLOG_CATEGORIES}
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+        onSearch={setSearchQuery}
+        placeholder="Search articles..."
       />
 
-      {/* Barra de Filtragem */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="mb-16 flex flex-wrap justify-center gap-2"
-      >
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setActiveCategory(cat.id)}
-            className={cn(
-              'relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300',
-              activeCategory === cat.id
-                ? 'text-white'
-                : 'text-muted-foreground hover:text-white hover:bg-white/5'
-            )}
-          >
-            {activeCategory === cat.id && (
-              <motion.div
-                layoutId="activeCategoryBlog"
-                className="absolute inset-0 rounded-full bg-white/10 border border-white/5"
-                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            <span className="relative z-10">{cat.label}</span>
-          </button>
-        ))}
-      </motion.div>
-
-      {/* Grid de Posts */}
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 min-h-[400px]">
         <AnimatePresence mode="popLayout">
-          {filteredPosts.map((post) => (
-            <motion.article
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              key={post.slug}
-              className="group relative flex flex-col justify-between h-full border border-white/10 bg-white/5 p-8 rounded-3xl overflow-hidden transition-all hover:border-primary/30 hover:bg-white/10"
-            >
-              {/* Background Glow no Hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6 font-mono uppercase tracking-wider">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar size={12} />
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
+              <motion.article
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                key={post.slug}
+                className="group relative flex flex-col md:flex-row gap-6 border border-white/10 bg-card/30 p-6 rounded-2xl transition-all hover:border-primary/30 hover:bg-card/50"
+              >
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3 font-mono">
                     <time dateTime={post.date}>
-                      {format(new Date(post.date), 'MMM dd, yyyy')}
+                      {format(new Date(post.date), 'MMMM dd, yyyy')}
                     </time>
+                    <span>•</span>
+                    <div className="flex gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    {post.tags.map((tag) => (
-                      <span key={tag} className="text-primary">
-                        #{tag}
-                      </span>
-                    ))}
+
+                  <h2 className="text-2xl font-bold font-space mb-2 group-hover:text-primary transition-colors">
+                    <Link href={`/blog/${post.slugAsParams}`}>
+                      {post.title}
+                    </Link>
+                  </h2>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    {post.description}
+                  </p>
+
+                  <div className="mt-4">
+                    <span className="text-sm font-bold text-white border-b border-primary/50 pb-0.5 group-hover:border-primary transition-all">
+                      Read Article
+                    </span>
                   </div>
                 </div>
-
-                <h2 className="text-2xl md:text-3xl font-bold font-space mb-4 group-hover:text-primary transition-colors leading-tight">
-                  <Link
-                    href={`/blog/${post.slugAsParams}`}
-                    className="before:absolute before:inset-0"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-
-                <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
-                  {post.description}
-                </p>
-              </div>
-
-              <div className="relative z-10 flex items-center text-sm font-bold text-white mt-auto group/link">
-                {t('read_more')}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1 text-primary" />
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            ))
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20 text-muted-foreground border border-dashed border-white/10 rounded-2xl"
+            >
+              <p>No articles found matching your criteria.</p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setActiveCategory('all');
+                }}
+                className="mt-2 text-primary hover:underline text-sm"
+              >
+                Clear filters
+              </button>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
-
-      {filteredPosts.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center py-32 border border-dashed border-white/10 rounded-3xl bg-white/5"
-        >
-          <div className="text-4xl mb-4 text-muted-foreground">
-            <Search size={48} strokeWidth={1} />
-          </div>
-          <p className="text-lg font-medium text-white">{t('no_posts')}</p>
-          <p className="text-muted-foreground">{t('no_posts_sub')}</p>
-        </motion.div>
-      )}
     </div>
   );
 }
