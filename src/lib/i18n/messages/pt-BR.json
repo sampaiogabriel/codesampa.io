@@ -1,4 +1,13 @@
 {
+  "Manifest": {
+    "name": "Gabriel Sampaio | codesampa.io",
+    "short_name": "codesampa.io",
+    "description": "Soluções Fullstack & Design por Gabriel Sampaio."
+  },
+  "Metadata": {
+    "title": "codesampa.io | Gabriel Sampaio",
+    "description": "Engenharia de software de ponta, design systems e desenvolvimento fullstack."
+  },
   "Components": {
     "Layout": {
       "Header": {
@@ -301,10 +310,5 @@
         "share": "Compartilhar"
       }
     }
-  },
-  "Manifest": {
-    "name": "Gabriel Sampaio | codesampa.io",
-    "short_name": "codesampa.io",
-    "description": "Soluções Fullstack & Design por Gabriel Sampaio."
   }
 }

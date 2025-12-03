@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
 import { Toaster } from 'sonner';
 
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme';
-
+import { EN_US, PT_BR } from '@/utils/constants/languages';
 import '../../utils/styles/globals.css';
 
 const geistSans = Geist({
@@ -25,19 +26,6 @@ const spaceGrotesk = Space_Grotesk({
   weight: ['300', '400', '500', '600', '700']
 });
 
-export const metadata: Metadata = {
-  title: 'codesampa.io',
-  description: 'Personal Site & Blog',
-  icons: {
-    icon: [
-      { url: '/favicons/favicon.ico' },
-      { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
-    ],
-    apple: [{ url: '/favicons/apple-touch-icon.png' }]
-  }
-};
-
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -45,6 +33,61 @@ export const viewport = {
 };
 
 type Params = Promise<{ locale: string }>;
+
+// --- METADADOS DINÂMICOS ---
+export async function generateMetadata({
+  params
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    metadataBase: new URL('https://codesampa.io'),
+    icons: {
+      icon: [
+        { url: '/favicons/favicon.ico' },
+        {
+          url: '/favicons/favicon-16x16.png',
+          sizes: '16x16',
+          type: 'image/png'
+        },
+        {
+          url: '/favicons/favicon-32x32.png',
+          sizes: '32x32',
+          type: 'image/png'
+        }
+      ],
+      apple: [{ url: '/favicons/apple-touch-icon.png' }]
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: 'https://codesampa.io',
+      siteName: 'codesampa.io',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: t('title')
+        }
+      ],
+      locale: locale === PT_BR ? PT_BR : EN_US,
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: ['/og-image.png'],
+      creator: '@sampaiogabriel'
+    }
+  };
+}
 
 export default async function RootLayout({
   children,
