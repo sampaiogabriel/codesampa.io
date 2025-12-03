@@ -50,8 +50,8 @@ export function ContactHub() {
 
   return (
     <section className="relative flex h-full flex-1 flex-col items-center justify-center overflow-hidden py-8 md:py-0">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[100px] md:blur-[130px]" />
       <div className="container pt-16 px-4 md:px-6 relative z-10 max-w-5xl">
-        {/* --- Título Padronizado --- */}
         <PageTitle
           badge={t('badge')}
           badgeColor="emerald"
@@ -66,10 +66,7 @@ export function ContactHub() {
           subtitle={t('subtitle')}
         />
 
-        {/* BENTO GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:h-[380px]">
-          {/* ... resto do conteúdo do grid ... */}
-          {/* 1. EMAIL */}
           <motion.button
             custom={0}
             variants={cardVariants}
@@ -105,8 +102,6 @@ export function ContactHub() {
             <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-blue-500/20 blur-[80px] transition-all group-hover:bg-blue-500/30" />
           </motion.button>
 
-          {/* ... outros cartões (Whatsapp, CV, Call) ... */}
-          {/* Mantenha o restante do código dos cartões exatamente como está no seu arquivo original, apenas substituindo o bloco do header pelo PageTitle */}
           <motion.a
             href={SOCIALS.whatsapp}
             target="_blank"
@@ -118,7 +113,6 @@ export function ContactHub() {
             viewport={{ once: true }}
             className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-emerald-950/10 p-6 md:p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-950/20"
           >
-            {/* Conteúdo do Whatsapp */}
             <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
               <ArrowUpRight size={20} />
             </div>
@@ -134,7 +128,6 @@ export function ContactHub() {
             <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-[50px] group-hover:bg-emerald-500/20" />
           </motion.a>
 
-          {/* 3. CURRÍCULO */}
           <motion.a
             href={cvFile}
             download
@@ -145,7 +138,6 @@ export function ContactHub() {
             viewport={{ once: true }}
             className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-purple-950/10 p-6 md:p-8 transition-all hover:border-purple-500/30 hover:bg-purple-950/20"
           >
-            {/* Conteúdo do Curriculo */}
             <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
               <FileDown size={20} />
             </div>
@@ -161,7 +153,6 @@ export function ContactHub() {
             <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-purple-500/10 blur-[50px] group-hover:bg-purple-500/20" />
           </motion.a>
 
-          {/* 4. CALL */}
           <motion.a
             href={SOCIALS.calendly}
             target="_blank"
@@ -173,7 +164,6 @@ export function ContactHub() {
             viewport={{ once: true }}
             className="group relative col-span-1 md:col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
           >
-            {/* Conteúdo do Call */}
             <div className="flex flex-col gap-2 relative z-10">
               <div className="flex items-center gap-2 text-primary mb-2">
                 <Calendar size={20} />

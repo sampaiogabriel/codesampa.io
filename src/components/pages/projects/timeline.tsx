@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { FilterBar } from '@/components/ui/filter-bar'; // <--- Componente Genérico
+import { FilterBar } from '@/components/ui/filter-bar';
 import { PageTitle } from '@/components/ui/page-title';
 import { LIST_PROJECTS, CATEGORIES } from '@/utils/constants/projects';
 
@@ -51,7 +51,6 @@ export function TimelinePortfolio() {
           subtitle={t('subtitle')}
         />
 
-        {/* USO DO COMPONENTE GENÉRICO */}
         <FilterBar
           categories={CATEGORIES}
           activeCategory={activeCategory}

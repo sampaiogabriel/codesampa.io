@@ -19,6 +19,7 @@ export default async function BlogPage() {
 
   return (
     <div className="container mx-auto px-4 py-24 max-w-4xl">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[100px] md:blur-[130px]" />
       <PageTitle
         badge="Engineering Log"
         badgeColor="purple"
