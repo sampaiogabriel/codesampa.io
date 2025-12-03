@@ -284,13 +284,11 @@
         "design": "Design",
         "career": "Career"
       },
-      "Blog": {
-        "Post": {
-          "back": "Back",
-          "reading_time": "{minutes} min read",
-          "end": "End of transmission.",
-          "share": "Share"
-        }
+      "Post": {
+        "back": "Back",
+        "reading_time": "{minutes} min read",
+        "end": "End of transmission.",
+        "share": "Share"
       }
     }
   }

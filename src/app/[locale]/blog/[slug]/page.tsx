@@ -2,16 +2,17 @@ import { posts } from '.velite';
 
 import { format } from 'date-fns';
 import { ptBR, enUS } from 'date-fns/locale';
-import { ArrowLeft, Calendar, Clock, Share2, Hash } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Hash } from 'lucide-react';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import * as runtime from 'react/jsx-runtime';
 
+import { Newsletter } from '@/components/pages/blog/newsletter';
+import { ShareButton } from '@/components/pages/blog/share-button';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
-import { ShareButton } from '@/components/pages/blog/share-button';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -63,12 +64,9 @@ export async function generateStaticParams() {
 }
 
 // --- Helper para estimar tempo de leitura (Fallback) ---
-// O ideal é calcular isso no velite.config.ts, mas aqui funciona como um cálculo runtime baseado no tamanho do payload MDX
 function estimateReadingTime(content: string) {
   const wordsPerMinute = 200;
-  // Estimativa grosseira: remove caracteres de código compilado para tentar pegar o texto
   const textLength = content.length;
-  // Fator de ajuste arbitrário para compensar a verbosidade do código compilado vs texto real
   const estimatedWords = textLength / 10;
   const minutes = Math.ceil(estimatedWords / wordsPerMinute);
   return minutes || 1;
@@ -187,8 +185,13 @@ export default async function PostPage({ params }: PostPageProps) {
         <MDXContent />
       </div>
 
+      {/* Newsletter Section - Inserida após o conteúdo */}
+      <div className="mt-20 md:mt-24">
+        <Newsletter />
+      </div>
+
       {/* Footer do Post */}
-      <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2 text-muted-foreground text-sm font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           {t('end')}

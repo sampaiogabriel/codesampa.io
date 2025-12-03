@@ -1,50 +1,78 @@
 'use client';
 
-import { Send } from 'lucide-react';
+import { Send, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
+import { cn } from '@/utils/functions/tw-merge';
 
-export function Newsletter() {
+interface NewsletterProps {
+  className?: string;
+}
+
+export function Newsletter({ className }: NewsletterProps) {
   const t = useTranslations('Pages.Home.Newsletter');
 
   return (
-    <section className="relative w-full py-24 bg-background border-t border-white/5 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <div
+      className={cn(
+        'relative w-full overflow-hidden rounded-3xl border border-white/10 bg-linear-to-b from-white/5 to-transparent p-8 md:p-12',
+        className
+      )}
+    >
+      {/* Background Effects */}
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 h-64 w-64 rounded-full bg-primary/10 blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-64 w-64 rounded-full bg-blue-500/10 blur-[80px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-space font-bold text-foreground mb-6 tracking-tight">
-            {t('title')}
-          </h2>
-          <p className="text-muted-foreground text-lg mb-10 max-w-xl">
-            {t('description')}
-          </p>
-
-          <form
-            className="flex flex-col sm:flex-row w-full max-w-md gap-3"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="relative flex-1 group">
-              <div className="absolute -inset-0.5 bg-linear-to-r from-primary/50 to-purple-600/50 rounded-lg blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
-              <input
-                type="email"
-                placeholder={t('placeholder')}
-                className="relative w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                required
-              />
-            </div>
-            <Button size="lg" className="rounded-lg font-semibold shrink-0">
-              {t('button')} <Send className="ml-2 h-4 w-4" />
-            </Button>
-          </form>
-
-          <p className="mt-6 text-xs text-muted-foreground/60">
-            {t('disclaimer')}
-          </p>
+      <div className="relative z-10 flex flex-col items-center text-center">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <Sparkles size={12} />
+          <span className="uppercase tracking-wider">Weekly Insights</span>
         </div>
+
+        <h3 className="mb-4 font-space text-2xl font-bold tracking-tight text-white md:text-4xl">
+          {t('title')}
+        </h3>
+
+        <p className="mb-8 max-w-lg text-muted-foreground text-base leading-relaxed">
+          {t('description')}
+        </p>
+
+        <form
+          className="flex w-full max-w-sm flex-col items-center gap-3 sm:flex-row"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <div className="relative flex-1 w-full">
+            <input
+              type="email"
+              placeholder={t('placeholder')}
+              className="h-12 w-full rounded-full border border-white/10 bg-black/50 px-5 text-sm text-white placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              required
+            />
+          </div>
+
+          <Button
+            type="submit"
+            size="lg"
+            className="group relative h-12 w-full sm:w-auto rounded-full px-8 font-bold text-white border-0 overflow-hidden transition-transform hover:scale-105"
+          >
+            {/* Gradiente de Fundo */}
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 via-primary to-purple-600 transition-all duration-300 group-hover:brightness-110" />
+
+            {/* Glow/Sombra colorida */}
+            <div className="absolute inset-0 bg-primary/50 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+
+            <span className="relative z-10 flex items-center gap-2">
+              {t('button')}
+              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </span>
+          </Button>
+        </form>
+
+        <p className="mt-4 text-[10px] text-muted-foreground/60">
+          {t('disclaimer')}
+        </p>
       </div>
-    </section>
+    </div>
   );
 }
