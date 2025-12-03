@@ -145,7 +145,7 @@
         "title": "Pronto para escalar?",
         "description": "Junte-se à nossa lista exclusiva e receba insights sobre arquitetura de software, design systems e tecnologia.",
         "placeholder": "seunome@empresa.com",
-        "button": "Inscrever-se",
+        "button": "Inscrever",
         "disclaimer": "Sem spam. Cancele a qualquer momento."
       },
       "ReadyToBuild": {
