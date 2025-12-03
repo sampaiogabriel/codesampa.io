@@ -15,10 +15,7 @@ export async function Links() {
     .slice(0, 5);
 
   return (
-    <section className="container mx-auto relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_15px_rgba(var(--color-primary),0.5)]" />
-
+    <section className="container mx-auto relative w-full border-t border-white/5 overflow-hidden">
       <div className="px-6 pt-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
           <div className="md:col-span-4 flex flex-col gap-6">

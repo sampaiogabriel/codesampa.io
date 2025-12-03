@@ -14,9 +14,9 @@ export function ReadyToBuildSection() {
 
   // Gera as partículas apenas no cliente para evitar Hydration Mismatch
   useEffect(() => {
-    const generatedParticles = [...Array(5)].map(() => ({
+    const generatedParticles = [...Array(15)].map(() => ({
       left: `${Math.random() * 100}%`,
-      duration: Math.random() * 5 + 5,
+      duration: Math.random() * 5 + 10,
       delay: Math.random() * 5
     }));
     setParticles(generatedParticles);
