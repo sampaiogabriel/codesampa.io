@@ -275,6 +275,14 @@
         "tech": "Tech",
         "design": "Design",
         "career": "Career"
+      },
+      "Blog": {
+        "Post": {
+          "back": "Back to Intel",
+          "reading_time": "{minutes} min read",
+          "end": "End of transmission.",
+          "share": "Share"
+        }
       }
     }
   }

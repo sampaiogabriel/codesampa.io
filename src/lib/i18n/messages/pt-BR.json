@@ -278,6 +278,12 @@
         "tech": "Tecnologia",
         "design": "Design",
         "career": "Carreira"
+      },
+      "Post": {
+        "back": "Voltar para Intel",
+        "reading_time": "{minutes} min de leitura",
+        "end": "Fim da transmissão.",
+        "share": "Compartilhar"
       }
     }
   }
