@@ -265,6 +265,20 @@
       "description": "Parece que você se perdeu no hiperespaço. A página que você procura foi movida, deletada ou nunca existiu.",
       "cta": "Voltar para a Base"
     },
-    "Blog": {}
+    "Blog": {
+      "badge": "Engineering Log",
+      "title_prefix": "Insights",
+      "title_highlight": "Técnicos.",
+      "subtitle": "Mergulhos profundos em arquitetura de software, design systems e a fronteira do desenvolvimento web.",
+      "read_more": "Ler Artigo",
+      "no_posts": "Nenhum sinal encontrado.",
+      "no_posts_sub": "Inicializando base de conhecimento para este setor...",
+      "categories": {
+        "all": "Todos",
+        "tech": "Tecnologia",
+        "design": "Design",
+        "career": "Carreira"
+      }
+    }
   }
 }

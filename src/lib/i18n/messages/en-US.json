@@ -262,6 +262,20 @@
       "description": "It looks like you got lost in hyperspace. The page you are looking for was moved, deleted, or never existed.",
       "cta": "Return to Base"
     },
-    "Blog": {}
+    "Blog": {
+      "badge": "Engineering Log",
+      "title_prefix": "Technical",
+      "title_highlight": "Insights.",
+      "subtitle": "Deep dives into software architecture, design systems, and the bleeding edge of web development.",
+      "read_more": "Read Article",
+      "no_posts": "No signals found.",
+      "no_posts_sub": "Initializing knowledge base for this sector...",
+      "categories": {
+        "all": "All",
+        "tech": "Tech",
+        "design": "Design",
+        "career": "Career"
+      }
+    }
   }
 }
