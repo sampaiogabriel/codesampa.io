@@ -31,7 +31,10 @@ export function Header() {
       <div className="container mx-auto flex h-full items-center justify-between px-4">
         {/* Esquerda: Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link
+            href="/"
+            className="flex items-center gap-2 group cursor-pointer"
+          >
             <Logo />
             <span className="font-space text-lg font-bold tracking-tight text-foreground">
               codesampa.io

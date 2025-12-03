@@ -20,7 +20,10 @@ export async function Links() {
       <div className="px-6 pt-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
           <div className="md:col-span-4 flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-2 group w-fit">
+            <Link
+              href="/"
+              className="flex items-center gap-2 group w-fit cursor-pointer"
+            >
               <Logo width={48} />
               <span className="font-space text-2xl font-bold tracking-tight text-white">
                 codesampa.io
