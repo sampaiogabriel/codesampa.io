@@ -1,35 +1,24 @@
-'use client';
-
 import { Github, Linkedin, Instagram, Cpu } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { getTranslations, getLocale } from 'next-intl/server';
+
+import { posts } from '.velite';
 
 import { Link } from '@/lib/i18n/navigation';
 
-// Mocks de dados do Blog para o Footer
-const blogPosts = [
-  {
-    title: 'Understanding Server Actions in Next.js 15',
-    slug: 'server-actions-nextjs-15'
-  },
-  {
-    title: 'Why Tailwind v4 is a Game Changer',
-    slug: 'tailwind-v4-features'
-  },
-  {
-    title: 'Building Scalable Micro-SaaS',
-    slug: 'scalable-micro-saas'
-  },
-  {
-    title: 'The Future of React Server Components',
-    slug: 'future-rsc'
-  }
-];
+export async function Links() {
+  const t = await getTranslations('Pages.Home.Links');
+  const locale = await getLocale();
 
-export function Links() {
-  const t = useTranslations('Pages.Home.Links');
+  const latestPosts = posts
+    .filter((post) => post.published && post.locale === locale)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
 
   return (
-    <section className="container mx-auto relative w-full border-t border-white/5 overflow-hidden">
+    <section className="container mx-auto relative w-full border-t border-white/5 bg-[#050505] overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_15px_rgba(var(--color-primary),0.5)]" />
+
       <div className="px-6 pt-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
           <div className="md:col-span-4 flex flex-col gap-6">
@@ -65,11 +54,17 @@ export function Links() {
               {t('columns.blog')}
             </h4>
             <ul className="flex flex-col gap-3">
-              {blogPosts.map((post, index) => (
-                <LiLink key={index} href={`/blog/${post.slug}`}>
-                  {post.title}
-                </LiLink>
-              ))}
+              {latestPosts.length > 0 ? (
+                latestPosts.map((post) => (
+                  <LiLink key={post.slug} href={`/blog/${post.slugAsParams}`}>
+                    {post.title}
+                  </LiLink>
+                ))
+              ) : (
+                <li className="text-sm text-muted-foreground italic opacity-50">
+                  ...
+                </li>
+              )}
             </ul>
           </div>
 
@@ -91,6 +86,7 @@ export function Links() {
   );
 }
 
+// Subcomponentes auxiliares (permanecem iguais, mas rodam no servidor)
 const LiLink = ({
   href,
   children
