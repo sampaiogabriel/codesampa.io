@@ -8,11 +8,6 @@ import { ReadyToBuildSection } from '@/components/pages/home/ready-to-build';
 import { ServicesSection } from '@/components/pages/home/services';
 import { ShapeShifterSection } from '@/components/pages/home/shape-shifter';
 
-export const metadata: Metadata = {
-  title: 'codesampa.io',
-  description: 'Personal Site & Blog'
-};
-
 export default function Home() {
   return (
     <div className="mx-auto">

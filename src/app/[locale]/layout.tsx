@@ -37,7 +37,6 @@ export const viewport = {
 
 type Params = Promise<{ locale: string }>;
 
-// --- METADADOS DINÂMICOS ---
 export async function generateMetadata({
   params
 }: {
@@ -50,6 +49,7 @@ export async function generateMetadata({
     title: t('title'),
     description: t('description'),
     metadataBase: new URL(HOST),
+    // manifest: `/${locale}/manifest.webmanifest`,
     icons: {
       icon: [
         { url: '/favicons/favicon.ico' },
