@@ -9,6 +9,7 @@ export const FloatingSymbol = ({
   item,
   index
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   index: number;
 }) => {
