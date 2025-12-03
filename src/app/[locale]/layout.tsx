@@ -9,6 +9,7 @@ import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme';
 import { EN_US, PT_BR } from '@/utils/constants/languages';
 import '../../utils/styles/globals.css';
+import { HOST } from '@/utils/constants/host';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -46,7 +47,7 @@ export async function generateMetadata({
   return {
     title: t('title'),
     description: t('description'),
-    metadataBase: new URL('https://codesampa.io'),
+    metadataBase: new URL(HOST),
     icons: {
       icon: [
         { url: '/favicons/favicon.ico' },
@@ -66,7 +67,7 @@ export async function generateMetadata({
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: 'https://codesampa.io',
+      url: HOST,
       siteName: 'codesampa.io',
       images: [
         {
