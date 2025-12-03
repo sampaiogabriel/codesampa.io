@@ -1,7 +1,11 @@
 'use client';
 
-import { Send, Sparkles } from 'lucide-react';
+import { subscribeToNewsletter } from '@/app/actions/newsletter';
+import { Send, Sparkles, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useActionState } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/utils/functions/tw-merge';
@@ -10,8 +14,32 @@ interface NewsletterProps {
   className?: string;
 }
 
+const initialState = {
+  success: false,
+  message: ''
+};
+
 export function Newsletter({ className }: NewsletterProps) {
   const t = useTranslations('Pages.Home.Newsletter');
+
+  // React 19 useActionState: gerencia o estado da server action (pending, retorno)
+  const [state, formAction, isPending] = useActionState(
+    subscribeToNewsletter,
+    initialState
+  );
+  const [email, setEmail] = useState('');
+
+  // Feedback visual via Toast (Sonner)
+  useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        toast.success(state.message);
+        setEmail(''); // Limpa o input no sucesso
+      } else {
+        toast.error(state.message);
+      }
+    }
+  }, [state]);
 
   return (
     <div
@@ -39,14 +67,18 @@ export function Newsletter({ className }: NewsletterProps) {
         </p>
 
         <form
+          action={formAction}
           className="flex w-full max-w-sm flex-col items-center gap-3 sm:flex-row"
-          onSubmit={(e) => e.preventDefault()}
         >
           <div className="relative flex-1 w-full">
             <input
+              name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder={t('placeholder')}
-              className="h-12 w-full rounded-full border border-white/10 bg-black/50 px-5 text-sm text-white placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              disabled={isPending}
+              className="h-12 w-full rounded-full border border-white/10 bg-black/50 px-5 text-sm text-white placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all disabled:opacity-50"
               required
             />
           </div>
@@ -54,7 +86,8 @@ export function Newsletter({ className }: NewsletterProps) {
           <Button
             type="submit"
             size="lg"
-            className="group relative h-12 w-full sm:w-auto rounded-full px-8 font-bold text-white border-0 overflow-hidden transition-transform hover:scale-105"
+            disabled={isPending}
+            className="group relative h-12 w-full sm:w-auto rounded-full px-8 font-bold text-white border-0 overflow-hidden transition-transform hover:scale-105 disabled:opacity-70 disabled:hover:scale-100"
           >
             {/* Gradiente de Fundo */}
             <div className="absolute inset-0 bg-linear-to-r from-blue-600 via-primary to-purple-600 transition-all duration-300 group-hover:brightness-110" />
@@ -63,8 +96,16 @@ export function Newsletter({ className }: NewsletterProps) {
             <div className="absolute inset-0 bg-primary/50 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
 
             <span className="relative z-10 flex items-center gap-2">
-              {t('button')}
-              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              {isPending ? (
+                <>
+                  Enviando... <Loader2 className="h-4 w-4 animate-spin" />
+                </>
+              ) : (
+                <>
+                  {t('button')}
+                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </>
+              )}
             </span>
           </Button>
         </form>

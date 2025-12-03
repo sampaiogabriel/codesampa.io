@@ -12,6 +12,7 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
+    "actions": "@/app/actions",
     "components": "@/components",
     "utils": "@/utils",
     "ui": "@/components/ui",
