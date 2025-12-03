@@ -19,6 +19,7 @@ import { ReadMore } from '@/components/pages/blog/read-more';
 import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 import { CodeBlock } from '@/components/ui/code-block';
 import { Comments } from '@/components/pages/blog/comments';
+import { BlogHeaderNewsletter } from '@/components/pages/blog/blog-header-newsletter';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -198,14 +199,6 @@ export default async function PostPage({ params }: PostPageProps) {
           locale={locale}
         />
       </div>
-
-      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
-
-      <div className="mx-auto">
-        <Newsletter />
-      </div>
-
-      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
       <div className="mx-auto">
         <Comments />
