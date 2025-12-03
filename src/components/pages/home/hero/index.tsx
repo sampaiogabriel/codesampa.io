@@ -15,7 +15,7 @@ export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
 
   return (
-    <section className="relative flex h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
+    <section className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
       {/* Background Gradients & Textura */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
@@ -58,13 +58,10 @@ export function HeroSection() {
             {t('subtitle')}
           </p>
 
-          {/* [VERSÃO 3] Estética "HUD / System Lock" - Criativa e Técnica */}
           <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto mt-12">
-            {/* BOTÃO PRIMÁRIO: SYSTEM LOCK */}
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-2 rounded-lg border border-primary/30 opacity-40 scale-90 group-hover:scale-100 group-hover:opacity-100 group-hover:border-primary/60 transition-all duration-500 ease-out" />
 
-              {/* Efeito de "Mira" nos cantos */}
               <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -76,7 +73,6 @@ export function HeroSection() {
               >
                 <Link href="/contact" className="flex items-center gap-3">
                   <span className="relative z-10">{t('cta_primary')}</span>
-                  {/* Ícone animado */}
                   <span className="relative z-10 flex h-3 w-3">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-primary"></span>
