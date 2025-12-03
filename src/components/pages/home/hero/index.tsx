@@ -20,7 +20,7 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
       {/* Luz de Fundo Centralizada Atrás do Texto */}
-      <div className="absolute left-1/2 top-[45%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[120px] md:h-[500px] md:w-[500px]" />
+      <div className="absolute left-1/2 top-[40%] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[130px] md:h-[600px] md:w-[600px]" />
 
       {/* Símbolos Flutuantes (Looping) */}
       <div className="absolute inset-0 w-full h-full flex justify-center pointer-events-none">
