@@ -16,6 +16,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
 import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 import { ReadMore } from '@/components/pages/blog/read-more';
+import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -83,6 +84,8 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     // Aumentei o max-w para acomodar o sidebar sem espremer o texto
     <article className="container mx-auto px-4 pt-8 pb-16 relative overflow-visible">
+      <ScrollProgress />
+
       {/* Background Effect Sutil específico do post */}
       <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
 
