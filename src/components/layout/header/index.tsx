@@ -3,9 +3,11 @@
 import { Github, Menu, ArrowRight, Cpu } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 // Importação do useState adicionada
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/ui/logo';
 import {
   Sheet,
   SheetContent,
@@ -30,9 +32,7 @@ export function Header() {
         {/* Esquerda: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
-              <Cpu size={20} />
-            </div>
+            <Logo />
             <span className="font-space text-lg font-bold tracking-tight text-foreground">
               codesampa.io
             </span>

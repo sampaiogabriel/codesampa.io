@@ -17,6 +17,8 @@ import { cn } from '@/utils/functions/tw-merge';
 import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 import { ReadMore } from '@/components/pages/blog/read-more';
 import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
+import { CodeBlock } from '@/components/ui/code-block';
+import { Comments } from '@/components/pages/blog/comments';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -80,6 +82,10 @@ export default async function PostPage({ params }: PostPageProps) {
   const readingTime = estimateReadingTime(post.content);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const MDXContent = useMDXComponent(post.content);
+
+  const mdxComponents = {
+    pre: CodeBlock // Substitui o <pre> padrão pelo nosso Terminal
+  };
 
   return (
     // Aumentei o max-w para acomodar o sidebar sem espremer o texto
@@ -170,13 +176,13 @@ export default async function PostPage({ params }: PostPageProps) {
             // Blockquotes
             '[&_blockquote]:border-l-4 [&_blockquote]:border-primary/50 [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-foreground/80 [&_blockquote]:bg-white/5 [&_blockquote]:py-4 [&_blockquote]:pr-4 [&_blockquote]:rounded-r-lg [&_blockquote]:my-8',
             // Inline Code
-            '[&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-sm [&_code]:font-mono [&_code]:text-primary/90 [&_code]:border [&_code]:border-white/5',
+            '[&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-md [&_code]:text-sm [&_code]:font-mono [&_code]:text-primary/90 [&_code]:border [&_code]:border-white/5'
             // Code Blocks (Rehype Pretty Code)
-            '[&_pre]:bg-[#0d1117] [&_pre]:border [&_pre]:border-white/10 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-8 [&_pre]:shadow-2xl',
-            '[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:text-inherit [&_pre_code]:border-none'
+            // '[&_pre]:bg-[#0d1117] [&_pre]:border [&_pre]:border-white/10 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-8 [&_pre]:shadow-2xl',
+            // '[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-sm [&_pre_code]:text-inherit [&_pre_code]:border-none'
           )}
         >
-          <MDXContent />
+          <MDXContent components={mdxComponents} />
         </div>
 
         {/* Coluna Lateral: Table of Contents (Apenas Desktop XL) */}
@@ -195,9 +201,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
-      {/* Newsletter Section */}
-      <div className="mt-8 max-w-4xl mx-auto">
+      <div className="mx-auto">
         <Newsletter />
+      </div>
+
+      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
+
+      <div className="mx-auto">
+        <Comments />
       </div>
     </article>
   );

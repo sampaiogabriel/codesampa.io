@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from 'next-intl/server';
 
 import { posts } from '.velite';
 
+import { Logo } from '@/components/ui/logo';
 import { Link } from '@/lib/i18n/navigation';
 
 export async function Links() {
@@ -20,9 +21,7 @@ export async function Links() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
           <div className="md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group w-fit">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
-                <Cpu size={20} />
-              </div>
+              <Logo width={48} />
               <span className="font-space text-2xl font-bold tracking-tight text-white">
                 codesampa.io
               </span>
