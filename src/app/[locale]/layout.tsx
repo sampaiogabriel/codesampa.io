@@ -7,9 +7,10 @@ import { Toaster } from 'sonner';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 import { ThemeProvider } from '@/components/providers/theme';
-import { EN_US, PT_BR } from '@/utils/constants/languages';
-import '../../utils/styles/globals.css';
 import { HOST } from '@/utils/constants/host';
+import { EN_US, PT_BR } from '@/utils/constants/languages';
+
+import '../../utils/styles/globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,7 +31,8 @@ const spaceGrotesk = Space_Grotesk({
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  viewportFit: 'cover'
+  viewportFit: 'cover',
+  themeColor: '#0047FF'
 };
 
 type Params = Promise<{ locale: string }>;
