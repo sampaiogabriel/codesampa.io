@@ -14,6 +14,7 @@ import { TableOfContents } from '@/components/pages/blog/table-of-contents'; // 
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
+import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -60,14 +61,6 @@ export async function generateStaticParams() {
   }));
 }
 
-function estimateReadingTime(content: string) {
-  const wordsPerMinute = 200;
-  const textLength = content.length;
-  const estimatedWords = textLength / 10;
-  const minutes = Math.ceil(estimatedWords / wordsPerMinute);
-  return minutes || 1;
-}
-
 // --- Componente da Página ---
 export default async function PostPage({ params }: PostPageProps) {
   const { slug, locale } = await params;
@@ -94,7 +87,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {/* Header Centralizado */}
       <header className="mb-16 relative z-10 mx-auto">
-        <div className="mb-8">
+        <div className="mb-4 pl-2">
           <Button
             variant="ghost"
             size="sm"
