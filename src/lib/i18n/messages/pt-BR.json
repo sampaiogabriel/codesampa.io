@@ -36,6 +36,9 @@
         "ReadMore": {
           "title": "Continue Lendo",
           "view_all": "Ver todos artigos"
+        },
+        "TableOfContents": {
+          "inThisArticle": "In This Article"
         }
       }
     }

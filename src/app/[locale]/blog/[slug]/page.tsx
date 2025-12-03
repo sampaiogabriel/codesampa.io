@@ -133,7 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <ShareButton title={post.title} text={post.description || ''} />
         </div>
 
-        <h1 className="font-space text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tight mb-8 leading-[1.1]">
+        <h1 className="font-space text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tight mb-8 leading-[1.1] max-w-4xl">
           <span className="bg-linear-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
             {post.title}
           </span>

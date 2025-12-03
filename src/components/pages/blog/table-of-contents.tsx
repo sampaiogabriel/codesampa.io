@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ListVideo } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { cn } from '@/utils/functions/tw-merge';
@@ -15,6 +16,7 @@ interface Heading {
 export function TableOfContents() {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const t = useTranslations('Components.Pages.Blog.TableOfContents');
 
   useEffect(() => {
     const elements = Array.from(
@@ -62,7 +64,7 @@ export function TableOfContents() {
     <nav className="sticky top-32 w-full max-w-[260px] hidden xl:block">
       <div className="mb-4 flex items-center gap-2 text-sm font-bold text-white/80 uppercase tracking-wider">
         <ListVideo size={16} className="text-primary" />
-        <span>Neste Artigo</span>
+        <span>{t('inThisArticle')}</span>
       </div>
 
       <ul className="flex flex-col gap-2 relative border-l border-white/10 pl-4">
