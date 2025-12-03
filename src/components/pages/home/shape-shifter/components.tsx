@@ -28,11 +28,11 @@ export const DesktopSidebar = ({
   activeTab: FeatureType;
   onTabChange: (tab: FeatureType) => void;
 }) => (
-  <div className="bg-card/80 relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-lg border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
+  <div className="bg-card/80 rounded-lg relative flex h-full w-full flex-col justify-between overflow-hidden rounded-l-lg border-r border-white/5 p-4 text-slate-400 backdrop-blur-xl">
     <div className="relative z-10">
       <div className="group mb-8 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-2 transition-colors hover:border-white/5 hover:bg-white/5">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-blue-600 to-primary text-xs font-bold text-white shadow-[0_0_15px_rgba(0,71,255,0.5)]">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-tr from-blue-600 to-primary text-xs font-bold text-white shadow-[0_0_15px_rgba(0,71,255,0.5)]">
             CS
           </div>
           <div>
@@ -66,7 +66,7 @@ export const DesktopSidebar = ({
         ))}
       </div>
     </div>
-    <div className="relative z-10 rounded-xl border border-white/10 bg-gradient-to-br from-violet-900/50 to-blue-900/50 p-4">
+    <div className="relative z-10 rounded-xl border border-white/10 bg-linear-to-br from-violet-900/50 to-blue-900/50 p-4">
       <Zap size={16} className="mb-2 text-blue-400" />
       <h4 className="mb-1 text-xs font-bold text-white">Pro Plan</h4>
       <button className="mt-2 w-full rounded border border-white/5 bg-white/10 py-1.5 text-[10px] font-bold text-white transition-colors hover:bg-white/20">
@@ -135,7 +135,7 @@ export const ResponsiveHeader = ({
   return (
     <div
       className={cn(
-        'bg-card/80 flex h-full w-full items-center justify-between px-4 backdrop-blur-xl md:px-6 border-white/5',
+        'bg-card/80 flex h-full w-full items-center rounded-lg justify-between px-4 backdrop-blur-xl md:px-6 border-white/5',
         isMobile ? 'rounded-xl border' : 'rounded-tr-lg border-b'
       )}
     >
@@ -158,7 +158,7 @@ export const ResponsiveHeader = ({
             <span className="text-xs">Search...</span>
           </div>
         )}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-gradient-to-tr from-slate-700 to-slate-800 text-xs font-bold text-white shadow-inner">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-linear-to-tr from-slate-700 to-slate-800 text-xs font-bold text-white shadow-inner">
           GS
         </div>
       </div>
@@ -170,7 +170,7 @@ export const ResponsiveHeader = ({
 export const DarkChart = () => (
   <div className="bg-card/60 relative flex h-full w-full flex-col rounded-xl border border-white/5 p-4 backdrop-blur-md md:p-6 overflow-hidden">
     {/* Fundo Gradiente */}
-    <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-50 pointer-events-none" />
+    <div className="absolute inset-0 bg-linear-to-t from-primary/5 to-transparent opacity-50 pointer-events-none" />
 
     <div className="z-10 mb-4 flex items-center justify-between">
       <h3 className="text-sm font-bold text-white">Revenue Trend</h3>
