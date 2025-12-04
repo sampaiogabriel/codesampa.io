@@ -292,7 +292,7 @@ export function FileExplorer({
       </div>
 
       {/* Footer / Status Bar */}
-      <div className="flex h-7 shrink-0 items-center border-t border-white/5 bg-white/[0.02] px-3 text-[10px] text-muted-foreground font-mono select-none">
+      <div className="flex h-7 shrink-0 items-center border-t border-white/5 bg-white/2 px-3 text-[10px] text-muted-foreground font-mono select-none">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5 text-primary/80">
             <span className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
