@@ -55,7 +55,7 @@ export function FilterBar({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      animate="visible"
       className={cn(
         'mb-16 flex flex-col items-center justify-center gap-6 md:flex-row',
         className
@@ -103,7 +103,6 @@ export function FilterBar({
         >
           <AnimatePresence mode="wait">
             {!isSearchOpen ? (
-              // Botão Lupa (Fechado)
               <motion.button
                 key="search-icon"
                 initial={{ opacity: 0 }}
@@ -116,7 +115,6 @@ export function FilterBar({
                 <Search size={18} />
               </motion.button>
             ) : (
-              // Input (Aberto)
               <motion.div
                 key="search-input"
                 initial={{ opacity: 0 }}
