@@ -1,4 +1,4 @@
-import { Database } from 'lucide-react';
+import { Database, FileText } from 'lucide-react';
 import { FaMobileAlt, FaLayerGroup, FaDesktop, FaReact } from 'react-icons/fa';
 import { RiTailwindCssFill } from 'react-icons/ri';
 import {
@@ -12,7 +12,8 @@ import {
   SiTailwindcss,
   SiVercel,
   SiClerk,
-  SiShadcnui
+  SiShadcnui,
+  SiTypescript
 } from 'react-icons/si';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,7 +31,9 @@ export const TECH_ICONS: Record<string, any> = {
   Tailwind: SiTailwindcss,
   Vercel: SiVercel,
   Clerk: SiClerk,
-  Shadcn: SiShadcnui
+  Shadcn: SiShadcnui,
+  TypeScript: SiTypescript,
+  Velite: FileText
 };
 
 export const LIST_PROJECTS = [
@@ -67,13 +70,20 @@ export const LIST_PROJECTS = [
   },
   {
     key: 'codesampa',
-    isProduct: false,
+    isProduct: false, // Mantém como projeto open-source/exemplo
     category: 'web',
-    tags: ['React', 'Framer Motion', 'Tailwind', 'Vercel'],
-    color: 'from-emerald-500 to-teal-500',
+    tags: [
+      'Next.js', // Bleeding edge
+      'React',
+      'Tailwind',
+      'Velite', // CMS
+      'TypeScript',
+      'Framer Motion'
+    ],
+    color: 'from-primary to-blue-600',
     icon: FaDesktop,
     link: '#',
-    repo: '#',
+    repo: 'https://github.com/sampaiogabriel/codesampa.io',
     metrics: ['metric_1', 'metric_2', 'metric_3']
   }
 ];

@@ -277,12 +277,12 @@
         },
         "codesampa": {
           "title": "codesampa.io",
-          "category": "Branding & Web",
-          "description": "Hub de conteúdo e serviços de engenharia de software. Design system proprietário com animações avançadas e performance otimizada.",
+          "category": "High-Performance Portfolio",
+          "description": "Engenharia no limite da tecnologia. Desenvolvido com o ecossistema Next.js 16 e React 19 (RC). Possui internacionalização nativa, CMS baseado em arquivos (Velite) e um Design System atômico. Performance perfeita (100/100) e animações fluidas a 60fps.",
           "metrics_data": [
             { "value": "100", "label": "Lighthouse" },
-            { "value": "v1.0", "label": "Design System" },
-            { "value": "0.1s", "label": "Load Time" }
+            { "value": "v16", "label": "Next.js" },
+            { "value": "Global", "label": "i18n Ready" }
           ]
         }
       }
