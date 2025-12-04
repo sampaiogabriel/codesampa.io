@@ -1,47 +1,54 @@
 # codesampa.io
 
-Bem-vindo ao repositório oficial do **codesampa.io**, o sítio web pessoal e portfólio de Gabriel Sampaio. Este projeto foi desenvolvido para demonstrar competências em desenvolvimento web moderno, apresentando uma experiência interativa, visualmente rica e de alto desempenho.
+O **codesampa.io** é o portfólio pessoal e blog de engenharia de software de Gabriel Sampaio. Este projeto foi desenvolvido para demonstrar a aplicação de tecnologias de ponta no ecossistema React, focando em performance, arquitetura escalável e design de alta fidelidade.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Stack Tecnológica
 
-Este projeto utiliza as versões mais recentes das principais ferramentas do ecossistema React e Next.js.
+O projeto foi construído utilizando as versões mais recentes (RC/Beta) das principais ferramentas do mercado:
 
-### Core
+### Core & Arquitetura
 
-- **Next.js 16** (App Router)
+- **Next.js 16** (App Router & Server Actions)
 - **React 19**
 - **TypeScript**
+- **Internacionalização (i18n):** Suporte nativo EN/PT via `next-intl`
 
-### Estilos e UI
+### Estilização & UI
 
-- **Tailwind CSS v4**
-- **Radix UI** (Primitivos de UI acessíveis)
-- **Lucide React** (Ícones)
-- **Sonner** (Notificações Toast)
+- **Tailwind CSS v4**: Próxima geração do framework utilitário
+- **Radix UI**: Primitivos de UI acessíveis (Dialog, Dropdown, Slot, etc.)
+- **Lucide React**: Biblioteca de ícones
+- **Sonner**: Notificações toast de alta performance
 
-### Animações e 3D
+### Conteúdo & Dados
 
-- **Framer Motion** (Animações de layout e gestos)
-- **Three.js / React Three Fiber** (Elementos 3D na web)
-- **React Three Drei & Rapier** (Utilitários e física para 3D)
-- **Meshline**
+- **Velite**: Content Layer para gerenciamento de conteúdo MDX (Blog) type-safe
+- **Zod**: Validação de esquemas
+- **Resend**: Integração para envio de emails (Newsletter)
 
-### Funcionalidades
+### Animações & 3D
 
-- **Next-intl**: Suporte completo a internacionalização (i18n).
-- **Next-themes**: Gestão de temas (Dark/Light mode).
+- **Framer Motion**: Animações declarativas e layout transitions
+- **Three.js Ecosystem**: `@react-three/fiber`, `@react-three/drei` e `@react-three/rapier` para experiências 3D imersivas
 
-## 🧩 Estrutura da Página Principal
+## 📂 Estrutura do Projeto
 
-A página inicial é composta pelas seguintes secções interativas:
-
-- **Hero Section**: Introdução visual.
-- **Shape Shifter**: Componente visual dinâmico.
-- **Services**: Apresentação de serviços oferecidos.
-- **Manifesto**: Filosofia e abordagem de trabalho.
-- **Engineering Pipeline**: Visualização do processo de engenharia.
-- **Lamp Section**: Elemento interativo 3D.
-- **Links**: Acesso rápido a contactos e redes sociais.
+```bash
+├── content/              # Arquivos MDX do blog (gerenciados pelo Velite)
+├── public/               # Assets estáticos (imagens, favicons, CVs)
+├── src/
+│   ├── app/
+│   │   ├── actions/      # Server Actions (ex: newsletter.ts)
+│   │   ├── [locale]/     # Rotas internacionalizadas (Home, Blog, Projetos)
+│   │   └── ...
+│   ├── components/
+│   │   ├── layout/       # Header, Footer
+│   │   ├── pages/        # Componentes específicos de cada página
+│   │   └── ui/           # Componentes reutilizáveis (Design System)
+│   ├── lib/              # Configurações de i18n e navegação
+│   └── utils/            # Constantes, hooks e funções auxiliares
+├── velite.config.ts      # Configuração do esquema de conteúdo
+```
 
 ## 🛠️ Instalação e Configuração
 
@@ -89,3 +96,10 @@ Siga os passos abaixo para executar o projeto localmente:
 ---
 
 _Este projeto é privado e destinado a fins de portfólio pessoal._
+
+````
+
+```
+
+```
+````
