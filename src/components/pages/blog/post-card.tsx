@@ -5,10 +5,11 @@ import { Post } from '.velite';
 import { format } from 'date-fns';
 import { enUS, ptBR } from 'date-fns/locale';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Hash } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Link } from '@/lib/i18n/navigation';
+import { estimateReadingTime } from '@/utils/functions/estimate-reading-time';
 
 export function PostCard({
   post,
@@ -19,78 +20,78 @@ export function PostCard({
   index: number;
   locale: string;
 }) {
-  const t = useTranslations('Components.Pages.Blog.List');
+  const t = useTranslations('Pages.Blog');
   const dateLocale = locale === 'pt-BR' ? ptBR : enUS;
+
+  const readingTime = estimateReadingTime(post.content || '');
 
   return (
     <motion.article
-      layout
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-card/20 p-6 md:p-8 transition-all duration-300 hover:border-primary/30 hover:bg-card/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 transition-all hover:border-white/20 hover:bg-white/10"
     >
-      <div className="flex flex-col gap-4">
-        {/* Meta Info */}
-        <div className="flex items-center justify-between text-xs font-mono text-muted-foreground/70">
-          <div className="flex items-center gap-2">
-            <Calendar size={13} className="text-primary/70" />
-            <time dateTime={post.date} className="tracking-wide">
-              {format(new Date(post.date), 'MMM dd, yyyy', {
+      {/* Background Hover Effect */}
+      <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+
+      <div className="relative z-10 flex flex-col gap-4">
+        {/* Metadados: Data e Tempo */}
+        <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          <div className="flex items-center gap-1.5">
+            <Calendar size={12} className="text-primary" />
+            <time dateTime={post.date}>
+              {format(new Date(post.date), 'dd MMM, yyyy', {
                 locale: dateLocale
               })}
             </time>
           </div>
-
-          <div className="hidden sm:flex gap-2">
-            {post.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 rounded text-[10px] bg-white/5 text-muted-foreground border border-transparent group-hover:border-white/10 transition-colors"
-              >
-                {tag}
-              </span>
-            ))}
+          <span className="text-white/10">|</span>
+          <div className="flex items-center gap-1.5">
+            <Clock size={12} className="text-primary" />
+            <span>{readingTime} min read</span>
           </div>
         </div>
 
-        {/* Conteúdo */}
-        <div className="space-y-3">
-          <h2 className="text-2xl font-bold font-space text-foreground group-hover:text-primary transition-colors line-clamp-2">
-            <Link
-              href={`/blog/${post.slugAsParams}`}
-              className="before:absolute before:inset-0 focus:outline-none"
-            >
-              {post.title}
-            </Link>
-          </h2>
+        {/* Título e Link */}
+        <Link href={`/blog/${post.slugAsParams}`} className="group/link">
+          <h3 className="mb-3 font-space text-2xl font-bold leading-tight text-white transition-colors group-hover/link:text-primary md:text-3xl">
+            {post.title}
+          </h3>
+        </Link>
 
-          <p className="text-muted-foreground/80 leading-relaxed line-clamp-2 text-sm md:text-base">
-            {post.description}
-          </p>
-        </div>
-      </div>
+        {/* Descrição */}
+        <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+          {post.description}
+        </p>
 
-      {/* Footer do Card */}
-      <div className="mt-8 flex items-center pt-6 border-t border-white/5 group-hover:border-primary/10 transition-colors">
-        <div className="flex sm:hidden gap-2">
-          {post.tags.slice(0, 2).map((tag) => (
+        {/* Tags */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          {post.tags?.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-muted-foreground"
+              className="inline-flex items-center gap-1 rounded-md border border-white/5 bg-white/5 px-2 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary"
             >
+              <Hash size={10} />
               {tag}
             </span>
           ))}
         </div>
-        <span className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider text-primary/80 group-hover:text-primary transition-colors ml-auto">
-          {t('read_article')}
+      </div>
+
+      {/* Footer / CTA */}
+      <div className="relative z-10 mt-8 flex items-center justify-between border-t border-white/5 pt-6">
+        <Link
+          href={`/blog/${post.slugAsParams}`}
+          className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-primary"
+        >
+          {t('read_more')}
           <ArrowRight
-            size={14}
-            className="transition-transform duration-300 group-hover:translate-x-1"
+            size={16}
+            className="transition-transform group-hover:translate-x-1"
           />
-        </span>
+        </Link>
       </div>
     </motion.article>
   );
