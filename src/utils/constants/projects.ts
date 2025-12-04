@@ -1,11 +1,11 @@
-import { Database, Command, FileText } from 'lucide-react';
+import { Database, FileText } from 'lucide-react';
 import {
   FaMobileAlt,
   FaLayerGroup,
   FaDesktop,
   FaReact,
   FaGlobe,
-  FaCode // Adicionado para CodeLab
+  FaCode
 } from 'react-icons/fa';
 import {
   SiNextdotjs,
@@ -47,7 +47,9 @@ export const TECH_ICONS: Record<string, any> = {
   'Next.js 16': SiNextdotjs,
   Velite: FileText,
   HTML5: SiHtml5,
-  JavaScript: SiJavascript
+  JavaScript: SiJavascript,
+  Asaas: SiStripe, // Fallback visual para pagamentos
+  AI: SiOpenai // Fallback visual para AI
 };
 
 export const LIST_PROJECTS = [
@@ -112,28 +114,49 @@ export const LIST_PROJECTS = [
   }
 ];
 
-// --- LISTA DE PROJETOS SECUNDÁRIOS ---
 export const LIST_SECONDARY_PROJECTS = [
-  {
-    key: 'finance_ai',
-    category: 'saas',
-    tags: ['Next.js 15', 'OpenAI API', 'Stripe', 'Shadcn'],
-    icon: FaLayerGroup,
-    link: '#', // Se tiver link de demo, coloque aqui
-    repo: 'https://github.com/sampaiogabriel/finance-ai'
-  },
   {
     key: 'codelab',
     category: 'web',
-    tags: ['React', 'Tailwind', 'TypeScript'],
+    tags: [
+      'React',
+      'Next',
+      'Prisma',
+      'Asaas',
+      'OpenAPI',
+      'Cloudeflare',
+      'Tailwind',
+      'RHF',
+      'Zod'
+    ],
     icon: FaCode,
     link: '#',
     repo: 'https://github.com/sampaiogabriel/codelab'
   },
   {
+    key: 'finance_ai',
+    category: 'saas',
+    tags: [
+      'React',
+      'Next',
+      'OpenAI',
+      'TypeScript',
+      'Stripe',
+      'Clerk',
+      'Prisma',
+      'Tailwind',
+      'Shadcn',
+      'RHF',
+      'ZOD'
+    ],
+    icon: FaLayerGroup,
+    link: '#',
+    repo: 'https://github.com/sampaiogabriel/finance-ai'
+  },
+  {
     key: 'lonewolf',
     category: 'web',
-    tags: ['HTML5', 'Tailwind CSS', 'JavaScript'],
+    tags: ['React', 'TypeScript', 'Styled-Components', 'Vite', 'SEO'],
     icon: FaDesktop,
     link: '#',
     repo: 'https://github.com/sampaiogabriel/landpage-lonewolf'

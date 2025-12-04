@@ -37,8 +37,6 @@ export function TimelinePortfolio() {
     return matchesCategory && matchesSearch;
   });
 
-  const secondaryProjects = LIST_SECONDARY_PROJECTS;
-
   return (
     <>
       <FilterBar
@@ -56,7 +54,6 @@ export function TimelinePortfolio() {
               <CardProject key={project.key} project={project} index={index} />
             ))
           ) : (
-            // Exibe mensagem apenas se a busca não retornar nada nos principais
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -69,14 +66,14 @@ export function TimelinePortfolio() {
         </AnimatePresence>
 
         <div className="border-t border-white/5">
-          {secondaryProjects.length > 0 && (
+          {LIST_SECONDARY_PROJECTS.length > 0 && (
             <>
               <h3 className="mb-4 mt-4 font-space text-2xl font-bold text-white text-center md:text-left">
                 {t('more_projects')}
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {secondaryProjects.map((project, index) => (
+                {LIST_SECONDARY_PROJECTS.map((project, index) => (
                   <CardProjectSecondary
                     key={project.key}
                     project={project}

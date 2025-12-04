@@ -302,17 +302,17 @@
             { "value": "2 Weeks", "label": "ROI Time" }
           ]
         },
+        "codelab": {
+          "title": "CodeLab",
+          "description": "Complete learning management system. Fullstack Next.js and Prisma architecture with JSON-based course structuring. Features native payment gateway (Asaas) and AI integration for student support."
+        },
         "finance_ai": {
           "title": "Finance AI",
-          "description": "Personal finance SaaS with AI-generated insights (OpenAI) and automated reporting."
-        },
-        "codelab": {
-          "title": "CodeLab System",
-          "description": "Component library and code challenges. A laboratory to test new React and Tailwind patterns."
+          "description": "Personal finance SaaS. Leverages Artificial Intelligence to analyze spending, automatically categorize transactions, and generate personalized saving insights."
         },
         "lonewolf": {
-          "title": "LoneWolf Landing",
-          "description": "High-performance Landing Page template focused on conversion for digital products and services."
+          "title": "LoneWolf",
+          "description": "Responsive Landing Page developed as a Front-end study. Absolute focus on modern design, SEO best practices, and visual refinement (Pixel Perfect)."
         }
       }
     },
