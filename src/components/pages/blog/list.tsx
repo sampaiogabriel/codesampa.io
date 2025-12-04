@@ -125,16 +125,11 @@ export function List({ posts }: { posts: Post[] }) {
   );
 
   return (
-    <div className="flex flex-col gap-10 max-w-[1400px] mx-auto">
-      {/* 1. Newsletter Global */}
-      <div className="w-full">
+    <div className="flex flex-col gap-10 mx-auto">
+      <div className="mx-auto">
         <HeaderNewsletter />
       </div>
 
-      {/* =========================================================
-          VIEW MOBILE / TABLET (< 1024px)
-          Usa FilterBar + Lista Filtrada
-         ========================================================= */}
       <div className="flex flex-col gap-8 lg:hidden">
         <FilterBar
           categories={blogCategories}
@@ -175,12 +170,7 @@ export function List({ posts }: { posts: Post[] }) {
         </div>
       </div>
 
-      {/* =========================================================
-          VIEW DESKTOP (>= 1024px)
-          Usa Layout Grid + File Explorer
-         ========================================================= */}
-      <div className="hidden lg:grid grid-cols-[1fr_340px] gap-8 items-start min-h-[calc(100vh-200px)]">
-        {/* Coluna da Esquerda: Feed Cronológico */}
+      <div className="hidden lg:grid grid-cols-[1fr_340px] gap-8 items-start">
         <div className="flex flex-col gap-6 min-w-0">
           <div className="flex items-center gap-3 mb-2 opacity-60">
             <Hash size={16} className="text-primary" />
@@ -198,7 +188,7 @@ export function List({ posts }: { posts: Post[] }) {
         </div>
 
         {/* Coluna da Direita: File Explorer (Sticky) */}
-        <aside className="h-[calc(100vh-120px)] sticky top-24">
+        <aside className="sticky top-24 max-h-[calc(100vh-120px)] flex flex-col">
           <FileExplorer posts={posts} className="h-full" />
         </aside>
       </div>

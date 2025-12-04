@@ -45,7 +45,7 @@ export function HeaderNewsletter() {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-card/30 p-5 md:p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-card/40"
+      className="relative w-full max-w-4xl overflow-hidden rounded-xl border border-white/10 bg-card/30 p-5 md:p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-card/40"
     >
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         {/* Lado Esquerdo */}
