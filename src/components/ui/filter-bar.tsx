@@ -2,9 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react'; // useRef removido
 
 import { cn } from '@/utils/functions/tw-merge';
+import useIsMobile from '@/utils/hooks/use-mobile';
 
 export interface FilterCategory {
   id: string;
@@ -28,21 +29,22 @@ export function FilterBar({
   className,
   placeholder = 'Buscar...'
 }: FilterBarProps) {
+  const isMobile = useIsMobile();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  // Foca no input automaticamente ao abrir
+  // Força a abertura no mobile assim que detectado
   useEffect(() => {
-    if (isSearchOpen && inputRef.current) {
-      inputRef.current.focus();
+    if (isMobile) {
+      setIsSearchOpen(true);
     }
-  }, [isSearchOpen]);
+  }, [isMobile]);
 
   const handleCloseSearch = () => {
+    if (isMobile) return;
     setIsSearchOpen(false);
     setSearchQuery('');
-    onSearch(''); // Limpa a busca no pai
+    onSearch('');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,65 +53,90 @@ export function FilterBar({
     onSearch(value);
   };
 
+  const handleInputBlur = () => {
+    if (!isMobile) {
+      setIsSearchOpen(false);
+    }
+  };
+
+  const showExpandedSearch = isMobile || isSearchOpen;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       animate="visible"
       className={cn(
-        'mb-16 flex flex-col items-center justify-center gap-6 md:flex-row',
+        'mb-8 flex flex-col-reverse gap-4 md:mb-16 md:flex-row md:items-center md:justify-center md:gap-6',
         className
       )}
     >
       {/* --- LISTA DE CATEGORIAS --- */}
-      <div className="flex flex-wrap justify-center gap-2">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => onCategoryChange(cat.id)}
-            className={cn(
-              'relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300',
-              activeCategory === cat.id
-                ? 'text-white'
-                : 'text-muted-foreground hover:text-white hover:bg-white/5'
-            )}
-          >
-            {activeCategory === cat.id && (
-              <motion.div
-                layoutId="activeCategory"
-                className="absolute inset-0 rounded-full bg-white/10 border border-white/5"
-                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            <span className="relative z-10">{cat.label}</span>
-          </button>
-        ))}
+      <div
+        className={cn(
+          'relative overflow-hidden min-w-0',
+          'w-full',
+          'md:w-auto md:max-w-[60%]'
+        )}
+      >
+        <div
+          className={cn(
+            'flex items-center gap-2 overflow-x-auto pb-2',
+            'mask-r-from-80%',
+            'mask-[linear-gradient(to_right,black_80%,transparent)]',
+            '[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]',
+            'snap-x cursor-grab active:cursor-grabbing'
+          )}
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => onCategoryChange(cat.id)}
+              className={cn(
+                'relative shrink-0 snap-start rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap',
+                activeCategory === cat.id
+                  ? 'text-white'
+                  : 'text-muted-foreground hover:bg-white/5 hover:text-white'
+              )}
+            >
+              {activeCategory === cat.id && (
+                <motion.div
+                  layoutId="activeCategory"
+                  className="absolute inset-0 rounded-full border border-white/5 bg-white/10"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className="relative z-10">{cat.label}</span>
+            </button>
+          ))}
+          <div className="w-8 shrink-0" aria-hidden="true" />
+        </div>
       </div>
 
-      {/* --- DIVISOR (Desktop) --- */}
-      <div className="hidden h-6 w-px bg-white/10 md:block" />
+      {/* --- DIVISOR (Apenas Desktop) --- */}
+      <div className="hidden h-6 w-px bg-white/10 md:block shrink-0" />
 
       {/* --- PESQUISA EXPANSÍVEL --- */}
-      <div className="relative h-10">
+      <div className="relative flex h-10 w-full md:w-auto shrink-0">
         <motion.div
           layout
           className={cn(
-            'flex items-center overflow-hidden rounded-full border border-white/10 bg-white/5 transition-colors',
-            isSearchOpen
-              ? 'w-64 border-primary/30 bg-black/50'
-              : 'w-10 hover:bg-white/10 hover:border-white/20'
+            'flex items-center overflow-hidden rounded-full border border-white/10 bg-white/5 transition-all',
+            showExpandedSearch
+              ? 'w-full border-primary/30 bg-black/50 md:w-64'
+              : 'w-10 hover:border-white/20 hover:bg-white/10'
           )}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          <AnimatePresence mode="wait">
-            {!isSearchOpen ? (
+          <AnimatePresence mode="wait" initial={false}>
+            {!showExpandedSearch ? (
               <motion.button
                 key="search-icon"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsSearchOpen(true)}
-                className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-white"
+                className="flex h-10 w-10 shrink-0 items-center justify-center text-muted-foreground hover:text-white"
                 aria-label="Open search"
               >
                 <Search size={18} />
@@ -122,18 +149,27 @@ export function FilterBar({
                 exit={{ opacity: 0 }}
                 className="flex h-10 w-full items-center px-3"
               >
-                <Search size={16} className="mr-2 text-muted-foreground" />
+                <Search
+                  size={16}
+                  className="mr-2 shrink-0 text-muted-foreground"
+                />
                 <input
-                  ref={inputRef}
                   type="text"
                   value={searchQuery}
                   onChange={handleInputChange}
+                  onBlur={handleInputBlur}
+                  // [ATUALIZADO] Foca automaticamente ao abrir no desktop
+                  autoFocus={!isMobile}
                   placeholder={placeholder}
-                  className="flex-1 bg-transparent text-sm text-white placeholder:text-muted-foreground/50 focus:outline-none"
+                  className="flex-1 bg-transparent text-sm text-white placeholder:text-muted-foreground/50 focus:outline-none min-w-0"
                 />
                 <button
                   onClick={handleCloseSearch}
-                  className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-muted-foreground hover:bg-white/20 hover:text-white"
+                  onMouseDown={(e) => e.preventDefault()}
+                  className={cn(
+                    'ml-2 shrink-0 items-center justify-center rounded-full bg-white/10 text-muted-foreground hover:bg-white/20 hover:text-white h-5 w-5',
+                    'hidden md:flex'
+                  )}
                 >
                   <X size={12} />
                 </button>

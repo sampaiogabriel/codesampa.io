@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations, useFormatter } from 'next-intl';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { FilterBar } from '@/components/ui/filter-bar';
 
@@ -20,13 +20,15 @@ export function List({ posts }: { posts: Post[] }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const blogCategories = [
-    { id: 'all', label: t('categories.all') },
-    { id: 'Next.js', label: 'Next.js' },
-    { id: 'Architecture', label: 'Architecture' },
-    { id: 'React', label: 'React' },
-    { id: 'Career', label: t('categories.career') }
-  ];
+  const blogCategories = useMemo(() => {
+    const allTags = posts.flatMap((post) => post.tags);
+    const uniqueTags = Array.from(new Set(allTags)).sort();
+
+    return [
+      { id: 'all', label: t('categories.all') },
+      ...uniqueTags.map((tag) => ({ id: tag, label: tag }))
+    ];
+  }, [posts, t]);
 
   const filteredPosts = posts.filter((post) => {
     const matchesCategory =
@@ -44,13 +46,15 @@ export function List({ posts }: { posts: Post[] }) {
 
   return (
     <div>
-      <FilterBar
-        categories={blogCategories}
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-        onSearch={setSearchQuery}
-        placeholder={t('search_placeholder')}
-      />
+      <div className="mx-auto">
+        <FilterBar
+          categories={blogCategories}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+          onSearch={setSearchQuery}
+          placeholder={t('search_placeholder')}
+        />
+      </div>
 
       <HeaderNewsletter />
 
