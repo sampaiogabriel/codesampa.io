@@ -248,20 +248,21 @@
       "badge": "Portfolio",
       "title": "Projetos em <highlight>Destaque.</highlight>",
       "subtitle": "Uma seleção de projetos que demonstram capacidade técnica, design system escalável e resolução de problemas complexos.",
-      "cta_case_study": "Ver Case Study",
-      "cta_repo": "Repositório GitHub",
+      "cta_case_study": "Ver Detalhes",
+      "cta_access_product": "Acessar Produto",
+      "cta_repo": "Repositório Privado",
       "cta_want_similar": "Quero um Assim",
       "empty": "Nenhum projeto encontrado, tente outro filtro",
       "placeholder": "Buscar projeto",
       "projects": {
         "kingfix": {
           "title": "KingFix",
-          "category": "Aplicação Mobile",
-          "description": "Plataforma completa para gestão de oficinas mecânicas. Controle de ordens de serviço, estoque e agendamentos em tempo real via App mobile.",
+          "category": "Plataforma de Mecânica Delivery",
+          "description": "Muito mais que um sistema: um motor de vendas. Agendamento inteligente com cálculo automático de deslocamento (Google Maps API) e precificação dinâmica. O cliente escolhe, o sistema organiza a logística. Checkout integrado (Stripe), gestão financeira e painel administrativo completo. A solução definitiva Mobile-First para escalar o atendimento mecânico.",
           "metrics_data": [
-            { "value": "+30%", "label": "Eficiência" },
-            { "value": "Mobile", "label": "Plataforma" },
-            { "value": "Real-time", "label": "Sincronia" }
+            { "value": "Inteligente", "label": "Logística" },
+            { "value": "Real-Time", "label": "Agendamento" },
+            { "value": "Produção", "label": "Status" }
           ]
         },
         "devrex": {

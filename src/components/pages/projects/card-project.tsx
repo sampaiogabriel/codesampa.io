@@ -43,6 +43,9 @@ const CardProject = ({
 
   const isInView = useInView(cardRef, { once: true, margin: '-10%' });
 
+  // Criamos uma constante para o ícone para usá-lo como JSX
+  const ProjectIcon = project.icon;
+
   return (
     <motion.article
       layout
@@ -68,7 +71,8 @@ const CardProject = ({
                 project.color
               )}
             >
-              {project.icon}
+              {/* Renderizamos o componente aqui passando o size */}
+              <ProjectIcon size={24} />
             </div>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
               {t(`projects.${project.key}.category`) || 'Case Study'}
@@ -84,38 +88,29 @@ const CardProject = ({
           </p>
         </div>
 
-        {/* [NOVO] Grid de Métricas de Impacto */}
+        {/* Grid de Métricas de Impacto */}
         <div className="grid grid-cols-3 gap-4 border-y border-white/5 py-6">
           {project.metrics?.map((metricId, i) => (
             <div key={i} className="flex flex-col gap-1">
               <span className="text-2xl font-bold text-foreground">
-                {/* Ex: +30% */}
                 {t(`projects.${project.key}.metrics_data.${i}.value`)}
               </span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                {/* Ex: Conversão */}
                 {t(`projects.${project.key}.metrics_data.${i}.label`)}
               </span>
             </div>
-          )) || (
-            // Fallback se não tiver métricas definidas ainda
-            <div className="col-span-3 text-sm text-muted-foreground italic">
-              Impacto: {t(`projects.${project.key}.stats`)}
-            </div>
-          )}
+          ))}
         </div>
 
-        {/* [NOVO] Stack Tecnológica Visual (Ícones) */}
         <div className="flex flex-wrap items-center gap-4">
           {project.tags.map((tag) => {
-            const Icon = TECH_ICONS[tag] || CheckCircle2; // Fallback icon
+            const Icon = TECH_ICONS[tag] || CheckCircle2;
             return (
               <div
                 key={tag}
                 className="group/icon relative flex items-center justify-center p-2 rounded-md bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-help"
               >
                 <Icon size={18} className="text-slate-300" />
-                {/* Tooltip simples */}
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-[10px] text-white rounded opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                   {tag}
                 </span>
@@ -126,26 +121,38 @@ const CardProject = ({
 
         {/* Botões de Ação */}
         <div className="flex flex-wrap items-center gap-4 pt-2">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
-          >
-            {t('cta_case_study')} <ArrowUpRight size={16} />
-          </a>
+          {project.isProduct ? (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
+            >
+              {t('cta_access_product')} <ArrowUpRight size={16} />
+            </a>
+          ) : (
+            <>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
+              >
+                {t('cta_case_study')} <ArrowUpRight size={16} />
+              </a>
 
-          <a
-            href={project.repo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 hover:text-primary"
-            aria-label="GitHub Repo"
-          >
-            <Github size={20} />
-          </a>
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 hover:text-primary"
+                aria-label="GitHub Repo"
+              >
+                <Github size={20} />
+              </a>
+            </>
+          )}
 
-          {/* [NOVO] CTA Secundário "Quero Assim" */}
           <Link
             href="/contact"
             className="ml-auto flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
@@ -156,12 +163,12 @@ const CardProject = ({
         </div>
       </div>
 
-      {/* --- COLUNA DA IMAGEM (Mantida com melhorias) --- */}
+      {/* --- COLUNA DA IMAGEM --- */}
       <div
         className={cn(
           'relative w-full overflow-hidden rounded-2xl border border-white/10 bg-card shadow-2xl transition-all hover:border-white/20',
           index % 2 === 1 ? 'lg:order-1' : '',
-          'h-[350px] md:h-[450px] lg:h-[600px]' // Mais alto para impor respeito
+          'h-[350px] md:h-[450px] lg:h-[600px]'
         )}
       >
         <div
@@ -183,7 +190,6 @@ const CardProject = ({
             )}
           />
 
-          {/* Aqui você eventualmente substituirá por um <video> ou <Image> real */}
           <div className="absolute bottom-[-5%] left-[10%] right-[10%] top-[10%] rounded-t-xl border border-white/10 bg-[#0B0C10] p-4 shadow-2xl transition-transform duration-500 group-hover:-translate-y-4">
             <div className="relative h-full w-full overflow-hidden rounded bg-slate-900/80 flex items-center justify-center">
               <span className="text-white/20 font-mono text-sm">
