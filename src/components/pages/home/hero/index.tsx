@@ -15,7 +15,7 @@ export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
 
   return (
-    <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
+    <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground">
       {/* Background Gradients & Textura */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
@@ -31,7 +31,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl px-4 -mt-12 md:-mt-20">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,11 +54,11 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="max-w-xl text-lg text-muted-foreground mb-8">
+          <p className="max-w-xl text-lg text-muted-foreground mb-4 md:mb-8">
             {t('subtitle')}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto mt-12">
+          <div className="flex flex-col sm:flex-row items-center md:gap-6 w-full sm:w-auto mt-6 md:mt-12">
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-2 rounded-lg border border-primary/30 opacity-40 scale-90 group-hover:scale-100 group-hover:opacity-100 group-hover:border-primary/60 transition-all duration-500 ease-out" />
 
@@ -87,7 +87,7 @@ export function HeroSection() {
             {/* BOTÃO SECUNDÁRIO: CODE LINK */}
             <Button
               variant="ghost"
-              className="group text-muted-foreground hover:text-white font-mono text-sm tracking-tight"
+              className="hidden md:flex group text-muted-foreground hover:text-white font-mono text-sm tracking-tight"
               asChild
             >
               <Link href="/projects" className="flex items-center gap-2">
@@ -111,10 +111,10 @@ export function HeroSection() {
         transition={{ delay: 1.0, duration: 1 }}
         className="absolute bottom-12 md:bottom-10 flex flex-col items-center gap-3 text-slate-400 pointer-events-none"
       >
-        <span className="text-[10px] uppercase tracking-widest font-mono opacity-80">
+        <span className="hidden md:flex text-[10px] uppercase tracking-widest font-mono opacity-80">
           {t('scroll_indicator')}
         </span>
-        <div className="flex flex-col items-center gap-1 animate-bounce">
+        <div className="flex flex-col items-center gap-0.5 animate-bounce">
           <Mouse className="h-6 w-6 opacity-80" />
           <ChevronDown className="h-4 w-4 opacity-60" />
         </div>

@@ -19,7 +19,7 @@ export default async function BlogPage() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <main className="container mx-auto px-4 py-24 max-w-4xl relative">
+    <main className="container mx-auto px-4 py-12 md:py-24 max-w-4xl relative">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-300/10 blur-[100px] md:blur-[130px]" />
 
       <PageTitle

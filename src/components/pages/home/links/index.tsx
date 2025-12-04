@@ -18,8 +18,8 @@ export async function Links() {
   return (
     <section className="container mx-auto relative w-full border-t border-white/5 overflow-hidden">
       <div className="px-6 pt-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16">
-          <div className="md:col-span-4 flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 md:mb-16">
+          <div className="md:col-span-4 flex flex-col gap-2 md:gap-6">
             <Link
               href="/"
               className="flex items-center gap-2 group w-fit cursor-pointer"
@@ -67,7 +67,7 @@ export async function Links() {
             </ul>
           </div>
 
-          <div className="md:col-span-4 flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
+          <div className="md:col-span-4 flex flex-col gap-3 md:gap-6 md:items-start md:pl-8 lg:pl-16">
             <h4 className="font-space font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               {t('columns.explore')}
@@ -85,7 +85,6 @@ export async function Links() {
   );
 }
 
-// Subcomponentes auxiliares (permanecem iguais, mas rodam no servidor)
 const LiLink = ({
   href,
   children
@@ -93,13 +92,14 @@ const LiLink = ({
   href: string;
   children: React.ReactNode;
 }) => (
-  <li>
+  <li className="max-w-full overflow-hidden">
     <Link
       href={href}
-      className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors w-fit"
+      className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors w-full"
     >
-      <span className="h-px w-0 bg-primary group-hover:w-3 transition-all duration-300" />
-      {children}
+      <span className="h-px w-0 bg-primary group-hover:w-3 transition-all duration-300 shrink-0" />
+
+      <span className="truncate">{children}</span>
     </Link>
   </li>
 );

@@ -70,47 +70,6 @@
           "role": "Autor",
           "bio": "Engenheiro de Software focado em sistemas escaláveis e interfaces de alta performance."
         }
-      },
-      "Project": {
-        "Timeline": {
-          "empty": "Nenhum projeto encontrado, tente outro filtro",
-          "placeholder": "Buscar projeto",
-          "projects": {
-            "kingfix": {
-              "title": "KingFix",
-              "category": "Aplicação Mobile",
-              "description": "Plataforma completa para gestão de oficinas mecânicas. Controle de ordens de serviço, estoque e agendamentos em tempo real via App mobile.",
-              "stats": "+30% Eficiência Operacional",
-              "metrics_data": [
-                { "value": "+30%", "label": "Eficiência" },
-                { "value": "Mobile", "label": "Plataforma" },
-                { "value": "Real-time", "label": "Sincronia" }
-              ]
-            },
-            "devrex": {
-              "title": "DevRex",
-              "category": "Plataforma Micro-SaaS",
-              "description": "Ecossistema para desenvolvedores encontrarem vagas remotas internacionais. Sistema de automação de LinkedIn e análise de perfil com IA.",
-              "stats": "500+ Vagas Indexadas",
-              "metrics_data": [
-                { "value": "500+", "label": "Vagas" },
-                { "value": "IA", "label": "Powered" },
-                { "value": "Global", "label": "Alcance" }
-              ]
-            },
-            "codesampa": {
-              "title": "codesampa.io",
-              "category": "Branding & Web",
-              "description": "Hub de conteúdo e serviços de engenharia de software. Design system proprietário com animações avançadas e performance otimizada.",
-              "stats": "100/100 Lighthouse Score",
-              "metrics_data": [
-                { "value": "100", "label": "Lighthouse" },
-                { "value": "v1.0", "label": "Design System" },
-                { "value": "0.1s", "label": "Load Time" }
-              ]
-            }
-          }
-        }
       }
     }
   },
@@ -284,7 +243,41 @@
       "subtitle": "Uma seleção de projetos que demonstram capacidade técnica, design system escalável e resolução de problemas complexos.",
       "cta_case_study": "Ver Case Study",
       "cta_repo": "Repositório GitHub",
-      "cta_want_similar": "Quero um Assim"
+      "cta_want_similar": "Quero um Assim",
+      "empty": "Nenhum projeto encontrado, tente outro filtro",
+      "placeholder": "Buscar projeto",
+      "projects": {
+        "kingfix": {
+          "title": "KingFix",
+          "category": "Aplicação Mobile",
+          "description": "Plataforma completa para gestão de oficinas mecânicas. Controle de ordens de serviço, estoque e agendamentos em tempo real via App mobile.",
+          "metrics_data": [
+            { "value": "+30%", "label": "Eficiência" },
+            { "value": "Mobile", "label": "Plataforma" },
+            { "value": "Real-time", "label": "Sincronia" }
+          ]
+        },
+        "devrex": {
+          "title": "DevRex",
+          "category": "Plataforma Micro-SaaS",
+          "description": "Ecossistema para desenvolvedores encontrarem vagas remotas internacionais. Sistema de automação de LinkedIn e análise de perfil com IA.",
+          "metrics_data": [
+            { "value": "500+", "label": "Vagas" },
+            { "value": "IA", "label": "Powered" },
+            { "value": "Global", "label": "Alcance" }
+          ]
+        },
+        "codesampa": {
+          "title": "codesampa.io",
+          "category": "Branding & Web",
+          "description": "Hub de conteúdo e serviços de engenharia de software. Design system proprietário com animações avançadas e performance otimizada.",
+          "metrics_data": [
+            { "value": "100", "label": "Lighthouse" },
+            { "value": "v1.0", "label": "Design System" },
+            { "value": "0.1s", "label": "Load Time" }
+          ]
+        }
+      }
     },
     "Contact": {
       "Hub": {

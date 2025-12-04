@@ -13,7 +13,7 @@ export default async function ProjectsPage() {
   const t = await getTranslations('Pages.Projects');
 
   return (
-    <main className="container mx-auto px-4 py-24 relative w-full overflow-hidden bg-background">
+    <main className="container mx-auto px-4 py-12 md:py-24 relative w-full overflow-hidden bg-background">
       {/* Background Effect */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[100px] md:blur-[130px]" />
 

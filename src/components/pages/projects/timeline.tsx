@@ -10,7 +10,7 @@ import { LIST_PROJECTS, CATEGORIES } from '@/utils/constants/projects';
 import CardProject from './card-project';
 
 export function TimelinePortfolio() {
-  const t = useTranslations('Components.Page.Projects.Timeline');
+  const t = useTranslations('Pages.Projects');
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
