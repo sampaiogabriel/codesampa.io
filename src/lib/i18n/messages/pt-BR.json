@@ -68,10 +68,10 @@
             "design": "Design",
             "career": "Carreira"
           },
-          "search_placeholder": "Search articles...",
-          "empty_state": "No articles found matching your criteria.",
-          "clear_filters": "Clear filters",
-          "read_article": "Read Article"
+          "search_placeholder": "Buscar artigos...",
+          "empty_state": "Nenhum artigo encontrado para os filtros selecionados.",
+          "clear_filters": "Limpar filtros",
+          "read_article": "Ler Artigo"
         },
         "AuthorProfile": {
           "role": "Autor",
