@@ -260,6 +260,7 @@
         "subtitle": "Não encontrou exatamente o que procura? A engenharia personalizada é minha especialidade. Vamos transformar seu desafio mais complexo em software de ponta.",
         "button": "Iniciar Projeto Agora"
       },
+      "more_projects": "Outros Experimentos & Open Source",
       "projects": {
         "kingfix": {
           "title": "KingFix",
@@ -300,6 +301,18 @@
             { "value": "Top 1", "label": "SEO Local" },
             { "value": "2 Semanas", "label": "ROI Tempo" }
           ]
+        },
+        "finance_ai": {
+          "title": "Finance AI",
+          "description": "SaaS de gestão financeira pessoal com insights gerados por Inteligência Artificial (OpenAI) e relatórios automatizados."
+        },
+        "codelab": {
+          "title": "CodeLab System",
+          "description": "Biblioteca de componentes e desafios de código. Um laboratório para testar novos padrões de React e Tailwind."
+        },
+        "lonewolf": {
+          "title": "LoneWolf Landing",
+          "description": "Template de Landing Page de alta performance focada em conversão para infoprodutos e serviços digitais."
         }
       }
     },

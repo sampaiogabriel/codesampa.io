@@ -260,6 +260,7 @@
         "subtitle": "Didn't find exactly what you're looking for? Custom engineering is my specialty. Let's turn your most complex challenge into high-end software.",
         "button": "Start Project Now"
       },
+      "more_projects": "Other Experiments & Open Source",
       "projects": {
         "kingfix": {
           "title": "KingFix",
@@ -300,6 +301,18 @@
             { "value": "Top 1", "label": "Local SEO" },
             { "value": "2 Weeks", "label": "ROI Time" }
           ]
+        },
+        "finance_ai": {
+          "title": "Finance AI",
+          "description": "Personal finance SaaS with AI-generated insights (OpenAI) and automated reporting."
+        },
+        "codelab": {
+          "title": "CodeLab System",
+          "description": "Component library and code challenges. A laboratory to test new React and Tailwind patterns."
+        },
+        "lonewolf": {
+          "title": "LoneWolf Landing",
+          "description": "High-performance Landing Page template focused on conversion for digital products and services."
         }
       }
     },
