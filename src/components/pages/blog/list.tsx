@@ -3,6 +3,7 @@
 import { Post } from '.velite';
 
 import { motion, AnimatePresence } from 'framer-motion';
+// Restaurado o Hash nos imports
 import { ArrowRight, Calendar, Hash } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations, useFormatter } from 'next-intl';
@@ -130,6 +131,7 @@ export function List({ posts }: { posts: Post[] }) {
         <HeaderNewsletter />
       </div>
 
+      {/* --- MOBILE VIEW --- */}
       <div className="flex flex-col gap-8 lg:hidden">
         <FilterBar
           categories={blogCategories}
@@ -170,27 +172,29 @@ export function List({ posts }: { posts: Post[] }) {
         </div>
       </div>
 
-      <div className="hidden lg:grid grid-cols-[1fr_340px] gap-8 items-start">
-        <div className="flex flex-col gap-6 min-w-0">
-          <div className="flex items-center gap-3 mb-2 opacity-60">
-            <Hash size={16} className="text-primary" />
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">
-              Latest Entries
-            </span>
-            <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
-          </div>
-
-          <div className="grid gap-6 grid-cols-1">
-            {desktopPosts.map((post, i) => (
-              <PostCard key={post.slug} post={post} index={i} />
-            ))}
-          </div>
+      {/* --- DESKTOP VIEW --- */}
+      <div className="hidden lg:flex flex-col gap-6">
+        <div className="flex items-center gap-3 opacity-60 px-1">
+          <Hash size={16} className="text-primary" />
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">
+            Latest Entries
+          </span>
+          <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
         </div>
 
-        {/* Coluna da Direita: File Explorer (Sticky) */}
-        <aside className="sticky top-24 max-h-[calc(100vh-120px)] flex flex-col">
-          <FileExplorer posts={posts} className="h-full" />
-        </aside>
+        <div className="grid grid-cols-[1fr_340px] gap-8 items-start">
+          <div className="flex flex-col min-w-0">
+            <div className="grid gap-6 grid-cols-1">
+              {desktopPosts.map((post, i) => (
+                <PostCard key={post.slug} post={post} index={i} />
+              ))}
+            </div>
+          </div>
+
+          <aside className="sticky top-24 max-h-[calc(100vh-120px)] flex flex-col">
+            <FileExplorer posts={posts} className="h-full" />
+          </aside>
+        </div>
       </div>
     </div>
   );
