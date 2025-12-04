@@ -15,7 +15,7 @@ export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
 
   return (
-    <section className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
+    <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground pb-32 md:pb-0">
       {/* Background Gradients & Textura */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 

@@ -10,7 +10,7 @@ import { LIST_PROJECTS, CATEGORIES } from '@/utils/constants/projects';
 import CardProject from './card-project';
 
 export function TimelinePortfolio() {
-  const t = useTranslations('Pages.Projects');
+  const t = useTranslations('Components.Page.Projects.Timeline');
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -38,7 +38,7 @@ export function TimelinePortfolio() {
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
         onSearch={setSearchQuery}
-        placeholder="Buscar projeto..."
+        placeholder={t('placeholder')}
       />
 
       <div className="flex flex-col gap-12 md:gap-24 min-h-[400px]">
@@ -49,7 +49,7 @@ export function TimelinePortfolio() {
             ))
           ) : (
             <div className="py-20 text-center text-muted-foreground">
-              Nenhum projeto encontrado.
+              {t('empty')}
             </div>
           )}
         </AnimatePresence>
