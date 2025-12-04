@@ -284,6 +284,16 @@
             { "value": "v16", "label": "Next.js" },
             { "value": "Global", "label": "i18n Ready" }
           ]
+        },
+        "psialexia": {
+          "title": "Psi Aléxia Marques",
+          "category": "Landing Page de Alta Conversão",
+          "description": "Performance pura focada em resultados. Desenvolvido com HTML, CSS e JS (Vanilla) + Tailwind para atingir pontuação máxima no Lighthouse e SEO impecável. O impacto? Em apenas 2 semanas no ar, a demanda de pacientes foi tão alta que a profissional optou por dedicação integral ao consultório, saindo de seu emprego CLT.",
+          "metrics_data": [
+            { "value": "100/100", "label": "Performance" },
+            { "value": "Top 1", "label": "SEO Local" },
+            { "value": "2 Semanas", "label": "ROI Tempo" }
+          ]
         }
       }
     },

@@ -1,6 +1,11 @@
-import { Database, FileText } from 'lucide-react';
-import { FaMobileAlt, FaLayerGroup, FaDesktop, FaReact } from 'react-icons/fa';
-import { RiTailwindCssFill } from 'react-icons/ri';
+import { Database, Command, FileText } from 'lucide-react';
+import {
+  FaMobileAlt,
+  FaLayerGroup,
+  FaDesktop,
+  FaReact,
+  FaGlobe // Adicionado para Landing Page
+} from 'react-icons/fa';
 import {
   SiNextdotjs,
   SiPrisma,
@@ -13,13 +18,15 @@ import {
   SiVercel,
   SiClerk,
   SiShadcnui,
-  SiTypescript
+  SiTypescript,
+  SiHtml5, // Adicionado
+  SiJavascript // Adicionado
 } from 'react-icons/si';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TECH_ICONS: Record<string, any> = {
   'React Native': FaReact,
-  'Next.js': SiNextdotjs,
+  'Next.js 15': SiNextdotjs,
   'Neon DB': Database,
   Prisma: SiPrisma,
   'Node.js': SiNodedotjs,
@@ -29,11 +36,17 @@ export const TECH_ICONS: Record<string, any> = {
   React: FaReact,
   'Framer Motion': SiFramer,
   Tailwind: SiTailwindcss,
+  'Tailwind CSS': SiTailwindcss, // Alias adicionado
   Vercel: SiVercel,
   Clerk: SiClerk,
   Shadcn: SiShadcnui,
   TypeScript: SiTypescript,
-  Velite: FileText
+  'Tailwind v4': SiTailwindcss,
+  'React 19': FaReact,
+  'Next.js 16': SiNextdotjs,
+  Velite: FileText,
+  HTML5: SiHtml5, // Mapeado
+  JavaScript: SiJavascript // Mapeado
 };
 
 export const LIST_PROJECTS = [
@@ -42,18 +55,28 @@ export const LIST_PROJECTS = [
     isProduct: true,
     category: 'mobile',
     tags: [
-      'Next.js',
-      'React',
+      'Next.js 15',
+      'React 19',
       'Neon DB',
       'Prisma',
       'Clerk',
       'Stripe',
-      'Shadcn',
-      'Tailwind'
+      'Shadcn'
     ],
     color: 'from-[#FF6900] to-orange-600',
     icon: FaMobileAlt,
     link: '#',
+    repo: '#',
+    metrics: ['metric_1', 'metric_2', 'metric_3']
+  },
+  {
+    key: 'psialexia',
+    isProduct: true,
+    category: 'web',
+    tags: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Vercel'],
+    color: 'from-rose-500 to-pink-600',
+    icon: FaGlobe,
+    link: 'https://psialexiamarques.com.br/',
     repo: '#',
     metrics: ['metric_1', 'metric_2', 'metric_3']
   },
@@ -70,13 +93,13 @@ export const LIST_PROJECTS = [
   },
   {
     key: 'codesampa',
-    isProduct: false, // Mantém como projeto open-source/exemplo
+    isProduct: false,
     category: 'web',
     tags: [
-      'Next.js', // Bleeding edge
-      'React',
-      'Tailwind',
-      'Velite', // CMS
+      'Next.js 16',
+      'React 19',
+      'Tailwind v4',
+      'Velite',
       'TypeScript',
       'Framer Motion'
     ],

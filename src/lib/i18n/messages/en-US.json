@@ -284,6 +284,16 @@
             { "value": "v16", "label": "Next.js" },
             { "value": "Global", "label": "i18n Ready" }
           ]
+        },
+        "psialexia": {
+          "title": "Psi Aléxia Marques",
+          "category": "High-Converting Landing Page",
+          "description": "Pure performance focused on results. Built with Vanilla HTML, CSS, JS + Tailwind to achieve maximum Lighthouse scores and flawless SEO. The impact? Just 2 weeks after launch, patient demand was so high that the professional quit her full-time job to focus entirely on her private practice.",
+          "metrics_data": [
+            { "value": "100/100", "label": "Performance" },
+            { "value": "Top 1", "label": "Local SEO" },
+            { "value": "2 Weeks", "label": "ROI Time" }
+          ]
         }
       }
     },
