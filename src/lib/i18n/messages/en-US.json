@@ -254,6 +254,12 @@
       "cta_want_similar": "I want this",
       "empty": "No projects found, try a different filter.",
       "placeholder": "Search project",
+      "cta_footer": {
+        "badge": "Next Step",
+        "title": "Your project could be the next <highlight>Highlight.</highlight>",
+        "subtitle": "Didn't find exactly what you're looking for? Custom engineering is my specialty. Let's turn your most complex challenge into high-end software.",
+        "button": "Start Project Now"
+      },
       "projects": {
         "kingfix": {
           "title": "KingFix",

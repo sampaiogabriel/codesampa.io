@@ -254,6 +254,12 @@
       "cta_want_similar": "Quero um Assim",
       "empty": "Nenhum projeto encontrado, tente outro filtro",
       "placeholder": "Buscar projeto",
+      "cta_footer": {
+        "badge": "Próximo Passo",
+        "title": "Seu projeto pode ser o próximo <highlight>Destaque.</highlight>",
+        "subtitle": "Não encontrou exatamente o que procura? A engenharia personalizada é minha especialidade. Vamos transformar seu desafio mais complexo em software de ponta.",
+        "button": "Iniciar Projeto Agora"
+      },
       "projects": {
         "kingfix": {
           "title": "KingFix",

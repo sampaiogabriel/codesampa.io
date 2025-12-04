@@ -8,6 +8,7 @@ import { FilterBar } from '@/components/ui/filter-bar';
 import { LIST_PROJECTS, CATEGORIES } from '@/utils/constants/projects';
 
 import CardProject from './card-project';
+import { Cta } from './cta';
 
 export function TimelinePortfolio() {
   const t = useTranslations('Pages.Projects');
@@ -41,18 +42,25 @@ export function TimelinePortfolio() {
         placeholder={t('placeholder')}
       />
 
-      <div className="flex flex-col gap-12 md:gap-24 min-h-[400px]">
+      <div className="flex flex-col min-h-[400px]">
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
               <CardProject key={project.key} project={project} index={index} />
             ))
           ) : (
-            <div className="py-20 text-center text-muted-foreground">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-20 text-center text-muted-foreground"
+            >
               {t('empty')}
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>
+
+        <Cta />
       </div>
     </>
   );
