@@ -175,19 +175,6 @@
           }
         }
       },
-      "LampSection": {
-        "title_1": "Pare de Procurar",
-        "title_2": "Comece a Construir",
-        "subtitle": "Você tem a visão. Eu tenho a arquitetura, o código e o compromisso para fazê-la escalar.",
-        "cta": "Vamos Construir o Futuro"
-      },
-      "Newsletter": {
-        "title": "Pronto para escalar?",
-        "description": "Junte-se à nossa lista exclusiva e receba insights sobre arquitetura de software, design systems e tecnologia.",
-        "placeholder": "seunome@empresa.com",
-        "button": "Inscrever",
-        "disclaimer": "Sem spam. Cancele a qualquer momento."
-      },
       "ReadyToBuild": {
         "badge": "Pronto para Começar?",
         "title": "Tire sua ideia do papel e <highlight>construa o futuro.</highlight>",
@@ -216,32 +203,6 @@
           "title": "Fique Atualizado",
           "placeholder": "Digite seu e-mail"
         }
-      },
-      "Terminal": {
-        "title": "Inicializar Uplink",
-        "logs": {
-          "email_desc": "Iniciando protocolo SMTP... Copiando endereço para área de transferência.",
-          "email_copied": "Endereço copiado com sucesso.",
-          "whatsapp_desc": "Estabelecendo canal criptografado via API do WhatsApp...",
-          "calendar_desc": "Sincronizando disponibilidade. Acessando módulo Calendly...",
-          "resume_desc": "Requisitando arquivo binário no servidor... Iniciando download."
-        }
-      },
-      "OrbitalContact": {
-        "title": "Tudo gira em torno do <highlight>seu objetivo.</highlight>",
-        "description": "Engenharia de precisão, design estratégico e performance. Tudo alinhado para lançar seu projeto.",
-        "cta": "Vamos Conversar",
-        "cta_sub": "Iniciar Protocolo"
-      },
-      "Shards": {
-        "title": "Canais de Comunicação",
-        "subtitle": "Escolha a frequência para iniciar a transmissão.",
-        "email_copied": "Email copiado!",
-        "copy_action": "Copiar Endereço",
-        "open_action": "Iniciar Chat",
-        "schedule_action": "Agendar Reunião",
-        "whatsapp_sub": "Resposta direta e rápida.",
-        "calendar_sub": "Sincronize agendas para um call."
       }
     },
     "Projects": {
@@ -341,10 +302,6 @@
           "desc": "Vamos conversar sobre seu projeto em uma reunião de 30 min."
         }
       }
-    },
-    "NotFound": {
-      "description": "Parece que você se perdeu no hiperespaço. A página que você procura foi movida, deletada ou nunca existiu.",
-      "cta": "Voltar para a Base"
     },
     "Blog": {
       "badge": "Engineering Log",

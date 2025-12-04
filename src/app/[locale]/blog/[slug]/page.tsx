@@ -8,9 +8,8 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import * as runtime from 'react/jsx-runtime';
 
-import { Newsletter } from '@/components/pages/blog/newsletter';
 import { ShareButton } from '@/components/pages/blog/share-button';
-import { TableOfContents } from '@/components/pages/blog/table-of-contents'; // <--- Import novo
+import { TableOfContents } from '@/components/pages/blog/table-of-contents';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/utils/functions/tw-merge';
@@ -19,7 +18,6 @@ import { ReadMore } from '@/components/pages/blog/read-more';
 import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 import { CodeBlock } from '@/components/ui/code-block';
 import { Comments } from '@/components/pages/blog/comments';
-import { HeaderNewsletter } from '@/components/pages/blog/header-newsletter';
 import { AuthorProfile } from '@/components/pages/blog/author-profile';
 
 // --- Utilitário para renderizar MDX do Velite ---
