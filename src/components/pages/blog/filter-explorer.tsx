@@ -31,11 +31,11 @@ type FolderNode = {
   isOpen?: boolean;
 };
 
-// --- Função para Construir a Árvore (Ano -> Categoria -> Post) ---
+// --- Função para Construir a Árvore ---
 function buildFileTree(posts: Post[]): FolderNode[] {
   const root: FolderNode[] = [];
 
-  // 1. Agrupar por Ano
+  // 1. Agrupar posts por Ano
   const postsByYear: Record<string, Post[]> = {};
   posts.forEach((post) => {
     const year = new Date(post.date).getFullYear().toString();
@@ -43,22 +43,48 @@ function buildFileTree(posts: Post[]): FolderNode[] {
     postsByYear[year].push(post);
   });
 
-  // 2. Para cada Ano, agrupar por Tag (Categoria)
+  // 2. Iterar sobre os anos (Ordenado: Mais recente -> Mais antigo)
   Object.entries(postsByYear)
     .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-    .forEach(([year, yearPosts]) => {
+    .forEach(([year, yearPosts], yearIndex) => {
+      // Lógica de abertura automática: Apenas o primeiro ano começa aberto
+      const isFirstYear = yearIndex === 0;
+
       const yearFolder: FolderNode = {
         type: 'folder',
         name: year,
         children: [],
-        isOpen: true
+        isOpen: isFirstYear
       };
 
-      const yearTags = Array.from(
-        new Set(yearPosts.flatMap((p) => p.tags))
-      ).sort();
+      // 3. Identificar e Ordenar Tags dentro do Ano
+      // Ordenação: Baseada na data do post mais recente daquela tag (Activity-based sort)
+      const uniqueTags = Array.from(new Set(yearPosts.flatMap((p) => p.tags)));
 
-      yearTags.forEach((tag) => {
+      const sortedTags = uniqueTags.sort((tagA, tagB) => {
+        // Encontra o post mais recente da tag A
+        const latestPostA = yearPosts
+          .filter((p) => p.tags.includes(tagA))
+          .sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          )[0];
+
+        // Encontra o post mais recente da tag B
+        const latestPostB = yearPosts
+          .filter((p) => p.tags.includes(tagB))
+          .sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          )[0];
+
+        // Compara as datas
+        return (
+          new Date(latestPostB.date).getTime() -
+          new Date(latestPostA.date).getTime()
+        );
+      });
+
+      // 4. Construir pastas das Tags
+      sortedTags.forEach((tag, tagIndex) => {
         const tagPosts = yearPosts
           .filter((p) => p.tags.includes(tag))
           .sort(
@@ -66,6 +92,9 @@ function buildFileTree(posts: Post[]): FolderNode[] {
           );
 
         if (tagPosts.length > 0) {
+          // Lógica de abertura automática: Apenas a primeira tag do primeiro ano começa aberta
+          const isFirstTag = isFirstYear && tagIndex === 0;
+
           yearFolder.children.push({
             type: 'folder',
             name: tag,
@@ -74,7 +103,7 @@ function buildFileTree(posts: Post[]): FolderNode[] {
               name: `${post.slugAsParams}.tsx`,
               post
             })),
-            isOpen: false
+            isOpen: isFirstTag
           });
         }
       });
@@ -128,7 +157,7 @@ const FileItem = ({ node }: { node: FileNode }) => (
       size={14}
       className="shrink-0 text-blue-400/80 group-hover:text-blue-400"
     />
-    <span className="font-mono truncate relative top-[1px]">{node.name}</span>
+    <span className="font-mono truncate relative top-px">{node.name}</span>
     <span className="ml-auto text-[10px] opacity-0 group-hover:opacity-60 transition-opacity whitespace-nowrap font-mono text-muted-foreground/80">
       {format(new Date(node.post.date), 'MM/dd')}
     </span>
@@ -160,12 +189,12 @@ const FolderItem = ({
         <span
           className={cn(
             'shrink-0 transition-colors',
-            depth === 0 ? 'text-purple-400/90' : 'text-yellow-400/90' // Ano = Roxo, Tag = Amarelo (VS Code style)
+            depth === 0 ? 'text-purple-400/90' : 'text-yellow-400/90'
           )}
         >
           {isOpen ? <FolderOpen size={14} /> : <Folder size={14} />}
         </span>
-        <span className="font-mono tracking-wide truncate relative top-[1px]">
+        <span className="font-mono tracking-wide truncate relative top-px">
           {node.name}
         </span>
       </button>
@@ -212,9 +241,11 @@ export function FileExplorer({
   );
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
       className={cn(
-        // Cores do Container Principal: Glassmorphism Escuro
         'flex flex-col w-full overflow-hidden rounded-xl border border-white/10 bg-card/30 backdrop-blur-md shadow-2xl',
         className
       )}
@@ -275,6 +306,6 @@ export function FileExplorer({
           <span>UTF-8</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
