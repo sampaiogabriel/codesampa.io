@@ -50,9 +50,16 @@
           "inThisArticle": "In This Article"
         },
         "HeaderNewsletter": {
-          "title": "Weekly Insights",
-          "subtitle": "Engineering, Architecture & Design",
-          "placeholder": "your@email.com"
+          "title_prefix": "Receive",
+          "title_highlight": "Weekly Logs",
+          "description": "Subscribe to get the latest updates on architecture, frontend, and career directly to your inbox.",
+          "placeholder": "your@email.com",
+          "button_label": "Subscribe",
+          "messages": {
+            "success": "Subscription successful.",
+            "error": "Connection error.",
+            "critical_error": "System failure."
+          }
         },
         "List": {
           "categories": {

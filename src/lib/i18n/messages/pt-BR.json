@@ -49,10 +49,17 @@
         "TableOfContents": {
           "inThisArticle": "In This Article"
         },
-        "HeaderNewsletter": {
-          "title": "Insights Semanais",
-          "subtitle": "Engenharia, Arquitetura & Design",
-          "placeholder": "seu@email.com"
+        "Newsletter": {
+          "title_prefix": "Receber",
+          "title_highlight": "Logs Semanais",
+          "description": "Inscreva-se para receber as últimas atualizações sobre arquitetura, frontend e carreira diretamente no seu inbox.",
+          "placeholder": "seu@email.com",
+          "button_label": "Inscrever",
+          "messages": {
+            "success": "Inscrição realizada com sucesso.",
+            "error": "Erro ao se conectar.",
+            "critical_error": "Falha no sistema."
+          }
         },
         "List": {
           "categories": {

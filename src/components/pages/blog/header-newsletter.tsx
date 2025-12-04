@@ -1,87 +1,109 @@
 'use client';
 
 import { subscribeToNewsletter } from '@/app/actions/newsletter';
-import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Loader2, Terminal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useActionState, useEffect, useState } from 'react';
+import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
 
-import { Button } from '@/components/ui/button';
+import { cn } from '@/utils/functions/tw-merge';
 
 export function HeaderNewsletter() {
-  const t = useTranslations('Components.Pages.Blog.HeaderNewsletter');
-
+  const t = useTranslations('Components.Pages.Blog.Newsletter');
   const [email, setEmail] = useState('');
-  const [state, formAction, isPending] = useActionState(subscribeToNewsletter, {
-    success: false,
-    message: ''
-  });
+  const [isPending, startTransition] = useTransition();
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.success) {
-        toast.success(state.message);
-        setEmail('');
-      } else {
-        toast.error(state.message);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append('email', email);
+        const result = await subscribeToNewsletter(null, formData);
+
+        if (result?.success || result?.message === 'success') {
+          setStatus('success');
+          toast.success(t('messages.success'));
+          setEmail('');
+        } else {
+          setStatus('error');
+          toast.error(t('messages.error'));
+        }
+      } catch (error) {
+        setStatus('error');
+        toast.error(t('messages.critical_error'));
       }
-    }
-  }, [state]);
+      setTimeout(() => setStatus('idle'), 3000);
+    });
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.2, duration: 0.5 }}
-      className="relative mx-auto mb-12 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-1.5 shadow-2xl backdrop-blur-md transition-all hover:border-primary/30 hover:bg-white/10"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-card/30 p-5 md:p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-card/40"
     >
-      <div className="absolute -left-10 top-0 h-full w-20 skew-x-12 bg-white/5 blur-xl transition-all duration-1000 group-hover:left-full" />
-
-      <form
-        action={formAction}
-        className="relative flex flex-col items-center gap-2 sm:flex-row"
-      >
-        <div className="flex flex-1 items-center gap-3 px-3 py-2 text-center sm:text-left">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary/20 to-purple-500/20 text-primary shadow-inner">
-            <Sparkles size={16} />
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        {/* Lado Esquerdo */}
+        <div className="flex flex-col gap-2 md:max-w-lg">
+          <div className="flex items-center gap-2">
+            <Terminal size={16} className="text-primary" />
+            <h3 className="text-lg font-bold font-space text-foreground md:text-xl">
+              {t('title_prefix')}{' '}
+              <span className="text-primary">{t('title_highlight')}</span>
+            </h3>
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="text-sm font-bold text-white">{t('title')}</span>
-            <span className="text-[10px] text-muted-foreground/80 font-mono mt-1">
-              {t('subtitle')}
-            </span>
-          </div>
+          <p className="text-sm text-muted-foreground/80 leading-relaxed">
+            {t('description')}
+          </p>
         </div>
 
-        <div className="group/input flex w-full items-center gap-2 rounded-xl bg-black/40 p-1 ring-1 ring-white/5 transition-all focus-within:ring-primary/50 sm:w-auto">
-          <Mail
-            size={14}
-            className="ml-3 text-muted-foreground transition-colors group-focus-within/input:text-white"
-          />
-          <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t('placeholder')}
-            disabled={isPending}
-            className="w-full bg-transparent px-2 py-2 text-xs text-white placeholder:text-muted-foreground/50 focus:outline-none sm:w-56"
-            required
-          />
-          <Button
-            size="sm"
-            disabled={isPending}
-            className="h-8 w-8 rounded-lg bg-white text-black hover:bg-primary hover:text-white transition-all shadow-lg p-0 shrink-0 cursor-pointer"
-          >
-            {isPending ? (
-              <Loader2 size={14} className="animate-spin" />
-            ) : (
-              <ArrowRight size={14} />
+        {/* Lado Direito */}
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-full items-stretch gap-2 md:w-auto md:min-w-[340px]"
+        >
+          <div className="relative flex-1">
+            <input
+              type="email"
+              placeholder={t('placeholder')}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isPending || status === 'success'}
+              className="h-10 w-full rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-white placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all font-mono"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isPending || status === 'success'}
+            className={cn(
+              'flex h-10 items-center justify-center rounded-lg px-4 text-sm font-bold uppercase tracking-wider transition-all min-w-[100px]',
+              status === 'success'
+                ? 'bg-green-500/20 text-green-400 border border-green-500/50'
+                : 'bg-primary text-black hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]'
             )}
-          </Button>
-        </div>
-      </form>
+          >
+            <AnimatePresence mode="wait">
+              {isPending ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : status === 'success' ? (
+                <CheckCircle2 size={16} />
+              ) : (
+                <div className="flex items-center gap-1">
+                  <span>{t('button_label')}</span>
+                  <ArrowRight size={14} />
+                </div>
+              )}
+            </AnimatePresence>
+          </button>
+        </form>
+      </div>
     </motion.div>
   );
 }
