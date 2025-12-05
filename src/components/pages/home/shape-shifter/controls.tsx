@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Monitor, Smartphone, RotateCcw, Lock } from 'lucide-react';
+import { Monitor, Smartphone, RotateCcw, Lock, ArrowRight } from 'lucide-react';
 
 import { cn } from '@/utils/functions/tw-merge';
+import { useHomeStore } from '@/utils/stores/home-store'; // Importando a store
 
 interface ControlsProps {
   currentMode: 'desktop' | 'mobile';
@@ -11,6 +12,7 @@ interface ControlsProps {
   onReplay: () => void;
   isMobileDevice: boolean;
   isVisible: boolean;
+  // Removidas as props: suggestionLabel e onToggleMode
 }
 
 export function ShapeShifterControls({
@@ -20,76 +22,102 @@ export function ShapeShifterControls({
   isMobileDevice,
   isVisible
 }: ControlsProps) {
+  const { mode, toggleMode } = useHomeStore();
+
+  const suggestionLabel =
+    mode === 'systems' ? 'Landing Page' : 'System Architecture';
+
+  if (!isVisible) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="relative z-40 flex items-center gap-2 mt-4"
+      animate={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+      className="w-full max-w-6xl relative z-40 flex flex-row justify-between items-center mt-6"
     >
-      {/* Toggle Container */}
-      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/80 p-1.5 shadow-2xl backdrop-blur-xl ring-1 ring-white/5">
-        {/* Botão Desktop */}
-        <button
-          onClick={() => !isMobileDevice && setMode('desktop')}
-          disabled={isMobileDevice}
-          className={cn(
-            'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-            currentMode === 'desktop'
-              ? 'text-white'
-              : 'text-slate-500 hover:text-slate-300',
-            isMobileDevice && 'opacity-30 cursor-not-allowed'
-          )}
-        >
-          {currentMode === 'desktop' && (
-            <motion.div
-              layoutId="active-pill"
-              className="absolute inset-0 rounded-full bg-white/10 ring-1 ring-white/5"
-              transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-            />
-          )}
-          <Monitor size={14} className="relative z-10" />
-          <span className="relative z-10 hidden sm:inline">Desktop</span>
-          {isMobileDevice && (
-            <Lock
-              size={10}
-              className="absolute -right-1 -top-1 text-slate-500"
-            />
-          )}
-        </button>
+      <div className="w-full flex-1 flex items-center justify-center gap-2">
+        <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/80 p-1.5 shadow-2xl backdrop-blur-xl ring-1 ring-white/5">
+          <button
+            onClick={() => !isMobileDevice && setMode('desktop')}
+            disabled={isMobileDevice}
+            className={cn(
+              'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
+              currentMode === 'desktop'
+                ? 'text-white'
+                : 'text-slate-500 hover:text-slate-300',
+              isMobileDevice && 'opacity-30 cursor-not-allowed'
+            )}
+          >
+            {currentMode === 'desktop' && (
+              <motion.div
+                layoutId="active-pill"
+                className="absolute inset-0 rounded-full bg-white/10 ring-1 ring-white/5"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <Monitor size={14} className="relative z-10" />
+            <span className="relative z-10 hidden sm:inline">Desktop</span>
+            {isMobileDevice && (
+              <Lock
+                size={10}
+                className="absolute -right-1 -top-1 text-slate-500"
+              />
+            )}
+          </button>
 
-        {/* Separator */}
-        <div className="h-4 w-px bg-white/10 mx-1" />
+          {/* Separator */}
+          <div className="h-4 w-px bg-white/10 mx-1" />
 
-        {/* Botão Mobile */}
+          {/* Botão Mobile */}
+          <button
+            onClick={() => setMode('mobile')}
+            className={cn(
+              'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
+              currentMode === 'mobile'
+                ? 'text-white'
+                : 'text-slate-500 hover:text-slate-300'
+            )}
+          >
+            {currentMode === 'mobile' && (
+              <motion.div
+                layoutId="active-pill"
+                className="absolute inset-0 rounded-full bg-white/10 ring-1 ring-white/5"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <Smartphone size={14} className="relative z-10" />
+            <span className="relative z-10 hidden sm:inline">Mobile</span>
+          </button>
+        </div>
+
         <button
-          onClick={() => setMode('mobile')}
-          className={cn(
-            'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
-            currentMode === 'mobile'
-              ? 'text-white'
-              : 'text-slate-500 hover:text-slate-300'
-          )}
+          onClick={onReplay}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/80 text-slate-400 backdrop-blur-xl transition-all hover:bg-white/10 hover:text-white active:scale-95 group"
+          title="Replay Animation"
         >
-          {currentMode === 'mobile' && (
-            <motion.div
-              layoutId="active-pill"
-              className="absolute inset-0 rounded-full bg-white/10 ring-1 ring-white/5"
-              transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-            />
-          )}
-          <Smartphone size={14} className="relative z-10" />
-          <span className="relative z-10 hidden sm:inline">Mobile</span>
+          <RotateCcw
+            size={16}
+            className="transition-transform duration-500 group-hover:-rotate-180"
+          />
         </button>
       </div>
 
-      {/* Botão Replay Separado */}
       <button
-        onClick={onReplay}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/80 text-slate-400 backdrop-blur-xl transition-all hover:bg-white/10 hover:text-white active:scale-95"
-        title="Replay Animation"
+        onClick={toggleMode}
+        className="group flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-1.5 text-[10px] font-medium uppercase tracking-widest text-slate-400 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
       >
-        <RotateCcw size={16} />
+        <span>See also:</span>
+        <span className="text-white underline decoration-white/30 underline-offset-4 group-hover:decoration-white/80 transition-all">
+          {suggestionLabel}
+        </span>
+        <ArrowRight
+          size={10}
+          className="ml-0.5 transition-transform duration-300 group-hover:translate-x-1"
+        />
       </button>
     </motion.div>
   );

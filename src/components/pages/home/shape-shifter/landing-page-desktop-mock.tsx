@@ -11,7 +11,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export function LandingPageMock() {
+export function LandingPageDesktopMock() {
   return (
     <div className="relative flex h-full w-full flex-col overflow-hidden rounded-xl bg-[#09090b] ring-1 ring-white/10 shadow-2xl font-sans select-none">
       {/* === NOISE TEXTURE OVERLAY === */}

@@ -8,83 +8,73 @@ import { useHomeStore } from '@/utils/stores/home-store';
 
 import { FeatureType } from './components';
 import { ShapeShifterControls } from './controls';
-import { DesktopMock } from './desktop-mock';
-import { LandingPageMock } from './landing-page-mock';
-import { MobileMock } from './mobile-mock';
+import { LandingPageDesktopMock } from './landing-page-desktop-mock';
+import { LandingPageMobileMock } from './landing-page-mobile-mock';
 import { PriorityNotification } from './priority-notification';
+import { SystemDesktopMock } from './system-desktop-mock';
+import { SystemMobileMock } from './system-mobile-mock';
 
 export function ShapeShifterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { mode } = useHomeStore();
 
-  // Estados de Controle
+  // --- Estados de Controle ---
   const [hasPlayed, setHasPlayed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [replayKey, setReplayKey] = useState(0);
 
-  // Controle da Notificação
+  // Estado persistente para os controles
+  const [controlsVisible, setControlsVisible] = useState(false);
+
+  // --- Controle da Notificação ---
   const [showNotification, setShowNotification] = useState(false);
 
-  // Refs para limpar timeouts se o usuário interagir rápido
+  // --- Refs ---
   const sequenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const notificationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Feature Slider
-  const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
-  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
-  // --- 1. Lógica da Animação (Definida antes para ser usada no useEffect) ---
+  // --- Feature Slider (Systems) ---
+  const [activeFeature, setActiveFeature] = useState<FeatureType>('analytics');
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+
+  // --- Lógica da Animação ---
   const triggerCinematicSequence = useCallback(() => {
-    // Limpa timeouts anteriores para evitar sobreposição
     if (sequenceTimeoutRef.current) clearTimeout(sequenceTimeoutRef.current);
     if (notificationTimeoutRef.current)
       clearTimeout(notificationTimeoutRef.current);
 
     setIsPlaying(true);
-    setShowNotification(false); // Garante que a notificação some no início
+    setShowNotification(false);
     setActiveFeature('analytics');
 
-    // Duração da Animação (Mock entrando)
     sequenceTimeoutRef.current = setTimeout(() => {
       setIsPlaying(false);
       setHasPlayed(true);
+      setControlsVisible(true);
 
-      // Delay para mostrar a notificação após o mock estabilizar
       notificationTimeoutRef.current = setTimeout(() => {
         setShowNotification(true);
       }, 500);
     }, 1500);
   }, []);
 
-  // --- 2. Efeitos de Mudança de Modo ---
+  // --- Efeitos ---
+
+  // 1. (REMOVIDO) Efeito de mudança de Modo
+  // Removemos o useEffect que resetava a animação ao trocar o 'mode'.
+  // Agora a troca é instantânea e visualmente controlada apenas pelo renderMock.
+
+  // 2. Reset ViewMode (Desktop/Mobile) - Apenas no início ou Replay completo
   useEffect(() => {
-    // Reseta tudo
-    setHasPlayed(false);
-    setIsPlaying(false);
-    setShowNotification(false);
-    setReplayKey((prev) => prev + 1);
-
-    // Reinicia a sequência automaticamente após um breve delay (para o scroll acontecer)
-    const timeoutId = setTimeout(() => {
-      triggerCinematicSequence();
-    }, 300);
-
-    return () => clearTimeout(timeoutId);
-  }, [mode, triggerCinematicSequence]);
-
-  // Modo inicial (Mobile vs Desktop)
-  useEffect(() => {
-    if (isMobile) {
-      setViewMode('mobile');
-    } else if (!hasPlayed && replayKey === 0) {
+    if (!hasPlayed && replayKey === 0) {
       setViewMode('desktop');
     }
-  }, [isMobile, hasPlayed, replayKey]);
+  }, [hasPlayed, replayKey]);
 
-  // Intersection Observer (Para a primeira vez que aparece na tela)
+  // 3. Intersection Observer (Play on Scroll)
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
@@ -92,7 +82,6 @@ export function ShapeShifterSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        // Só dispara se nunca tocou e não está tocando
         if (
           entry.isIntersecting &&
           !hasPlayed &&
@@ -108,9 +97,9 @@ export function ShapeShifterSection() {
     return () => observer.disconnect();
   }, [hasPlayed, isPlaying, replayKey, triggerCinematicSequence]);
 
-  // Auto-Play das Features (Analytics -> CRM -> Chat)
+  // 4. Auto-Play Features
   useEffect(() => {
-    if (mode === 'landing') return;
+    if (mode === 'landing' || viewMode === 'mobile') return;
     if (!hasPlayed || isPlaying || isInteractionPaused) return;
 
     const features: FeatureType[] = ['analytics', 'crm', 'chat'];
@@ -127,8 +116,9 @@ export function ShapeShifterSection() {
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
-  }, [hasPlayed, isPlaying, isInteractionPaused, mode]);
+  }, [hasPlayed, isPlaying, isInteractionPaused, mode, viewMode]);
 
+  // --- Handlers ---
   const handleManualFeatureChange = (feature: FeatureType) => {
     setActiveFeature(feature);
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
@@ -142,15 +132,43 @@ export function ShapeShifterSection() {
     setTimeout(() => triggerCinematicSequence(), 50);
   };
 
+  // --- Render Helpers ---
+  const renderMock = () => {
+    if (mode === 'systems') {
+      return viewMode === 'desktop' ? (
+        <SystemDesktopMock
+          startAnimation={isPlaying || hasPlayed}
+          activeFeature={activeFeature}
+          setFeature={handleManualFeatureChange}
+          setIsInteractionPaused={setIsInteractionPaused}
+        />
+      ) : (
+        <SystemMobileMock
+          startAnimation={isPlaying || hasPlayed}
+          activeFeature={activeFeature}
+          setFeature={handleManualFeatureChange}
+        />
+      );
+    } else {
+      return viewMode === 'desktop' ? (
+        <LandingPageDesktopMock />
+      ) : (
+        <LandingPageMobileMock />
+      );
+    }
+  };
+
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <section
       id="shape-shifter"
       ref={containerRef}
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
+      className="relative flex container mx-auto h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
     >
-      <div className="relative z-10 flex w-full items-center justify-center p-4">
-        {/* Notificação de Prioridade (Overlay) */}
-        {/* Posicionada relativa a este container flex */}
+      <div className="relative z-10 flex w-full flex-col items-center justify-center p-4">
         <PriorityNotification
           isVisible={showNotification}
           onDismiss={() => setShowNotification(false)}
@@ -158,9 +176,8 @@ export function ShapeShifterSection() {
         />
 
         <AnimatePresence mode="wait">
-          {/* CONTAINER DO MOCK */}
           <motion.div
-            key={`${mode}-${viewMode}-${replayKey}`}
+            key={`${viewMode}-${replayKey}`}
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{
               opacity: 1,
@@ -171,44 +188,24 @@ export function ShapeShifterSection() {
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className={
-              mode === 'landing'
+              mode === 'landing' && viewMode === 'desktop'
                 ? 'aspect-16/10 w-[95vw] max-w-6xl perspective-1000'
                 : ''
             }
           >
-            {mode === 'landing' ? (
-              <div className="relative h-full w-full overflow-hidden rounded-xl bg-[#09090b] shadow-2xl ring-1 ring-white/10">
-                <LandingPageMock />
-              </div>
-            ) : viewMode === 'desktop' ? (
-              <DesktopMock
-                startAnimation={isPlaying || hasPlayed}
-                activeFeature={activeFeature}
-                setFeature={handleManualFeatureChange}
-                setIsInteractionPaused={setIsInteractionPaused}
-              />
-            ) : (
-              <MobileMock
-                startAnimation={isPlaying || hasPlayed}
-                activeFeature={activeFeature}
-                setFeature={handleManualFeatureChange}
-                mode={mode}
-              />
-            )}
+            {renderMock()}
           </motion.div>
         </AnimatePresence>
-      </div>
 
-      {/* Controles de Dispositivo */}
-      {mode === 'systems' && !isPlaying && (
+        {/* Controles Unificados */}
         <ShapeShifterControls
           currentMode={viewMode}
           setMode={setViewMode}
           onReplay={handleReplay}
-          isMobileDevice={!!isMobile}
-          isVisible={hasPlayed}
+          isMobileDevice={false}
+          isVisible={controlsVisible}
         />
-      )}
+      </div>
     </section>
   );
 }

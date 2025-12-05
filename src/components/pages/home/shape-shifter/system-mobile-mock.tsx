@@ -18,16 +18,13 @@ interface MobileMockProps {
   setFeature: (f: FeatureType) => void;
 }
 
-export function MobileMock({
+export function SystemMobileMock({
   startAnimation,
   activeFeature,
   setFeature
 }: MobileMockProps) {
   return (
-    // FIX: Alterado de motion.div para div simples.
-    // Removemos as props 'initial' e 'animate' que causavam o conflito de opacidade.
     <div className="relative flex aspect-9/19 h-[75vh] max-h-[800px] w-full max-w-[380px] flex-col overflow-hidden rounded-[3rem] border-8 border-[#1a1a1a] bg-[#0A0A0A] shadow-2xl ring-1 ring-white/10">
-      {/* Notch & Status Bar */}
       <div className="absolute top-0 z-30 flex h-12 w-full items-end justify-between px-6 pb-2">
         <span className="text-[10px] font-medium text-white/80">9:41</span>
         <div className="absolute left-1/2 top-0 flex h-6 w-32 -translate-x-1/2 items-end justify-center rounded-b-xl bg-[#1a1a1a] pb-1.5">
