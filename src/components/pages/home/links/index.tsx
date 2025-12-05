@@ -24,10 +24,7 @@ export async function Links() {
               href="/"
               className="flex items-center gap-2 group w-fit cursor-pointer"
             >
-              <Logo width={48} />
-              <span className="font-space text-2xl font-bold tracking-tight text-white">
-                codesampa.io
-              </span>
+              <Logo width={48} showText />
             </Link>
 
             <p className="text-muted-foreground text-base leading-relaxed max-w-sm">

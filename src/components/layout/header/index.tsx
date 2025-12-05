@@ -35,10 +35,7 @@ export function Header() {
             href="/"
             className="flex items-center gap-2 group cursor-pointer"
           >
-            <Logo />
-            <span className="font-space text-lg font-bold tracking-tight text-foreground">
-              codesampa.io
-            </span>
+            <Logo showText />
           </Link>
         </div>
 
