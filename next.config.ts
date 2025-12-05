@@ -10,6 +10,15 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
   import('velite').then((m) => m.build({ watch: isDev, clean: !isDev }));
 }
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com'
+      }
+    ]
+  }
+};
 
 export default withNextIntl(nextConfig);

@@ -14,6 +14,7 @@ import {
   Send,
   Menu
 } from 'lucide-react';
+import Image from 'next/image';
 
 import { cn } from '@/utils/functions/tw-merge';
 
@@ -32,8 +33,13 @@ export const DesktopSidebar = ({
     <div className="relative z-10">
       <div className="group mb-8 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-2 transition-colors hover:border-white/5 hover:bg-white/5">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-tr from-blue-600 to-primary text-xs font-bold text-white shadow-[0_0_15px_rgba(0,71,255,0.5)]">
-            CS
+          <div className="relative h-8 w-8 overflow-hidden rounded-lg shadow-[0_0_15px_rgba(0,71,255,0.5)]">
+            <Image
+              src="/assets/logo/codesampa-io.png"
+              alt="codesampa.io"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <div className="text-sm font-semibold leading-none text-white">
@@ -158,8 +164,8 @@ export const ResponsiveHeader = ({
             <span className="text-xs">Search...</span>
           </div>
         )}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-linear-to-tr from-slate-700 to-slate-800 text-xs font-bold text-white shadow-inner">
-          GS
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-linear-to-tr from-primary-900 to-purple-500 text-xs font-bold text-white shadow-inner">
+          ME
         </div>
       </div>
     </div>
@@ -364,8 +370,13 @@ export const ChatView = ({ isMobile }: { isMobile: boolean }) => (
         animate={{ opacity: 1, y: 0 }}
         className="flex gap-3"
       >
-        <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
-          JD
+        <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-white/10">
+          <Image
+            src="https://github.com/sampaiogabriel.png"
+            alt="Gabriel Sampaio"
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="bg-white/10 rounded-2xl rounded-tl-none p-3 text-sm text-slate-200 max-w-[80%]">
           Hey! The new deployment looks amazing. 🚀
@@ -392,8 +403,13 @@ export const ChatView = ({ isMobile }: { isMobile: boolean }) => (
         transition={{ delay: 0.4 }}
         className="flex gap-3"
       >
-        <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
-          JD
+        <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-white/10">
+          <Image
+            src="https://github.com/sampaiogabriel.png"
+            alt="Gabriel Sampaio"
+            fill
+            className="object-cover"
+          />
         </div>
         <div className="bg-white/10 rounded-2xl rounded-tl-none p-3 text-sm text-slate-200 max-w-[80%]">
           Performance metrics are up by 40%. Great job!
