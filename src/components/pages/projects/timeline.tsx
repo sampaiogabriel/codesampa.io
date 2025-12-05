@@ -1,6 +1,10 @@
+// src/components/pages/projects/timeline.tsx
+
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+// Adicionar import do Hash
+import { Hash } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -65,12 +69,16 @@ export function TimelinePortfolio() {
           )}
         </AnimatePresence>
 
-        <div className="border-t border-white/5">
+        <div className="mt-8">
           {LIST_SECONDARY_PROJECTS.length > 0 && (
             <>
-              <h3 className="mb-4 mt-4 font-space text-2xl font-bold text-white text-center md:text-left">
-                {t('more_projects')}
-              </h3>
+              <div className="flex items-center gap-3 opacity-60 px-1 mb-8">
+                <Hash size={16} className="text-primary" />
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">
+                  {t('more_projects')}
+                </span>
+                <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {LIST_SECONDARY_PROJECTS.map((project, index) => (
