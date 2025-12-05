@@ -72,13 +72,17 @@ export function TimelinePortfolio() {
         <div className="mt-8">
           {LIST_SECONDARY_PROJECTS.length > 0 && (
             <>
-              <div className="flex items-center gap-3 opacity-60 px-1 mb-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-3 opacity-60 px-1 mb-8"
+              >
                 <Hash size={16} className="text-primary" />
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">
                   {t('more_projects')}
                 </span>
                 <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
-              </div>
+              </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {LIST_SECONDARY_PROJECTS.map((project, index) => (

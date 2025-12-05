@@ -12,17 +12,15 @@ import { FilterBar } from '@/components/ui/filter-bar';
 
 import { HeaderNewsletter } from './header-newsletter';
 import { FileExplorer } from './filter-explorer';
-import { PostCard } from './post-card'; // Importando o novo componente
+import { PostCard } from './post-card';
 
 export function List({ posts }: { posts: Post[] }) {
   const t = useTranslations('Components.Pages.Blog.List');
-  const locale = useLocale(); // Pegando locale atual para passar ao card
+  const locale = useLocale();
 
-  // --- ESTADOS ---
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // --- LÓGICA DE FILTRO ---
   const blogCategories = useMemo(() => {
     const allTags = posts.flatMap((post) => post.tags);
     const uniqueTags = Array.from(new Set(allTags)).sort();
@@ -56,7 +54,6 @@ export function List({ posts }: { posts: Post[] }) {
         <HeaderNewsletter />
       </div>
 
-      {/* --- MOBILE VIEW --- */}
       <div className="flex flex-col gap-8 lg:hidden">
         <FilterBar
           categories={blogCategories}
@@ -104,16 +101,18 @@ export function List({ posts }: { posts: Post[] }) {
 
       {/* --- DESKTOP VIEW --- */}
       <div className="hidden lg:flex flex-col gap-6">
-        {/* CORREÇÃO DO BUG: Título movido para cima do Grid */}
-        <div className="flex items-center gap-3 opacity-60 px-1">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center gap-3 opacity-60 px-1"
+        >
           <Hash size={16} className="text-primary" />
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground">
             Latest Entries
           </span>
           <div className="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
-        </div>
+        </motion.div>
 
-        {/* Grid agora começa alinhado no topo */}
         <div className="grid grid-cols-[1fr_340px] gap-8 items-start">
           <div className="flex flex-col min-w-0">
             <div className="grid gap-6 grid-cols-1">
