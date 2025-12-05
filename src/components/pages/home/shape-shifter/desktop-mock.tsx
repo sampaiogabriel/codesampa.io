@@ -137,38 +137,30 @@ export function DesktopMock({
 
   // Função auxiliar para escapar HTML e aplicar cores
   const processCodeLine = (line: string) => {
-    // 1. Escapar caracteres HTML para que o navegador renderize o texto, não tags
     let safeLine = line
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
 
-    // 2. Aplicar Syntax Highlighting (Na ordem correta para evitar conflitos)
-
-    // Comentários (Cinza)
     safeLine = safeLine.replace(
       /(\/\/.*$)/g,
       '<span class="text-slate-500 italic">$1</span>'
     );
 
-    // Se a linha for um comentário inteiro, retorna logo para não colorir keywords dentro do comentário
     if (safeLine.startsWith('<span class="text-slate-500')) {
       return safeLine;
     }
 
-    // Keywords (Roxo)
     safeLine = safeLine.replace(
       /\b(import|export|from|return|if|const|function|async|await)\b/g,
       '<span class="text-purple-400">$1</span>'
     );
 
-    // Strings (Verde)
     safeLine = safeLine.replace(
       /('.*?')/g,
       '<span class="text-green-400">$1</span>'
     );
 
-    // Tags JSX (Azul) - Procura por &lt;...&gt; pois já escapamos
     safeLine = safeLine.replace(
       /(&lt;\/?[a-zA-Z0-9]+.*?&gt;)/g,
       '<span class="text-blue-400">$1</span>'
@@ -178,16 +170,9 @@ export function DesktopMock({
   };
 
   return (
-    <motion.div
-      className="relative aspect-16/10 w-[95vw] max-w-6xl perspective-1000"
-      initial={{ opacity: 0, scale: 0.95, y: 30 }}
-      animate={
-        startAnimation
-          ? { opacity: 1, scale: 1, y: 0 }
-          : { opacity: 0, scale: 0.95, y: 30 }
-      }
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-    >
+    // FIX: Removemos o motion.div externo com opacity condicional.
+    // Agora o componente sempre renderiza visível, confiando na animação do pai (index.tsx)
+    <div className="relative aspect-16/10 w-[95vw] max-w-6xl perspective-1000">
       <motion.div
         className="relative h-full w-full transform-style-3d transition-all duration-700"
         animate={{ rotateY: isXRay ? 180 : 0 }}
@@ -236,10 +221,10 @@ export function DesktopMock({
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeFeature}
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.2 }}
                       className="h-full w-full"
                     >
                       {activeFeature === 'analytics' && (
@@ -347,6 +332,6 @@ export function DesktopMock({
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

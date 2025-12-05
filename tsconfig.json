@@ -32,6 +32,6 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     ".velite"
-  ],
+, "src/components/pages/home/shape-shifter/landing-page-mock"  ],
   "exclude": ["node_modules"]
 }

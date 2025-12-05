@@ -24,12 +24,9 @@ export function MobileMock({
   setFeature
 }: MobileMockProps) {
   return (
-    <motion.div
-      className="relative flex aspect-9/19 h-[75vh] max-h-[800px] w-full max-w-[380px] flex-col overflow-hidden rounded-[3rem] border-8 border-[#1a1a1a] bg-[#0A0A0A] shadow-2xl ring-1 ring-white/10"
-      initial={{ opacity: 0, y: 50 }}
-      animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-    >
+    // FIX: Alterado de motion.div para div simples.
+    // Removemos as props 'initial' e 'animate' que causavam o conflito de opacidade.
+    <div className="relative flex aspect-9/19 h-[75vh] max-h-[800px] w-full max-w-[380px] flex-col overflow-hidden rounded-[3rem] border-8 border-[#1a1a1a] bg-[#0A0A0A] shadow-2xl ring-1 ring-white/10">
       {/* Notch & Status Bar */}
       <div className="absolute top-0 z-30 flex h-12 w-full items-end justify-between px-6 pb-2">
         <span className="text-[10px] font-medium text-white/80">9:41</span>
@@ -46,7 +43,7 @@ export function MobileMock({
       {/* Conteúdo Interno Mobile */}
       <div className="flex flex-1 flex-col overflow-hidden bg-background relative w-full">
         {/* Grid de Fundo */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[24px_24px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
 
         <div className="relative z-10 flex h-full flex-col gap-3 p-4 pt-14">
           {/* Header */}
@@ -86,6 +83,6 @@ export function MobileMock({
         {/* Home Indicator */}
         <div className="absolute bottom-1.5 left-1/2 z-30 h-1 w-32 -translate-x-1/2 rounded-full bg-white/20" />
       </div>
-    </motion.div>
+    </div>
   );
 }
