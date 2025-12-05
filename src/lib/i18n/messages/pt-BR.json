@@ -25,6 +25,26 @@
       }
     },
     "Pages": {
+      "Home": {
+        "ShapeShifter": {
+          "Notification": {
+            "time": "Há 1 min",
+            "priority": "Prioridade Alta",
+            "systems": {
+              "title": "Projeto de Sistema Complexo?",
+              "message": "Liberei um slot na agenda para Q1. Se busca escalabilidade, vamos conversar."
+            },
+            "landing": {
+              "title": "Landing Page High-Ticket?",
+              "message": "Liberei um slot na agenda para Q1. Se busca alta conversão, vamos conversar."
+            },
+            "actions": {
+              "dismiss": "Agora não",
+              "cta": "Ver Agenda"
+            }
+          }
+        }
+      },
       "Contact": {
         "CardContact": {
           "role": "Desenvolvedor Fullstack - React | Next | Node | UI/UX",

@@ -57,7 +57,7 @@ export function ShapeShifterSection() {
 
       notificationTimeoutRef.current = setTimeout(() => {
         setShowNotification(true);
-      }, 500);
+      }, 2000);
     }, 1500);
   }, []);
 

@@ -1,9 +1,11 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, ArrowRight } from 'lucide-react';
+import { X, Calendar } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react'; // 1. Import useEffect
 
 import { Button } from '@/components/ui/button';
 
@@ -18,11 +20,23 @@ export function PriorityNotification({
   onDismiss,
   mode
 }: PriorityNotificationProps) {
+  const t = useTranslations('Components.Pages.Home.ShapeShifter.Notification');
+
+  useEffect(() => {
+    if (isVisible) {
+      const audio = new Audio('/assets/sounds/notification.mp3');
+      audio.volume = 0.6;
+
+      audio.play().catch((error) => {
+        console.debug('Autoplay blocked or audio failed:', error);
+      });
+    }
+  }, [isVisible]);
+
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          // Responsividade: No mobile é fixed bottom, no desktop é absolute top-right
           className="fixed bottom-4 left-4 right-4 z-50 mx-auto w-auto max-w-sm md:absolute md:bottom-auto md:left-auto md:right-6 md:top-6"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -47,7 +61,7 @@ export function PriorityNotification({
                     Gabriel Sampaio
                   </h4>
                   <p className="text-xs text-slate-400">
-                    Há 1 min • Prioridade Alta
+                    {t('time')} • {t('priority')}
                   </p>
                 </div>
               </div>
@@ -60,17 +74,13 @@ export function PriorityNotification({
               </button>
             </div>
 
-            {/* Conteúdo */}
+            {/* Conteúdo Dinâmico */}
             <div className="mb-4 space-y-1">
               <h5 className="text-sm font-semibold text-slate-200">
-                {mode === 'systems'
-                  ? 'Projeto de Sistema Complexo?'
-                  : 'Landing Page High-Ticket?'}
+                {t(`${mode}.title`)}
               </h5>
               <p className="text-xs leading-relaxed text-slate-400">
-                Liberei um slot na agenda para Q1. Se busca{' '}
-                {mode === 'systems' ? 'escalabilidade' : 'alta conversão'},
-                vamos conversar.
+                {t(`${mode}.message`)}
               </p>
             </div>
 
@@ -82,7 +92,7 @@ export function PriorityNotification({
                 onClick={onDismiss}
                 className="h-9 w-full text-xs text-slate-400 hover:text-white hover:bg-white/5"
               >
-                Agora não
+                {t('actions.dismiss')}
               </Button>
               <Button
                 size="sm"
@@ -91,7 +101,7 @@ export function PriorityNotification({
               >
                 <Link href="/contact">
                   <Calendar size={12} />
-                  Ver Agenda
+                  {t('actions.cta')}
                 </Link>
               </Button>
             </div>

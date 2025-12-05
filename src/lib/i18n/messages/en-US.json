@@ -25,6 +25,26 @@
       }
     },
     "Pages": {
+      "Home": {
+        "ShapeShifter": {
+          "Notification": {
+            "time": "1 min ago",
+            "priority": "High Priority",
+            "systems": {
+              "title": "Complex System Project?",
+              "message": "I opened a slot for Q1. If you're looking for scalability, let's talk."
+            },
+            "landing": {
+              "title": "High-Ticket Landing Page?",
+              "message": "I opened a slot for Q1. If you're looking for high conversion, let's talk."
+            },
+            "actions": {
+              "dismiss": "Not now",
+              "cta": "View Calendar"
+            }
+          }
+        }
+      },
       "Contact": {
         "CardContact": {
           "role": "Fullstack Developer - React | Next | Node | UI/UX",
