@@ -66,6 +66,7 @@ const Word = ({
 }: {
   children: string;
   range: [number, number];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   progress: any;
 }) => {
   const opacity = useTransform(progress, range, [0.1, 1]);
