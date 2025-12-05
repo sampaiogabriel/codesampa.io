@@ -43,6 +43,10 @@
               "cta": "View Calendar"
             }
           }
+        },
+        "Manifesto": {
+          "badge": "The Vision",
+          "text": "Software is not just code. It is about *solving* real problems. I build resilient *systems* and interfaces that *inspire*, bridging precision engineering with *strategic* design to scale your business."
         }
       },
       "Contact": {
@@ -151,10 +155,6 @@
             "feature5": "RAG & Model Fine-tuning"
           }
         }
-      },
-      "Manifesto": {
-        "badge": "The Vision",
-        "text": "Software is not just code. It is about *solving* real problems. I build resilient *systems* and interfaces that *inspire*, bridging precision engineering with *strategic* design to scale your business."
       },
       "Pipeline": {
         "badge": "The Process",

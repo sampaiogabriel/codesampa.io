@@ -7,12 +7,12 @@ import { useRef } from 'react';
 import { cn } from '@/utils/functions/tw-merge';
 
 export function ManifestoSection() {
-  const t = useTranslations('Pages.Home.Manifesto');
+  const t = useTranslations('Components.Pages.Home.Manifesto');
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 0.4', 'end 0.5']
+    offset: ['start 0.4', 'end 0.7']
   });
 
   // Texto dividido em palavras para animação individual
@@ -70,11 +70,11 @@ const Word = ({
   progress: any;
 }) => {
   const opacity = useTransform(progress, range, [0.1, 1]);
-  const y = useTransform(progress, range, [10, 0]); // Sutil movimento vertical
+  const y = useTransform(progress, range, [10, 0]);
 
   // Verifica se é uma palavra de destaque
   const isHighlight = children.includes('*');
-  const text = children.replace(/\*/g, ''); // Remove asteriscos
+  const text = children.replace(/\*/g, '');
 
   return (
     <span className="relative inline-block">

@@ -43,6 +43,10 @@
               "cta": "Ver Agenda"
             }
           }
+        },
+        "Manifesto": {
+          "badge": "A Visão",
+          "text": "Software não é apenas código. É sobre *resolver* problemas reais. Eu construo *sistemas* resilientes e interfaces que *inspiram*, unindo engenharia de precisão com design *estratégico* para escalar o seu negócio."
         }
       },
       "Contact": {
@@ -151,10 +155,6 @@
             "feature5": "RAG & Fine-tuning de Modelos"
           }
         }
-      },
-      "Manifesto": {
-        "badge": "A Visão",
-        "text": "Software não é apenas código. É sobre *resolver* problemas reais. Eu construo *sistemas* resilientes e interfaces que *inspiram*, unindo engenharia de precisão com design *estratégico* para escalar o seu negócio."
       },
       "Pipeline": {
         "badge": "O Processo",
