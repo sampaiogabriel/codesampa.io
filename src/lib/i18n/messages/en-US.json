@@ -83,16 +83,14 @@
   "Pages": {
     "Home": {
       "Hero": {
-        "badge": "v1.0 System Architecture",
-        "title_prefix": "Build",
-        "title_suffix": "Scalable Systems",
-        "subtitle": "High-performance Systems and Landing Pages development. Engineering that drives results.",
-        "cta_primary": "Start Project",
-        "cta_secondary": "View Portfolio",
-        "scroll_indicator": "Scroll to Compile",
-        "view_desktop": "Desktop",
-        "view_mobile": "Mobile",
-        "toast_warning": "Please try on desktop to view Desktop mode."
+        "badge": "Available for new projects",
+        "title_prefix": "Building",
+        "title_suffix": "Complex Systems",
+        "mobile_title_suffix": "Digital Experiences",
+        "subtitle": "Transforming abstract ideas into high-performance software. Expert in scalable architecture and meticulous interfaces.",
+        "cta_primary": "Let's Talk",
+        "cta_secondary": "View Projects",
+        "scroll_indicator": "Scroll to compile"
       },
       "Stats": {
         "revenue": "Revenue",

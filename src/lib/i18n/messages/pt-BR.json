@@ -83,16 +83,14 @@
   "Pages": {
     "Home": {
       "Hero": {
-        "badge": "v1.0 Arquitetura de Sistema",
-        "title_prefix": "Construa",
-        "title_suffix": "Sistemas Escaláveis",
-        "subtitle": "Desenvolvimento de Sistemas e Landing Pages de alta performance. Engenharia que gera resultados.",
-        "cta_primary": "Iniciar Projeto",
-        "cta_secondary": "Ver Portfólio",
-        "scroll_indicator": "Role para Compilar",
-        "view_desktop": "Desktop",
-        "view_mobile": "Mobile",
-        "toast_warning": "Por favor, tente pelo computador para ver o modo Desktop."
+        "badge": "Disponível para novos projetos",
+        "title_prefix": "Construindo",
+        "title_suffix": "Sistemas Complexos",
+        "mobile_title_suffix": "Experiências Digitais",
+        "subtitle": "Transformo ideias abstratas em software de alto desempenho. Especialista em arquitetura escalável e interfaces meticulosas.",
+        "cta_primary": "Vamos Conversar",
+        "cta_secondary": "Ver Projetos",
+        "scroll_indicator": "Role para compilar"
       },
       "Stats": {
         "revenue": "Receita",

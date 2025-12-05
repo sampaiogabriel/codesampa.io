@@ -1,41 +1,72 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, ChevronDown, Mouse } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+import { Terminal, Mouse, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { AnimatedBadge } from '@/components/ui/animated-badge';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/lib/i18n/navigation';
 import { codeSymbols } from '@/utils/constants/code_symbols';
+import useIsMobile from '@/utils/hooks/use-mobile';
 import { useHomeStore } from '@/utils/stores/home-store';
 
+import { BracketSelector } from './bracket-selector';
 import { FloatingSymbol } from './components';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.8,
+      ease: [0.21, 0.47, 0.32, 0.98] as const
+    }
+  }
+};
 
 export function HeroSection() {
   const t = useTranslations('Pages.Home.Hero');
   const { mode, toggleMode } = useHomeStore();
+  const isMobile = useIsMobile();
 
-  // Função para trocar o modo e rolar suavemente até a visualização
   const handleModeSwitch = () => {
     toggleMode();
-
     setTimeout(() => {
       const section = document.getElementById('shape-shifter');
       if (section) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 150);
+    }, 200);
   };
 
   return (
-    <section className="relative flex h-dvh w-full flex-col items-center justify-center overflow-hidden bg-background text-foreground">
-      {/* Background Gradients & Textura */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+    <section className="relative flex h-dvh w-full flex-col items-center justify-start pt-48 md:justify-center md:pt-0 overflow-hidden bg-background text-foreground">
+      {/* 1. Background Grid */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
-      <div className="absolute left-1/2 top-[40%] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[130px] md:h-[600px] md:w-[600px]" />
+      {/* 2. Iluminação / Blur Spot */}
+      <div
+        className="absolute z-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 
+        top-[30%] h-[500px] w-[500px] blur-[120px] 
+        md:top-[40%] md:h-[600px] md:w-[600px] md:blur-[130px]"
+      />
 
-      <div className="absolute inset-0 w-full h-full flex justify-center pointer-events-none">
+      {/* 3. Ícones Voando */}
+      <div className="absolute inset-0 z-0 w-full h-full flex justify-center pointer-events-none overflow-hidden">
         <div className="relative w-full h-full max-w-[1800px]">
           {codeSymbols.map((item, index) => (
             <FloatingSymbol key={item.id} item={item} index={index} />
@@ -43,64 +74,64 @@ export function HeroSection() {
         </div>
       </div>
 
+      {/* 4. Conteúdo Principal */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           className="flex flex-col items-center"
         >
-          <div className="mb-8">
+          {/* Badge */}
+          <motion.div variants={itemVariants} className="mb-8">
             <AnimatedBadge>
               <div className="flex items-center gap-2">
                 <Terminal size={12} className="text-primary" />
                 <span>{t('badge')}</span>
               </div>
             </AnimatedBadge>
-          </div>
+          </motion.div>
 
-          <h1 className="font-space mb-6 text-5xl font-black tracking-tight text-foreground drop-shadow-2xl md:text-8xl leading-[1.1]">
-            {t('title_prefix')} <br />
-            {/* --- CORREÇÃO AQUI --- */}
-            {/* Removemos o gradiente do botão pai para não conflitar com a animação */}
-            <button
-              onClick={handleModeSwitch}
-              className="group relative inline-flex items-center gap-2 md:gap-4 hover:opacity-80 transition-opacity cursor-pointer outline-none"
+          {/* Título Principal */}
+          <h1 className="font-space mb-6 flex flex-col items-center leading-[1.1]">
+            <motion.span
+              variants={itemVariants}
+              className="block mb-2 text-5xl md:text-8xl font-black tracking-tight drop-shadow-2xl"
             >
-              {/* Container com altura fixa para mascarar a entrada/saída */}
-              <div className="relative h-[1.2em] overflow-hidden flex items-center">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={mode}
-                    // Usamos porcentagem (%) para garantir que saia da tela independente do tamanho da fonte
-                    initial={{ y: '100%', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: '-100%', opacity: 0 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    // O gradiente é aplicado diretamente aqui no texto animado
-                    className="block bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent leading-none pb-1"
-                  >
-                    {mode === 'systems' ? t('title_suffix') : 'Landing Pages'}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
+              {t('title_prefix')}
+            </motion.span>
 
-              <motion.span
-                animate={{ rotate: mode === 'systems' ? 0 : 180 }}
-                transition={{ duration: 0.5, ease: 'backOut' }}
-                className="text-foreground/50 hover:text-foreground transition-colors flex items-center"
-              >
-                <ChevronDown className="w-8 h-8 md:w-12 md:h-12" />
-              </motion.span>
-            </button>
-            {/* --- FIM DA CORREÇÃO --- */}
+            <motion.div variants={itemVariants}>
+              {isMobile ? (
+                <span className="block mt-2">
+                  <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent font-black tracking-tight text-4xl">
+                    {t('mobile_title_suffix')}
+                  </span>
+                </span>
+              ) : (
+                <BracketSelector
+                  text={
+                    mode === 'systems' ? t('title_suffix') : 'Landing Pages'
+                  }
+                  onToggle={handleModeSwitch}
+                />
+              )}
+            </motion.div>
           </h1>
 
-          <p className="max-w-xl text-lg text-muted-foreground mb-4 md:mb-8">
+          {/* Subtítulo */}
+          <motion.p
+            variants={itemVariants}
+            className="max-w-xl text-lg text-muted-foreground mb-4 md:mb-8"
+          >
             {t('subtitle')}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center md:gap-6 w-full sm:w-auto mt-6 md:mt-12">
+          {/* Botões CTA */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center md:gap-6 w-full sm:w-auto mt-6 md:mt-12"
+          >
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-2 rounded-lg border border-primary/30 opacity-40 scale-90 group-hover:scale-100 group-hover:opacity-100 group-hover:border-primary/60 transition-all duration-500 ease-out" />
               <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -114,10 +145,13 @@ export function HeroSection() {
               >
                 <Link href="/contact" className="flex items-center gap-3">
                   <span className="relative z-10">{t('cta_primary')}</span>
+
+                  {/* Bolinha Esmeralda */}
                   <span className="relative z-10 flex h-3 w-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-primary"></span>
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
                   </span>
+
                   <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                 </Link>
               </Button>
@@ -138,24 +172,27 @@ export function HeroSection() {
                 </span>
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: 1 }}
-        className="absolute bottom-12 md:bottom-10 flex flex-col items-center gap-3 text-slate-400 pointer-events-none"
-      >
-        <span className="hidden md:flex text-[10px] uppercase tracking-widest font-mono opacity-80">
-          {t('scroll_indicator')}
-        </span>
-        <div className="flex flex-col items-center gap-0.5 animate-bounce">
-          <Mouse className="h-6 w-6 opacity-80" />
-          <ChevronDown className="h-4 w-4 opacity-60" />
-        </div>
-      </motion.div>
+      {/* Scroll Indicator */}
+      {!isMobile && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-12 md:bottom-10 flex flex-col items-center gap-3 text-slate-400 pointer-events-none"
+        >
+          <span className="hidden md:flex text-[10px] uppercase tracking-widest font-mono opacity-80">
+            {t('scroll_indicator')}
+          </span>
+          <div className="flex flex-col items-center gap-0.5 animate-bounce">
+            <Mouse className="h-6 w-6 opacity-80" />
+            <ChevronDown className="h-4 w-4 opacity-60" />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 }

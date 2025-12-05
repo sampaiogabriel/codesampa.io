@@ -63,18 +63,14 @@ export function ShapeShifterSection() {
 
   // --- Efeitos ---
 
-  // 1. (REMOVIDO) Efeito de mudança de Modo
-  // Removemos o useEffect que resetava a animação ao trocar o 'mode'.
-  // Agora a troca é instantânea e visualmente controlada apenas pelo renderMock.
-
-  // 2. Reset ViewMode (Desktop/Mobile) - Apenas no início ou Replay completo
+  // 1. Reset ViewMode apenas no início ou Replay completo
   useEffect(() => {
     if (!hasPlayed && replayKey === 0) {
       setViewMode('desktop');
     }
   }, [hasPlayed, replayKey]);
 
-  // 3. Intersection Observer (Play on Scroll)
+  // 2. Intersection Observer (Gatilho da Animação ao Scrollar)
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
@@ -97,7 +93,7 @@ export function ShapeShifterSection() {
     return () => observer.disconnect();
   }, [hasPlayed, isPlaying, replayKey, triggerCinematicSequence]);
 
-  // 4. Auto-Play Features
+  // 3. Auto-Play Features
   useEffect(() => {
     if (mode === 'landing' || viewMode === 'mobile') return;
     if (!hasPlayed || isPlaying || isInteractionPaused) return;
@@ -162,11 +158,13 @@ export function ShapeShifterSection() {
     return null;
   }
 
+  const shouldBeVisible = isPlaying || hasPlayed;
+
   return (
     <section
       id="shape-shifter"
       ref={containerRef}
-      className="relative flex container mx-auto h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
+      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
     >
       <div className="relative z-10 flex w-full flex-col items-center justify-center p-4">
         <PriorityNotification
@@ -178,26 +176,20 @@ export function ShapeShifterSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={`${viewMode}-${replayKey}`}
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              filter: 'blur(0px)'
-            }}
+            initial={{ opacity: 0, scale: 0.9, y: 30, filter: 'blur(10px)' }}
+            animate={
+              shouldBeVisible
+                ? { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }
+                : { opacity: 0, scale: 0.9, y: 30, filter: 'blur(10px)' }
+            }
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className={
-              mode === 'landing' && viewMode === 'desktop'
-                ? 'aspect-16/10 w-[95vw] max-w-6xl perspective-1000'
-                : ''
-            }
+            className="relative flex items-center justify-center aspect-16/10 w-[95vw] max-w-6xl perspective-1000"
           >
             {renderMock()}
           </motion.div>
         </AnimatePresence>
 
-        {/* Controles Unificados */}
         <ShapeShifterControls
           currentMode={viewMode}
           setMode={setViewMode}
