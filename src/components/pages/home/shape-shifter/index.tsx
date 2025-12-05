@@ -166,7 +166,7 @@ export function ShapeShifterSection() {
       ref={containerRef}
       className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
     >
-      <div className="relative z-10 flex w-full flex-col items-center justify-center p-4">
+      <div className="relative z-10 flex w-full flex-col items-center justify-center">
         <PriorityNotification
           isVisible={showNotification}
           onDismiss={() => setShowNotification(false)}
