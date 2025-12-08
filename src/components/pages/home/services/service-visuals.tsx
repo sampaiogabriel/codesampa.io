@@ -13,6 +13,7 @@ import {
   Globe,
   Code2
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 // 1. DESENVOLVIMENTO DE SISTEMAS
 // Visual: Sincronia entre Mobile e Desktop
@@ -119,58 +120,62 @@ export const LandingPageVisual = () => (
 
 // 3. INTEGRAÇÃO DE IA
 // Visual: Chatbot processando dados
-export const AiIntegrationVisual = () => (
-  <div className="relative flex h-full w-full items-center justify-center bg-purple-950/20 overflow-hidden rounded-t-xl">
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-purple-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-purple-500)_1px,transparent_1px)] bg-[size:30px_30px] opacity-10" />
+export const AiIntegrationVisual = () => {
+  const t = useTranslations('Pages.Home.Services.cards.ai.visual');
 
-    {/* Cérebro Central */}
-    <motion.div
-      className="absolute top-8 left-1/2 -translate-x-1/2 text-purple-500/20"
-      animate={{ scale: [1, 1.1, 1] }}
-      transition={{ duration: 3, repeat: Infinity }}
-    >
-      <Bot size={80} />
-    </motion.div>
+  return (
+    <div className="relative flex h-full w-full items-center justify-center bg-purple-950/20 overflow-hidden rounded-t-xl">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-purple-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-purple-500)_1px,transparent_1px)] bg-size-[30px_30px] opacity-10" />
 
-    {/* Interface de Chat Flutuante */}
-    <motion.div
-      className="relative z-10 w-64 rounded-xl border border-purple-500/30 bg-background/90 p-3 shadow-2xl"
-      initial={{ y: 20, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-    >
-      <div className="flex flex-col gap-2">
-        {/* Mensagem Usuário */}
-        <div className="self-end rounded-lg rounded-tr-none bg-purple-500/20 p-2 text-[10px] text-purple-200">
-          Como aumentar as vendas?
-        </div>
+      {/* Cérebro Central */}
+      <motion.div
+        className="absolute top-8 left-1/2 -translate-x-1/2 text-purple-500/20"
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
+        <Bot size={80} />
+      </motion.div>
 
-        {/* Resposta IA (Digitando) */}
-        <div className="self-start flex gap-2 rounded-lg rounded-tl-none bg-muted p-2 text-[10px]">
-          <Zap size={12} className="text-yellow-400 fill-yellow-400 mt-0.5" />
-          <div className="space-y-1">
-            <p>Analisando dados...</p>
-            <motion.div
-              className="h-1 w-20 rounded bg-purple-500"
-              animate={{ width: ['0%', '100%'] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
+      {/* Interface de Chat Flutuante */}
+      <motion.div
+        className="relative z-10 w-64 rounded-xl border border-purple-500/30 bg-background/90 p-3 shadow-2xl"
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+      >
+        <div className="flex flex-col gap-2">
+          {/* Mensagem Usuário - Traduzida */}
+          <div className="self-end rounded-lg rounded-tr-none bg-purple-500/20 p-2 text-[10px] text-purple-200">
+            {t('user_query')}
+          </div>
+
+          {/* Resposta IA (Digitando) - Traduzida */}
+          <div className="self-start flex gap-2 rounded-lg rounded-tl-none bg-muted p-2 text-[10px]">
+            <Zap size={12} className="text-yellow-400 fill-yellow-400 mt-0.5" />
+            <div className="space-y-1">
+              <p>{t('bot_processing')}</p>
+              <motion.div
+                className="h-1 w-20 rounded bg-purple-500"
+                animate={{ width: ['0%', '100%'] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
 
-    {/* Partículas de Conexão */}
-    {[...Array(5)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute h-1 w-1 rounded-full bg-purple-400"
-        style={{
-          left: `${20 + i * 15}%`,
-          top: '40%'
-        }}
-        animate={{ y: [0, 50], opacity: [1, 0] }}
-        transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-      />
-    ))}
-  </div>
-);
+      {/* Partículas de Conexão */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute h-1 w-1 rounded-full bg-purple-400"
+          style={{
+            left: `${20 + i * 15}%`,
+            top: '40%'
+          }}
+          animate={{ y: [0, 50], opacity: [1, 0] }}
+          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+        />
+      ))}
+    </div>
+  );
+};

@@ -152,7 +152,11 @@
             "feature2": "Integração OpenAI / LLMs",
             "feature3": "Automação de Atendimento",
             "feature4": "Análise de Dados com IA",
-            "feature5": "RAG & Fine-tuning de Modelos"
+            "feature5": "RAG & Fine-tuning de Modelos",
+            "visual": {
+              "user_query": "Como aumentar as vendas?",
+              "bot_processing": "Analisando dados..."
+            }
           }
         }
       },

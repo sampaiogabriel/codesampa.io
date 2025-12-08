@@ -105,10 +105,10 @@ export function ServicesSection() {
             return (
               <motion.div
                 key={service.key}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: service.delay }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: service.delay }}
                 className={cn(
                   'group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:shadow-2xl hover:-translate-y-2',
                   colorMap[service.accent]

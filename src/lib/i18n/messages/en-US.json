@@ -152,7 +152,11 @@
             "feature2": "OpenAI / LLMs Integration",
             "feature3": "Customer Service Automation",
             "feature4": "AI Data Analysis",
-            "feature5": "RAG & Model Fine-tuning"
+            "feature5": "RAG & Model Fine-tuning",
+            "visual": {
+              "user_query": "How to increase sales?",
+              "bot_processing": "Analyzing data..."
+            }
           }
         }
       },
