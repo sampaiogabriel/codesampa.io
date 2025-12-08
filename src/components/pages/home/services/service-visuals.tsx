@@ -20,7 +20,7 @@ import { useTranslations } from 'next-intl';
 export const SystemDevVisual = () => (
   <div className="relative flex h-full w-full items-center justify-center bg-blue-950/20 overflow-hidden rounded-t-xl">
     {/* Grid Background */}
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-blue-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-blue-500)_1px,transparent_1px)] bg-[size:30px_30px] opacity-10" />
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-blue-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-blue-500)_1px,transparent_1px)] bg-size-[30px_30px] opacity-10" />
 
     {/* Monitor Desktop */}
     <motion.div
@@ -44,7 +44,7 @@ export const SystemDevVisual = () => (
 
     {/* Smartphone Flutuante */}
     <motion.div
-      className="absolute right-12 bottom-8 h-40 w-20 rounded-[1.5rem] border-4 border-blue-500 bg-background shadow-[0_0_30px_rgba(59,130,246,0.3)] z-10 overflow-hidden"
+      className="absolute right-12 bottom-8 h-40 w-20 rounded-3xl border-4 border-blue-500 bg-background shadow-[0_0_30px_rgba(59,130,246,0.3)] z-10 overflow-hidden"
       initial={{ y: 40, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.2 }}
@@ -74,7 +74,7 @@ export const SystemDevVisual = () => (
 // Visual: Foguete subindo + Score 100
 export const LandingPageVisual = () => (
   <div className="relative flex h-full w-full flex-col items-center justify-center bg-emerald-950/20 overflow-hidden rounded-t-xl">
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-emerald-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-emerald-500)_1px,transparent_1px)] bg-[size:30px_30px] opacity-10" />
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-emerald-500)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-emerald-500)_1px,transparent_1px)] bg-size-[30px_30px] opacity-10" />
 
     {/* Card de SEO Flutuante */}
     <motion.div
