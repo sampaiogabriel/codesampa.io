@@ -1,105 +1,131 @@
-# codesampa.io
+<p align="center">
+  <a href="https://codesampa.io">
+    <img src="https://codesampa-io.vercel.app/assets/logo/codesampa-io.png" alt="CodeSampa Logo" width="250"/>
+  </a>
+</p>
 
-O **codesampa.io** é o portfólio pessoal e blog de engenharia de software de Gabriel Sampaio. Este projeto foi desenvolvido para demonstrar a aplicação de tecnologias de ponta no ecossistema React, focando em performance, arquitetura escalável e design de alta fidelidade.
+<h1 align="center">CodeSampa.io</h1>
 
-## 🚀 Stack Tecnológica
+<p align="center">
+  <strong>The Next-Gen Software Engineering Portfolio</strong>
+</p>
 
-O projeto foi construído utilizando as versões mais recentes (RC/Beta) das principais ferramentas do mercado:
+<p align="center">
+  <a href="https://codesampa.io">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fcodesampa.io&up_message=online&down_message=offline&style=flat-square&logo=vercel&color=2563eb" alt="Website Status" />
+  </a>
+  <img src="https://img.shields.io/badge/Next.js-16.0.7-black?style=flat-square&logo=next.js" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React-19.2.0-blue?style=flat-square&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind v4" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178c6?style=flat-square&logo=typescript" alt="TypeScript" />
+</p>
 
-### Core & Arquitetura
+<p align="center">
+  <a href="#-about">🚀 About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tech-stack">⚡ Tech Stack</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-installation">🛠️ Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-author">👤 Author</a>
+</p>
 
-- **Next.js 16** (App Router & Server Actions)
-- **React 19**
-- **TypeScript**
-- **Internacionalização (i18n):** Suporte nativo EN/PT via `next-intl`
+<br>
 
-### Estilização & UI
+## 🚀 About
 
-- **Tailwind CSS v4**: Próxima geração do framework utilitário
-- **Radix UI**: Primitivos de UI acessíveis (Dialog, Dropdown, Slot, etc.)
-- **Lucide React**: Biblioteca de ícones
-- **Sonner**: Notificações toast de alta performance
+**CodeSampa.io** is not just a portfolio; it is a software engineering playground developed by **Gabriel Sampaio**.
 
-### Conteúdo & Dados
+This project explores the boundaries of modern web development, utilizing **RC (Release Candidate)** and **Beta** versions of the most popular tools in the React ecosystem. The goal is to demonstrate high visual fidelity, extreme performance, and a scalable architecture ready for the future of the web.
 
-- **Velite**: Content Layer para gerenciamento de conteúdo MDX (Blog) type-safe
-- **Zod**: Validação de esquemas
-- **Resend**: Integração para envio de emails (Newsletter)
-
-### Animações & 3D
-
-- **Framer Motion**: Animações declarativas e layout transitions
-- **Three.js Ecosystem**: `@react-three/fiber`, `@react-three/drei` e `@react-three/rapier` para experiências 3D imersivas
-
-## 📂 Estrutura do Projeto
-
-```bash
-├── content/              # Arquivos MDX do blog (gerenciados pelo Velite)
-├── public/               # Assets estáticos (imagens, favicons, CVs)
-├── src/
-│   ├── app/
-│   │   ├── actions/      # Server Actions (ex: newsletter.ts)
-│   │   ├── [locale]/     # Rotas internacionalizadas (Home, Blog, Projetos)
-│   │   └── ...
-│   ├── components/
-│   │   ├── layout/       # Header, Footer
-│   │   ├── pages/        # Componentes específicos de cada página
-│   │   └── ui/           # Componentes reutilizáveis (Design System)
-│   ├── lib/              # Configurações de i18n e navegação
-│   └── utils/            # Constantes, hooks e funções auxiliares
-├── velite.config.ts      # Configuração do esquema de conteúdo
-```
-
-## 🛠️ Instalação e Configuração
-
-Siga os passos abaixo para executar o projeto localmente:
-
-1.  **Clonar o repositório:**
-
-    ```bash
-    git clone [https://github.com/sampaiogabriel/codesampa.io.git](https://github.com/sampaiogabriel/codesampa.io.git)
-    cd codesampa.io
-    ```
-
-2.  **Instalar dependências:**
-
-    ```bash
-    yarn install
-    # ou
-    npm install
-    ```
-
-3.  **Executar o servidor de desenvolvimento:**
-
-    ```bash
-    yarn dev
-    # ou
-    npm run dev
-    ```
-
-    O projeto estará disponível em `http://localhost:3000`.
-
-## 📜 Scripts Disponíveis
-
-- `dev`: Inicia o servidor de desenvolvimento.
-- `build`: Cria a versão de produção da aplicação.
-- `start`: Inicia o servidor de produção.
-- `lint`: Executa o ESLint para verificação de código.
-
-## 👤 Autor
-
-**Gabriel Sampaio**
-
-- Email: gabrielsampaiolima@hotmail.com
-- Website: [https://www.codesampa.io](https://www.codesampa.io)
+> **Highlights:** 3D Animations with Three.js, native internationalization (EN/PT), MDX-managed blog (Velite), and next-generation styling with Tailwind v4.
 
 ---
 
-_Este projeto é privado e destinado a fins de portfólio pessoal._
+## ⚡ Tech Stack
 
-````
+This project was built on a solid and modern foundation:
 
-```
+### 🌟 Core & Architecture
 
-```
-````
+| Technology    | Version   | Role                                             |
+| ------------- | --------- | ------------------------------------------------ |
+| **Next.js**   | `v16.0.7` | App Router, Server Actions & Optimization.       |
+| **React**     | `v19.2.0` | Modern Hooks and new rendering architecture.     |
+| **Velite**    | `v0.3.0`  | Type-safe Content Layer for Blog/MDX management. |
+| **Next-intl** | `v4.5.6`  | Internationalization and localized routing.      |
+
+### 🎨 UI & Visual Experience
+
+- **Styling:** `Tailwind CSS v4` (Engine rewritten for performance).
+- **Components:** `Radix UI` (Accessibility) & `Lucide React` (Icons).
+- **Motion:** `Framer Motion` (Layout transitions and scroll).
+- **3D World:** `Three.js` + `@react-three/fiber` + `@react-three/rapier` (Physics and immersion).
+
+### ⚙️ Backend & Utilities
+
+- **Email:** `Resend` (Newsletter and Contact).
+- **State Management:** `Zustand` (Lightweight global state management).
+- **Validation:** `Zod` (Robust schema validation).
+
+---
+
+## 🛠️ Installation
+
+To run this code lab on your machine:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone [https://github.com/sampaiogabriel/codesampa.io.git](https://github.com/sampaiogabriel/codesampa.io.git)
+   cd codesampa.io
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   yarn dev
+   ```
+
+   The project will be running at `http://localhost:3000`.
+
+---
+
+## 📜 Scripts
+
+- `yarn dev`: Starts the development environment.
+- `yarn build`: Production build (Velite + Next Build).
+- `yarn blog`: Watches for changes in MDX content (Velite watch).
+- `yarn lint`: Checks code quality.
+
+---
+
+## 👤 Author
+
+<div align="center">
+  <img src="https://github.com/sampaiogabriel.png" width="100px" style="border-radius:50%" alt="Gabriel Sampaio Avatar"/>
+  <br />
+  <strong>Gabriel Sampaio</strong>
+  <br />
+  <br />
+  <a href="mailto:gabrielsampaiolima@hotmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://www.linkedin.com/in/sampaiogabriel/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://codesampa.io">
+    <img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Website" />
+  </a>
+</div>
+
+---
+
+<p align="center">
+  Made with 💙 and lots of coffee.
+</p>
