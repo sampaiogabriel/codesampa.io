@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://codesampa.io">
-    <img src="https://codesampa-io.vercel.app/assets/logo/codesampa-io.png" alt="CodeSampa Logo" width="250"/>
+    <img src="https://codesampa.io/assets/logo/codesampa-io.png" alt="CodeSampa Logo" width="250"/>
   </a>
 </p>
 
