@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">CodeSampa.io</h1>
+<h1 align="center">codesampa.io</h1>
 
 <p align="center">
   <strong>The Next-Gen Software Engineering Portfolio</strong>
