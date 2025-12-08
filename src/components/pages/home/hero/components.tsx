@@ -2,9 +2,6 @@
 
 import { motion } from 'framer-motion';
 
-// --- Floating Symbol ---
-// Atualizado para aceitar 'index' e controlar a entrada separada da flutuação
-
 export const FloatingSymbol = ({
   item,
   index
@@ -15,13 +12,19 @@ export const FloatingSymbol = ({
 }) => {
   return (
     <motion.div
-      // 1. Configuração de Posicionamento e Entrada (Surgimento)
-      style={{ top: item.top, left: item.left }}
+      style={{
+        top: item.top,
+        left: item.left,
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        transform: 'translateZ(0)'
+      }}
       className={`absolute z-0 select-none font-mono font-bold ${item.size} ${item.color} pointer-events-none`}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
-        delay: index * 0.3,
+        delay: index * 0.1,
         duration: 0.6,
         type: 'spring',
         stiffness: 260,
@@ -38,6 +41,7 @@ export const FloatingSymbol = ({
           repeat: Infinity,
           ease: 'easeInOut'
         }}
+        style={{ willChange: 'transform' }}
       >
         {item.char}
       </motion.div>

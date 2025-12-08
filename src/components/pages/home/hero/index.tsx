@@ -43,6 +43,9 @@ export function HeroSection() {
   const { mode, toggleMode } = useHomeStore();
   const isMobile = useIsMobile();
 
+  // Mantendo a otimização de performance (menos ícones no mobile)
+  const visibleSymbols = isMobile ? codeSymbols.slice(0, 8) : codeSymbols;
+
   const handleModeSwitch = () => {
     toggleMode();
     setTimeout(() => {
@@ -54,21 +57,20 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative flex h-dvh w-full flex-col items-center justify-start pt-48 md:justify-center md:pt-0 overflow-hidden bg-background text-foreground">
+    <section className="relative flex min-h-[calc(100dvh-3.5rem)] w-full flex-col items-center justify-center pt-0 overflow-hidden bg-background text-foreground md:min-h-dvh">
       {/* 1. Background Grid */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
-      {/* 2. Iluminação / Blur Spot */}
       <div
         className="absolute z-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 
-        top-[30%] h-[500px] w-[500px] blur-[120px] 
+        top-1/2 h-[500px] w-[500px] blur-[80px] 
         md:top-[40%] md:h-[600px] md:w-[600px] md:blur-[130px]"
       />
 
       {/* 3. Ícones Voando */}
       <div className="absolute inset-0 z-0 w-full h-full flex justify-center pointer-events-none overflow-hidden">
-        <div className="relative w-full h-full max-w-[1800px]">
-          {codeSymbols.map((item, index) => (
+        <div className="relative w-full h-full max-w-[1800px] opacity-60 md:opacity-100">
+          {visibleSymbols.map((item, index) => (
             <FloatingSymbol key={item.id} item={item} index={index} />
           ))}
         </div>
