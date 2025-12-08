@@ -24,7 +24,6 @@
   <a href="#-about">🚀 About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tech-stack">⚡ Tech Stack</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-installation">🛠️ Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-author">👤 Author</a>
 </p>
 
 <br>
@@ -102,30 +101,3 @@ To run this code lab on your machine:
 - `yarn build`: Production build (Velite + Next Build).
 - `yarn blog`: Watches for changes in MDX content (Velite watch).
 - `yarn lint`: Checks code quality.
-
----
-
-## 👤 Author
-
-<div align="center">
-  <img src="https://github.com/sampaiogabriel.png" width="100px" style="border-radius:50%" alt="Gabriel Sampaio Avatar"/>
-  <br />
-  <strong>Gabriel Sampaio</strong>
-  <br />
-  <br />
-  <a href="mailto:gabrielsampaiolima@hotmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://www.linkedin.com/in/sampaiogabriel/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="https://codesampa.io">
-    <img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Website" />
-  </a>
-</div>
-
----
-
-<p align="center">
-  Made with 💙 and lots of coffee.
-</p>
