@@ -16,7 +16,7 @@ import { toast } from 'sonner';
 
 const SOCIALS = {
   email: 'gabrielsampaiolima@hotmail.com',
-  whatsapp: 'https://wa.me/55...',
+  whatsapp: 'https://wa.me/5532988265223?text=Ol%C3%A1%20codesampa.io',
   calendly: 'https://cal.com/seu-link'
 };
 
@@ -27,8 +27,8 @@ export function ContactHub() {
 
   const cvFile =
     locale === 'pt-BR'
-      ? '/assets/docs/cv-pt-BR.pdf'
-      : '/assets/docs/cv-en-US.pdf';
+      ? '/assets/docs/Resume - PT-BR - Gabriel Sampaio (Fullstack Javascript) - React - Next - Node.pdf'
+      : '/assets/docs/Resume - EN-US - Gabriel Sampaio (Fullstack Javascript) - React - Next - Node.pdf';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(SOCIALS.email);
