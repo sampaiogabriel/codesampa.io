@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 const SOCIALS = {
   email: 'gabrielsampaiolima@hotmail.com',
   whatsapp: 'https://wa.me/5532988265223?text=Ol%C3%A1%20codesampa.io',
-  calendly: 'https://cal.com/seu-link'
+  calendly: 'https://cal.com/codesampa.io'
 };
 
 export function ContactHub() {

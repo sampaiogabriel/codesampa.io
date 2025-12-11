@@ -113,7 +113,7 @@ export function SystemDesktopMock({
           </div>
 
           <div className="relative w-full flex-1 overflow-hidden bg-background p-6">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[24px_24px]" />
 
             <div className="relative z-10 grid h-full w-full grid-cols-[240px_1fr] gap-6">
               <DesktopSidebar
@@ -163,7 +163,6 @@ export function SystemDesktopMock({
         >
           <div className="flex h-10 shrink-0 items-center justify-between border-b border-white/5 bg-[#252526] px-4">
             <div className="flex items-center gap-2">
-              {/* Agora o botão vermelho também fecha o modo código */}
               <div
                 className="flex gap-1.5 mr-2 opacity-50 grayscale hover:grayscale-0 transition-all group cursor-pointer"
                 onClick={() => setIsXRay(false)}
@@ -176,7 +175,7 @@ export function SystemDesktopMock({
                 <div className="h-2.5 w-2.5 rounded-full bg-[#27C93F]" />
               </div>
 
-              <div className="h-4 w-[1px] bg-white/10 mx-2" />
+              <div className="h-4 w-px bg-white/10 mx-2" />
 
               <FileCode size={12} className="text-blue-400" />
               <AnimatePresence mode="wait">
