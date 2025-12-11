@@ -339,6 +339,14 @@
         "end": "Fim da transmissão.",
         "share": "Compartilhar"
       }
+    },
+    "Booking": {
+      "Success": {
+        "title": "Agendamento Confirmado!",
+        "subtitle": "A conexão foi estabelecida. Os detalhes da missão foram enviados para o seu e-mail. Nos falamos em breve.",
+        "button_blog": "Acessar o Blog",
+        "button_portfolio": "Explorar Projetos"
+      }
     }
   }
 }

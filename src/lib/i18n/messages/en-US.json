@@ -339,6 +339,14 @@
         "end": "End of transmission.",
         "share": "Share"
       }
+    },
+    "Booking": {
+      "Success": {
+        "title": "Booking Confirmed!",
+        "subtitle": "Connection established. Mission details have been sent to your email. We will speak soon.",
+        "button_blog": "Read the Blog",
+        "button_portfolio": "Explore Projects"
+      }
     }
   }
 }

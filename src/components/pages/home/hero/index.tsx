@@ -121,9 +121,7 @@ export function HeroSection() {
                   text={
                     mode === 'systems' ? t('title_suffix') : 'Landing Pages'
                   }
-                  // Setas: Troca e Scroll
                   onToggle={handleBracketClick}
-                  // Texto: Apenas Scroll
                   onScroll={scrollToShapeShifter}
                 />
               )}
@@ -154,10 +152,12 @@ export function HeroSection() {
                 className="relative bg-primary/10 hover:bg-primary/20 text-primary border border-primary/50 font-space font-bold tracking-widest uppercase px-8 h-8 backdrop-blur-md overflow-hidden"
                 asChild
               >
-                <Link href="/contact" className="flex items-center gap-3">
+                <Link
+                  href="https://cal.com/codesampa.io"
+                  className="flex items-center gap-3"
+                >
                   <span className="relative z-10">{t('cta_primary')}</span>
 
-                  {/* Bolinha Esmeralda */}
                   <span className="relative z-10 flex h-3 w-3">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
