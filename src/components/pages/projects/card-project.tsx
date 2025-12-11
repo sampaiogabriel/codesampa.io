@@ -9,7 +9,8 @@ import {
   ArrowUpRight,
   Github,
   MessageSquarePlus,
-  CheckCircle2
+  CheckCircle2,
+  Timer
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -45,6 +46,12 @@ const CardProject = ({
 
   // Criamos uma constante para o ícone para usá-lo como JSX
   const ProjectIcon = project.icon;
+
+  // Verificações de link válido (não nulo, não vazio e diferente de #)
+  const hasLink =
+    project.link && project.link.trim() !== '' && project.link !== '#';
+  const hasRepo =
+    project.repo && project.repo.trim() !== '' && project.repo !== '#';
 
   return (
     <motion.article
@@ -122,15 +129,22 @@ const CardProject = ({
         {/* Botões de Ação */}
         <div className="flex flex-wrap items-center gap-4 pt-2">
           {project.isProduct ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
-            >
-              {t('cta_access_product')} <ArrowUpRight size={16} />
-            </a>
-          ) : (
+            hasLink ? (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
+              >
+                {t('cta_access_product')} <ArrowUpRight size={16} />
+              </a>
+            ) : (
+              <div className="flex cursor-not-allowed items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-bold text-muted-foreground ring-1 ring-white/10">
+                <Timer size={16} />
+                <span>{t('cta_coming_soon')}</span>
+              </div>
+            )
+          ) : hasRepo ? (
             <a
               href={project.repo}
               target="_blank"
@@ -140,6 +154,11 @@ const CardProject = ({
               <Github size={16} />
               <span>{t('cta_view_repo')}</span>
             </a>
+          ) : (
+            <div className="flex cursor-not-allowed items-center gap-2 rounded-full bg-white/5 px-6 py-3 text-sm font-bold text-muted-foreground ring-1 ring-white/10">
+              <Timer size={16} />
+              <span>{t('cta_coming_soon')}</span>
+            </div>
           )}
 
           <Link
