@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Mail,
   MessageCircle,
@@ -14,6 +14,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
+import useIsMobile from '@/utils/hooks/use-mobile';
+
 const SOCIALS = {
   email: 'gabrielsampaiolima@hotmail.com',
   whatsapp: 'https://wa.me/5532988265223?text=Ol%C3%A1%20codesampa.io',
@@ -24,6 +26,7 @@ export function ContactHub() {
   const t = useTranslations('Pages.Contact.Hub');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);
+  const isMobile = useIsMobile();
 
   const cvFile =
     locale === 'pt-BR'
@@ -37,12 +40,16 @@ export function ContactHub() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.1, duration: 0.5 }
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: 'easeOut'
+      }
     })
   };
 
@@ -51,11 +58,11 @@ export function ContactHub() {
       <motion.button
         custom={0}
         variants={cardVariants}
-        initial="hidden"
+        initial={isMobile ? 'visible' : 'hidden'}
         whileInView="visible"
-        animate="visible"
+        viewport={{ once: true }}
         onClick={handleCopyEmail}
-        className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 text-left transition-all hover:border-white/20 hover:bg-white/10"
+        className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/10 to-transparent p-6 md:p-8 text-left transition-all hover:border-white/20 hover:from-white/20"
       >
         <div className="absolute right-4 top-4 rounded-full bg-white/10 p-2 transition-colors group-hover:bg-white/20">
           {copied ? (
@@ -89,10 +96,10 @@ export function ContactHub() {
         rel="noopener noreferrer"
         custom={1}
         variants={cardVariants}
-        initial="hidden"
+        initial={isMobile ? 'visible' : 'hidden'}
         whileInView="visible"
-        animate="visible"
-        className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-emerald-950/10 p-6 md:p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-950/20"
+        viewport={{ once: true }}
+        className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-emerald-500/10 to-transparent p-6 md:p-8 transition-all hover:border-emerald-500/30 hover:from-emerald-500/20"
       >
         <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
           <ArrowUpRight size={20} />
@@ -114,10 +121,10 @@ export function ContactHub() {
         download
         custom={2}
         variants={cardVariants}
-        initial="hidden"
+        initial={isMobile ? 'visible' : 'hidden'}
         whileInView="visible"
-        animate="visible"
-        className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-purple-950/10 p-6 md:p-8 transition-all hover:border-purple-500/30 hover:bg-purple-950/20"
+        viewport={{ once: true }}
+        className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-purple-500/10 to-transparent p-6 md:p-8 transition-all hover:border-purple-500/30 hover:from-purple-500/20"
       >
         <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
           <FileDown size={20} />
@@ -140,9 +147,9 @@ export function ContactHub() {
         rel="noopener noreferrer"
         custom={3}
         variants={cardVariants}
-        initial="hidden"
-        animate="visible"
+        initial={isMobile ? 'visible' : 'hidden'}
         whileInView="visible"
+        viewport={{ once: true }}
         className="group relative col-span-1 md:col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
       >
         <div className="flex flex-col gap-2 relative z-10">
