@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Menu, ArrowRight, Cpu } from 'lucide-react';
+import { Github, Menu, ArrowRight, Linkedin } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 // Importação do useState adicionada
 import Image from 'next/image';
@@ -102,7 +102,6 @@ export function Header() {
 
                 {/* Área de Navegação Principal */}
                 <div className="flex-1 flex flex-col justify-center px-8">
-                  {/* 3. Passando a função para fechar o menu ao clicar */}
                   <NavLinks
                     orientation="vertical"
                     onLinkClick={() => setIsOpen(false)}
@@ -115,6 +114,8 @@ export function Header() {
                     <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-1">
                       Social & Code
                     </p>
+
+                    {/* Botão GitHub */}
                     <Button
                       variant="outline"
                       className="w-full justify-between border-white/10 bg-white/5 hover:bg-white/10 hover:text-white hover:border-primary/50 text-slate-300 h-12 rounded-xl group transition-all"
@@ -128,6 +129,27 @@ export function Header() {
                         <div className="flex items-center gap-3">
                           <Github className="h-5 w-5" />
                           <span className="font-semibold">GitHub Profile</span>
+                        </div>
+                        <ArrowRight className="h-4 w-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </a>
+                    </Button>
+
+                    {/* Botão LinkedIn */}
+                    <Button
+                      variant="outline"
+                      className="w-full justify-between border-white/10 bg-white/5 hover:bg-white/10 hover:text-white hover:border-blue-500/50 text-slate-300 h-12 rounded-xl group transition-all"
+                      asChild
+                    >
+                      <a
+                        href="https://www.linkedin.com/in/gabrielsampaiolimadearaujo/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Linkedin className="h-5 w-5" />
+                          <span className="font-semibold">
+                            LinkedIn Profile
+                          </span>
                         </div>
                         <ArrowRight className="h-4 w-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                       </a>
