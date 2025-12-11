@@ -1,13 +1,19 @@
-import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
 import { TimelinePortfolio } from '@/components/pages/projects/timeline';
 import { PageTitle } from '@/components/ui/page-title';
 
-export const metadata: Metadata = {
-  title: 'Projects | codesampa.io',
-  description: 'Projects'
-};
+type Params = Promise<{ locale: string }>;
+
+export async function generateMetadata({ params }: { params: Params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata.Projects' });
+
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default async function ProjectsPage() {
   const t = await getTranslations('Pages.Projects');

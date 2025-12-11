@@ -5,10 +5,17 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { List } from '@/components/pages/blog/list';
 import { PageTitle } from '@/components/ui/page-title';
 
-export const metadata = {
-  title: 'Blog | codesampa.io',
-  description: 'Insights on Software Engineering, Architecture, and Design.'
-};
+type Params = Promise<{ locale: string }>;
+
+export async function generateMetadata({ params }: { params: Params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata.Blog' });
+
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default async function BlogPage() {
   const locale = await getLocale();

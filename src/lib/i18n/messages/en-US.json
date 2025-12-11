@@ -1,12 +1,25 @@
 {
   "Manifest": {
-    "name": "Gabriel Sampaio | codesampa.io",
+    "name": "codesampa.io | Software Engineering",
     "short_name": "codesampa.io",
-    "description": "Fullstack Solutions & Design by Gabriel Sampaio."
+    "description": "High-Performance Fullstack Solutions & Design."
   },
   "Metadata": {
-    "title": "codesampa.io",
-    "description": "High-end software engineering, design systems, and fullstack development."
+    "title": "codesampa.io | Software Engineering & Design Studio",
+    "description": "codesampa.io software development studio. Specialists in React, Next.js, and Scalable Architecture. Transforming ideas into high-performance software.",
+    "keywords": "codesampa.io, Software House, Web Development, Next.js Expert, React, Node.js, Software Architecture, Scalable Systems",
+    "Projects": {
+      "title": "Projects & Case Studies | codesampa.io",
+      "description": "Explore projects developed by codesampa.io. SaaS systems, complex applications, and high-impact enterprise solutions."
+    },
+    "Blog": {
+      "title": "Tech Blog: Engineering & Architecture | codesampa.io",
+      "description": "Technical articles on the Javascript ecosystem, software architecture, and Next.js. Insights straight from our engineering lab."
+    },
+    "Contact": {
+      "title": "Contact & Quote | codesampa.io",
+      "description": "Get in touch with codesampa.io. Technical consultancy, dedicated software development, and digital transformation for your business."
+    }
   },
   "Components": {
     "Layout": {
@@ -32,11 +45,11 @@
             "priority": "High Priority",
             "systems": {
               "title": "Complex System Project?",
-              "message": "I opened a slot for Q1. If you're looking for scalability, let's talk."
+              "message": "We opened a slot for Q1. If you're looking for scalability, let's talk."
             },
             "landing": {
               "title": "High-Ticket Landing Page?",
-              "message": "I opened a slot for Q1. If you're looking for high conversion, let's talk."
+              "message": "We opened a slot for Q1. If you're looking for high conversion, let's talk."
             },
             "actions": {
               "dismiss": "Not now",
@@ -46,17 +59,17 @@
         },
         "Manifesto": {
           "badge": "The Vision",
-          "text": "Software is not just code. It is about *solving* real problems. I build resilient *systems* and interfaces that *inspire*, bridging precision engineering with *strategic* design to scale your business."
+          "text": "Software is not just code. It is about *solving* real problems. We build resilient *systems* and interfaces that *inspire*, bridging precision engineering with *strategic* design to scale your business."
         }
       },
       "Contact": {
         "CardContact": {
-          "role": "Fullstack Developer - React | Next | Node | UI/UX",
+          "role": "Fullstack Engineering & Design",
           "cta": "Schedule a call",
           "emailCopied": "Email copied to clipboard!",
           "copyEmail": "Copy email",
           "whatsappLabel": "Let's chat on WhatsApp",
-          "downloadCvLabel": "Download my resume"
+          "downloadCvLabel": "Download presentation"
         }
       },
       "Blog": {
@@ -76,7 +89,7 @@
         "Newsletter": {
           "title_prefix": "Receive",
           "title_highlight": "Weekly Logs",
-          "description": "Subscribe to get the latest updates on architecture, frontend, and career directly to your inbox.",
+          "description": "Subscribe to get the latest updates on architecture, frontend, and technology directly to your inbox.",
           "placeholder": "your@email.com",
           "button_label": "Subscribe",
           "messages": {
@@ -111,7 +124,7 @@
         "title_prefix": "Building",
         "title_suffix": "Complex Systems",
         "mobile_title_suffix": "Digital Experiences",
-        "subtitle": "Transforming abstract ideas into high-performance software. Expert in scalable architecture and meticulous interfaces.",
+        "subtitle": "Transforming abstract ideas into high-performance software. Experts in scalable architecture and meticulous interfaces.",
         "cta_primary": "Let's Talk",
         "cta_secondary": "View Projects",
         "scroll_indicator": "Scroll to compile"
@@ -122,9 +135,9 @@
         "churn": "Churn"
       },
       "Services": {
-        "badge": "What I Deliver",
+        "badge": "What We Deliver",
         "title": "Complete Digital Solutions.",
-        "subtitle": "From idea to global scale, I build products that generate real value.",
+        "subtitle": "From idea to global scale, we build products that generate real value.",
         "cta_card": "Learn More",
         "cards": {
           "systems": {
@@ -208,7 +221,7 @@
       "Links": {
         "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
         "rights": "All rights reserved.",
-        "made_with": "Engineered by Gabriel Sampaio",
+        "made_with": "Engineered by Gabriel Sampaio | codesampa.io",
         "columns": {
           "explore": "Explore",
           "social": "Connect",
@@ -240,7 +253,7 @@
       "cta_footer": {
         "badge": "Next Step",
         "title": "Your project could be the next <highlight>Highlight.</highlight>",
-        "subtitle": "Didn't find exactly what you're looking for? Custom engineering is my specialty. Let's turn your most complex challenge into high-end software.",
+        "subtitle": "Didn't find exactly what you're looking for? Custom engineering is our specialty. Let's turn your most complex challenge into high-end software.",
         "button": "Start Project Now"
       },
       "more_projects": "Other Projects",
@@ -304,7 +317,7 @@
         "badge": "Open for Opportunities",
         "title_prefix": "Let's build the",
         "title_highlight": "Impossible.",
-        "subtitle": "Have a project in mind or just want to chat about tech? My channel is open.",
+        "subtitle": "Have a project in mind or just want to chat about tech? Our channel is open.",
         "email": {
           "label": "Email",
           "action": "Copy Address",
@@ -315,7 +328,7 @@
           "sub": "Fast response"
         },
         "resume": {
-          "label": "Resume",
+          "label": "Presentation",
           "sub": "PDF • 2.4 MB"
         },
         "schedule": {

@@ -48,6 +48,7 @@ export async function generateMetadata({
   return {
     title: t('title'),
     description: t('description'),
+    keywords: t('keywords'),
     metadataBase: new URL(HOST),
     // manifest: `/${locale}/manifest.webmanifest`,
     icons: {

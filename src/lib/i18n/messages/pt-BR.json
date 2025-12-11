@@ -1,12 +1,25 @@
 {
   "Manifest": {
-    "name": "Gabriel Sampaio | codesampa.io",
+    "name": "codesampa.io | Software House",
     "short_name": "codesampa.io",
-    "description": "Soluções Fullstack & Design por Gabriel Sampaio."
+    "description": "Software House & Design de Alta Performance."
   },
   "Metadata": {
-    "title": "codesampa.io",
-    "description": "Engenharia de software de ponta, design systems e desenvolvimento fullstack."
+    "title": "codesampa.io | Software House & Design",
+    "description": "Software House codesampa.io. Especialistas em React, Next.js e Arquitetura Escalável. Transformamos ideias em produtos digitais de alta performance.",
+    "keywords": "codesampa.io, Software House, Design, Desenvolvimento Web, Next.js Expert, React, Node.js, Arquitetura de Software, Sistemas Escaláveis",
+    "Projects": {
+      "title": "Projetos e Cases | codesampa.io",
+      "description": "Explore os projetos desenvolvidos pela Software House codesampa.io. Sistemas SaaS, aplicações complexas e soluções corporativas."
+    },
+    "Blog": {
+      "title": "Blog Tech: Engenharia e Design | codesampa.io",
+      "description": "Artigos técnicos sobre o ecossistema Javascript, arquitetura de software e design systems. Insights direto da nossa Software House."
+    },
+    "Contact": {
+      "title": "Contato e Orçamento | codesampa.io",
+      "description": "Fale com a codesampa.io. Desenvolvimento de software dedicado, design de interface e transformação digital para o seu negócio."
+    }
   },
   "Components": {
     "Layout": {
@@ -32,11 +45,11 @@
             "priority": "Prioridade Alta",
             "systems": {
               "title": "Projeto de Sistema Complexo?",
-              "message": "Liberei um slot na agenda para Q1. Se busca escalabilidade, vamos conversar."
+              "message": "Abrimos um slot na agenda para Q1. Se busca uma Software House parceira, vamos conversar."
             },
             "landing": {
               "title": "Landing Page High-Ticket?",
-              "message": "Liberei um slot na agenda para Q1. Se busca alta conversão, vamos conversar."
+              "message": "Abrimos um slot na agenda para Q1. Se busca alta conversão, vamos conversar."
             },
             "actions": {
               "dismiss": "Agora não",
@@ -46,17 +59,17 @@
         },
         "Manifesto": {
           "badge": "A Visão",
-          "text": "Software não é apenas código. É sobre *resolver* problemas reais. Eu construo *sistemas* resilientes e interfaces que *inspiram*, unindo engenharia de precisão com design *estratégico* para escalar o seu negócio."
+          "text": "Software não é apenas código. É sobre *resolver* problemas reais. Como Software House, construímos *sistemas* resilientes e interfaces que *inspiram*, unindo engenharia de precisão com design *estratégico*."
         }
       },
       "Contact": {
         "CardContact": {
-          "role": "Desenvolvedor Fullstack - React | Next | Node | UI/UX",
-          "cta": "Agendar uma call",
+          "role": "Software House & Design",
+          "cta": "Agendar uma reunião",
           "emailCopied": "Email copiado!",
           "copyEmail": "Copiar email",
-          "whatsappLabel": "Vamos conversar no WhatsApp",
-          "downloadCvLabel": "Baixar meu currículo"
+          "whatsappLabel": "Conversar no WhatsApp",
+          "downloadCvLabel": "Baixar apresentação"
         }
       },
       "Blog": {
@@ -71,12 +84,12 @@
           "view_all": "Ver todos artigos"
         },
         "TableOfContents": {
-          "inThisArticle": "In This Article"
+          "inThisArticle": "Neste Artigo"
         },
         "Newsletter": {
           "title_prefix": "Receber",
           "title_highlight": "Logs Semanais",
-          "description": "Inscreva-se para receber as últimas atualizações sobre arquitetura, frontend e carreira diretamente no seu inbox.",
+          "description": "Inscreva-se para receber as últimas atualizações sobre arquitetura, frontend e tecnologia diretamente no seu inbox.",
           "placeholder": "seu@email.com",
           "button_label": "Inscrever",
           "messages": {
@@ -111,7 +124,7 @@
         "title_prefix": "Construindo",
         "title_suffix": "Sistemas Complexos",
         "mobile_title_suffix": "Experiências Digitais",
-        "subtitle": "Transformo ideias abstratas em software de alto desempenho. Especialista em arquitetura escalável e interfaces meticulosas.",
+        "subtitle": "Transformamos ideias abstratas em software de alto desempenho. Uma Software House especialista em arquitetura escalável e interfaces meticulosas.",
         "cta_primary": "Vamos Conversar",
         "cta_secondary": "Ver Projetos",
         "scroll_indicator": "Role para compilar"
@@ -122,9 +135,9 @@
         "churn": "Churn"
       },
       "Services": {
-        "badge": "O Que Eu Entrego",
+        "badge": "O Que Entregamos",
         "title": "Soluções Digitais Completas.",
-        "subtitle": "Da ideia à escala global, construo produtos que geram valor real.",
+        "subtitle": "Da ideia à escala global, construímos produtos que geram valor real.",
         "cta_card": "Saiba Mais",
         "cards": {
           "systems": {
@@ -206,9 +219,9 @@
         "email": "gabrielsampaiolima@hotmail.com"
       },
       "Links": {
-        "description": "Engenharia de software de ponta para produtos digitais que exigem performance, escalabilidade e design impecável.",
+        "description": "Software House focada em produtos digitais que exigem performance, escalabilidade e design impecável.",
         "rights": "Todos os direitos reservados.",
-        "made_with": "Desenvolvido por Gabriel Sampaio",
+        "made_with": "Desenvolvido por codesampa.io",
         "columns": {
           "explore": "Explorar",
           "social": "Conectar",
@@ -230,7 +243,7 @@
     "Projects": {
       "badge": "Portfolio",
       "title": "Projetos em <highlight>Destaque.</highlight>",
-      "subtitle": "Uma seleção de projetos que demonstram capacidade técnica, design system escalável e resolução de problemas complexos.",
+      "subtitle": "Uma seleção de projetos que demonstram nossa capacidade técnica, design systems escaláveis e resolução de problemas complexos.",
       "cta_case_study": "Ver Detalhes",
       "cta_access_product": "Acessar Produto",
       "cta_repo": "Repositório Privado",
@@ -240,7 +253,7 @@
       "cta_footer": {
         "badge": "Próximo Passo",
         "title": "Seu projeto pode ser o próximo <highlight>Destaque.</highlight>",
-        "subtitle": "Não encontrou exatamente o que procura? A engenharia personalizada é minha especialidade. Vamos transformar seu desafio mais complexo em software de ponta.",
+        "subtitle": "Não encontrou exatamente o que procura? A engenharia personalizada é nossa especialidade. Vamos transformar seu desafio mais complexo em software de ponta.",
         "button": "Iniciar Projeto Agora"
       },
       "more_projects": "Outros Projetos",
@@ -267,7 +280,7 @@
         },
         "codesampa": {
           "title": "codesampa.io",
-          "category": "High-Performance Portfolio",
+          "category": "Software House Portfolio",
           "description": "Engenharia no limite da tecnologia. Desenvolvido com o ecossistema Next.js 16 e React 19 (RC). Possui internacionalização nativa, CMS baseado em arquivos (Velite) e um Design System atômico. Performance perfeita (100/100) e animações fluidas a 60fps.",
           "metrics_data": [
             { "value": "100", "label": "Lighthouse" },
@@ -304,7 +317,7 @@
         "badge": "Disponível para Projetos",
         "title_prefix": "Vamos construir o",
         "title_highlight": "Impossível.",
-        "subtitle": "Tem um projeto em mente ou quer apenas trocar uma ideia sobre tech? Meu canal está aberto.",
+        "subtitle": "Tem um projeto em mente ou quer apenas trocar uma ideia sobre tech? Nosso canal está aberto.",
         "email": {
           "label": "Email",
           "action": "Copiar Endereço",
@@ -315,7 +328,7 @@
           "sub": "Resposta rápida"
         },
         "resume": {
-          "label": "Currículo",
+          "label": "Apresentação",
           "sub": "PDF • 2.4 MB"
         },
         "schedule": {
