@@ -43,16 +43,22 @@ export function HeroSection() {
   const { mode, toggleMode } = useHomeStore();
   const isMobile = useIsMobile();
 
-  // Mantendo a otimização de performance (menos ícones no mobile)
   const visibleSymbols = isMobile ? codeSymbols.slice(0, 8) : codeSymbols;
 
-  const handleModeSwitch = () => {
+  // Função centralizada de Scroll
+  const scrollToShapeShifter = () => {
+    const section = document.getElementById('shape-shifter');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Handler para as Setas (Brackets): Troca o modo E faz o scroll
+  const handleBracketClick = () => {
     toggleMode();
+    // Pequeno delay para garantir que a UI responsiva flua bem, ou opcionalmente imediato
     setTimeout(() => {
-      const section = document.getElementById('shape-shifter');
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToShapeShifter();
     }, 200);
   };
 
@@ -115,7 +121,10 @@ export function HeroSection() {
                   text={
                     mode === 'systems' ? t('title_suffix') : 'Landing Pages'
                   }
-                  onToggle={handleModeSwitch}
+                  // Setas: Troca e Scroll
+                  onToggle={handleBracketClick}
+                  // Texto: Apenas Scroll
+                  onScroll={scrollToShapeShifter}
                 />
               )}
             </motion.div>

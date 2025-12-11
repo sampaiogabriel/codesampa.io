@@ -40,7 +40,7 @@ export async function Links() {
                 href="https://www.linkedin.com/in/gabrielsampaiolimadearaujo/"
                 icon={<Linkedin size={18} />}
               />
-              <SocialLink href="#" icon={<Instagram size={18} />} />
+              {/* <SocialLink href="#" icon={<Instagram size={18} />} /> */}
             </div>
           </div>
 

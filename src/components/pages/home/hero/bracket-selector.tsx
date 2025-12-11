@@ -5,21 +5,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface BracketSelectorProps {
   text: string;
   onToggle: () => void;
+  onScroll: () => void;
 }
 
-export function BracketSelector({ text, onToggle }: BracketSelectorProps) {
+export function BracketSelector({
+  text,
+  onToggle,
+  onScroll
+}: BracketSelectorProps) {
   return (
-    <button
-      onClick={onToggle}
-      className="group relative inline-flex items-center justify-center gap-4 md:gap-6 outline-none select-none py-2 cursor-pointer z-20 max-w-full"
-    >
-      {/* Bracket Esquerdo */}
-      <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:-translate-x-2 transition-all duration-300 ease-out">
-        &lt;
-      </span>
+    <div className="group relative inline-flex items-center justify-center gap-4 md:gap-6 outline-none select-none py-2 z-20 max-w-full">
+      {/* Bracket Esquerdo - Botão de Toggle */}
+      <button
+        onClick={onToggle}
+        className="cursor-pointer focus:outline-none"
+        aria-label="Previous mode"
+      >
+        <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:-translate-x-2 transition-all duration-300 ease-out block">
+          &lt;
+        </span>
+      </button>
 
-      {/* Texto Central */}
-      <div className="relative min-w-[200px] text-center">
+      {/* Texto Central - Botão de Scroll */}
+      <button
+        onClick={onScroll}
+        className="relative min-w-[200px] text-center cursor-pointer focus:outline-none"
+      >
         <AnimatePresence mode="wait">
           <motion.span
             key={text}
@@ -32,12 +43,18 @@ export function BracketSelector({ text, onToggle }: BracketSelectorProps) {
             {text}
           </motion.span>
         </AnimatePresence>
-      </div>
+      </button>
 
-      {/* Bracket Direito */}
-      <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-2 transition-all duration-300 ease-out">
-        &gt;
-      </span>
-    </button>
+      {/* Bracket Direito - Botão de Toggle */}
+      <button
+        onClick={onToggle}
+        className="cursor-pointer focus:outline-none"
+        aria-label="Next mode"
+      >
+        <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-2 transition-all duration-300 ease-out block">
+          &gt;
+        </span>
+      </button>
+    </div>
   );
 }
