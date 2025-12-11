@@ -5,7 +5,7 @@ import { X, Calendar } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react'; // 1. Import useEffect
+import { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 
@@ -47,14 +47,19 @@ export function PriorityNotification({
             {/* Header da Notificação */}
             <div className="mb-3 flex items-start justify-between gap-3">
               <div className="flex gap-3">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-white/10 shadow-sm">
-                  <Image
-                    src="https://github.com/sampaiogabriel.png"
-                    alt="Gabriel Sampaio"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-black bg-green-500" />
+                {/* Correção aqui: Container wrapper relativo sem overflow-hidden */}
+                <div className="relative h-10 w-10 shrink-0">
+                  {/* Container da imagem com overflow-hidden e borda */}
+                  <div className="relative h-full w-full overflow-hidden rounded-full border border-white/10 shadow-sm">
+                    <Image
+                      src="https://github.com/sampaiogabriel.png"
+                      alt="Gabriel Sampaio"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  {/* Indicador fora do overflow-hidden */}
+                  <div className="absolute bottom-0 right-0 z-10 h-3 w-3 rounded-full border-2 border-black bg-green-500" />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">
