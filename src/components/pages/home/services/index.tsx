@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -35,6 +35,23 @@ export function ServicesSection() {
       delay: 0.2
     }
   ];
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+        delay: delay
+      }
+    }),
+    hover: {
+      y: -8,
+      transition: { duration: 0.3, ease: 'easeOut' }
+    }
+  };
 
   return (
     <section className="relative bg-background overflow-hidden">
@@ -85,7 +102,6 @@ export function ServicesSection() {
             const title = t(`cards.${service.key}.title`);
             const desc = t(`cards.${service.key}.description`);
 
-            // ATUALIZADO: Agora busca 5 features para mostrar a expertise em Micro-frontends
             const features = [
               t(`cards.${service.key}.feature1`),
               t(`cards.${service.key}.feature2`),
@@ -105,12 +121,15 @@ export function ServicesSection() {
             return (
               <motion.div
                 key={service.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                custom={service.delay}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: service.delay }}
                 className={cn(
-                  'group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:shadow-2xl hover:-translate-y-2',
+                  'group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card',
+                  'transition-colors duration-300 hover:shadow-2xl',
                   colorMap[service.accent]
                 )}
               >
@@ -128,7 +147,7 @@ export function ServicesSection() {
                     {desc}
                   </p>
 
-                  {/* Lista de Features Expandida (5 itens) */}
+                  {/* Lista de Features */}
                   <ul className="space-y-3 mb-8 flex-1">
                     {features.map((feature, i) => (
                       <li
