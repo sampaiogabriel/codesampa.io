@@ -154,17 +154,13 @@ export function ShapeShifterSection() {
     }
   };
 
-  if (isMobile) {
-    return null;
-  }
-
   const shouldBeVisible = isPlaying || hasPlayed;
 
   return (
     <section
       id="shape-shifter"
       ref={containerRef}
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
+      className="hidden relative md:flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background"
     >
       <div className="relative z-10 flex w-full flex-col items-center justify-center">
         <PriorityNotification

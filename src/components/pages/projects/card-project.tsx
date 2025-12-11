@@ -131,26 +131,15 @@ const CardProject = ({
               {t('cta_access_product')} <ArrowUpRight size={16} />
             </a>
           ) : (
-            <>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
-              >
-                {t('cta_case_study')} <ArrowUpRight size={16} />
-              </a>
-
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 hover:text-primary"
-                aria-label="GitHub Repo"
-              >
-                <Github size={20} />
-              </a>
-            </>
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition-transform hover:scale-105"
+            >
+              <Github size={16} />
+              <span>{t('cta_view_repo')}</span>
+            </a>
           )}
 
           <Link

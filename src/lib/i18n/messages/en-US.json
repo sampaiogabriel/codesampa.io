@@ -246,6 +246,7 @@
       "subtitle": "A selection of projects demonstrating technical capability, scalable design systems, and complex problem-solving.",
       "cta_case_study": "View Details",
       "cta_access_product": "Access Product",
+      "cta_view_repo": "View repository",
       "cta_repo": "Private Repository",
       "cta_want_similar": "I want this",
       "empty": "No projects found, try a different filter.",
