@@ -23,14 +23,14 @@
 <p align="center">
   <a href="#-about">🚀 About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tech-stack">⚡ Tech Stack</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-installation">🛠️ Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-installation">🛠️ Installation</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <br>
 
 ## 🚀 About
 
-**CodeSampa.io** is not just a portfolio; it is a software engineering playground developed by **Gabriel Sampaio**.
+**codesampa.io** is not just a portfolio; it is a software engineering playground developed by **Gabriel Sampaio**.
 
 This project explores the boundaries of modern web development, utilizing **RC (Release Candidate)** and **Beta** versions of the most popular tools in the React ecosystem. The goal is to demonstrate high visual fidelity, extreme performance, and a scalable architecture ready for the future of the web.
 
