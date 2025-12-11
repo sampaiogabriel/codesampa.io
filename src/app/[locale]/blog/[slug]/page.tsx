@@ -27,7 +27,6 @@ const useMDXComponent = (code: string) => {
   return fn({ ...runtime }).default;
 };
 
-// ... (Mantenha interfaces, generateMetadata e generateStaticParams iguais) ...
 interface PostPageProps {
   params: Promise<{
     slug: string;
@@ -84,15 +83,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const MDXContent = useMDXComponent(post.content);
 
   const mdxComponents = {
-    pre: CodeBlock // Substitui o <pre> padrão pelo nosso Terminal
+    pre: CodeBlock
   };
 
   return (
-    // Aumentei o max-w para acomodar o sidebar sem espremer o texto
     <article className="container mx-auto px-4 pt-8 pb-16 relative overflow-visible">
       <ScrollProgress />
 
-      {/* Background Effect Sutil específico do post */}
+      {/* Background Effect */}
       <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
 
       {/* Header Centralizado */}
@@ -200,9 +198,12 @@ export default async function PostPage({ params }: PostPageProps) {
         />
       </div>
 
-      <div className="mx-auto">
-        <Comments />
-      </div>
+      {/* RENDERIZAÇÃO CONDICIONAL DOS COMENTÁRIOS */}
+      {post.comments && (
+        <div className="mx-auto">
+          <Comments />
+        </div>
+      )}
     </article>
   );
 }
