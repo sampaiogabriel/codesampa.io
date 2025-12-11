@@ -10,7 +10,9 @@ import {
   Github,
   MessageSquarePlus,
   CheckCircle2,
-  Timer
+  Timer,
+  Sparkles,
+  Newspaper
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -23,7 +25,7 @@ const CardProject = ({
   project,
   index
 }: {
-  project: (typeof LIST_PROJECTS)[0];
+  project: (typeof LIST_PROJECTS)[0] & { interviewLink?: string }; // Adicionando tipagem opcional aqui
   index: number;
 }) => {
   const t = useTranslations('Pages.Projects');
@@ -47,11 +49,15 @@ const CardProject = ({
   // Criamos uma constante para o ícone para usá-lo como JSX
   const ProjectIcon = project.icon;
 
-  // Verificações de link válido (não nulo, não vazio e diferente de #)
+  // Verificações de link válido
   const hasLink =
     project.link && project.link.trim() !== '' && project.link !== '#';
   const hasRepo =
     project.repo && project.repo.trim() !== '' && project.repo !== '#';
+
+  // Verifica se existe link de entrevista
+  const hasInterview =
+    project.interviewLink && project.interviewLink.trim() !== '';
 
   return (
     <motion.article
@@ -78,7 +84,6 @@ const CardProject = ({
                 project.color
               )}
             >
-              {/* Renderizamos o componente aqui passando o size */}
               <ProjectIcon size={24} />
             </div>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
@@ -86,9 +91,53 @@ const CardProject = ({
             </span>
           </div>
 
-          <h3 className="mb-4 font-space text-3xl font-black leading-tight text-white md:text-5xl">
-            {t(`projects.${project.key}.title`)}
-          </h3>
+          {/* TÍTULO + BOTÃO DE ENTREVISTA */}
+          <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <h3 className="font-space text-3xl font-black leading-tight text-white md:text-5xl">
+              {t(`projects.${project.key}.title`)}
+            </h3>
+
+            {hasInterview && (
+              <Link
+                href={project.interviewLink!}
+                className="group/interview relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 transition-all hover:border-white/20 hover:bg-white/10"
+              >
+                {/* Background Glow sutil baseado na cor do projeto */}
+                <div
+                  className={cn(
+                    'absolute inset-0 opacity-0 transition-opacity group-hover/interview:opacity-20 bg-linear-to-r',
+                    project.color
+                  )}
+                />
+
+                <span
+                  className={cn(
+                    'relative flex h-2 w-2 rounded-full shadow-[0_0_8px_currentColor]',
+                    // Extrai a cor primária da classe do projeto para o ponto brilhante
+                    project.color?.includes('blue')
+                      ? 'bg-blue-400 text-blue-400'
+                      : project.color?.includes('emerald')
+                      ? 'bg-emerald-400 text-emerald-400'
+                      : project.color?.includes('purple')
+                      ? 'bg-purple-400 text-purple-400'
+                      : 'bg-white text-white'
+                  )}
+                >
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-current"></span>
+                </span>
+
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 group-hover/interview:text-white">
+                    {t('cta_read_interview')}
+                  </span>
+                  <ArrowUpRight
+                    size={12}
+                    className="text-white/70 transition-transform group-hover/interview:-translate-y-0.5 group-hover/interview:translate-x-0.5 group-hover/interview:text-white"
+                  />
+                </div>
+              </Link>
+            )}
+          </div>
 
           <p className="text-base leading-relaxed text-muted-foreground">
             {t(`projects.${project.key}.description`)}
