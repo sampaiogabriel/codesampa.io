@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://codesampa.io">
-    <img src="https://codesampa.io/assets/logo/codesampa-io.png" alt="CodeSampa Logo" width="250"/>
+    <img src="public/assets/logo/codesampa-io-v1.svg" alt="CodeSampa.io Logo" width="150" />
   </a>
 </p>
 
@@ -25,8 +25,6 @@
   <a href="#-tech-stack">⚡ Tech Stack</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-installation">🛠️ Installation</a>&nbsp;&nbsp;&nbsp;
 </p>
-
-<br>
 
 ## 🚀 About
 
