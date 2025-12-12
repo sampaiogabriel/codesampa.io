@@ -5,7 +5,8 @@ import {
   FaDesktop,
   FaReact,
   FaGlobe,
-  FaCode
+  FaCode,
+  FaEnvelope // Importado para o ícone do projeto
 } from 'react-icons/fa';
 import {
   SiNextdotjs,
@@ -21,7 +22,10 @@ import {
   SiShadcnui,
   SiTypescript,
   SiHtml5,
-  SiJavascript
+  SiJavascript,
+  SiFirebase, // Importado
+  SiStyledcomponents, // Importado
+  SiChakraui // Importado
 } from 'react-icons/si';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,8 +52,12 @@ export const TECH_ICONS: Record<string, any> = {
   Velite: FileText,
   HTML5: SiHtml5,
   JavaScript: SiJavascript,
-  Asaas: SiStripe, // Fallback visual para pagamentos
-  AI: SiOpenai // Fallback visual para AI
+  Asaas: SiStripe,
+  AI: SiOpenai,
+  // Novos ícones adicionados
+  Firebase: SiFirebase,
+  'Styled Components': SiStyledcomponents,
+  'Chakra UI': SiChakraui
 };
 
 export const LIST_PROJECTS = [
@@ -70,7 +78,8 @@ export const LIST_PROJECTS = [
     icon: FaMobileAlt,
     link: '#',
     repo: '#',
-    metrics: ['metric_1', 'metric_2', 'metric_3']
+    metrics: ['metric_1', 'metric_2', 'metric_3'],
+    image: '/assets/projects/kingfix-cover.png'
   },
   {
     key: 'devrex',
@@ -81,7 +90,8 @@ export const LIST_PROJECTS = [
     icon: FaLayerGroup,
     link: '#',
     repo: '#',
-    metrics: ['metric_1', 'metric_2', 'metric_3']
+    metrics: ['metric_1', 'metric_2', 'metric_3'],
+    image: '/assets/projects/devrex-cover.png'
   },
   {
     key: 'psialexia',
@@ -112,6 +122,26 @@ export const LIST_PROJECTS = [
     link: '#',
     repo: 'https://github.com/sampaiogabriel/codesampa.io',
     metrics: ['metric_1', 'metric_2', 'metric_3']
+  },
+  {
+    key: 'mycard4you',
+    isProduct: true,
+    category: 'saas',
+    tags: [
+      'React',
+      'TypeScript',
+      'Firebase',
+      'Stripe',
+      'Styled Components',
+      'Chakra UI'
+    ],
+    color: 'from-red-300 to-rose-600',
+    icon: FaEnvelope,
+    link: 'https://mycard4you.com',
+    repo: '#',
+    metrics: ['metric_1', 'metric_2', 'metric_3'],
+    image: '/assets/projects/mycard4you-cover.png',
+    interviewLink: '/blog/case-mycard4you'
   }
 ];
 

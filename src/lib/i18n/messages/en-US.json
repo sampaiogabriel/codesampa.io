@@ -281,6 +281,16 @@
             { "value": "Global", "label": "Reach" }
           ]
         },
+        "mycard4you": {
+          "title": "MyCard4You",
+          "category": "Web Platform",
+          "description": "Innovative platform to create, customize, and schedule interactive virtual cards for special occasions. Features photo uploads, soundtracks, and visual effects with integrated payments.",
+          "metrics_data": [
+            { "value": "100%", "label": "Customizable" },
+            { "value": "Stripe", "label": "Secure Checkout" },
+            { "value": "Global", "label": "QR Access" }
+          ]
+        },
         "codesampa": {
           "title": "codesampa.io",
           "category": "High-Performance Portfolio",

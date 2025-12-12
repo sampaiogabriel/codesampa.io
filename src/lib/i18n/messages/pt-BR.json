@@ -281,6 +281,16 @@
             { "value": "Global", "label": "Alcance" }
           ]
         },
+        "mycard4you": {
+          "title": "MyCard4You",
+          "category": "Plataforma Web",
+          "description": "Plataforma inovadora para criar, personalizar e agendar cartões virtuais interativos para datas especiais. Oferece upload de fotos, trilha sonora e efeitos visuais com pagamentos integrados.",
+          "metrics_data": [
+            { "value": "100%", "label": "Personalizável" },
+            { "value": "Stripe", "label": "Checkout Seguro" },
+            { "value": "Global", "label": "Acesso via QR" }
+          ]
+        },
         "codesampa": {
           "title": "codesampa.io",
           "category": "Software House Portfolio",
