@@ -374,5 +374,25 @@
         "button_portfolio": "Explorar Projetos"
       }
     }
+  },
+  "Newsletter": {
+    "validation": {
+      "invalid_email": "Por favor, insira um email válido."
+    },
+    "actions": {
+      "success": "Inscrição realizada com sucesso! 🚀 Verifique seu e-mail.",
+      "error_exists": "Este email já está inscrito!",
+      "error_generic": "Falha ao inscrever. Tente novamente mais tarde.",
+      "error_server": "Erro interno no servidor."
+    },
+    "email": {
+      "subject": "Bem-vindo à CodeSampa! 🚀",
+      "title": "Obrigado por se inscrever!",
+      "greeting": "Fala, dev!",
+      "content": "Fico muito feliz em ter você por aqui. A partir de agora, você vai receber conteúdos exclusivos sobre <strong>desenvolvimento Fullstack, Next.js e carreira</strong>.",
+      "reply_invite": "Se quiser trocar uma ideia, é só responder esse e-mail.",
+      "closing": "Abraço,",
+      "footer": "CodeSampa.io"
+    }
   }
 }
