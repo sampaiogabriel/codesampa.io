@@ -153,7 +153,8 @@ export function HeroSection() {
                 asChild
               >
                 <Link
-                  href="https://cal.com/codesampa.io"
+                  // href="https://cal.com/codesampa.io"
+                  href="/contact"
                   className="flex items-center gap-3"
                 >
                   <span className="relative z-10">{t('cta_primary')}</span>
