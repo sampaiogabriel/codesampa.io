@@ -104,7 +104,7 @@ export function PriorityNotification({
                 className="h-9 w-full bg-white text-black hover:bg-slate-200 text-xs font-bold gap-1.5"
                 asChild
               >
-                <Link href="https://cal.com/codesampa.io">
+                <Link href="/contact">
                   <Calendar size={12} />
                   {t('actions.cta')}
                 </Link>
