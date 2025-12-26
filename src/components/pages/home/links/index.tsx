@@ -1,14 +1,16 @@
-import { Github, Linkedin, Instagram, Cpu } from 'lucide-react';
-import { getTranslations, getLocale } from 'next-intl/server';
+'use client';
+
+import { Github, Linkedin } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { posts } from '.velite';
 
 import { Logo } from '@/components/ui/logo';
 import { Link } from '@/lib/i18n/navigation';
 
-export async function Links() {
-  const t = await getTranslations('Pages.Home.Links');
-  const locale = await getLocale();
+export function Links() {
+  const t = useTranslations('Pages.Home.Links');
+  const locale = useLocale();
 
   const latestPosts = posts
     .filter((post) => post.published && post.locale === locale)
@@ -16,9 +18,10 @@ export async function Links() {
     .slice(0, 5);
 
   return (
-    <section className="container mx-auto relative w-full border-t border-white/5 overflow-hidden">
-      <div className="px-6 pt-12 relative z-10">
+    <section className="relative w-full border-t border-white/5 bg-background overflow-hidden">
+      <div className="container mx-auto px-6 pt-12 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 md:mb-16">
+          {/* Coluna 1: Sobre */}
           <div className="md:col-span-4 flex flex-col gap-2 md:gap-6">
             <Link
               href="/"
@@ -40,16 +43,17 @@ export async function Links() {
                 href="https://www.linkedin.com/in/gabrielsampaiolimadearaujo/"
                 icon={<Linkedin size={18} />}
               />
-              {/* <SocialLink href="#" icon={<Instagram size={18} />} /> */}
             </div>
           </div>
 
-          <div className="md:col-span-4 hidden md:flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16">
-            <h4 className="font-space font-semibold text-white flex items-center gap-2">
+          {/* Coluna 2: Blog Posts (CORRIGIDA) */}
+          <div className="md:col-span-4 hidden md:flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16 min-w-0">
+            <h4 className="font-space font-semibold text-white flex items-center gap-2 shrink-0">
               <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
               {t('columns.blog')}
             </h4>
-            <ul className="flex flex-col gap-3">
+
+            <ul className="flex flex-col gap-3 w-full">
               {latestPosts.length > 0 ? (
                 latestPosts.map((post) => (
                   <LiLink key={post.slug} href={`/blog/${post.slugAsParams}`}>
@@ -64,6 +68,7 @@ export async function Links() {
             </ul>
           </div>
 
+          {/* Coluna 3: Explore */}
           <div className="md:col-span-4 flex flex-col gap-3 md:gap-6 md:items-start md:pl-8 lg:pl-16">
             <h4 className="font-space font-semibold text-white flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -89,14 +94,19 @@ const LiLink = ({
   href: string;
   children: React.ReactNode;
 }) => (
-  <li className="max-w-full overflow-hidden">
+  <li className="w-full">
     <Link
       href={href}
       className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors w-full"
     >
       <span className="h-px w-0 bg-primary group-hover:w-3 transition-all duration-300 shrink-0" />
 
-      <span className="truncate">{children}</span>
+      <span
+        className="truncate flex-1 min-w-0 text-left"
+        title={typeof children === 'string' ? children : undefined}
+      >
+        {children}
+      </span>
     </Link>
   </li>
 );

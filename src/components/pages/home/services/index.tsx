@@ -3,6 +3,7 @@
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 import { cn } from '@/utils/functions/tw-merge';
 
@@ -20,19 +21,22 @@ export function ServicesSection() {
       key: 'systems',
       visual: <SystemDevVisual />,
       accent: 'blue',
-      delay: 0
+      delay: 0,
+      link: '/blog/chaos-to-control-systems'
     },
     {
       key: 'landing',
       visual: <LandingPageVisual />,
       accent: 'emerald',
-      delay: 0.1
+      delay: 0.1,
+      link: '/blog/landing-page-sell'
     },
     {
       key: 'ai',
       visual: <AiIntegrationVisual />,
       accent: 'purple',
-      delay: 0.2
+      delay: 0.2,
+      link: '/blog/automating-reports-with-ai'
     }
   ];
 
@@ -168,14 +172,15 @@ export function ServicesSection() {
 
                   {/* CTA */}
                   <div className="mt-auto pt-4 border-t border-border/50">
-                    <button
+                    <Link
+                      href={service.link}
                       className={cn(
                         'flex items-center gap-2 text-sm font-bold uppercase tracking-wide transition-colors',
                         `text-${service.accent}-500 group-hover:text-${service.accent}-400`
                       )}
                     >
                       {t('cta_card')} <ArrowRight size={16} />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

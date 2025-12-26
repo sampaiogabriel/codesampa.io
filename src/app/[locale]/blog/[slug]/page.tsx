@@ -150,7 +150,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </header>
 
-      <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
+      <div className="w-full h-px bg-linear-to-r mb-4 from-transparent via-border to-transparent opacity-50 max-w-4xl mx-auto" />
 
       {/* Grid de Layout: Conteúdo + Sidebar */}
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_250px] gap-12 relative">
