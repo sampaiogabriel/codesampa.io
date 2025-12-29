@@ -19,6 +19,7 @@ import { ScrollProgress } from '@/components/pages/blog/scroll-progress';
 import { CodeBlock } from '@/components/ui/code-block';
 import { Comments } from '@/components/pages/blog/comments';
 import { AuthorProfile } from '@/components/pages/blog/author-profile';
+import { ChatBubble } from '@/components/pages/blog/chat-bubble';
 
 // --- Utilitário para renderizar MDX do Velite ---
 const useMDXComponent = (code: string) => {
@@ -83,7 +84,8 @@ export default async function PostPage({ params }: PostPageProps) {
   const MDXContent = useMDXComponent(post.content);
 
   const mdxComponents = {
-    pre: CodeBlock
+    pre: CodeBlock,
+    ChatBubble
   };
 
   return (
