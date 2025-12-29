@@ -103,7 +103,7 @@ export const LIST_PROJECTS = [
     link: 'https://psialexiamarques.com.br/',
     repo: '#',
     metrics: ['metric_1', 'metric_2', 'metric_3'],
-    interviewLink: '/blog/case-psi-alexia-marques'
+    interviewLink: '/blog/interview-alexia'
   },
   {
     key: 'codesampa',
