@@ -40,7 +40,7 @@ export function ChatBubble({
           isInterviewer ? 'items-end' : 'items-start'
         )}
       >
-        <span className="text-xs text-muted-foreground mb-2 block px-0 font-medium">
+        <span className="text-xs text-white mb-2 block px-0 font-medium">
           {name}
         </span>
 
@@ -51,7 +51,7 @@ export function ChatBubble({
             'prose-p:my-1 prose-p:leading-relaxed',
 
             isClient
-              ? 'rounded-3xl rounded-tl-none bg-primary text-primary-foreground text-left prose-headings:text-primary-foreground prose-p:text-primary-foreground prose-strong:text-primary-foreground prose-a:text-primary-foreground'
+              ? 'rounded-3xl rounded-tl-none bg-muted text-primary-foreground text-left prose-headings:text-primary-foreground prose-p:text-primary-foreground prose-strong:text-primary-foreground prose-a:text-primary-foreground'
               : 'rounded-3xl rounded-tr-none bg-muted text-foreground text-right'
           )}
         >
