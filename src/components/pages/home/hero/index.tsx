@@ -5,14 +5,13 @@ import { Terminal, Mouse, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { AnimatedBadge } from '@/components/ui/animated-badge';
-import { Button } from '@/components/ui/button';
-import { Link } from '@/lib/i18n/navigation';
 import { codeSymbols } from '@/utils/constants/code_symbols';
 import useIsMobile from '@/utils/hooks/use-mobile';
 import { useHomeStore } from '@/utils/stores/home-store';
 
 import { BracketSelector } from './bracket-selector';
 import { FloatingSymbol } from './components';
+import { HeroActions } from './hero-actions'; // Novo Import
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -45,7 +44,6 @@ export function HeroSection() {
 
   const visibleSymbols = isMobile ? codeSymbols.slice(0, 8) : codeSymbols;
 
-  // Função centralizada de Scroll
   const scrollToShapeShifter = () => {
     const section = document.getElementById('shape-shifter');
     if (section) {
@@ -53,10 +51,8 @@ export function HeroSection() {
     }
   };
 
-  // Handler para as Setas (Brackets): Troca o modo E faz o scroll
   const handleBracketClick = () => {
     toggleMode();
-    // Pequeno delay para garantir que a UI responsiva flua bem, ou opcionalmente imediato
     setTimeout(() => {
       scrollToShapeShifter();
     }, 200);
@@ -112,7 +108,8 @@ export function HeroSection() {
             <motion.div variants={itemVariants}>
               {isMobile ? (
                 <span className="block mt-2">
-                  <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent font-black tracking-tight text-4xl">
+                  {/* Ajustado para text-5xl para igualar o prefixo no mobile */}
+                  <span className="bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent font-black tracking-tight text-5xl">
                     {t('mobile_title_suffix')}
                   </span>
                 </span>
@@ -136,54 +133,9 @@ export function HeroSection() {
             {t('subtitle')}
           </motion.p>
 
-          {/* Botões CTA */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center md:gap-6 w-full sm:w-auto mt-6 md:mt-12"
-          >
-            <div className="relative group cursor-pointer">
-              <div className="absolute -inset-2 rounded-lg border border-primary/30 opacity-40 scale-90 group-hover:scale-100 group-hover:opacity-100 group-hover:border-primary/60 transition-all duration-500 ease-out" />
-              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <Button
-                className="relative bg-primary/10 hover:bg-primary/20 text-primary border border-primary/50 font-space font-bold tracking-widest uppercase px-8 h-8 backdrop-blur-md overflow-hidden"
-                asChild
-              >
-                <Link
-                  // href="https://cal.com/codesampa.io"
-                  href="/contact"
-                  className="flex items-center gap-3"
-                >
-                  <span className="relative z-10">{t('cta_primary')}</span>
-
-                  <span className="relative z-10 flex h-3 w-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
-                  </span>
-
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                </Link>
-              </Button>
-            </div>
-
-            <Button
-              variant="ghost"
-              className="hidden md:flex group text-muted-foreground hover:text-white font-mono text-sm tracking-tight"
-              asChild
-            >
-              <Link href="/projects" className="flex items-center gap-2">
-                <span className="opacity-50 group-hover:opacity-100 group-hover:text-purple-400 transition-all">
-                  {'{'}
-                </span>
-                <span>{t('cta_secondary')}</span>
-                <span className="opacity-50 group-hover:opacity-100 group-hover:text-purple-400 transition-all">
-                  {'}'}
-                </span>
-              </Link>
-            </Button>
+          {/* Novos Botões CTA */}
+          <motion.div variants={itemVariants}>
+            <HeroActions />
           </motion.div>
         </motion.div>
       </div>

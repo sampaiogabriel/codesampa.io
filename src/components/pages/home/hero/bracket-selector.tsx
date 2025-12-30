@@ -15,7 +15,7 @@ export function BracketSelector({
 }: BracketSelectorProps) {
   return (
     <div className="group relative inline-flex items-center justify-center gap-4 md:gap-6 outline-none select-none py-2 z-20 max-w-full">
-      {/* Bracket Esquerdo - Botão de Toggle */}
+      {/* Bracket Esquerdo */}
       <button
         onClick={onToggle}
         className="cursor-pointer focus:outline-none"
@@ -26,7 +26,7 @@ export function BracketSelector({
         </span>
       </button>
 
-      {/* Texto Central - Botão de Scroll */}
+      {/* Texto Central - Ajustado para md:text-8xl */}
       <button
         onClick={onScroll}
         className="relative min-w-[200px] text-center cursor-pointer focus:outline-none"
@@ -38,14 +38,14 @@ export function BracketSelector({
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
             transition={{ duration: 0.3 }}
-            className="block font-space font-black tracking-tight bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent pb-2 whitespace-nowrap text-5xl md:text-7xl"
+            className="block font-space font-black tracking-tight bg-linear-to-r from-primary via-blue-300 to-violet-600 bg-clip-text text-transparent pb-2 whitespace-nowrap text-5xl md:text-8xl"
           >
             {text}
           </motion.span>
         </AnimatePresence>
       </button>
 
-      {/* Bracket Direito - Botão de Toggle */}
+      {/* Bracket Direito */}
       <button
         onClick={onToggle}
         className="cursor-pointer focus:outline-none"
