@@ -44,7 +44,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const languages = {
     'pt-BR': `${HOST}/pt-BR`,
-    'en-US': `${HOST}/en-US`
+    'en-US': `${HOST}/en-US`,
+    'x-default': '/pt-BR'
   };
 
   const { locale } = await params;
