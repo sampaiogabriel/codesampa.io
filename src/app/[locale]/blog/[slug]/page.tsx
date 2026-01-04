@@ -48,6 +48,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} | codesampa.io`,
     description: post.description,
+    keywords: post.tags,
     openGraph: {
       title: post.title,
       description: post.description,

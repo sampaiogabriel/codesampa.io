@@ -42,6 +42,11 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
+  const languages = {
+    'pt-BR': `${HOST}/pt-BR`,
+    'en-US': `${HOST}/en-US`
+  };
+
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
 
@@ -51,6 +56,10 @@ export async function generateMetadata({
     keywords: t('keywords'),
     metadataBase: new URL(HOST),
     // manifest: `/${locale}/manifest.webmanifest`,
+    alternates: {
+      canonical: `${HOST}/${locale}`,
+      languages: languages
+    },
     icons: {
       icon: [
         { url: '/favicons/favicon.ico' },

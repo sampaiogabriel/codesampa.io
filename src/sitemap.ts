@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next';
 
+import { posts } from '.velite';
+
 import { routing } from '@/lib/i18n/routing';
 
 import { HOST } from './utils/constants/host';
@@ -7,7 +9,7 @@ import { HOST } from './utils/constants/host';
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ['', '/projects', '/blog', '/contact'];
 
-  const sitemapEntries = routes.flatMap((route) => {
+  const staticEntries = routes.flatMap((route) => {
     return routing.locales.map((locale) => ({
       url: `${HOST}/${locale}${route}`,
       lastModified: new Date(),
@@ -16,5 +18,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  return sitemapEntries;
+  const blogEntries = posts.flatMap((post) => {
+    return {
+      url: `${HOST}/${post.locale}/blog/${post.slugAsParams}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7
+    };
+  });
+
+  return [...staticEntries, ...blogEntries];
 }
