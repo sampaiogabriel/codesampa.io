@@ -222,6 +222,9 @@
         "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
         "rights": "All rights reserved.",
         "made_with": "Engineered by Gabriel Sampaio | codesampa.io",
+        "legal": {
+          "rights": "All rights reserved."
+        },
         "columns": {
           "explore": "Explore",
           "social": "Connect",

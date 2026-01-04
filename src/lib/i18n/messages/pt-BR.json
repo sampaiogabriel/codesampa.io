@@ -222,6 +222,9 @@
         "description": "Software House focada em produtos digitais que exigem performance, escalabilidade e design impecável.",
         "rights": "Todos os direitos reservados.",
         "made_with": "Desenvolvido por codesampa.io",
+        "legal": {
+          "rights": "Todos os direitos reservados."
+        },
         "columns": {
           "explore": "Explorar",
           "social": "Conectar",

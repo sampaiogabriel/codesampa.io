@@ -12,6 +12,9 @@ export function Links() {
   const t = useTranslations('Pages.Home.Links');
   const locale = useLocale();
 
+  // Pega o ano atual automaticamente
+  const currentYear = new Date().getFullYear();
+
   const latestPosts = posts
     .filter((post) => post.published && post.locale === locale)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -34,7 +37,7 @@ export function Links() {
               {t('description')}
             </p>
 
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-2 mb-2">
               <SocialLink
                 href="https://github.com/sampaiogabriel"
                 icon={<Github size={18} />}
@@ -44,9 +47,16 @@ export function Links() {
                 icon={<Linkedin size={18} />}
               />
             </div>
+
+            {/* Bloco de Informações da Empresa com Tradução */}
+            <div className="flex flex-col gap-1 mt-2 text-xs text-muted-foreground/50 font-mono">
+              <p>CNPJ: 64.197.469/0001-45</p>
+              <p>&copy; {currentYear} codesampa.io</p>
+              <p>{t('legal.rights')}</p>
+            </div>
           </div>
 
-          {/* Coluna 2: Blog Posts (CORRIGIDA) */}
+          {/* Coluna 2: Blog Posts */}
           <div className="md:col-span-4 hidden md:flex flex-col gap-6 md:items-start md:pl-8 lg:pl-16 min-w-0">
             <h4 className="font-space font-semibold text-white flex items-center gap-2 shrink-0">
               <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
