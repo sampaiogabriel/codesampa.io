@@ -117,10 +117,10 @@ const CardProject = ({
                     project.color?.includes('blue')
                       ? 'bg-blue-400 text-blue-400'
                       : project.color?.includes('emerald')
-                      ? 'bg-emerald-400 text-emerald-400'
-                      : project.color?.includes('purple')
-                      ? 'bg-purple-400 text-purple-400'
-                      : 'bg-white text-white'
+                        ? 'bg-emerald-400 text-emerald-400'
+                        : project.color?.includes('purple')
+                          ? 'bg-purple-400 text-purple-400'
+                          : 'bg-white text-white'
                   )}
                 >
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-current"></span>
@@ -145,7 +145,7 @@ const CardProject = ({
         </div>
 
         {/* Grid de Métricas de Impacto */}
-        <div className="grid grid-cols-3 gap-4 border-y border-white/5 py-6">
+        <div className="grid grid-cols-1 gap-4 border-y border-white/5 py-6 md:grid-cols-3">
           {project.metrics?.map((metricId, i) => (
             <div key={i} className="flex flex-col gap-1">
               <span className="text-2xl font-bold text-foreground">
