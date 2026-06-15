@@ -18,7 +18,6 @@ import useIsMobile from '@/utils/hooks/use-mobile';
 
 const SOCIALS = {
   email: 'gabrielsampaiolima@hotmail.com',
-  whatsapp: 'https://wa.me/5532988265223?text=Ol%C3%A1%20codesampa.io',
   calendly: 'https://cal.com/codesampa.io'
 };
 
@@ -90,7 +89,7 @@ export function ContactHub() {
         <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-blue-500/20 blur-[80px] transition-all group-hover:bg-blue-500/30" />
       </motion.button>
 
-      <motion.a
+      {/* <motion.a
         href={SOCIALS.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
@@ -114,7 +113,7 @@ export function ContactHub() {
           </p>
         </div>
         <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-[50px] group-hover:bg-emerald-500/20" />
-      </motion.a>
+      </motion.a> */}
 
       <motion.a
         href={cvFile}
