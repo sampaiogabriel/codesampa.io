@@ -177,7 +177,7 @@ export function ServicesSection() {
                         `text-${service.accent}-500 group-hover:text-${service.accent}-400`
                       )}
                     >
-                      {t('cta_card')} <ArrowRight size={16} />
+                      {t(`cards.${service.key}.cta`)} <ArrowRight size={16} />
                     </Link>
                   </div>
                 </div>

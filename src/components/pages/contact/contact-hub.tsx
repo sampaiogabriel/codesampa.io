@@ -4,33 +4,27 @@ import { motion, Variants } from 'framer-motion';
 import {
   Mail,
   MessageCircle,
-  FileDown,
   Calendar,
   Copy,
   Check,
   ArrowUpRight
 } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
+import { CONTACT_EMAIL } from '@/utils/constants/contact';
 import useIsMobile from '@/utils/hooks/use-mobile';
 
 const SOCIALS = {
-  email: 'gabrielsampaiolima@hotmail.com',
+  email: CONTACT_EMAIL,
   calendly: 'https://cal.com/codesampa.io'
 };
 
 export function ContactHub() {
   const t = useTranslations('Pages.Contact.Hub');
-  const locale = useLocale();
   const [copied, setCopied] = useState(false);
   const isMobile = useIsMobile();
-
-  const cvFile =
-    locale === 'pt-BR'
-      ? '/assets/docs/Resume - PT-BR - Gabriel Sampaio (Fullstack Javascript) - React - Next - Node.pdf'
-      : '/assets/docs/Resume - EN-US - Gabriel Sampaio (Fullstack Javascript) - React - Next - Node.pdf';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(SOCIALS.email);
@@ -61,7 +55,7 @@ export function ContactHub() {
         whileInView="visible"
         viewport={{ once: true }}
         onClick={handleCopyEmail}
-        className="group relative col-span-1 md:col-span-2 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/10 to-transparent p-6 md:p-8 text-left transition-all hover:border-white/20 hover:from-white/20"
+        className="group relative col-span-1 md:col-span-3 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/10 to-transparent p-6 md:p-8 text-left transition-all hover:border-white/20 hover:from-white/20"
       >
         <div className="absolute right-4 top-4 rounded-full bg-white/10 p-2 transition-colors group-hover:bg-white/20">
           {copied ? (
@@ -116,31 +110,6 @@ export function ContactHub() {
       </motion.a> */}
 
       <motion.a
-        href={cvFile}
-        download
-        custom={2}
-        variants={cardVariants}
-        initial={isMobile ? 'visible' : 'hidden'}
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-purple-500/10 to-transparent p-6 md:p-8 transition-all hover:border-purple-500/30 hover:from-purple-500/20"
-      >
-        <div className="absolute right-4 top-4 opacity-50 transition-opacity group-hover:opacity-100">
-          <FileDown size={20} />
-        </div>
-        <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-purple-500/20 text-purple-400">
-          <FileDown size={24} />
-        </div>
-        <div>
-          <h3 className="text-xl font-bold">{t('resume.label')}</h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            {t('resume.sub')}
-          </p>
-        </div>
-        <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-purple-500/10 blur-[50px] group-hover:bg-purple-500/20" />
-      </motion.a>
-
-      <motion.a
         href={SOCIALS.calendly}
         target="_blank"
         rel="noopener noreferrer"
@@ -149,7 +118,7 @@ export function ContactHub() {
         initial={isMobile ? 'visible' : 'hidden'}
         whileInView="visible"
         viewport={{ once: true }}
-        className="group relative col-span-1 md:col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
+        className="group relative col-span-1 md:col-span-3 flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-primary/10 to-transparent p-6 md:p-8 transition-all hover:border-primary/40 hover:from-primary/20"
       >
         <div className="flex flex-col gap-2 relative z-10">
           <div className="flex items-center gap-2 text-primary mb-2">

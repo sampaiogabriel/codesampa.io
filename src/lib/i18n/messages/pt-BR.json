@@ -124,9 +124,9 @@
         "badge": "Disponível para novos projetos",
         "title_prefix": "Construindo",
         "title_suffix": "Sistemas Complexos",
-        "mobile_title_suffix": "Experiências Digitais",
-        "subtitle": "Transformamos ideias abstratas em software de alto desempenho. Uma Software House especialista em arquitetura escalável e interfaces meticulosas.",
-        "cta_primary": "Vamos Conversar",
+        "mobile_title_suffix": "Software que Escala com o Seu Negócio",
+        "subtitle": "Sistemas, landing pages de alta conversão e automações com IA, projetados por quem entende tanto de código quanto de resultado.",
+        "cta_primary": "Vamos Falar do Seu Projeto",
         "cta_secondary": "Ver Projetos",
         "scroll_indicator": "Role para compilar"
       },
@@ -138,8 +138,7 @@
       "Services": {
         "badge": "O Que Entregamos",
         "title": "Soluções Digitais Completas.",
-        "subtitle": "Da ideia à escala global, construímos produtos que geram valor real.",
-        "cta_card": "Saiba Mais",
+        "subtitle": "Da primeira linha de código até o primeiro cliente pagante, cobrimos toda a jornada.",
         "cards": {
           "systems": {
             "title": "Sistemas Web & Mobile",
@@ -148,7 +147,8 @@
             "feature2": "Painéis Administrativos & Dashboards",
             "feature3": "Plataformas SaaS Multi-tenant",
             "feature4": "Integração de APIs & Pagamentos",
-            "feature5": "Arquitetura Micro-frontend"
+            "feature5": "Arquitetura Micro-frontend",
+            "cta": "Ver Sistemas"
           },
           "landing": {
             "title": "Landing Pages de Venda",
@@ -157,7 +157,8 @@
             "feature2": "SEO Técnico & Semântico",
             "feature3": "Design Focado em Conversão (CRO)",
             "feature4": "Animações & Motion Design",
-            "feature5": "Testes A/B & Integração CRM"
+            "feature5": "Testes A/B & Integração CRM",
+            "cta": "Ver Landing Pages"
           },
           "ai": {
             "title": "Integração de IA",
@@ -167,6 +168,7 @@
             "feature3": "Automação de Atendimento",
             "feature4": "Análise de Dados com IA",
             "feature5": "RAG & Fine-tuning de Modelos",
+            "cta": "Ver Automações",
             "visual": {
               "user_query": "Como aumentar as vendas?",
               "bot_processing": "Analisando dados..."
@@ -213,11 +215,10 @@
       },
       "ReadyToBuild": {
         "badge": "Pronto para Começar?",
-        "title": "Tire sua ideia do papel e <highlight>construa o futuro.</highlight>",
-        "subtitle": "Não espere pelo momento perfeito. A tecnologia avança rápido, e seu projeto também deveria.",
+        "title": "Seu próximo sistema começa com uma <highlight>conversa de 30 minutos.</highlight>",
+        "subtitle": "Sem enrolação: só uma conversa direta sobre prazo, escopo e como colocar seu projeto no ar.",
         "cta": "Iniciar Projeto",
-        "note": "Ou envie um email direto para",
-        "email": "gabrielsampaiolima@hotmail.com"
+        "note": "Ou envie um email direto para"
       },
       "Links": {
         "description": "Software House focada em produtos digitais que exigem performance, escalabilidade e design impecável.",
@@ -343,10 +344,6 @@
         "whatsapp": {
           "label": "WhatsApp",
           "sub": "Resposta rápida"
-        },
-        "resume": {
-          "label": "Para Recrutador (Currículo)",
-          "sub": "PDF • 2.4 MB"
         },
         "schedule": {
           "badge": "Agenda",

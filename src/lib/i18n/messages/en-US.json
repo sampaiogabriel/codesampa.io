@@ -124,9 +124,9 @@
         "badge": "Available for new projects",
         "title_prefix": "Building",
         "title_suffix": "Complex Systems",
-        "mobile_title_suffix": "Digital Experiences",
-        "subtitle": "Transforming abstract ideas into high-performance software. Experts in scalable architecture and meticulous interfaces.",
-        "cta_primary": "Let's Talk",
+        "mobile_title_suffix": "Software That Scales With Your Business",
+        "subtitle": "Systems, high-converting landing pages, and AI automations built by someone who understands both code and results.",
+        "cta_primary": "Let's Talk About Your Project",
         "cta_secondary": "View Projects",
         "scroll_indicator": "Scroll to compile"
       },
@@ -138,8 +138,7 @@
       "Services": {
         "badge": "What We Deliver",
         "title": "Complete Digital Solutions.",
-        "subtitle": "From idea to global scale, we build products that generate real value.",
-        "cta_card": "Learn More",
+        "subtitle": "From the first line of code to the first paying customer, we cover the whole journey.",
         "cards": {
           "systems": {
             "title": "Web & Mobile Systems",
@@ -148,7 +147,8 @@
             "feature2": "Admin Panels & Dashboards",
             "feature3": "Multi-tenant SaaS Platforms",
             "feature4": "API & Payment Integration",
-            "feature5": "Micro-frontend Architecture"
+            "feature5": "Micro-frontend Architecture",
+            "cta": "View Systems"
           },
           "landing": {
             "title": "High-Converting Pages",
@@ -157,7 +157,8 @@
             "feature2": "Technical & Semantic SEO",
             "feature3": "Conversion Focused Design (CRO)",
             "feature4": "Animations & Motion Design",
-            "feature5": "A/B Testing & CRM Integration"
+            "feature5": "A/B Testing & CRM Integration",
+            "cta": "View Landing Pages"
           },
           "ai": {
             "title": "AI Integration",
@@ -167,6 +168,7 @@
             "feature3": "Customer Service Automation",
             "feature4": "AI Data Analysis",
             "feature5": "RAG & Model Fine-tuning",
+            "cta": "View Automations",
             "visual": {
               "user_query": "How to increase sales?",
               "bot_processing": "Analyzing data..."
@@ -213,11 +215,10 @@
       },
       "ReadyToBuild": {
         "badge": "Ready to Start?",
-        "title": "Take your idea off the ground and <highlight>build the future.</highlight>",
-        "subtitle": "Don't wait for the perfect moment. Technology moves fast, and your project should too.",
+        "title": "Your next system starts with a <highlight>30 minute conversation.</highlight>",
+        "subtitle": "No fluff: just a direct conversation about timeline, scope, and how to ship your project.",
         "cta": "Start Project",
-        "note": "Or send a direct email to",
-        "email": "gabrielsampaiolima@hotmail.com"
+        "note": "Or send a direct email to"
       },
       "Links": {
         "description": "Cutting-edge software engineering for digital products demanding performance, scalability, and impeccable design.",
@@ -343,10 +344,6 @@
         "whatsapp": {
           "label": "WhatsApp",
           "sub": "Fast response"
-        },
-        "resume": {
-          "label": "For Tech Recruiter (Resume)",
-          "sub": "PDF • 2.4 MB"
         },
         "schedule": {
           "badge": "Schedule",

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { StatusDot } from '@/components/ui/status-dot';
+import { CONTACT_EMAIL } from '@/utils/constants/contact';
 
 export function ReadyToBuildSection() {
   const t = useTranslations('Pages.Home.ReadyToBuild');
@@ -130,7 +131,7 @@ export function ReadyToBuildSection() {
         >
           <p className="text-xs text-muted-foreground">
             {t('note')}{' '}
-            <span className="text-foreground font-mono">{t('email')}</span>
+            <span className="text-foreground font-mono">{CONTACT_EMAIL}</span>
           </p>
         </motion.div>
       </div>
