@@ -9,7 +9,7 @@ interface HomeState {
 }
 
 export const useHomeStore = create<HomeState>((set) => ({
-  mode: 'systems',
+  mode: 'landing',
   setMode: (mode) => set({ mode }),
   toggleMode: () =>
     set((state) => ({
