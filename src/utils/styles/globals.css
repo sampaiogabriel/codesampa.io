@@ -20,6 +20,8 @@
   --accent-foreground: oklch(0.4859 0.2339 262.5015);
   --destructive: oklch(0.6368 0.2078 25.3313);
   --destructive-foreground: oklch(1 0 0);
+  --success: var(--color-emerald-500);
+  --success-foreground: oklch(1 0 0);
   --border: oklch(0.8717 0.0093 258.3382);
   --input: oklch(0.967 0.0029 264.5419);
   --ring: oklch(0.4859 0.2339 262.5015);
@@ -80,6 +82,8 @@
   --accent-foreground: oklch(0.9276 0.0058 264.5313);
   --destructive: oklch(0.5771 0.2152 27.325);
   --destructive-foreground: oklch(1 0 0);
+  --success: var(--color-emerald-500);
+  --success-foreground: oklch(1 0 0);
   --border: oklch(0.3351 0.0331 260.912);
   --input: oklch(0.2504 0.0274 259.9705);
   --ring: oklch(0.4859 0.2339 262.5015);
@@ -134,6 +138,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -223,5 +229,16 @@
   /* Garante que a face de trás esteja espelhada corretamente para leitura */
   .rotate-y-180 {
     transform: rotateY(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -3,6 +3,7 @@
 import { motion, Variants } from 'framer-motion';
 import React from 'react';
 
+import { StatusDot } from '@/components/ui/status-dot';
 import { cn } from '@/utils/functions/tw-merge';
 
 // Mapeamento de cores para garantir que o Tailwind gere as classes corretas
@@ -97,20 +98,11 @@ export function PageTitle({
             currentStyle.container
           )}
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span
-              className={cn(
-                'absolute inline-flex h-full w-full animate-ping rounded-full opacity-75',
-                currentStyle.ping
-              )}
-            />
-            <span
-              className={cn(
-                'relative inline-flex h-2.5 w-2.5 rounded-full',
-                currentStyle.dot
-              )}
-            />
-          </span>
+          <StatusDot
+            size="md"
+            pingClassName={currentStyle.ping}
+            dotClassName={currentStyle.dot}
+          />
           <span className="text-xs font-bold uppercase tracking-widest">
             {badge}
           </span>

@@ -85,6 +85,9 @@ export default async function PostPage({ params }: PostPageProps) {
   const MDXContent = useMDXComponent(post.content);
 
   const mdxComponents = {
+    // Evita um segundo <h1> na página: o título do post já é renderizado
+    // como h1 acima, então qualquer `#` no MDX vira h2.
+    h1: (props: React.ComponentProps<'h2'>) => <h2 {...props} />,
     pre: CodeBlock,
     ChatBubble
   };
@@ -94,7 +97,7 @@ export default async function PostPage({ params }: PostPageProps) {
       <ScrollProgress />
 
       {/* Background Effect */}
-      <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/10 blur-[100px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-300/10 blur-[100px] md:blur-[130px]" />
 
       {/* Header Centralizado */}
       <header className="mb-16 relative z-10 mx-auto">

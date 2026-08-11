@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRef } from 'react';
 
+import { StatusDot } from '@/components/ui/status-dot';
 import { LIST_PROJECTS, TECH_ICONS } from '@/utils/constants/projects';
 import { cn } from '@/utils/functions/tw-merge';
 
@@ -110,21 +111,29 @@ const CardProject = ({
                   )}
                 />
 
-                <span
+                <StatusDot
                   className={cn(
-                    'relative flex h-2 w-2 rounded-full shadow-[0_0_8px_currentColor]',
+                    'shadow-[0_0_8px_currentColor]',
                     // Extrai a cor primária da classe do projeto para o ponto brilhante
                     project.color?.includes('blue')
-                      ? 'bg-blue-400 text-blue-400'
+                      ? 'text-blue-400'
                       : project.color?.includes('emerald')
-                        ? 'bg-emerald-400 text-emerald-400'
+                        ? 'text-emerald-400'
                         : project.color?.includes('purple')
-                          ? 'bg-purple-400 text-purple-400'
-                          : 'bg-white text-white'
+                          ? 'text-purple-400'
+                          : 'text-white'
                   )}
-                >
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-current"></span>
-                </span>
+                  dotClassName={
+                    project.color?.includes('blue')
+                      ? 'bg-blue-400'
+                      : project.color?.includes('emerald')
+                        ? 'bg-emerald-400'
+                        : project.color?.includes('purple')
+                          ? 'bg-purple-400'
+                          : 'bg-white'
+                  }
+                  pingClassName="bg-current"
+                />
 
                 <div className="flex items-center gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 group-hover/interview:text-white">
@@ -164,10 +173,12 @@ const CardProject = ({
             return (
               <div
                 key={tag}
-                className="group/icon relative flex items-center justify-center p-2 rounded-md bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-help"
+                tabIndex={0}
+                aria-label={tag}
+                className="group/icon relative flex items-center justify-center p-2 rounded-md bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-colors cursor-help outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <Icon size={18} className="text-slate-300" />
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-[10px] text-white rounded opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-black text-[10px] text-white rounded opacity-0 transition-opacity whitespace-nowrap pointer-events-none group-hover/icon:opacity-100 group-focus-visible/icon:opacity-100">
                   {tag}
                 </span>
               </div>

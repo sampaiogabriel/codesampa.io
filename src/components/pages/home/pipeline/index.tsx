@@ -12,6 +12,7 @@ import {
 import { useTranslations } from 'next-intl';
 import React, { useRef } from 'react';
 
+import { StatusDot } from '@/components/ui/status-dot';
 import { cn } from '@/utils/functions/tw-merge';
 import useIsMobile from '@/utils/hooks/use-mobile';
 
@@ -98,10 +99,7 @@ export function EngineeringPipeline() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 mb-4"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-            </span>
+            <StatusDot />
             <span className="text-xs font-bold uppercase tracking-widest text-primary">
               {t('badge')}
             </span>

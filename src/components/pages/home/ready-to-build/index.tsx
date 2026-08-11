@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { StatusDot } from '@/components/ui/status-dot';
+
 export function ReadyToBuildSection() {
   const t = useTranslations('Pages.Home.ReadyToBuild');
   const [particles, setParticles] = useState<
@@ -61,10 +63,7 @@ export function ReadyToBuildSection() {
           viewport={{ once: true }}
           className="mx-auto mb-8 flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-          </span>
+          <StatusDot dotClassName="bg-success" />
           <span className="text-xs font-bold uppercase tracking-widest text-primary">
             {t('badge')}
           </span>

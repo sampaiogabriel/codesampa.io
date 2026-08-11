@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+import { StatusDot } from '@/components/ui/status-dot';
 import { cn } from '@/utils/functions/tw-merge';
 
 import {
@@ -58,7 +59,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section className="relative bg-background overflow-hidden">
+    <section className="relative bg-background overflow-hidden py-24 md:py-32">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[800px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -71,10 +72,7 @@ export function ServicesSection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 mb-4"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-            </span>
+            <StatusDot />
             <span className="text-xs font-bold uppercase tracking-widest text-primary">
               {t('badge')}
             </span>

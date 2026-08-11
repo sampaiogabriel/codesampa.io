@@ -19,7 +19,7 @@ export default async function ContactPage() {
   const t = await getTranslations('Pages.Contact.Hub');
 
   return (
-    <main className="relative flex h-full flex-1 flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex h-full flex-1 flex-col items-center justify-center overflow-hidden">
       {/* Background Effect */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green-500/10 blur-[100px] md:blur-[130px]" />
 
@@ -40,6 +40,6 @@ export default async function ContactPage() {
 
         <ContactHub />
       </div>
-    </main>
+    </div>
   );
 }
