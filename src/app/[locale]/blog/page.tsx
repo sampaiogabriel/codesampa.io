@@ -27,15 +27,15 @@ export default async function BlogPage() {
 
   return (
     <section className="container mx-auto px-4 py-12 md:py-24 relative">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-300/10 blur-[100px] md:blur-[130px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-full max-w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-300/10 blur-[100px] md:blur-[130px]" />
 
       <PageTitle
         badge={t('badge')}
-        badgeColor="purple"
+        badgeColor="blue"
         title={
           <>
             {t('title_prefix')}{' '}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-purple-200 animate-gradient-x">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-cyan-400 to-blue-300 animate-gradient-x">
               {t('title_highlight')}
             </span>
           </>
