@@ -41,10 +41,12 @@ export function Links() {
               <SocialLink
                 href="https://github.com/sampaiogabriel"
                 icon={<Github size={18} />}
+                label="GitHub Profile"
               />
               <SocialLink
                 href="https://www.linkedin.com/in/gabrielsampaiolimadearaujo/"
                 icon={<Linkedin size={18} />}
+                label="LinkedIn Profile"
               />
             </div>
 
@@ -123,15 +125,18 @@ const LiLink = ({
 
 const SocialLink = ({
   href,
-  icon
+  icon,
+  label
 }: {
   href: string;
   icon: React.ReactNode;
+  label: string;
 }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
+    aria-label={label}
     className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/2 text-muted-foreground hover:scale-110 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-all duration-300"
   >
     {icon}

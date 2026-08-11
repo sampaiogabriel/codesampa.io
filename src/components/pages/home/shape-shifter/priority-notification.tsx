@@ -23,7 +23,11 @@ export function PriorityNotification({
   const t = useTranslations('Components.Pages.Home.ShapeShifter.Notification');
 
   useEffect(() => {
-    if (isVisible) {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (isVisible && !prefersReducedMotion) {
       const audio = new Audio('/assets/sounds/notification.mp3');
       audio.volume = 0.6;
 
@@ -37,6 +41,8 @@ export function PriorityNotification({
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          role="status"
+          aria-live="polite"
           className="fixed bottom-4 left-4 right-4 z-50 mx-auto w-auto max-w-sm md:absolute md:bottom-auto md:left-auto md:right-6 md:top-6"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -73,6 +79,7 @@ export function PriorityNotification({
 
               <button
                 onClick={onDismiss}
+                aria-label={t('actions.dismiss')}
                 className="rounded-full p-1 text-slate-500 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <X size={14} />

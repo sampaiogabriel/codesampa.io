@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
@@ -32,6 +33,8 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  // Deve espelhar --primary em src/utils/styles/globals.css (oklch não é suportado
+  // por browsers em <meta name="theme-color">, por isso o hex fixo).
   themeColor: '#0047FF'
 };
 
@@ -111,6 +114,10 @@ export default async function RootLayout({
   params: Params;
 }>) {
   const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: 'Components.Layout.Header'
+  });
 
   return (
     <html
@@ -123,16 +130,26 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased flex flex-col min-h-screen`}
       >
         <NextIntlClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
-            <Header />
-            <Toaster />
-            <main className="grow">{children}</main>
-            <Footer />
-          </ThemeProvider>
+          <MotionConfig reducedMotion="user">
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              disableTransitionOnChange
+            >
+              <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+              >
+                {t('skip_to_content')}
+              </a>
+              <Header />
+              <Toaster />
+              <main id="main-content" className="grow">
+                {children}
+              </main>
+              <Footer />
+            </ThemeProvider>
+          </MotionConfig>
         </NextIntlClientProvider>
       </body>
     </html>

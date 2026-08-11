@@ -31,7 +31,10 @@ export default function NotFoundContent() {
         </motion.div>
 
         {/* Código de Erro Grande */}
-        <h1 className="font-space font-black text-8xl md:text-9xl text-transparent bg-clip-text bg-linear-to-b from-white to-white/10 tracking-tighter mb-2">
+        <h1
+          aria-label="Page not found"
+          className="font-space font-black text-8xl md:text-9xl text-transparent bg-clip-text bg-linear-to-b from-white to-white/10 tracking-tighter mb-2"
+        >
           404
         </h1>
 

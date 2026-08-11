@@ -92,6 +92,7 @@ export function FilterBar({
             <button
               key={cat.id}
               onClick={() => onCategoryChange(cat.id)}
+              aria-pressed={activeCategory === cat.id}
               className={cn(
                 'relative shrink-0 snap-start rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap',
                 activeCategory === cat.id
@@ -166,6 +167,7 @@ export function FilterBar({
                 <button
                   onClick={handleCloseSearch}
                   onMouseDown={(e) => e.preventDefault()}
+                  aria-label="Close search"
                   className={cn(
                     'ml-2 shrink-0 items-center justify-center rounded-full bg-white/10 text-muted-foreground hover:bg-white/20 hover:text-white h-5 w-5',
                     'hidden md:flex'

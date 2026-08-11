@@ -44,6 +44,8 @@ export function ShapeShifterControls({
           <button
             onClick={() => !isMobileDevice && setMode('desktop')}
             disabled={isMobileDevice}
+            aria-pressed={currentMode === 'desktop'}
+            aria-label="Desktop"
             className={cn(
               'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
               currentMode === 'desktop'
@@ -75,6 +77,8 @@ export function ShapeShifterControls({
           {/* Botão Mobile */}
           <button
             onClick={() => setMode('mobile')}
+            aria-pressed={currentMode === 'mobile'}
+            aria-label="Mobile"
             className={cn(
               'relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300',
               currentMode === 'mobile'
@@ -98,6 +102,7 @@ export function ShapeShifterControls({
           onClick={onReplay}
           className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/80 text-slate-400 backdrop-blur-xl transition-all hover:bg-white/10 hover:text-white active:scale-95 group"
           title="Replay Animation"
+          aria-label="Replay Animation"
         >
           <RotateCcw
             size={16}

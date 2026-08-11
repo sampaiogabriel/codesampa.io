@@ -45,6 +45,7 @@ export function NavLinks({
             key={link.href}
             href={link.href}
             onClick={onLinkClick}
+            aria-current={isActive ? 'page' : undefined}
             className={cn(
               'group font-space relative flex items-center transition-colors',
               // Estilos Desktop (Horizontal)

@@ -51,7 +51,7 @@ export function ChatBubble({
             'prose-p:my-1 prose-p:leading-relaxed',
 
             isClient
-              ? 'rounded-3xl rounded-tl-none bg-muted text-primary-foreground text-left prose-headings:text-primary-foreground prose-p:text-primary-foreground prose-strong:text-primary-foreground prose-a:text-primary-foreground'
+              ? 'rounded-3xl rounded-tl-none bg-muted text-foreground text-left prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-a:text-foreground'
               : 'rounded-3xl rounded-tr-none bg-muted text-foreground text-right'
           )}
         >

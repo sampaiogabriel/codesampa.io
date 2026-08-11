@@ -31,7 +31,8 @@
           "contact": "Contact"
         },
         "language_selector": "Change language",
-        "open_menu": "Open menu"
+        "open_menu": "Open menu",
+        "skip_to_content": "Skip to main content"
       },
       "Footer": {
         "rights": "All rights reserved."

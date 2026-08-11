@@ -18,7 +18,7 @@ export function BracketSelector({
       {/* Bracket Esquerdo */}
       <button
         onClick={onToggle}
-        className="cursor-pointer focus:outline-none"
+        className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
         aria-label="Previous mode"
       >
         <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:-translate-x-2 transition-all duration-300 ease-out block">
@@ -29,7 +29,8 @@ export function BracketSelector({
       {/* Texto Central - Ajustado para md:text-8xl */}
       <button
         onClick={onScroll}
-        className="relative min-w-[200px] text-center cursor-pointer focus:outline-none"
+        aria-live="polite"
+        className="relative min-w-[200px] text-center cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
       >
         <AnimatePresence mode="wait">
           <motion.span
@@ -48,7 +49,7 @@ export function BracketSelector({
       {/* Bracket Direito */}
       <button
         onClick={onToggle}
-        className="cursor-pointer focus:outline-none"
+        className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
         aria-label="Next mode"
       >
         <span className="font-mono font-light text-5xl text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-2 transition-all duration-300 ease-out block">

@@ -90,6 +90,7 @@ export function TableOfContents() {
               <a
                 href={`#${heading.id}`}
                 onClick={(e) => handleClick(e, heading.id)}
+                aria-current={isActive ? 'location' : undefined}
                 className={cn(
                   'block text-sm transition-all duration-200 line-clamp-2 hover:text-white',
                   isActive

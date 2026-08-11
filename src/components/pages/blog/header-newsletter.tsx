@@ -14,6 +14,7 @@ export function HeaderNewsletter() {
   const [email, setEmail] = useState('');
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,14 +28,17 @@ export function HeaderNewsletter() {
 
         if (result?.success || result?.message === 'success') {
           setStatus('success');
+          setStatusMessage(t('messages.success'));
           toast.success(t('messages.success'));
           setEmail('');
         } else {
           setStatus('error');
+          setStatusMessage(t('messages.error'));
           toast.error(t('messages.error'));
         }
       } catch (error) {
         setStatus('error');
+        setStatusMessage(t('messages.critical_error'));
         toast.error(t('messages.critical_error'));
       }
       setTimeout(() => setStatus('idle'), 3000);
@@ -52,7 +56,10 @@ export function HeaderNewsletter() {
         <div className="flex flex-col gap-2 md:max-w-lg">
           <div className="flex items-center gap-2">
             <Terminal size={16} className="text-primary" />
-            <h3 className="text-lg font-bold font-space text-foreground md:text-xl">
+            <h3
+              id="newsletter-heading"
+              className="text-lg font-bold font-space text-foreground md:text-xl"
+            >
               {t('title_prefix')}{' '}
               <span className="text-primary">{t('title_highlight')}</span>
             </h3>
@@ -70,6 +77,9 @@ export function HeaderNewsletter() {
           <div className="relative flex-1">
             <input
               type="email"
+              aria-labelledby="newsletter-heading"
+              aria-invalid={status === 'error'}
+              aria-describedby="newsletter-status"
               placeholder={t('placeholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -77,6 +87,9 @@ export function HeaderNewsletter() {
               className="h-10 w-full rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-white placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all font-mono"
               required
             />
+            <span id="newsletter-status" role="status" aria-live="polite" className="sr-only">
+              {statusMessage}
+            </span>
           </div>
 
           <button
@@ -86,7 +99,7 @@ export function HeaderNewsletter() {
               'flex h-10 items-center justify-center rounded-lg px-4 text-sm font-bold uppercase tracking-wider transition-all min-w-[100px]',
               status === 'success'
                 ? 'bg-green-500/20 text-green-400 border border-green-500/50'
-                : 'bg-primary text-black hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]'
+                : 'bg-primary text-black hover:bg-primary/90 hover:shadow-[0_0_15px_color-mix(in_oklab,var(--color-primary)_30%,transparent)]'
             )}
           >
             <AnimatePresence mode="wait">

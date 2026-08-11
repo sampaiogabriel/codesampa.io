@@ -178,6 +178,7 @@ const FolderItem = ({
     <div className="select-none">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
         className={cn(
           'flex w-full items-center gap-1.5 rounded-sm px-2 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground',
           isOpen && 'text-foreground'
@@ -264,6 +265,7 @@ export function FileExplorer({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search..."
+            aria-label="Search posts"
             className="w-full bg-transparent text-[11px] text-foreground placeholder:text-muted-foreground/40 focus:outline-none font-mono"
           />
         </div>
