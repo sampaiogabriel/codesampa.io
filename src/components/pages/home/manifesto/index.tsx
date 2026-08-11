@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 
+import { StatusDot } from '@/components/ui/status-dot';
 import { cn } from '@/utils/functions/tw-merge';
 
 export function ManifestoSection() {
@@ -26,19 +27,17 @@ export function ManifestoSection() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           {/* Badge Centralizado */}
-          <div className="mb-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">
-                {t('badge')}
-              </span>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 mb-4"
+          >
+            <StatusDot />
+            <span className="text-xs font-bold uppercase tracking-widest text-primary">
+              {t('badge')}
+            </span>
+          </motion.div>
 
           <h2 className="flex flex-wrap justify-center gap-x-2 gap-y-1 md:gap-x-3 md:gap-y-2 text-2xl md:text-4xl font-bold font-space leading-snug text-center">
             {words.map((word, i) => {

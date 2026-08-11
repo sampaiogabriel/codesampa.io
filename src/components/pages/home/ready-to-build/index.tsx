@@ -61,7 +61,7 @@ export function ReadyToBuildSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mx-auto mb-8 flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5"
+          className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1"
         >
           <StatusDot dotClassName="bg-success" />
           <span className="text-xs font-bold uppercase tracking-widest text-primary">
